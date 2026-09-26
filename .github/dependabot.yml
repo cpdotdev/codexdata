@@ -11,3 +11,9 @@ updates:
     groups:
       dev-dependencies:
         dependency-type: development
+    # Major bumps of the test/type toolchain are handled by hand: vitest and
+    # @cloudflare/vitest-pool-workers must move together, and TypeScript majors
+    # need a look at the emitted types.
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
