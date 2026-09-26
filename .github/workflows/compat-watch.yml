@@ -1,0 +1,93 @@
+name: Compat watch
+
+# Watches Codex CLI releases. Every 6 hours it compares the npm dist-tags (latest / alpha) with
+# the probes already committed; for each new version it downloads the official binary, runs
+# scripts/compat-probe.mjs, commits the probe results and hot-publishes the compat payload to
+# data.cp.dev (KV; no Worker redeploy). A regression (a managed key vanished from the binary, or
+# a Codex-Pass-shaped config.toml is rejected as a whole) opens an `ops` issue for human triage;
+# the verdict goes into data/codex-compat/tracked.json (statusOverride/action) or advisories/.
+on:
+  schedule:
+    - cron: "11 */6 * * *"
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Probe only this Codex version (empty = npm dist-tags latest + alpha)"
+        required: false
+      force:
+        description: "Re-probe even if already probed (true/false)"
+        required: false
+        default: "false"
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: codexdata-compat-watch
+  cancel-in-progress: false
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GITHUB_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version-file: ".node-version"
+      - run: corepack enable
+      - run: pnpm install --frozen-lockfile
+      - name: Probe new Codex versions
+        id: probe
+        run: |
+          args=()
+          [ -n "${{ inputs.version }}" ] && args+=(--version "${{ inputs.version }}")
+          [ "${{ inputs.force }}" = "true" ] && args+=(--force)
+          set +e
+          node scripts/compat-probe.mjs "${args[@]}" | tee probe.log
+          status=${PIPESTATUS[0]}
+          set -e
+          echo "status=$status" >> "$GITHUB_OUTPUT"
+          # 0 = nothing new or all clear; 20 = regression found (still commit + publish so clients see the facts).
+          [ "$status" = "0" ] || [ "$status" = "20" ] || exit "$status"
+      - name: Rebuild compat payload
+        run: node scripts/build-compat.mjs
+      - name: Format probe data
+        run: pnpm exec prettier --write data/codex-compat/probes
+      - name: Commit probe results
+        id: commit
+        run: |
+          git add data/codex-compat/probes public/v1/compat
+          if git diff --cached --quiet; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "no new probe data"
+          else
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git commit -m "data(compat): probe new Codex versions"
+            git pull --rebase origin main
+            git push origin HEAD:main
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Publish to data.cp.dev (KV hot update)
+        if: steps.commit.outputs.changed == 'true'
+        env:
+          CODEXDATA_ORIGIN: ${{ vars.CODEXDATA_ORIGIN || 'https://data.cp.dev' }}
+          CODEXDATA_ADMIN_TOKEN: ${{ secrets.CODEXDATA_ADMIN_TOKEN }}
+        run: node scripts/publish-compat.mjs
+      - name: Open or update regression issue
+        if: steps.probe.outputs.status == '20'
+        run: |
+          title="Codex compat regression detected"
+          body=$(printf 'compat-probe found regressions at %s.\n\n```\n%s\n```\n\nTriage: confirm in data/codex-compat/tracked.json (statusOverride/action) or add an advisory, then re-run build-compat + publish.\n' \
+            "$(date -u +%FT%TZ)" "$(grep -E 'probing|wrote|!!' probe.log | head -40)")
+          existing=$(gh issue list --repo "$GITHUB_REPOSITORY" --state open --search "\"$title\" in:title" --json number --jq '.[0].number')
+          if [ -n "$existing" ]; then
+            gh issue comment "$existing" --repo "$GITHUB_REPOSITORY" --body "$body"
+          else
+            gh issue create --repo "$GITHUB_REPOSITORY" --title "$title" --body "$body" --label "ops"
+          fi

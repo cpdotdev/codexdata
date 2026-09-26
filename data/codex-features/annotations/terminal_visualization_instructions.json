@@ -1,0 +1,9 @@
+{
+  "key": "terminal_visualization_instructions",
+  "i18n": {
+    "zh": {
+      "title": "终端可视化指引",
+      "summary": "在 TUI 的 developer 指令中加入终端专属的可视化指引。"
+    }
+  }
+}

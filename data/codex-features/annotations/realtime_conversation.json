@@ -1,0 +1,9 @@
+{
+  "key": "realtime_conversation",
+  "i18n": {
+    "zh": {
+      "title": "实时语音对话",
+      "summary": "在 TUI 中启用实验性的实时语音对话模式。"
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "key": "external_agent_memory_import",
+  "i18n": {
+    "zh": {
+      "title": "外部代理记忆导入",
+      "summary": "支持从外部代理导入项目范围的记忆。"
+    }
+  }
+}

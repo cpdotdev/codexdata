@@ -1,0 +1,28 @@
+{
+  "schema": "codex-model-info.schema.json",
+  "latest": "rust-v0.153.4",
+  "verified_tags": [
+    "rust-v0.148.0",
+    "rust-v0.149.0",
+    "rust-v0.150.0",
+    "rust-v0.151.0",
+    "rust-v0.152.0",
+    "rust-v0.153.1",
+    "rust-v0.153.4"
+  ],
+  "source_files": [
+    "codex-rs/protocol/src/openai_models.rs",
+    "codex-rs/protocol/src/config_types.rs"
+  ],
+  "notes": [
+    "One schema covers every verified tag: all struct changes across them are additive with serde defaults, so a response valid for 0.148.0 is valid for 0.153.4 and vice versa as far as the client's rejection rules go.",
+    "rust-v0.149.0: ModelMessages gained guardian_v2.",
+    "rust-v0.150.0: ConfigShellToolType collapsed from five variants (default, local, unified_exec, disabled, shell_command) to unified_exec | disabled with the other three as aliases of unified_exec — same accepted spellings.",
+    "rust-v0.151.0: ModelInfo gained multi_agent_reasoning_effort; ModelMessages gained persistent_instructions and confirmation_policies; ReasoningEffort gained persistent.",
+    "rust-v0.152.0: ModelMessages gained tools.",
+    "rust-v0.153.1 and rust-v0.153.4: openai_models.rs byte-identical to each other; no struct changes since 0.152.0.",
+    "Bundled models.json carries keys the struct does not have (supports_parallel_tool_calls, prefer_websockets, requires_sandboxed_review, supports_reasoning_summaries, available_in_plans, minimal_client_version); the client ignores them."
+  ],
+  "sources_dir": "sources/",
+  "sources_license": "Apache-2.0 (openai/codex); LICENSE and NOTICE reproduced in sources/"
+}

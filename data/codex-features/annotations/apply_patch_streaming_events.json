@@ -1,0 +1,9 @@
+{
+  "key": "apply_patch_streaming_events",
+  "i18n": {
+    "zh": {
+      "title": "补丁生成进度流",
+      "summary": "在 apply_patch 输入还在生成时，流式发送结构化进度事件。"
+    }
+  }
+}

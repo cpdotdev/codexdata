@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "codex-feature-annotation",
+  "description": "One human-curated annotation file per feature flag (data/codex-features/annotations/<key>.json). `key` must equal the filename. Locale blocks live under `i18n`, keyed by BCP-47-style codes (zh, en, ja, zh-TW, zh-Hant, …); adding a language = adding one block. validate.mjs additionally checks the key exists in the extracted registry.",
+  "type": "object",
+  "properties": {
+    "key": { "type": "string", "pattern": "^[a-z0-9_]{1,64}$" },
+    "aka": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Locale-independent observed official/user-facing name (e.g. chronicle = \"Computer History\")."
+    },
+    "i18n": {
+      "type": "object",
+      "minProperties": 1,
+      "propertyNames": { "pattern": "^[a-z]{2}(-([A-Z]{2}|[A-Za-z]{4}))?$" },
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "title": { "type": "string", "minLength": 1 },
+          "summary": { "type": "string", "minLength": 1 },
+          "note": { "type": "string", "minLength": 1 },
+          "risk": { "type": "string", "minLength": 1 }
+        },
+        "required": ["title", "summary"],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": ["key", "i18n"],
+  "additionalProperties": false
+}

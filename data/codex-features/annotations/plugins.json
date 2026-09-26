@@ -1,0 +1,9 @@
+{
+  "key": "plugins",
+  "i18n": {
+    "zh": {
+      "title": "插件（Plugins）",
+      "summary": "启用插件系统。"
+    }
+  }
+}

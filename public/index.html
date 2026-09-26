@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CodexData — open datasets for the OpenAI Codex client</title>
+    <!-- The live catalog mirror and /healthz are served only by the Worker at this origin. -->
+    <meta name="codexdata-live-origin" content="https://data.cp.dev" />
+    <link rel="icon" href="codex-pass-logo.svg" />
+    <link rel="stylesheet" href="design.css" />
+    <script src="theme.js"></script>
+    <script src="status.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Skip to content</a>
+    <header class="docs-nav">
+      <a class="docs-brand" href="https://console.cp.dev"
+        ><img src="codex-pass-logo.svg" alt="" width="28" height="28" />Codex Pass
+        <span class="muted">/ Data</span></a
+      >
+      <nav class="docs-links" aria-label="Main navigation">
+        <a href="#endpoints">Endpoints</a>
+        <a href="https://github.com/cpdotdev/codexdata">GitHub</a>
+        <button class="docs-theme" id="theme-toggle" type="button" aria-label="Change color theme">
+          System
+        </button>
+      </nav>
+    </header>
+    <main id="content">
+      <p class="docs-eyebrow">Open data for Codex</p>
+      <h1>Codex data.<br />Ready to build with.</h1>
+      <p class="muted">
+        Not affiliated with OpenAI. An independent, open mirror and dataset for the OpenAI Codex
+        client.
+      </p>
+      <p class="docs-intro">
+        The official model catalog, verified feature flags, the ModelInfo schema and hook product
+        data for developers building on Codex. Open JSON endpoints, immutable snapshots, and a
+        traceable source for every dataset.
+      </p>
+      <div class="docs-actions">
+        <a class="docs-action" href="https://data.cp.dev/v1/codex/models.json"
+          >Open model catalog <span aria-hidden="true">↗</span></a
+        ><a href="#endpoints">Explore endpoints <span aria-hidden="true">↓</span></a>
+      </div>
+      <section class="docs-overview" aria-labelledby="data-context">
+        <h2 id="data-context">Data at a glance</h2>
+        <dl class="docs-facts">
+          <div>
+            <dt>Mirror health</dt>
+            <dd>
+              <a id="mirror-health" href="https://data.cp.dev/healthz">See health endpoint</a>
+            </dd>
+          </div>
+          <div>
+            <dt>Last successful check</dt>
+            <dd id="catalog-checked">
+              See <a href="https://data.cp.dev/v1/codex/meta.json">metadata</a>
+            </dd>
+          </div>
+          <div>
+            <dt>Content fetched</dt>
+            <dd id="catalog-fetched">
+              See <a href="https://data.cp.dev/v1/codex/meta.json">metadata</a>
+            </dd>
+          </div>
+          <div>
+            <dt>Source plan</dt>
+            <dd id="catalog-plan">
+              See <a href="https://data.cp.dev/v1/codex/meta.json">metadata</a>
+            </dd>
+          </div>
+          <div>
+            <dt>Schema tag</dt>
+            <dd>
+              <a id="schema-tag" href="v1/schema/codex-model-info/index.json">Verified tags</a>
+            </dd>
+          </div>
+          <div>
+            <dt>Feature registry tag</dt>
+            <dd><a id="features-tag" href="v1/features/codex/index.json">Verified tags</a></dd>
+          </div>
+        </dl>
+        <p class="muted docs-caption">
+          Catalog checks and content updates are separate. Schema and feature versions follow
+          verified Codex tags. Health comes from
+          <a href="https://data.cp.dev/healthz">/healthz</a>; missing metadata is not a healthy
+          status.
+        </p>
+      </section>
+      <section class="docs-quickstart" aria-labelledby="quickstart">
+        <div>
+          <p class="docs-eyebrow">START BUILDING</p>
+          <h2 id="quickstart">Quick start</h2>
+          <p>
+            Fetch the model catalog as JSON. Use its <code>ETag</code> with
+            <code>If-None-Match</code> for subsequent requests.
+          </p>
+        </div>
+        <pre
+          aria-label="Fetch the model catalog"
+        ><code>curl -fsS https://data.cp.dev/v1/codex/models.json</code></pre>
+      </section>
+      <nav class="docs-section-nav" aria-label="Dataset navigation">
+        <a href="#endpoints">API reference</a><a href="#caveats">Source &amp; freshness</a
+        ><a href="#licenses">Licenses</a>
+      </nav>
+      <h2 id="endpoints">API reference <span class="muted">/ v1</span></h2>
+      <p class="muted">
+        The catalog is mirrored live from <code>chatgpt.com/backend-api/codex/models</code> and
+        served only at <code>data.cp.dev</code>. Every other dataset is a static file generated from
+        the sources in the repository, so it can be mirrored anywhere.
+      </p>
+      <div class="docs-table">
+        <table>
+          <tr>
+            <th scope="col">Endpoint</th>
+            <th scope="col">Description</th>
+          </tr>
+          <tr>
+            <td data-label="Endpoint">
+              <a href="https://data.cp.dev/v1/index.json"><code>/v1/index.json</code></a>
+            </td>
+            <td>Discovery: endpoints, last sync summary, licenses.</td>
+          </tr>
+          <tr>
+            <td data-label="Endpoint">
+              <a href="https://data.cp.dev/v1/codex/models.json"
+                ><code>/v1/codex/models.json</code></a
+              >
+            </td>
+            <td>
+              Latest official Codex catalog envelope <code>{"models":[…]}</code>, unmodified.
+              <code>ETag</code> + <code>If-None-Match</code> supported.
+            </td>
+          </tr>
+          <tr>
+            <td data-label="Endpoint">
+              <a href="https://data.cp.dev/v1/codex/meta.json"><code>/v1/codex/meta.json</code></a>
+            </td>
+            <td>
+              When it was fetched/checked, client version used, content hash, source plan label.
+            </td>
+          </tr>
+          <tr>
+            <td data-label="Endpoint">
+              <a href="https://data.cp.dev/v1/codex/snapshots/index.json"
+                ><code>/v1/codex/snapshots/index.json</code></a
+              >
+            </td>
+            <td>
+              Recent immutable snapshots; each at
+              <code>/v1/codex/snapshots/&lt;sha256&gt;.json</code>.
+            </td>
+          </tr>
+          <tr>
+            <td data-label="Endpoint">
+              <a href="https://data.cp.dev/v1/codex/changes.json"
+                ><code>/v1/codex/changes.json</code></a
+              >
+            </td>
+            <td>Models added / removed / changed, newest first.</td>
+          </tr>
+          <tr>
+            <td data-label="Endpoint">
+              <a href="v1/schema/codex-model-info/latest.json"
+                ><code>/v1/schema/codex-model-info/latest.json</code></a
+              >
+            </td>
+            <td>
+              JSON Schema of the Codex client's <code>ModelInfo</code> rejection rules; per verified
+              tag at <code>/&lt;tag&gt;.json</code>, tag list at <code>/index.json</code>. Static
+              file, updated per verified tag.
+            </td>
+          </tr>
+          <tr>
+            <td data-label="Endpoint">
+              <a href="v1/features/codex/latest.json"
+                ><code>/v1/features/codex/latest.json</code></a
+              >
+            </td>
+            <td>
+              Feature-flag registry per verified Codex tag: key, lifecycle stage, default, official
+              rustdoc + /experimental menu copy, legacy aliases (e.g. <code>telepathy</code> →
+              <code>chronicle</code>), cross-tag history, and community-curated annotations (zh
+              today; translations welcome). Per tag at <code>/&lt;tag&gt;.json</code>, tag list at
+              <code>/index.json</code>. Static file, updated per verified tag; field reference in
+              <code>docs/DATASETS.md</code>.
+            </td>
+          </tr>
+          <tr>
+            <td data-label="Endpoint">
+              <a href="v1/hooks/codex/latest.json"><code>/v1/hooks/codex/latest.json</code></a>
+            </td>
+            <td>
+              Hook products, path matching rules, purpose and removal notes.
+              <a href="https://github.com/cpdotdev/codexdata/blob/main/docs/HOOKS.md"
+                >Contribute a product</a
+              >.
+            </td>
+          </tr>
+          <tr>
+            <td data-label="Endpoint">
+              <a href="v1/compat/codex/latest.json"><code>/v1/compat/codex/latest.json</code></a>
+            </td>
+            <td>
+              Compatibility intelligence for the Codex Pass client: which managed
+              <code>config.toml</code> keys each Codex release still accepts, plus upgrade
+              advisories. Probed automatically on every release; maintained by the Codex Pass team
+              and not open for contribution.
+            </td>
+          </tr>
+          <tr>
+            <td data-label="Endpoint">
+              <a href="https://data.cp.dev/healthz"><code>/healthz</code></a>
+            </td>
+            <td>
+              200 after a successful catalog check within 24 hours and with no permanent sync
+              failure; 503 otherwise.
+            </td>
+          </tr>
+        </table>
+      </div>
+      <h2 id="caveats">Source &amp; freshness</h2>
+      <ul>
+        <li>
+          The Codex catalog reflects <em>one</em> dedicated ChatGPT account's view (plan label in
+          <code>meta.json</code>); other plans may see a different list.
+        </li>
+        <li>
+          It is fetched with the latest published <code>@openai/codex</code> client version. Older
+          clients ignore unknown fields.
+        </li>
+        <li>
+          If the upstream is unreachable, the last successfully fetched catalog keeps being served.
+        </li>
+      </ul>
+      <h2 id="licenses">Licenses</h2>
+      <p class="muted">
+        Code: MIT. Datasets (feature-flag registry + annotations, ModelInfo schema, compat, hook
+        registry): CC-BY-4.0, derived from openai/codex sources (Apache-2.0, reproduced with LICENSE
+        + NOTICE in the repository). Product marks in the hook registry retain their owners' rights.
+        <code>/v1/codex/*</code> bodies are served as-is from OpenAI; CodexData grants no license
+        over them.
+      </p>
+    </main>
+    <footer class="docs-footer">
+      Codex Pass · An independent project. Not affiliated with OpenAI.
+    </footer>
+  </body>
+</html>

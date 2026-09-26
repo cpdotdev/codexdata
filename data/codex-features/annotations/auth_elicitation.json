@@ -1,0 +1,9 @@
+{
+  "key": "auth_elicitation",
+  "i18n": {
+    "zh": {
+      "title": "连接器鉴权引导",
+      "summary": "Codex Apps 连接器鉴权失败时，通过 MCP 的 URL elicitation 机制弹出授权引导。"
+    }
+  }
+}

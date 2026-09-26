@@ -1,0 +1,9 @@
+{
+  "key": "search_tool",
+  "i18n": {
+    "zh": {
+      "title": "搜索工具",
+      "summary": "旧版 search-tool 旗标，仅为向后兼容保留。"
+    }
+  }
+}

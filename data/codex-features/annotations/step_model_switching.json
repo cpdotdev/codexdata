@@ -1,0 +1,9 @@
+{
+  "key": "step_model_switching",
+  "i18n": {
+    "zh": {
+      "title": "分步模型切换",
+      "summary": "允许显式请求的模型切换作用于后续 step 捕获。"
+    }
+  }
+}

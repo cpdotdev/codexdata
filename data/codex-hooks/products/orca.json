@@ -1,0 +1,48 @@
+{
+  "id": "orca",
+  "name": "Orca",
+  "path_suffixes": ["/.orca/agent-hooks/codex-hook.sh"],
+  "evidence": "documented",
+  "references": [
+    {
+      "kind": "official",
+      "url": "https://www.onorca.dev/docs/settings",
+      "note": "Agents settings document status hooks and orca agent hooks on|off|status."
+    },
+    {
+      "kind": "local-observation",
+      "note": "Observed codex-hook.sh forwards hook events to a local 127.0.0.1 Orca endpoint, or spools eligible events locally. The registered shell wrapper checks file existence, readability and executability."
+    }
+  ],
+  "i18n": {
+    "en": {
+      "summary": "Forwards Codex events to Orca so it can display agent activity and waiting/completed states. The observed script uses a local endpoint with a local event-spool fallback.",
+      "removal": "Removing this registration stops these event reports to Orca. If you still use Orca, turn off Agent status hooks in its settings first (orca agent hooks off); otherwise it may register them again."
+    },
+    "zh": {
+      "summary": "将 Codex 事件交给 Orca，用于显示 Agent 活动、等待与完成状态。已核对的脚本使用本地端点，并可将部分事件暂存到本地。",
+      "removal": "删除后 Orca 将收不到这些事件。若仍使用 Orca，先在其设置中关闭 Agent status hooks（orca agent hooks off），避免应用再次注册。"
+    },
+    "zh-TW": {
+      "summary": "將 Codex 事件交給 Orca，用於顯示 Agent 活動、等待與完成狀態。已核對的腳本使用本機端點，也可將部分事件暫存於本機。",
+      "removal": "刪除後 Orca 將收不到這些事件。若仍使用 Orca，先在其設定中關閉 Agent status hooks（orca agent hooks off），避免應用程式再次註冊。"
+    },
+    "ja": {
+      "summary": "Codex のイベントを Orca に渡し、Agent の動作・待機・完了状態の表示に使います。確認したスクリプトはローカルの送信先を使い、一部のイベントをローカルに保存できます。",
+      "removal": "削除するとこれらのイベントが Orca に届かなくなります。引き続き Orca を使う場合は、再登録を防ぐため設定の Agent status hooks を先にオフにしてください（orca agent hooks off）。"
+    }
+  },
+  "examples": {
+    "match": [
+      "if [ -f '/Users/demo/.orca/agent-hooks/codex-hook.sh' ]; then /bin/sh '/Users/demo/.orca/agent-hooks/codex-hook.sh'; else cat >/dev/null; fi",
+      "sh /home/demo/.orca/agent-hooks/codex-hook.sh"
+    ],
+    "no_match": ["sh /tmp/codex-hook.sh", "sh /home/demo/.orca/agent-hooks/codex-hook.sh.old"]
+  },
+  "reviewed_at": "2026-09-26",
+  "icon": {
+    "file": "orca.png",
+    "source_url": "https://www.onorca.dev/icon.png",
+    "rights": "Orca product mark, from the official website favicon; resized to 64x64 for identification. All rights remain with the respective owner; not covered by the dataset CC-BY-4.0 license."
+  }
+}

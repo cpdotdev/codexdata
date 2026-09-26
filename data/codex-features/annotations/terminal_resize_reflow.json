@@ -1,0 +1,9 @@
+{
+  "key": "terminal_resize_reflow",
+  "i18n": {
+    "zh": {
+      "title": "终端重排",
+      "summary": "终端尺寸变化时的转写回流重排已恒为开启，此为已移除的兼容旗标。"
+    }
+  }
+}

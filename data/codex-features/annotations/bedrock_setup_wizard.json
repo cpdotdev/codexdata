@@ -1,0 +1,9 @@
+{
+  "key": "bedrock_setup_wizard",
+  "i18n": {
+    "zh": {
+      "title": "Bedrock 接入向导",
+      "summary": "在 TUI 登录引导阶段提供 Amazon Bedrock 配置向导。"
+    }
+  }
+}

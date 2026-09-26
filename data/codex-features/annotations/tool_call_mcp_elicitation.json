@@ -1,0 +1,9 @@
+{
+  "key": "tool_call_mcp_elicitation",
+  "i18n": {
+    "zh": {
+      "title": "MCP 工具审批引导",
+      "summary": "MCP 工具的审批提示改走 MCP elicitation 请求路径。"
+    }
+  }
+}

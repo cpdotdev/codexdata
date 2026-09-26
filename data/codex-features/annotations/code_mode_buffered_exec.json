@@ -1,0 +1,9 @@
+{
+  "key": "code_mode_buffered_exec",
+  "i18n": {
+    "zh": {
+      "title": "代码模式 exec 缓冲超时",
+      "summary": "可配置的代码模式 exec 让步超时的兼容旗标，已移除。"
+    }
+  }
+}

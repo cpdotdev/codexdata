@@ -1,0 +1,9 @@
+{
+  "key": "request_rule",
+  "i18n": {
+    "zh": {
+      "title": "exec 规则提案",
+      "summary": "允许模型请求审批并提议 exec 规则，已移除。"
+    }
+  }
+}

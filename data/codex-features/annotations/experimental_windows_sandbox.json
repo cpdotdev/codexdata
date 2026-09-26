@@ -1,0 +1,9 @@
+{
+  "key": "experimental_windows_sandbox",
+  "i18n": {
+    "zh": {
+      "title": "Windows 受限令牌沙箱",
+      "summary": "在 Windows 上启用受限令牌（restricted token）沙箱，已移除。"
+    }
+  }
+}

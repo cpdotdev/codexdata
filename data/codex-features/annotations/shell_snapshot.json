@@ -1,0 +1,9 @@
+{
+  "key": "shell_snapshot",
+  "i18n": {
+    "zh": {
+      "title": "Shell 快照",
+      "summary": "实验性的 shell 环境快照能力。"
+    }
+  }
+}

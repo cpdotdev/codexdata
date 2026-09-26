@@ -1,0 +1,170 @@
+{
+  "dataset": "codex-hook-products",
+  "schema_version": 1,
+  "products": [
+    {
+      "id": "herdr",
+      "name": "Herdr",
+      "path_suffixes": [
+        "/herdr-agent-state.sh"
+      ],
+      "evidence": "documented",
+      "references": [
+        {
+          "kind": "official",
+          "url": "https://herdr.dev/docs/integrations/",
+          "note": "Codex integration documents the script filename and session identity reporting."
+        },
+        {
+          "kind": "local-observation",
+          "note": "Observed integration version 6 reports pane.report_agent_session over a local socket when HERDR_ENV, HERDR_SOCKET_PATH and HERDR_PANE_ID are set."
+        }
+      ],
+      "i18n": {
+        "en": {
+          "summary": "Associates a Codex session with a Herdr pane for session restoration. The observed script reports the session ID through a local socket when running inside Herdr.",
+          "removal": "Removing this registration stops session identity reporting to Herdr. If you no longer use Herdr, remove the registration; if installed, herdr integration uninstall codex also removes its script."
+        },
+        "zh": {
+          "summary": "把 Codex 会话关联到 Herdr 窗格，供会话恢复使用。已核对的脚本仅在 Herdr 环境中通过本地 socket 上报会话 ID。",
+          "removal": "删除后不再向 Herdr 上报会话身份。不再使用 Herdr 时可删除；若仍安装着 Herdr，也可用 herdr integration uninstall codex 一并卸载脚本。"
+        },
+        "zh-TW": {
+          "summary": "將 Codex 工作階段關聯至 Herdr 窗格，供還原工作階段使用。已核對的腳本僅在 Herdr 環境中透過本機 socket 回報工作階段 ID。",
+          "removal": "刪除後不再向 Herdr 回報工作階段身分。不再使用 Herdr 時可刪除；若仍安裝 Herdr，也可用 herdr integration uninstall codex 一併移除腳本。"
+        },
+        "ja": {
+          "summary": "Codex セッションを Herdr のペインに関連付け、復元に利用します。確認したスクリプトは Herdr 環境内でローカル socket にセッション ID を送ります。",
+          "removal": "削除すると Herdr へのセッション情報の通知が止まります。Herdr を使わない場合は削除できます。インストール済みなら herdr integration uninstall codex でスクリプトも削除できます。"
+        }
+      },
+      "examples": {
+        "match": [
+          "bash '/Users/demo/.codex/herdr-agent-state.sh' session",
+          "bash /custom/codex-home/herdr-agent-state.sh session"
+        ],
+        "no_match": [
+          "bash /tmp/herdr-agent-state.sh.bak",
+          "echo herdr",
+          "bash /tmp/not-herdr-agent-state.sh"
+        ]
+      },
+      "reviewed_at": "2026-09-26",
+      "icon": {
+        "source_url": "https://herdr.dev/assets/favicon.png",
+        "rights": "Herdr product mark, from the official website favicon; resized to 64x64 for identification. All rights remain with the respective owner; not covered by the dataset CC-BY-4.0 license.",
+        "data_url": "data:image/png;base64,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"
+      }
+    },
+    {
+      "id": "orca",
+      "name": "Orca",
+      "path_suffixes": [
+        "/.orca/agent-hooks/codex-hook.sh"
+      ],
+      "evidence": "documented",
+      "references": [
+        {
+          "kind": "official",
+          "url": "https://www.onorca.dev/docs/settings",
+          "note": "Agents settings document status hooks and orca agent hooks on|off|status."
+        },
+        {
+          "kind": "local-observation",
+          "note": "Observed codex-hook.sh forwards hook events to a local 127.0.0.1 Orca endpoint, or spools eligible events locally. The registered shell wrapper checks file existence, readability and executability."
+        }
+      ],
+      "i18n": {
+        "en": {
+          "summary": "Forwards Codex events to Orca so it can display agent activity and waiting/completed states. The observed script uses a local endpoint with a local event-spool fallback.",
+          "removal": "Removing this registration stops these event reports to Orca. If you still use Orca, turn off Agent status hooks in its settings first (orca agent hooks off); otherwise it may register them again."
+        },
+        "zh": {
+          "summary": "将 Codex 事件交给 Orca，用于显示 Agent 活动、等待与完成状态。已核对的脚本使用本地端点，并可将部分事件暂存到本地。",
+          "removal": "删除后 Orca 将收不到这些事件。若仍使用 Orca，先在其设置中关闭 Agent status hooks（orca agent hooks off），避免应用再次注册。"
+        },
+        "zh-TW": {
+          "summary": "將 Codex 事件交給 Orca，用於顯示 Agent 活動、等待與完成狀態。已核對的腳本使用本機端點，也可將部分事件暫存於本機。",
+          "removal": "刪除後 Orca 將收不到這些事件。若仍使用 Orca，先在其設定中關閉 Agent status hooks（orca agent hooks off），避免應用程式再次註冊。"
+        },
+        "ja": {
+          "summary": "Codex のイベントを Orca に渡し、Agent の動作・待機・完了状態の表示に使います。確認したスクリプトはローカルの送信先を使い、一部のイベントをローカルに保存できます。",
+          "removal": "削除するとこれらのイベントが Orca に届かなくなります。引き続き Orca を使う場合は、再登録を防ぐため設定の Agent status hooks を先にオフにしてください（orca agent hooks off）。"
+        }
+      },
+      "examples": {
+        "match": [
+          "if [ -f '/Users/demo/.orca/agent-hooks/codex-hook.sh' ]; then /bin/sh '/Users/demo/.orca/agent-hooks/codex-hook.sh'; else cat >/dev/null; fi",
+          "sh /home/demo/.orca/agent-hooks/codex-hook.sh"
+        ],
+        "no_match": [
+          "sh /tmp/codex-hook.sh",
+          "sh /home/demo/.orca/agent-hooks/codex-hook.sh.old"
+        ]
+      },
+      "reviewed_at": "2026-09-26",
+      "icon": {
+        "source_url": "https://www.onorca.dev/icon.png",
+        "rights": "Orca product mark, from the official website favicon; resized to 64x64 for identification. All rights remain with the respective owner; not covered by the dataset CC-BY-4.0 license.",
+        "data_url": "data:image/png;base64,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"
+      }
+    },
+    {
+      "id": "xirp",
+      "name": "Xirp (Spotify)",
+      "path_suffixes": [
+        "/Xirp/xirp-external/hook-scripts/codex/sessionStart.cjs",
+        "/Xirp/xirp-external/hook-scripts/codex/preToolUse.cjs",
+        "/Xirp/xirp-external/hook-scripts/codex/stop.cjs",
+        "/Xirp/xirp-external/hook-scripts/codex/permissionRequest.cjs"
+      ],
+      "evidence": "observed",
+      "references": [
+        {
+          "kind": "official",
+          "url": "https://xirp.spotify.com/",
+          "note": "Spotify’s official Xirp product page confirms product attribution and Codex support; it does not document the behavior of the observed hook scripts."
+        },
+        {
+          "kind": "local-observation",
+          "note": "Observed Codex registrations reference Xirp/xirp-external/hook-scripts/codex/{sessionStart,preToolUse,stop,permissionRequest}.cjs. Script contents were unavailable; exact behavior is unverified."
+        }
+      ],
+      "i18n": {
+        "en": {
+          "summary": "Xirp is an agentic development environment from Spotify. Matches a Xirp Codex integration script path for session start, tool use, stop or permission requests. Script contents were unavailable; the exact behavior has not been verified.",
+          "removal": "Removing this registration stops the corresponding Xirp callback. If you no longer use Xirp, you can remove it; if still in use, check its integration settings first."
+        },
+        "zh": {
+          "summary": "Xirp 是 Spotify 推出的 Agent 开发环境。路径对应 Xirp 的 Codex 集成脚本，涉及会话开始、工具调用、停止或权限请求。未取得脚本内容，具体行为尚未核实。",
+          "removal": "删除后将不再触发对应的 Xirp 回调。不再使用 Xirp 时可删除；若仍使用，请先检查其集成设置。"
+        },
+        "zh-TW": {
+          "summary": "Xirp 是 Spotify 推出的 Agent 開發環境。路徑對應 Xirp 的 Codex 整合腳本，涉及工作階段開始、工具呼叫、停止或權限請求。未取得腳本內容，具體行為尚未核實。",
+          "removal": "刪除後將不再觸發對應的 Xirp 回呼。不再使用 Xirp 時可刪除；若仍使用，請先檢查其整合設定。"
+        },
+        "ja": {
+          "summary": "Xirp は Spotify が提供する Agent 開発環境です。セッション開始、ツール使用、停止、権限要求に対応する Xirp の Codex 連携スクリプトのパスに一致します。スクリプト本体は入手できず、具体的な動作は未確認です。",
+          "removal": "削除すると対応する Xirp コールバックが実行されなくなります。Xirp を使わない場合は削除できます。引き続き使う場合は連携設定を先に確認してください。"
+        }
+      },
+      "examples": {
+        "match": [
+          "'/Users/demo/Library/Application Support/Xirp/xirp-external/hook-scripts/codex/sessionStart.cjs'",
+          "\"C:\\Users\\demo\\AppData\\Roaming\\Xirp\\xirp-external\\hook-scripts\\codex\\stop.cjs\""
+        ],
+        "no_match": [
+          "node /tmp/sessionStart.cjs",
+          "'/Users/demo/Library/Application Support/NotXirp/xirp-external/hook-scripts/codex/stop.cjs'",
+          "node /tmp/Xirp/xirp-external/hook-scripts/codex/stop.cjs.backup"
+        ]
+      },
+      "reviewed_at": "2026-09-26",
+      "icon": {
+        "source_url": "https://xirp.spotify.com/icon.png",
+        "rights": "Spotify product mark, from the official website favicon; resized to 64x64 for identification. All rights remain with the respective owner; not covered by the dataset CC-BY-4.0 license.",
+        "data_url": "data:image/png;base64,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"
+      }
+    }
+  ]
+}

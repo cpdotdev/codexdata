@@ -1,0 +1,9 @@
+{
+  "key": "plugin_sharing",
+  "i18n": {
+    "zh": {
+      "title": "插件分享",
+      "summary": "启用远程插件分享流程。"
+    }
+  }
+}

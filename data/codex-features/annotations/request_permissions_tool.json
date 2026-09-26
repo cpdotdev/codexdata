@@ -1,0 +1,9 @@
+{
+  "key": "request_permissions_tool",
+  "i18n": {
+    "zh": {
+      "title": "权限申请工具",
+      "summary": "暴露内置的 request_permissions 工具。"
+    }
+  }
+}

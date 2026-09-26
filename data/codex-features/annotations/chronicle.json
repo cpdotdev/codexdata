@@ -1,0 +1,16 @@
+{
+  "key": "chronicle",
+  "aka": "Computer History",
+  "i18n": {
+    "zh": {
+      "title": "电脑使用历史（Computer History）",
+      "summary": "启用 Chronicle 边车进程，被动记录屏幕上下文形成记忆。",
+      "note": "ChatGPT 桌面端设置里的「Computer History」即此旗标；更早的内部代号是 telepathy（见 legacy_aliases）。"
+    },
+    "en": {
+      "title": "Computer History",
+      "summary": "Enables the Chronicle sidecar that passively captures screen context into memories.",
+      "note": "This is the flag behind “Computer History” in the ChatGPT desktop app; its earlier internal codename was telepathy (see legacy_aliases)."
+    }
+  }
+}

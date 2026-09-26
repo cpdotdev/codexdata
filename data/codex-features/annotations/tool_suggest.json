@@ -1,0 +1,9 @@
+{
+  "key": "tool_suggest",
+  "i18n": {
+    "zh": {
+      "title": "工具建议",
+      "summary": "为 apps 启用可发现的工具建议。"
+    }
+  }
+}

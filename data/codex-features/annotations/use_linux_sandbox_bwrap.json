@@ -1,0 +1,9 @@
+{
+  "key": "use_linux_sandbox_bwrap",
+  "i18n": {
+    "zh": {
+      "title": "Linux bubblewrap 沙箱",
+      "summary": "已移除的旧版 Linux bubblewrap 选择旗标，保留为空操作以便旧封装与配置仍能解析。"
+    }
+  }
+}

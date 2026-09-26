@@ -1,0 +1,29 @@
+{
+  "registry": "registry.json",
+  "annotations": "annotations/",
+  "latest": "rust-v0.153.4",
+  "verified_tags": [
+    "rust-v0.148.0",
+    "rust-v0.149.0",
+    "rust-v0.150.0",
+    "rust-v0.151.0",
+    "rust-v0.152.0",
+    "rust-v0.153.1",
+    "rust-v0.153.4"
+  ],
+  "snapshot_aliases": {
+    "rust-v0.153.1": "rust-v0.153.4"
+  },
+  "source_files": ["codex-rs/features/src/lib.rs", "codex-rs/features/src/legacy.rs"],
+  "notes": [
+    "The registry is extracted per tag from the client's own feature table (`pub const FEATURES` in codex-rs/features/src/lib.rs): key, lifecycle stage, default value, the rustdoc comment on the Feature enum variant, and — for experimental-stage flags — OpenAI's own /experimental menu name, description, and announcement copy.",
+    "Stage strings match `codex features list` output exactly: stable, experimental, under development, deprecated, removed.",
+    "Human-curated annotations live one file per flag under annotations/ (`<key>.json`), locale blocks under i18n (see annotations.schema.json); community translations welcome — see CONTRIBUTING.md.",
+    "rust-v0.153.1: lib.rs byte-identical to rust-v0.153.4; only the 0.153.4 snapshot is kept (see snapshot_aliases).",
+    "legacy.rs is byte-identical across all verified tags and is kept once at sources/legacy.rs; it maps legacy config keys (e.g. `telepathy`, `connectors`) to canonical flags.",
+    "history.first_seen is bounded by the earliest verified tag (rust-v0.148.0): a flag listed as first seen there may well predate it.",
+    "default_enabled is null when the source default is platform-conditional; the raw Rust expression is then in default_expr (currently only `cfg!(windows)`, for secret_auth_storage)."
+  ],
+  "sources_dir": "sources/",
+  "sources_license": "Apache-2.0 (openai/codex); LICENSE and NOTICE reproduced in sources/"
+}

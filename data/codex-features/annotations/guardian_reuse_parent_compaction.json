@@ -1,0 +1,9 @@
+{
+  "key": "guardian_reuse_parent_compaction",
+  "i18n": {
+    "zh": {
+      "title": "Guardian 复用父压缩",
+      "summary": "重启 Guardian 审查会话时复用加密的父级压缩上下文。"
+    }
+  }
+}

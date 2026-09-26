@@ -1,0 +1,9 @@
+{
+  "key": "js_repl",
+  "i18n": {
+    "zh": {
+      "title": "JavaScript REPL",
+      "summary": "已删除的 JavaScript REPL 功能的兼容旗标。"
+    }
+  }
+}

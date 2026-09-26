@@ -1,0 +1,9 @@
+{
+  "key": "hooks",
+  "i18n": {
+    "zh": {
+      "title": "生命周期钩子（Hooks）",
+      "summary": "启用从 hooks.json 文件加载的 Claude 风格生命周期钩子。"
+    }
+  }
+}

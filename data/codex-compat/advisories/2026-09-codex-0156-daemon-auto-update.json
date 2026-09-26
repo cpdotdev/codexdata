@@ -1,0 +1,29 @@
+{
+  "id": "2026-09-codex-0156-daemon-auto-update",
+  "severity": "warn",
+  "kind": "behavior-change",
+  "status": "open",
+  "clientAction": "none",
+  "affects": { "min": "0.156.0", "max": null },
+  "keys": ["updater.autoUpdateEnabled", "check_for_update_on_startup"],
+  "links": ["https://github.com/openai/codex"],
+  "note": "发稿时（2026-09-18）0.156 仍在 alpha（0.156.0-alpha.4），affects.min=0.156.0 是按「daemon 默认接管 TUI 流量」的首个稳定版预填，稳定版实发后需复核。硬事实：update_loop（codex-rs/app-server-daemon/src/update_loop.rs）自 <=0.153.4 已编入二进制，autoUpdateEnabled 默认 true、updateIntervalMinutes 默认 60、首查延迟 5 分钟、经官方 install.sh 安装；0.156.0-alpha 新增顶层 --no-daemon（0.155.1 二进制里无此字符串），即 0.156 起默认经共享 daemon 运行。",
+  "i18n": {
+    "zh": {
+      "title": "Codex 0.156 起后台 daemon 会自动更新 Codex",
+      "body": "Codex 0.156 起默认经由共享后台 daemon 运行，daemon 自带独立的自动更新循环：默认开启，约每 60 分钟检查一次并自动安装新版 Codex。config.toml 的 check_for_update_on_startup 只控制 TUI 启动时的更新提示，即使设为 false 也管不到这条循环。集中管理 Codex 版本的团队需要在 daemon 状态目录的 settings.json（$CODEX_HOME/app-server-daemon/settings.json）里把 updater.autoUpdateEnabled 设为 false。"
+    },
+    "en": {
+      "title": "Codex 0.156: the background daemon auto-updates Codex",
+      "body": "Starting with Codex 0.156, sessions run through a shared background daemon by default, and the daemon has its own auto-update loop: enabled by default, it checks roughly every 60 minutes and installs new Codex versions automatically. check_for_update_on_startup in config.toml only controls the TUI startup prompt — setting it to false does not stop this loop. Teams that manage Codex versions centrally need to set updater.autoUpdateEnabled to false in the daemon state directory's settings.json ($CODEX_HOME/app-server-daemon/settings.json)."
+    },
+    "zh-TW": {
+      "title": "Codex 0.156 起背景 daemon 會自動更新 Codex",
+      "body": "Codex 0.156 起預設經由共享背景 daemon 執行，daemon 自帶獨立的自動更新迴圈：預設開啟，約每 60 分鐘檢查一次並自動安裝新版 Codex。config.toml 的 check_for_update_on_startup 只控制 TUI 啟動時的更新提示，即使設為 false 也管不到這條迴圈。集中管理 Codex 版本的團隊需要在 daemon 狀態目錄的 settings.json（$CODEX_HOME/app-server-daemon/settings.json）裡把 updater.autoUpdateEnabled 設為 false。"
+    },
+    "ja": {
+      "title": "Codex 0.156 以降、バックグラウンド daemon が Codex を自動更新",
+      "body": "Codex 0.156 以降、セッションはデフォルトで共有バックグラウンド daemon 経由で実行され、daemon は独自の自動更新ループを持ちます。デフォルトで有効になっており、約 60 分ごとに更新を確認して新しい Codex を自動インストールします。config.toml の check_for_update_on_startup は TUI 起動時の更新プロンプトのみを制御し、false にしてもこのループは止まりません。Codex のバージョンを集中管理しているチームは、daemon 状態ディレクトリの settings.json（$CODEX_HOME/app-server-daemon/settings.json）で updater.autoUpdateEnabled を false に設定してください。"
+    }
+  }
+}

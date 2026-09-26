@@ -1,0 +1,9 @@
+{
+  "key": "remote_compaction_v2",
+  "i18n": {
+    "zh": {
+      "title": "远端压缩 V2",
+      "summary": "通过常规 Responses API 启用远端上下文压缩 v2。"
+    }
+  }
+}

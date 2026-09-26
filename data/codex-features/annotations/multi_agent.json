@@ -1,0 +1,9 @@
+{
+  "key": "multi_agent",
+  "i18n": {
+    "zh": {
+      "title": "多代理协作工具",
+      "summary": "启用 collab 多代理协作工具。"
+    }
+  }
+}

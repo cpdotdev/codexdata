@@ -1,0 +1,9 @@
+{
+  "key": "fast_mode",
+  "i18n": {
+    "zh": {
+      "title": "快速模式（Fast mode）",
+      "summary": "在 TUI 与请求层启用 Fast mode 选择。"
+    }
+  }
+}

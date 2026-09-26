@@ -1,0 +1,9 @@
+{
+  "key": "guardian_enhanced_node_repl_transcripts",
+  "i18n": {
+    "zh": {
+      "title": "Guardian 纳入代码模式回执",
+      "summary": "Guardian 审查时纳入已完成的 node_repl / cua_repl 代码模式响应。"
+    }
+  }
+}

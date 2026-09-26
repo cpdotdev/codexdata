@@ -1,0 +1,9 @@
+{
+  "key": "memories",
+  "i18n": {
+    "zh": {
+      "title": "记忆（Memories）",
+      "summary": "启用启动时的记忆提取与文件化的记忆整理。"
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "key": "recommended_plugins",
+  "i18n": {
+    "zh": {
+      "title": "推荐插件",
+      "summary": "在模型可见上下文中加入推荐插件。"
+    }
+  }
+}

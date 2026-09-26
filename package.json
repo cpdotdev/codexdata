@@ -1,0 +1,44 @@
+{
+  "name": "codexdata",
+  "version": "0.1.0",
+  "private": true,
+  "description": "CodexData: open datasets for the OpenAI Codex client (official catalog mirror, ModelInfo JSON Schema, feature-flag registry, hook product registry, compatibility intelligence), served from Cloudflare Workers and GitHub Pages. Not affiliated with OpenAI.",
+  "license": "MIT",
+  "type": "module",
+  "packageManager": "pnpm@10.12.3",
+  "engines": {
+    "node": ">=22.18.0"
+  },
+  "scripts": {
+    "dev": "wrangler dev",
+    "dev:remote": "wrangler dev --remote",
+    "deploy": "wrangler deploy",
+    "deploy:dry": "wrangler deploy --dry-run",
+    "types": "wrangler types",
+    "typecheck": "wrangler types && tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "seed": "node scripts/seed.mjs",
+    "validate": "node scripts/validate.mjs && node scripts/build-compat.mjs --check && node scripts/build-ui.mjs --check && node --test scripts/hooks.test.mjs",
+    "build:static": "node scripts/build-static.mjs",
+    "build:compat": "node scripts/build-compat.mjs",
+    "build:pages": "node scripts/build-pages.mjs",
+    "probe:compat": "node scripts/compat-probe.mjs",
+    "check": "pnpm typecheck && pnpm format:check && pnpm validate && pnpm test",
+    "build:ui": "node scripts/build-ui.mjs"
+  },
+  "devDependencies": {
+    "@cloudflare/vitest-pool-workers": "^0.22.0",
+    "@playwright/test": "1.63.0",
+    "prettier": "^3.9.6",
+    "typescript": "^5.9.3",
+    "vitest": "^4.1.11",
+    "wrangler": "^4.129.0"
+  },
+  "dependencies": {
+    "@cfworker/json-schema": "^4.1.1",
+    "@codexpass/tokens": "file:vendor/codexpass-tokens-0.3.0-b9cbe7ee63e7.tgz"
+  }
+}

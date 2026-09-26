@@ -1,0 +1,9 @@
+{
+  "key": "mcp_oauth_refresh_coordination",
+  "i18n": {
+    "zh": {
+      "title": "MCP OAuth 刷新协调",
+      "summary": "让 RMCP 通过配置的凭据存储协调 OAuth 令牌刷新。"
+    }
+  }
+}

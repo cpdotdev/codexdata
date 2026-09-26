@@ -1,0 +1,9 @@
+{
+  "key": "tool_search",
+  "i18n": {
+    "zh": {
+      "title": "工具搜索",
+      "summary": "tool_search 已恒为开启，此为已移除的兼容旗标。"
+    }
+  }
+}

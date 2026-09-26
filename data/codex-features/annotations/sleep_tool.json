@@ -1,0 +1,9 @@
+{
+  "key": "sleep_tool",
+  "i18n": {
+    "zh": {
+      "title": "休眠（sleep）工具",
+      "summary": "允许注册内置的 sleep 工具。"
+    }
+  }
+}

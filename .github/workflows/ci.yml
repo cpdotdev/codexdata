@@ -1,0 +1,36 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version-file: ".node-version"
+      - name: Enable pnpm via corepack
+        run: corepack enable
+      - name: Install
+        run: pnpm install --frozen-lockfile
+      - name: Types + typecheck
+        run: pnpm typecheck
+      - name: Format check
+        run: pnpm format:check
+      - name: Data validation (schemas, registries, generated artifacts)
+        run: pnpm validate
+      - name: Tests (workers pool)
+        run: pnpm test
+      - name: Wrangler config dry run
+        run: pnpm exec wrangler deploy --dry-run
+      - name: GitHub Pages bundle builds
+        run: node scripts/build-pages.mjs --origin https://example.invalid --out .artifacts/pages

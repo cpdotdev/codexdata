@@ -1,0 +1,9 @@
+{
+  "key": "enable_fanout",
+  "i18n": {
+    "zh": {
+      "title": "agent-job 扇出工具",
+      "summary": "已删除的 agent-job 工具的兼容旗标。"
+    }
+  }
+}

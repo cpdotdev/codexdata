@@ -1,0 +1,9 @@
+{
+  "key": "shell_tool",
+  "i18n": {
+    "zh": {
+      "title": "Shell 工具",
+      "summary": "启用默认的 shell 工具。"
+    }
+  }
+}

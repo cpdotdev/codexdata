@@ -1,0 +1,9 @@
+{
+  "key": "guardian_node_repl_transcript_images",
+  "i18n": {
+    "zh": {
+      "title": "Guardian 纳入代码模式图片",
+      "summary": "Guardian 审查时纳入已完成代码模式响应中的图片。"
+    }
+  }
+}

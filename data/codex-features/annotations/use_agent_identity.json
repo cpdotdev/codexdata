@@ -1,0 +1,9 @@
+{
+  "key": "use_agent_identity",
+  "i18n": {
+    "zh": {
+      "title": "Agent Identity",
+      "summary": "ChatGPT 登录的会话使用 Agent Identity（代理身份）。"
+    }
+  }
+}

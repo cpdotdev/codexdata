@@ -1,0 +1,615 @@
+{
+  "schemaVersion": 1,
+  "dataset": "codex-compat",
+  "codex": {
+    "latestStable": "0.157.1",
+    "latestAlpha": "0.159.0-alpha.4",
+    "maxProbedStable": "0.157.1"
+  },
+  "keys": [
+    {
+      "key": "chatgpt_base_url",
+      "table": "top",
+      "note": "account-route takeover; core of the official proxy",
+      "status": "active"
+    },
+    {
+      "key": "model_provider",
+      "table": "top",
+      "note": "selects the active provider table",
+      "status": "active"
+    },
+    {
+      "key": "model",
+      "table": "top",
+      "note": "preserved user /model choice",
+      "status": "active"
+    },
+    {
+      "key": "model_reasoning_effort",
+      "table": "top",
+      "status": "active"
+    },
+    {
+      "key": "model_reasoning_summary",
+      "table": "top",
+      "status": "active"
+    },
+    {
+      "key": "model_verbosity",
+      "table": "top",
+      "status": "active"
+    },
+    {
+      "key": "personality",
+      "table": "top",
+      "status": "active"
+    },
+    {
+      "key": "review_model",
+      "table": "top",
+      "status": "active"
+    },
+    {
+      "key": "model_context_window",
+      "table": "top",
+      "status": "active"
+    },
+    {
+      "key": "model_auto_compact_token_limit",
+      "table": "top",
+      "status": "active"
+    },
+    {
+      "key": "approval_policy",
+      "table": "top",
+      "status": "active"
+    },
+    {
+      "key": "sandbox_mode",
+      "table": "top",
+      "status": "active"
+    },
+    {
+      "key": "web_search",
+      "table": "top",
+      "status": "active"
+    },
+    {
+      "key": "hide_agent_reasoning",
+      "table": "top",
+      "status": "active"
+    },
+    {
+      "key": "show_raw_agent_reasoning",
+      "table": "top",
+      "status": "active"
+    },
+    {
+      "key": "file_opener",
+      "table": "top",
+      "status": "active"
+    },
+    {
+      "key": "project_doc_max_bytes",
+      "table": "top",
+      "status": "active"
+    },
+    {
+      "key": "check_for_update_on_startup",
+      "table": "top",
+      "note": "only lever over Codex's own update prompt",
+      "status": "active"
+    },
+    {
+      "key": "memories.extract_model",
+      "table": "top",
+      "status": "active"
+    },
+    {
+      "key": "memories.consolidation_model",
+      "table": "top",
+      "status": "active"
+    },
+    {
+      "key": "experimental_realtime_webrtc_call_base_url",
+      "table": "top",
+      "risk": "experimental",
+      "note": "voice direct-connect; codex-pass writes it on takeover",
+      "status": "active"
+    },
+    {
+      "key": "experimental_realtime_ws_base_url",
+      "table": "top",
+      "risk": "experimental",
+      "note": "voice direct-connect; codex-pass writes it on takeover",
+      "status": "active"
+    },
+    {
+      "key": "model_catalog_json",
+      "table": "top",
+      "note": "catalog override path (also used by competitors)",
+      "status": "active"
+    },
+    {
+      "key": "disable_response_storage",
+      "table": "top",
+      "note": "ZDR flag added 2025-04 (openai/codex#714); upstream moved to never-store 2025-09 (#3212) and the key vanished from the binary (absent in every probed version, 0.153.4+). Silently ignored since; safe and recommended to delete.",
+      "status": "removed",
+      "removedIn": null,
+      "action": "remove"
+    },
+    {
+      "key": "model_providers",
+      "table": "model_providers",
+      "note": "provider table container",
+      "status": "active"
+    },
+    {
+      "key": "model_providers.*.wire_api",
+      "table": "model_providers",
+      "status": "active"
+    },
+    {
+      "key": "model_providers.*.requires_openai_auth",
+      "table": "model_providers",
+      "status": "active"
+    },
+    {
+      "key": "model_providers.*.experimental_bearer_token",
+      "table": "model_providers",
+      "risk": "experimental",
+      "note": "gateway auth for the planned server route; verified accepted since 0.155",
+      "status": "active"
+    },
+    {
+      "key": "model_providers.*.http_headers",
+      "table": "model_providers",
+      "status": "active"
+    },
+    {
+      "key": "mcp_servers",
+      "table": "mcp_servers",
+      "note": "built-in search MCP registration",
+      "status": "active"
+    },
+    {
+      "key": "analytics.enabled",
+      "table": "analytics",
+      "note": "needle is generic; absence signal only meaningful if it ever disappears entirely",
+      "status": "active"
+    },
+    {
+      "key": "desktop",
+      "table": "desktop",
+      "note": "38 managed desktop prefs (camelCase); read by the ChatGPT.app desktop client (asar), not present in the CLI binary — cannot be probed here",
+      "status": "unprobed"
+    },
+    {
+      "key": "updater.autoUpdateEnabled",
+      "table": "daemon",
+      "note": "app-server daemon's own auto-update loop: enabled by default, checks every updateIntervalMinutes (default 60) and installs via the official install script — independent of check_for_update_on_startup, which only gates the TUI startup prompt. Compiled into the binary since <=0.153.4 (needle present in every probed version; auto_update_enabled snake_case is NOT in the binary); 0.156 is when the TUI starts routing through the shared daemon by default (top-level --no-daemon escape hatch appears in 0.156.0-alpha). The disable lever for centrally managed fleets; see advisory 2026-09-codex-0156-daemon-auto-update.",
+      "status": "active"
+    }
+  ],
+  "advisories": [
+    {
+      "id": "2026-09-codex-0155-workspace-https-gate",
+      "severity": "critical",
+      "kind": "upgrade-risk",
+      "status": "open",
+      "clientAction": "hold-upgrade",
+      "affects": {
+        "min": "0.155.0",
+        "max": null
+      },
+      "keys": [
+        "chatgpt_base_url"
+      ],
+      "codexPassFixedIn": "0.5.2",
+      "links": [
+        "https://github.com/openai/codex"
+      ],
+      "i18n": {
+        "en": {
+          "title": "Codex 0.155 enforces HTTPS on the account backend",
+          "body": "Starting with Codex 0.155, the workspace backend must be HTTPS; routing account traffic through the local proxy triggers a login wall. Codex Pass 0.5.2 (and 0.4.8) adapts by no longer taking over account traffic on 0.155+, which also disables access logging and privacy interception for account requests. Upgrade Codex Pass to 0.5.2 or later before upgrading Codex."
+        },
+        "ja": {
+          "title": "Codex 0.155 以降、アカウント API は HTTPS 必須",
+          "body": "Codex 0.155 以降、workspace バックエンドは HTTPS が必須となり、ローカルプロキシ経由のアカウントトラフィックはログイン画面でブロックされます。Codex Pass 0.5.2（および 0.4.8）は 0.155+ を検出するとアカウントトラフィックの引き受けを自動停止します（アカウント系リクエストのアクセスログとプライバシー遮断は無効になります）。Codex をアップグレードする前に、Codex Pass を 0.5.2 以降へ更新してください。"
+        },
+        "zh": {
+          "title": "Codex 0.155 起账号接口强制 HTTPS",
+          "body": "Codex 0.155 开始要求 workspace 后端为 HTTPS，经本机代理接管账号流量会触发登录墙。Codex Pass 0.5.2（及 0.4.8）已适配：检测到 0.155+ 时自动停止接管账号流量，访问日志与隐私拦截对账号类请求不再生效。请先升级 Codex Pass 到 0.5.2 或更高，再升级 Codex。"
+        },
+        "zh-TW": {
+          "title": "Codex 0.155 起帳號介面強制 HTTPS",
+          "body": "Codex 0.155 開始要求 workspace 後端為 HTTPS，經本機代理接管帳號流量會觸發登入牆。Codex Pass 0.5.2（及 0.4.8）已適配：偵測到 0.155+ 時自動停止接管帳號流量，存取日誌與隱私攔截對帳號類請求不再生效。請先升級 Codex Pass 到 0.5.2 或更高，再升級 Codex。"
+        }
+      }
+    },
+    {
+      "id": "2026-09-codex-0156-daemon-auto-update",
+      "severity": "warn",
+      "kind": "behavior-change",
+      "status": "open",
+      "clientAction": "none",
+      "affects": {
+        "min": "0.156.0",
+        "max": null
+      },
+      "keys": [
+        "updater.autoUpdateEnabled",
+        "check_for_update_on_startup"
+      ],
+      "links": [
+        "https://github.com/openai/codex"
+      ],
+      "i18n": {
+        "en": {
+          "title": "Codex 0.156: the background daemon auto-updates Codex",
+          "body": "Starting with Codex 0.156, sessions run through a shared background daemon by default, and the daemon has its own auto-update loop: enabled by default, it checks roughly every 60 minutes and installs new Codex versions automatically. check_for_update_on_startup in config.toml only controls the TUI startup prompt — setting it to false does not stop this loop. Teams that manage Codex versions centrally need to set updater.autoUpdateEnabled to false in the daemon state directory's settings.json ($CODEX_HOME/app-server-daemon/settings.json)."
+        },
+        "ja": {
+          "title": "Codex 0.156 以降、バックグラウンド daemon が Codex を自動更新",
+          "body": "Codex 0.156 以降、セッションはデフォルトで共有バックグラウンド daemon 経由で実行され、daemon は独自の自動更新ループを持ちます。デフォルトで有効になっており、約 60 分ごとに更新を確認して新しい Codex を自動インストールします。config.toml の check_for_update_on_startup は TUI 起動時の更新プロンプトのみを制御し、false にしてもこのループは止まりません。Codex のバージョンを集中管理しているチームは、daemon 状態ディレクトリの settings.json（$CODEX_HOME/app-server-daemon/settings.json）で updater.autoUpdateEnabled を false に設定してください。"
+        },
+        "zh": {
+          "title": "Codex 0.156 起后台 daemon 会自动更新 Codex",
+          "body": "Codex 0.156 起默认经由共享后台 daemon 运行，daemon 自带独立的自动更新循环：默认开启，约每 60 分钟检查一次并自动安装新版 Codex。config.toml 的 check_for_update_on_startup 只控制 TUI 启动时的更新提示，即使设为 false 也管不到这条循环。集中管理 Codex 版本的团队需要在 daemon 状态目录的 settings.json（$CODEX_HOME/app-server-daemon/settings.json）里把 updater.autoUpdateEnabled 设为 false。"
+        },
+        "zh-TW": {
+          "title": "Codex 0.156 起背景 daemon 會自動更新 Codex",
+          "body": "Codex 0.156 起預設經由共享背景 daemon 執行，daemon 自帶獨立的自動更新迴圈：預設開啟，約每 60 分鐘檢查一次並自動安裝新版 Codex。config.toml 的 check_for_update_on_startup 只控制 TUI 啟動時的更新提示，即使設為 false 也管不到這條迴圈。集中管理 Codex 版本的團隊需要在 daemon 狀態目錄的 settings.json（$CODEX_HOME/app-server-daemon/settings.json）裡把 updater.autoUpdateEnabled 設為 false。"
+        }
+      }
+    }
+  ],
+  "versions": [
+    {
+      "version": "0.153.4",
+      "channel": "stable",
+      "publishedAt": "2026-09-04T23:25:48Z",
+      "probedAt": "2026-09-19T00:24:52.942Z",
+      "platform": "darwin-arm64",
+      "configLoad": "ok",
+      "regressions": [],
+      "deprecations": [],
+      "releaseNotesUrl": "https://github.com/openai/codex/releases/tag/rust-v0.153.4"
+    },
+    {
+      "version": "0.154.0",
+      "channel": "stable",
+      "publishedAt": "2026-09-09T22:35:38Z",
+      "probedAt": "2026-09-19T00:25:07.073Z",
+      "platform": "darwin-arm64",
+      "configLoad": "ok",
+      "regressions": [],
+      "deprecations": [
+        "start with delivery \"detached\" is deprecated and will be removed in a future release."
+      ],
+      "releaseNotesUrl": "https://github.com/openai/codex/releases/tag/rust-v0.154.0"
+    },
+    {
+      "version": "0.155.0-alpha.16.3",
+      "channel": "alpha",
+      "publishedAt": "2026-09-23T03:41:37Z",
+      "probedAt": "2026-09-23T04:38:38.197Z",
+      "platform": "linux-x64",
+      "configLoad": "ok",
+      "regressions": [],
+      "deprecations": [],
+      "releaseNotesUrl": "https://github.com/openai/codex/releases/tag/rust-v0.155.0-alpha.16.3"
+    },
+    {
+      "version": "0.155.0-alpha.16.4",
+      "channel": "alpha",
+      "publishedAt": "2026-09-23T19:55:18Z",
+      "probedAt": "2026-09-23T21:27:14.852Z",
+      "platform": "linux-x64",
+      "configLoad": "ok",
+      "regressions": [],
+      "deprecations": [],
+      "releaseNotesUrl": "https://github.com/openai/codex/releases/tag/rust-v0.155.0-alpha.16.4"
+    },
+    {
+      "version": "0.155.1",
+      "channel": "stable",
+      "publishedAt": "2026-09-18T20:03:04Z",
+      "probedAt": "2026-09-19T00:25:21.609Z",
+      "platform": "darwin-arm64",
+      "configLoad": "ok",
+      "regressions": [],
+      "deprecations": [
+        "rollback is deprecated and will be removed soontrust_level"
+      ],
+      "releaseNotesUrl": "https://github.com/openai/codex/releases/tag/rust-v0.155.1"
+    },
+    {
+      "version": "0.156.0",
+      "channel": "stable",
+      "publishedAt": "2026-09-22T19:51:01Z",
+      "probedAt": "2026-09-22T21:13:56.513Z",
+      "platform": "linux-x64",
+      "configLoad": "ok",
+      "regressions": [],
+      "deprecations": [
+        "` is deprecated and ignored."
+      ],
+      "releaseNotesUrl": "https://github.com/openai/codex/releases/tag/rust-v0.156.0"
+    },
+    {
+      "version": "0.156.0-alpha.14",
+      "channel": "alpha",
+      "publishedAt": "2026-09-21T04:09:08Z",
+      "probedAt": "2026-09-21T04:47:52.519Z",
+      "platform": "linux-x64",
+      "configLoad": "ok",
+      "regressions": [],
+      "deprecations": [
+        "` is deprecated and ignored."
+      ],
+      "releaseNotesUrl": "https://github.com/openai/codex/releases/tag/rust-v0.156.0-alpha.14"
+    },
+    {
+      "version": "0.156.0-alpha.17",
+      "channel": "alpha",
+      "publishedAt": "2026-09-21T21:40:02Z",
+      "probedAt": "2026-09-21T21:56:27.101Z",
+      "platform": "linux-x64",
+      "configLoad": "ok",
+      "regressions": [],
+      "deprecations": [
+        "` is deprecated and ignored."
+      ],
+      "releaseNotesUrl": "https://github.com/openai/codex/releases/tag/rust-v0.156.0-alpha.17"
+    },
+    {
+      "version": "0.156.0-alpha.4",
+      "channel": "alpha",
+      "publishedAt": "2026-09-18T21:18:45Z",
+      "probedAt": "2026-09-19T00:47:20.322Z",
+      "platform": "linux-x64",
+      "configLoad": "ok",
+      "regressions": [],
+      "deprecations": [],
+      "releaseNotesUrl": "https://github.com/openai/codex/releases/tag/rust-v0.156.0-alpha.4"
+    },
+    {
+      "version": "0.156.0-alpha.7",
+      "channel": "alpha",
+      "publishedAt": "2026-09-19T04:08:15Z",
+      "probedAt": "2026-09-19T04:31:04.853Z",
+      "platform": "linux-x64",
+      "configLoad": "ok",
+      "regressions": [],
+      "deprecations": [
+        "esting at the root is no longer supported."
+      ],
+      "releaseNotesUrl": "https://github.com/openai/codex/releases/tag/rust-v0.156.0-alpha.7"
+    },
+    {
+      "version": "0.156.0-alpha.8",
+      "channel": "alpha",
+      "publishedAt": "2026-09-19T17:20:24Z",
+      "probedAt": "2026-09-19T20:33:29.164Z",
+      "platform": "linux-x64",
+      "configLoad": "ok",
+      "regressions": [],
+      "deprecations": [],
+      "releaseNotesUrl": "https://github.com/openai/codex/releases/tag/rust-v0.156.0-alpha.8"
+    },
+    {
+      "version": "0.156.0-alpha.9",
+      "channel": "alpha",
+      "publishedAt": "2026-09-20T00:17:45Z",
+      "probedAt": "2026-09-20T04:47:47.087Z",
+      "platform": "linux-x64",
+      "configLoad": "ok",
+      "regressions": [],
+      "deprecations": [],
+      "releaseNotesUrl": "https://github.com/openai/codex/releases/tag/rust-v0.156.0-alpha.9"
+    },
+    {
+      "version": "0.156.1",
+      "channel": "stable",
+      "publishedAt": "2026-09-23T02:41:36Z",
+      "probedAt": "2026-09-23T04:38:30.981Z",
+      "platform": "linux-x64",
+      "configLoad": "ok",
+      "regressions": [],
+      "deprecations": [],
+      "releaseNotesUrl": "https://github.com/openai/codex/releases/tag/rust-v0.156.1"
+    },
+    {
+      "version": "0.157.0",
+      "channel": "stable",
+      "publishedAt": "2026-09-25T02:31:06Z",
+      "probedAt": "2026-09-25T04:48:09.747Z",
+      "platform": "linux-x64",
+      "configLoad": "ok",
+      "regressions": [],
+      "deprecations": [
+        "esting at the root is no longer supported."
+      ],
+      "releaseNotesUrl": "https://github.com/openai/codex/releases/tag/rust-v0.157.0"
+    },
+    {
+      "version": "0.157.0-alpha.11",
+      "channel": "alpha",
+      "publishedAt": "2026-09-23T04:50:17Z",
+      "probedAt": "2026-09-23T11:26:36.852Z",
+      "platform": "linux-x64",
+      "configLoad": "ok",
+      "regressions": [],
+      "deprecations": [
+        "esting at the root is no longer supported."
+      ],
+      "releaseNotesUrl": "https://github.com/openai/codex/releases/tag/rust-v0.157.0-alpha.11"
+    },
+    {
+      "version": "0.157.0-alpha.5",
+      "channel": "alpha",
+      "publishedAt": "2026-09-22T04:26:43Z",
+      "probedAt": "2026-09-22T04:45:39.770Z",
+      "platform": "linux-x64",
+      "configLoad": "ok",
+      "regressions": [],
+      "deprecations": [
+        "` is deprecated and ignored."
+      ],
+      "releaseNotesUrl": "https://github.com/openai/codex/releases/tag/rust-v0.157.0-alpha.5"
+    },
+    {
+      "version": "0.157.0-alpha.7",
+      "channel": "alpha",
+      "publishedAt": "2026-09-22T07:00:44Z",
+      "probedAt": "2026-09-22T11:28:53.105Z",
+      "platform": "linux-x64",
+      "configLoad": "ok",
+      "regressions": [],
+      "deprecations": [
+        "` is deprecated and ignored."
+      ],
+      "releaseNotesUrl": "https://github.com/openai/codex/releases/tag/rust-v0.157.0-alpha.7"
+    },
+    {
+      "version": "0.157.0-alpha.8",
+      "channel": "alpha",
+      "publishedAt": "2026-09-22T12:34:27Z",
+      "probedAt": "2026-09-22T16:51:14.750Z",
+      "platform": "linux-x64",
+      "configLoad": "ok",
+      "regressions": [],
+      "deprecations": [
+        "` is deprecated and ignored.",
+        "esting at the root is no longer supported."
+      ],
+      "releaseNotesUrl": "https://github.com/openai/codex/releases/tag/rust-v0.157.0-alpha.8"
+    },
+    {
+      "version": "0.157.0-alpha.9",
+      "channel": "alpha",
+      "publishedAt": "2026-09-22T18:00:16Z",
+      "probedAt": "2026-09-22T21:14:02.571Z",
+      "platform": "linux-x64",
+      "configLoad": "ok",
+      "regressions": [],
+      "deprecations": [
+        "esting at the root is no longer supported."
+      ],
+      "releaseNotesUrl": "https://github.com/openai/codex/releases/tag/rust-v0.157.0-alpha.9"
+    },
+    {
+      "version": "0.157.1",
+      "channel": "stable",
+      "publishedAt": "2026-09-26T01:02:31Z",
+      "probedAt": "2026-09-26T04:49:20.546Z",
+      "platform": "linux-x64",
+      "configLoad": "ok",
+      "regressions": [],
+      "deprecations": [],
+      "releaseNotesUrl": "https://github.com/openai/codex/releases/tag/rust-v0.157.1"
+    },
+    {
+      "version": "0.158.0-alpha.10",
+      "channel": "alpha",
+      "publishedAt": "2026-09-24T20:58:11Z",
+      "probedAt": "2026-09-24T21:27:37.282Z",
+      "platform": "linux-x64",
+      "configLoad": "ok",
+      "regressions": [],
+      "deprecations": [],
+      "releaseNotesUrl": "https://github.com/openai/codex/releases/tag/rust-v0.158.0-alpha.10"
+    },
+    {
+      "version": "0.158.0-alpha.13",
+      "channel": "alpha",
+      "publishedAt": "2026-09-25T04:29:26Z",
+      "probedAt": "2026-09-25T04:48:15.486Z",
+      "platform": "linux-x64",
+      "configLoad": "ok",
+      "regressions": [],
+      "deprecations": [],
+      "releaseNotesUrl": "https://github.com/openai/codex/releases/tag/rust-v0.158.0-alpha.13"
+    },
+    {
+      "version": "0.158.0-alpha.14",
+      "channel": "alpha",
+      "publishedAt": "2026-09-25T12:51:36Z",
+      "probedAt": "2026-09-25T17:05:14.238Z",
+      "platform": "linux-x64",
+      "configLoad": "ok",
+      "regressions": [],
+      "deprecations": [],
+      "releaseNotesUrl": "https://github.com/openai/codex/releases/tag/rust-v0.158.0-alpha.14"
+    },
+    {
+      "version": "0.158.0-alpha.15.1",
+      "channel": "alpha",
+      "publishedAt": "2026-09-26T02:58:19Z",
+      "probedAt": "2026-09-26T04:49:27.333Z",
+      "platform": "linux-x64",
+      "configLoad": "ok",
+      "regressions": [],
+      "deprecations": [],
+      "releaseNotesUrl": "https://github.com/openai/codex/releases/tag/rust-v0.158.0-alpha.15.1"
+    },
+    {
+      "version": "0.158.0-alpha.2",
+      "channel": "alpha",
+      "publishedAt": "2026-09-23T13:07:10Z",
+      "probedAt": "2026-09-23T16:49:42.734Z",
+      "platform": "linux-x64",
+      "configLoad": "ok",
+      "regressions": [],
+      "deprecations": [],
+      "releaseNotesUrl": "https://github.com/openai/codex/releases/tag/rust-v0.158.0-alpha.2"
+    },
+    {
+      "version": "0.158.0-alpha.6",
+      "channel": "alpha",
+      "publishedAt": "2026-09-23T23:41:29Z",
+      "probedAt": "2026-09-24T04:38:18.223Z",
+      "platform": "linux-x64",
+      "configLoad": "ok",
+      "regressions": [],
+      "deprecations": [],
+      "releaseNotesUrl": "https://github.com/openai/codex/releases/tag/rust-v0.158.0-alpha.6"
+    },
+    {
+      "version": "0.158.0-alpha.8",
+      "channel": "alpha",
+      "publishedAt": "2026-09-24T07:12:02Z",
+      "probedAt": "2026-09-24T11:38:33.314Z",
+      "platform": "linux-x64",
+      "configLoad": "ok",
+      "regressions": [],
+      "deprecations": [],
+      "releaseNotesUrl": "https://github.com/openai/codex/releases/tag/rust-v0.158.0-alpha.8"
+    },
+    {
+      "version": "0.159.0-alpha.2",
+      "channel": "alpha",
+      "publishedAt": "2026-09-25T20:18:01Z",
+      "probedAt": "2026-09-25T21:30:43.196Z",
+      "platform": "linux-x64",
+      "configLoad": "ok",
+      "regressions": [],
+      "deprecations": [],
+      "releaseNotesUrl": "https://github.com/openai/codex/releases/tag/rust-v0.159.0-alpha.2"
+    },
+    {
+      "version": "0.159.0-alpha.4",
+      "channel": "alpha",
+      "publishedAt": "2026-09-26T06:21:38Z",
+      "probedAt": "2026-09-26T11:17:16.989Z",
+      "platform": "linux-x64",
+      "configLoad": "ok",
+      "regressions": [],
+      "deprecations": [],
+      "releaseNotesUrl": "https://github.com/openai/codex/releases/tag/rust-v0.159.0-alpha.4"
+    }
+  ]
+}

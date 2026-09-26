@@ -1,0 +1,9 @@
+{
+  "key": "non_prefixed_mcp_tool_names",
+  "i18n": {
+    "zh": {
+      "title": "MCP 工具名去前缀",
+      "summary": "MCP 模型可见命名空间不再携带旧式 mcp__ 前缀。"
+    }
+  }
+}

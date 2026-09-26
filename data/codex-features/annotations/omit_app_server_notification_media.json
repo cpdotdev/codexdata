@@ -1,0 +1,9 @@
+{
+  "key": "omit_app_server_notification_media",
+  "i18n": {
+    "zh": {
+      "title": "通知省略媒体内容",
+      "summary": "app-server 条目通知中省略内联的图片与音频内容。"
+    }
+  }
+}

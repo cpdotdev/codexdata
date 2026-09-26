@@ -1,0 +1,54 @@
+name: Pages
+
+# Builds the docs page and the static datasets (public/v1/**) as a GitHub Pages site.
+# The build job runs on every push to main so the artifact always exists. The deploy job runs
+# on manual dispatch, or on every push once the repository variable PAGES_AUTO_DEPLOY is "true".
+# Enable Pages first (Settings → Pages → Source: GitHub Actions). The live catalog mirror
+# (/v1/codex/*, /healthz, /v1/index.json) is served by the Worker at data.cp.dev only; the
+# Pages site links to it.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: codexdata-pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      # Set the PAGES_ORIGIN variable when the Pages site has a custom domain.
+      PAGES_ORIGIN: ${{ vars.PAGES_ORIGIN || format('https://{0}.github.io/{1}', github.repository_owner, github.event.repository.name) }}
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version-file: ".node-version"
+      - run: corepack enable
+      - run: pnpm install --frozen-lockfile
+      - name: Build Pages bundle
+        run: node scripts/build-pages.mjs --origin "$PAGES_ORIGIN" --out .artifacts/pages
+      - uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
+        with:
+          path: .artifacts/pages
+
+  deploy:
+    if: github.event_name == 'workflow_dispatch' || vars.PAGES_AUTO_DEPLOY == 'true'
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5.0.1

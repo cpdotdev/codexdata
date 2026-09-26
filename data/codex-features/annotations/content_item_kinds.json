@@ -1,0 +1,9 @@
+{
+  "key": "content_item_kinds",
+  "i18n": {
+    "zh": {
+      "title": "内容条目分类元数据",
+      "summary": "在内部 Responses 元数据中携带逐内容条目的分类标注。"
+    }
+  }
+}

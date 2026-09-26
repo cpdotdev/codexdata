@@ -1,0 +1,52 @@
+{
+  "id": "herdr",
+  "name": "Herdr",
+  "path_suffixes": ["/herdr-agent-state.sh"],
+  "evidence": "documented",
+  "references": [
+    {
+      "kind": "official",
+      "url": "https://herdr.dev/docs/integrations/",
+      "note": "Codex integration documents the script filename and session identity reporting."
+    },
+    {
+      "kind": "local-observation",
+      "note": "Observed integration version 6 reports pane.report_agent_session over a local socket when HERDR_ENV, HERDR_SOCKET_PATH and HERDR_PANE_ID are set."
+    }
+  ],
+  "i18n": {
+    "en": {
+      "summary": "Associates a Codex session with a Herdr pane for session restoration. The observed script reports the session ID through a local socket when running inside Herdr.",
+      "removal": "Removing this registration stops session identity reporting to Herdr. If you no longer use Herdr, remove the registration; if installed, herdr integration uninstall codex also removes its script."
+    },
+    "zh": {
+      "summary": "把 Codex 会话关联到 Herdr 窗格，供会话恢复使用。已核对的脚本仅在 Herdr 环境中通过本地 socket 上报会话 ID。",
+      "removal": "删除后不再向 Herdr 上报会话身份。不再使用 Herdr 时可删除；若仍安装着 Herdr，也可用 herdr integration uninstall codex 一并卸载脚本。"
+    },
+    "zh-TW": {
+      "summary": "將 Codex 工作階段關聯至 Herdr 窗格，供還原工作階段使用。已核對的腳本僅在 Herdr 環境中透過本機 socket 回報工作階段 ID。",
+      "removal": "刪除後不再向 Herdr 回報工作階段身分。不再使用 Herdr 時可刪除；若仍安裝 Herdr，也可用 herdr integration uninstall codex 一併移除腳本。"
+    },
+    "ja": {
+      "summary": "Codex セッションを Herdr のペインに関連付け、復元に利用します。確認したスクリプトは Herdr 環境内でローカル socket にセッション ID を送ります。",
+      "removal": "削除すると Herdr へのセッション情報の通知が止まります。Herdr を使わない場合は削除できます。インストール済みなら herdr integration uninstall codex でスクリプトも削除できます。"
+    }
+  },
+  "examples": {
+    "match": [
+      "bash '/Users/demo/.codex/herdr-agent-state.sh' session",
+      "bash /custom/codex-home/herdr-agent-state.sh session"
+    ],
+    "no_match": [
+      "bash /tmp/herdr-agent-state.sh.bak",
+      "echo herdr",
+      "bash /tmp/not-herdr-agent-state.sh"
+    ]
+  },
+  "reviewed_at": "2026-09-26",
+  "icon": {
+    "file": "herdr.png",
+    "source_url": "https://herdr.dev/assets/favicon.png",
+    "rights": "Herdr product mark, from the official website favicon; resized to 64x64 for identification. All rights remain with the respective owner; not covered by the dataset CC-BY-4.0 license."
+  }
+}

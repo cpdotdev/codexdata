@@ -1,0 +1,9 @@
+{
+  "key": "powershell_shell_version",
+  "i18n": {
+    "zh": {
+      "title": "PowerShell 版本上报",
+      "summary": "暴露所选 PowerShell 执行宿主的主/次版本号（有界）。"
+    }
+  }
+}

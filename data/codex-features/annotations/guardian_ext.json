@@ -1,0 +1,9 @@
+{
+  "key": "guardian_ext",
+  "i18n": {
+    "zh": {
+      "title": "扩展版 Guardian",
+      "summary": "启用由扩展持有的同步 Guardian 审查器。"
+    }
+  }
+}

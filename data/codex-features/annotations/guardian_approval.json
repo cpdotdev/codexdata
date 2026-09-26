@@ -1,0 +1,9 @@
+{
+  "key": "guardian_approval",
+  "i18n": {
+    "zh": {
+      "title": "Guardian 自动审批",
+      "summary": "对审批弹窗启用自动审查（Guardian 风险审查器）。"
+    }
+  }
+}

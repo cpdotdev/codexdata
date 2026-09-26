@@ -1,0 +1,9 @@
+{
+  "key": "image_generation",
+  "i18n": {
+    "zh": {
+      "title": "图片生成",
+      "summary": "启用扩展支撑的图片生成能力。"
+    }
+  }
+}

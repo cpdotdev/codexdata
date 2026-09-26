@@ -1,0 +1,9 @@
+{
+  "key": "collaboration_modes",
+  "i18n": {
+    "zh": {
+      "title": "协作模式（Plan/Default）",
+      "summary": "协作模式（Plan、Default）开关；行为已恒为开启，旗标仅为配置兼容保留。"
+    }
+  }
+}

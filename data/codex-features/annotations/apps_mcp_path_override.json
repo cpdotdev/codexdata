@@ -1,0 +1,9 @@
+{
+  "key": "apps_mcp_path_override",
+  "i18n": {
+    "zh": {
+      "title": "Apps MCP 路径覆盖",
+      "summary": "旧版 Apps MCP 路径覆盖的兼容旗标，已移除。"
+    }
+  }
+}

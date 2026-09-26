@@ -1,0 +1,9 @@
+{
+  "key": "write_stdin_approval",
+  "i18n": {
+    "zh": {
+      "title": "stdin 写入审批",
+      "summary": "向提权的 unified-exec 终端写入输入前需要审批。"
+    }
+  }
+}

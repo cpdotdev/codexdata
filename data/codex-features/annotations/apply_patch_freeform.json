@@ -1,0 +1,9 @@
+{
+  "key": "apply_patch_freeform",
+  "i18n": {
+    "zh": {
+      "title": "apply_patch 自由格式回退",
+      "summary": "已删除的 apply_patch 自由格式回退功能的兼容旗标，仅为旧配置能继续解析而保留。"
+    }
+  }
+}

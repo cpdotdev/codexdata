@@ -1,0 +1,9 @@
+{
+  "key": "tui_app_server",
+  "i18n": {
+    "zh": {
+      "title": "TUI app-server 实现",
+      "summary": "TUI 已恒定使用 app-server 实现，此为已移除的兼容旗标。"
+    }
+  }
+}

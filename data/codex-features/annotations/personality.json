@@ -1,0 +1,9 @@
+{
+  "key": "personality",
+  "i18n": {
+    "zh": {
+      "title": "个性（Personality）",
+      "summary": "启用 TUI 中的个性（回复风格）选择。"
+    }
+  }
+}

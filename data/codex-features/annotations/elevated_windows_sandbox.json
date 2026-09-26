@@ -1,0 +1,9 @@
+{
+  "key": "elevated_windows_sandbox",
+  "i18n": {
+    "zh": {
+      "title": "Windows 提权沙箱",
+      "summary": "使用提权的 Windows 沙箱管线（setup + runner），已移除。"
+    }
+  }
+}

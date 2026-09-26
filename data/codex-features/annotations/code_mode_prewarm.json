@@ -1,0 +1,9 @@
+{
+  "key": "code_mode_prewarm",
+  "i18n": {
+    "zh": {
+      "title": "代码模式预热",
+      "summary": "会话启动时预先建立代码模式宿主连接。"
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "key": "mentions_v2",
+  "i18n": {
+    "zh": {
+      "title": "统一 @ 提及弹窗",
+      "summary": "启用 TUI 默认使用的统一 mention 弹窗。"
+    }
+  }
+}

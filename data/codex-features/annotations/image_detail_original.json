@@ -1,0 +1,9 @@
+{
+  "key": "image_detail_original",
+  "i18n": {
+    "zh": {
+      "title": "图片原始精度",
+      "summary": "已移除的兼容旗标，保留为空操作以便旧封装仍能传 --enable image_detail_original。"
+    }
+  }
+}

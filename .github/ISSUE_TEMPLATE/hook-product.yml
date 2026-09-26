@@ -1,0 +1,24 @@
+name: Hook product
+description: Report a hook product that the registry should recognize, or a wrong entry.
+labels: [hooks]
+body:
+  - type: input
+    id: product
+    attributes:
+      label: Product name and website
+    validations:
+      required: true
+  - type: textarea
+    id: paths
+    attributes:
+      label: Distinctive script path suffixes
+      description: Use `/Users/demo`, `/home/demo` or `C:\Users\demo`; never your real username, workspace paths, tokens or a whole private hooks file.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence
+      description: Official documentation URLs (preferred) or a narrowly described local observation. See docs/HOOKS.md for what "documented" vs "observed" means.
+    validations:
+      required: true

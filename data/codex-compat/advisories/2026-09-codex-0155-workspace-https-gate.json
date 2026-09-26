@@ -1,0 +1,29 @@
+{
+  "id": "2026-09-codex-0155-workspace-https-gate",
+  "severity": "critical",
+  "kind": "upgrade-risk",
+  "status": "open",
+  "clientAction": "hold-upgrade",
+  "affects": { "min": "0.155.0", "max": null },
+  "keys": ["chatgpt_base_url"],
+  "codexPassFixedIn": "0.5.2",
+  "links": ["https://github.com/openai/codex"],
+  "i18n": {
+    "zh": {
+      "title": "Codex 0.155 起账号接口强制 HTTPS",
+      "body": "Codex 0.155 开始要求 workspace 后端为 HTTPS，经本机代理接管账号流量会触发登录墙。Codex Pass 0.5.2（及 0.4.8）已适配：检测到 0.155+ 时自动停止接管账号流量，访问日志与隐私拦截对账号类请求不再生效。请先升级 Codex Pass 到 0.5.2 或更高，再升级 Codex。"
+    },
+    "en": {
+      "title": "Codex 0.155 enforces HTTPS on the account backend",
+      "body": "Starting with Codex 0.155, the workspace backend must be HTTPS; routing account traffic through the local proxy triggers a login wall. Codex Pass 0.5.2 (and 0.4.8) adapts by no longer taking over account traffic on 0.155+, which also disables access logging and privacy interception for account requests. Upgrade Codex Pass to 0.5.2 or later before upgrading Codex."
+    },
+    "zh-TW": {
+      "title": "Codex 0.155 起帳號介面強制 HTTPS",
+      "body": "Codex 0.155 開始要求 workspace 後端為 HTTPS，經本機代理接管帳號流量會觸發登入牆。Codex Pass 0.5.2（及 0.4.8）已適配：偵測到 0.155+ 時自動停止接管帳號流量，存取日誌與隱私攔截對帳號類請求不再生效。請先升級 Codex Pass 到 0.5.2 或更高，再升級 Codex。"
+    },
+    "ja": {
+      "title": "Codex 0.155 以降、アカウント API は HTTPS 必須",
+      "body": "Codex 0.155 以降、workspace バックエンドは HTTPS が必須となり、ローカルプロキシ経由のアカウントトラフィックはログイン画面でブロックされます。Codex Pass 0.5.2（および 0.4.8）は 0.155+ を検出するとアカウントトラフィックの引き受けを自動停止します（アカウント系リクエストのアクセスログとプライバシー遮断は無効になります）。Codex をアップグレードする前に、Codex Pass を 0.5.2 以降へ更新してください。"
+    }
+  }
+}

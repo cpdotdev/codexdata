@@ -1,0 +1,9 @@
+{
+  "key": "exec_permission_approvals",
+  "i18n": {
+    "zh": {
+      "title": "沙箱内权限申请",
+      "summary": "允许 exec 工具在保持沙箱的前提下申请额外权限。"
+    }
+  }
+}

@@ -1,0 +1,104 @@
+{
+  "notes": [
+    "Codex Pass 托管/写入的 Codex config.toml 表面清单：兼容管线按此清单对每个新 Codex 版本做探测。",
+    "probe=binary-string：键名（serde 字段名）作为字符串存在于 CLI 二进制里；从有到无 = 该键极可能已被上游移除（已用 disable_response_storage 实证：0.154 起二进制里连字符串都没有）。",
+    "probe=none：无法从 CLI 二进制探测（如 [desktop] 表由 ChatGPT.app 桌面端的 asar 读取），状态只能人工维护。",
+    "needle 默认等于 key；点分键（memories.extract_model）与嵌套表字段需显式给 needle。",
+    "statusOverride / removedIn / action 是人工裁定字段：build-compat.mjs 的自动推导（present/absent 对比）只会把键标成 missing 并触发 review issue，不会自动下发 action；只有人工写了 action 的键，客户端才会提供一键修复。",
+    "risk=experimental：OpenAI 未承诺稳定性的键，客户端应把它们视为随时可能失效。",
+    "table=daemon：app-server daemon 状态目录（$CODEX_HOME/app-server-daemon/settings.json）里的键，不是 config.toml；daemon 与 CLI 同一二进制，键名照常可探。"
+  ],
+  "keys": [
+    {
+      "key": "chatgpt_base_url",
+      "table": "top",
+      "note": "account-route takeover; core of the official proxy"
+    },
+    { "key": "model_provider", "table": "top", "note": "selects the active provider table" },
+    { "key": "model", "table": "top", "note": "preserved user /model choice" },
+    { "key": "model_reasoning_effort", "table": "top" },
+    { "key": "model_reasoning_summary", "table": "top" },
+    { "key": "model_verbosity", "table": "top" },
+    { "key": "personality", "table": "top" },
+    { "key": "review_model", "table": "top" },
+    { "key": "model_context_window", "table": "top" },
+    { "key": "model_auto_compact_token_limit", "table": "top" },
+    { "key": "approval_policy", "table": "top" },
+    { "key": "sandbox_mode", "table": "top" },
+    { "key": "web_search", "table": "top" },
+    { "key": "hide_agent_reasoning", "table": "top" },
+    { "key": "show_raw_agent_reasoning", "table": "top" },
+    { "key": "file_opener", "table": "top" },
+    { "key": "project_doc_max_bytes", "table": "top" },
+    {
+      "key": "check_for_update_on_startup",
+      "table": "top",
+      "note": "only lever over Codex's own update prompt"
+    },
+    { "key": "memories.extract_model", "table": "top", "needle": "extract_model" },
+    { "key": "memories.consolidation_model", "table": "top", "needle": "consolidation_model" },
+    {
+      "key": "experimental_realtime_webrtc_call_base_url",
+      "table": "top",
+      "risk": "experimental",
+      "note": "voice direct-connect; codex-pass writes it on takeover"
+    },
+    {
+      "key": "experimental_realtime_ws_base_url",
+      "table": "top",
+      "risk": "experimental",
+      "note": "voice direct-connect; codex-pass writes it on takeover"
+    },
+    {
+      "key": "model_catalog_json",
+      "table": "top",
+      "note": "catalog override path (also used by competitors)"
+    },
+    {
+      "key": "disable_response_storage",
+      "table": "top",
+      "statusOverride": "removed",
+      "removedIn": null,
+      "action": "remove",
+      "note": "ZDR flag added 2025-04 (openai/codex#714); upstream moved to never-store 2025-09 (#3212) and the key vanished from the binary (absent in every probed version, 0.153.4+). Silently ignored since; safe and recommended to delete."
+    },
+    { "key": "model_providers", "table": "model_providers", "note": "provider table container" },
+    { "key": "model_providers.*.wire_api", "table": "model_providers", "needle": "wire_api" },
+    {
+      "key": "model_providers.*.requires_openai_auth",
+      "table": "model_providers",
+      "needle": "requires_openai_auth"
+    },
+    {
+      "key": "model_providers.*.experimental_bearer_token",
+      "table": "model_providers",
+      "needle": "experimental_bearer_token",
+      "risk": "experimental",
+      "note": "gateway auth for the planned server route; verified accepted since 0.155"
+    },
+    {
+      "key": "model_providers.*.http_headers",
+      "table": "model_providers",
+      "needle": "http_headers"
+    },
+    { "key": "mcp_servers", "table": "mcp_servers", "note": "built-in search MCP registration" },
+    {
+      "key": "analytics.enabled",
+      "table": "analytics",
+      "needle": "analytics",
+      "note": "needle is generic; absence signal only meaningful if it ever disappears entirely"
+    },
+    {
+      "key": "desktop",
+      "table": "desktop",
+      "probe": "none",
+      "note": "38 managed desktop prefs (camelCase); read by the ChatGPT.app desktop client (asar), not present in the CLI binary — cannot be probed here"
+    },
+    {
+      "key": "updater.autoUpdateEnabled",
+      "table": "daemon",
+      "needle": "autoUpdateEnabled",
+      "note": "app-server daemon's own auto-update loop: enabled by default, checks every updateIntervalMinutes (default 60) and installs via the official install script — independent of check_for_update_on_startup, which only gates the TUI startup prompt. Compiled into the binary since <=0.153.4 (needle present in every probed version; auto_update_enabled snake_case is NOT in the binary); 0.156 is when the TUI starts routing through the shared daemon by default (top-level --no-daemon escape hatch appears in 0.156.0-alpha). The disable lever for centrally managed fleets; see advisory 2026-09-codex-0156-daemon-auto-update."
+    }
+  ]
+}

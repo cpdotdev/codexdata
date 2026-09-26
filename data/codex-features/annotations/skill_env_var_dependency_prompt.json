@@ -1,0 +1,9 @@
+{
+  "key": "skill_env_var_dependency_prompt",
+  "i18n": {
+    "zh": {
+      "title": "技能环境变量依赖提示",
+      "summary": "已删除的技能环境变量依赖提示功能的兼容旗标。"
+    }
+  }
+}

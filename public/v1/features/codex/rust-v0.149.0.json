@@ -1,0 +1,3267 @@
+{
+  "dataset": "codex-feature-flags",
+  "snapshot_tag": "rust-v0.149.0",
+  "applies_to": [
+    "rust-v0.149.0"
+  ],
+  "counts": {
+    "total": 118,
+    "annotated": 118,
+    "locales": {
+      "en": 1,
+      "zh": 118
+    }
+  },
+  "flags": [
+    {
+      "key": "apply_patch_freeform",
+      "variant": "ApplyPatchFreeform",
+      "stage": "removed",
+      "default_enabled": false,
+      "doc": "Removed compatibility flag for the deleted apply_patch fallback feature.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "removed"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "apply_patch 自由格式回退",
+            "summary": "已删除的 apply_patch 自由格式回退功能的兼容旗标，仅为旧配置能继续解析而保留。"
+          }
+        }
+      }
+    },
+    {
+      "key": "apply_patch_preserve_line_endings",
+      "variant": "ApplyPatchPreserveLineEndings",
+      "stage": "under development",
+      "default_enabled": false,
+      "doc": "Preserve existing line endings when apply_patch updates files.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "under development"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "补丁保留行尾",
+            "summary": "apply_patch 更新文件时保留文件原有的行尾风格（CRLF/LF）。"
+          }
+        }
+      }
+    },
+    {
+      "key": "apply_patch_streaming_events",
+      "variant": "ApplyPatchStreamingEvents",
+      "stage": "under development",
+      "default_enabled": false,
+      "doc": "Stream structured progress while apply_patch input is being generated.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "under development"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "补丁生成进度流",
+            "summary": "在 apply_patch 输入还在生成时，流式发送结构化进度事件。"
+          }
+        }
+      }
+    },
+    {
+      "key": "apps",
+      "variant": "Apps",
+      "stage": "stable",
+      "default_enabled": true,
+      "doc": "Enable apps.",
+      "experimental": null,
+      "legacy_aliases": [
+        "connectors"
+      ],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "stable"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "应用（Apps）",
+            "summary": "启用 Codex Apps（应用/连接器）能力。"
+          }
+        }
+      }
+    },
+    {
+      "key": "apps_mcp_path_override",
+      "variant": "AppsMcpPathOverride",
+      "stage": "removed",
+      "default_enabled": false,
+      "doc": "Removed compatibility flag for the legacy Apps MCP path override.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "removed"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "Apps MCP 路径覆盖",
+            "summary": "旧版 Apps MCP 路径覆盖的兼容旗标，已移除。"
+          }
+        }
+      }
+    },
+    {
+      "key": "artifact",
+      "variant": "Artifact",
+      "stage": "under development",
+      "default_enabled": false,
+      "doc": "Enable native artifact tools.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "under development"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "原生工件（Artifact）",
+            "summary": "启用原生 artifact（工件产出）工具。"
+          }
+        }
+      }
+    },
+    {
+      "key": "auth_elicitation",
+      "variant": "AuthElicitation",
+      "stage": "stable",
+      "default_enabled": true,
+      "doc": "Prompt Codex Apps connector auth failures through MCP URL elicitations.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "stable"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "连接器鉴权引导",
+            "summary": "Codex Apps 连接器鉴权失败时，通过 MCP 的 URL elicitation 机制弹出授权引导。"
+          }
+        }
+      }
+    },
+    {
+      "key": "background_paginated_rollout_migration",
+      "variant": "BackgroundPaginatedRolloutMigration",
+      "stage": "under development",
+      "default_enabled": false,
+      "doc": "Migrate legacy local rollout files to paginated history in the background.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "under development"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "会话记录后台迁移",
+            "summary": "在后台把旧版本地 rollout 会话文件迁移为分页历史。"
+          }
+        }
+      }
+    },
+    {
+      "key": "browser_use",
+      "variant": "BrowserUse",
+      "stage": "stable",
+      "default_enabled": true,
+      "doc": "Allow Browser Use agent integration in desktop apps. Requirements-only gate: this should be set from requirements, not user config.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "stable"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "浏览器操控（Browser Use）",
+            "summary": "允许桌面端集成 Browser Use 浏览器操控代理。",
+            "note": "官方注明 requirements 专用闸门：应由系统级 requirements.toml 下发，不建议写进用户配置。"
+          }
+        }
+      }
+    },
+    {
+      "key": "browser_use_external",
+      "variant": "BrowserUseExternal",
+      "stage": "stable",
+      "default_enabled": true,
+      "doc": "Allow Browser Use integration with external browsers. Requirements-only gate: this should be set from requirements, not user config.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "stable"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "外部浏览器操控",
+            "summary": "允许 Browser Use 操控外部浏览器。",
+            "note": "官方注明 requirements 专用闸门：应由系统级 requirements.toml 下发，不建议写进用户配置。"
+          }
+        }
+      }
+    },
+    {
+      "key": "browser_use_full_cdp_access",
+      "variant": "BrowserUseFullCdpAccess",
+      "stage": "stable",
+      "default_enabled": true,
+      "doc": "Allow Browser Use integration to access the full Chrome DevTools Protocol surface. Requirements-only gate: this should be set from requirements, not user config.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "stable"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "完整 CDP 权限",
+            "summary": "允许 Browser Use 使用完整的 Chrome DevTools Protocol 能力面。",
+            "note": "官方注明 requirements 专用闸门：应由系统级 requirements.toml 下发，不建议写进用户配置。",
+            "risk": "完整 CDP 意味着对浏览器的完全程序化控制（页面内容、脚本注入、调试接口），企业环境应从 requirements 统一管控。"
+          }
+        }
+      }
+    },
+    {
+      "key": "chronicle",
+      "variant": "Chronicle",
+      "stage": "under development",
+      "default_enabled": false,
+      "doc": "Enable the Chronicle sidecar for passive screen-context memories.",
+      "experimental": null,
+      "legacy_aliases": [
+        "telepathy"
+      ],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "under development"
+          }
+        ]
+      },
+      "annotation": {
+        "aka": "Computer History",
+        "i18n": {
+          "en": {
+            "title": "Computer History",
+            "summary": "Enables the Chronicle sidecar that passively captures screen context into memories.",
+            "note": "This is the flag behind “Computer History” in the ChatGPT desktop app; its earlier internal codename was telepathy (see legacy_aliases)."
+          },
+          "zh": {
+            "title": "电脑使用历史（Computer History）",
+            "summary": "启用 Chronicle 边车进程，被动记录屏幕上下文形成记忆。",
+            "note": "ChatGPT 桌面端设置里的「Computer History」即此旗标；更早的内部代号是 telepathy（见 legacy_aliases）。"
+          }
+        }
+      }
+    },
+    {
+      "key": "code_mode",
+      "variant": "CodeMode",
+      "stage": "under development",
+      "default_enabled": false,
+      "doc": "Enable JavaScript code mode backed by the standalone host process.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "under development"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "代码模式（Code Mode）",
+            "summary": "启用由独立宿主进程支撑的 JavaScript 代码模式。",
+            "note": "配合 code_mode_host / code_mode_only / code_mode_prewarm / code_mode_interrupt 等子旗标使用。"
+          }
+        }
+      }
+    },
+    {
+      "key": "code_mode_buffered_exec",
+      "variant": "CodeModeBufferedExec",
+      "stage": "removed",
+      "default_enabled": false,
+      "doc": "Removed compatibility flag for the configurable code-mode exec yield timeout.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "removed"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "代码模式 exec 缓冲超时",
+            "summary": "可配置的代码模式 exec 让步超时的兼容旗标，已移除。"
+          }
+        }
+      }
+    },
+    {
+      "key": "code_mode_host",
+      "variant": "CodeModeHost",
+      "stage": "stable",
+      "default_enabled": true,
+      "doc": "Run JavaScript code mode in the standalone host process.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "stable"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "代码模式独立宿主",
+            "summary": "在独立宿主进程中运行 JavaScript 代码模式。"
+          }
+        }
+      }
+    },
+    {
+      "key": "code_mode_interrupt",
+      "variant": "CodeModeInterrupt",
+      "stage": "under development",
+      "default_enabled": false,
+      "doc": "Terminate active code mode cells when their turn is interrupted.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "under development"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "代码模式可中断",
+            "summary": "回合被打断时，终止仍在运行的代码模式单元。"
+          }
+        }
+      }
+    },
+    {
+      "key": "code_mode_only",
+      "variant": "CodeModeOnly",
+      "stage": "under development",
+      "default_enabled": false,
+      "doc": "Restrict model-visible tools to code mode entrypoints (`exec`, `wait`).",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "under development"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "纯代码模式",
+            "summary": "把模型可见的工具收窄为代码模式入口（exec、wait）。"
+          }
+        }
+      }
+    },
+    {
+      "key": "codex_git_commit",
+      "variant": "CodexGitCommit",
+      "stage": "removed",
+      "default_enabled": false,
+      "doc": "Removed legacy git commit attribution guidance flag.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "removed"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "git 提交署名指引",
+            "summary": "旧版 git 提交署名指引旗标，已移除。"
+          }
+        }
+      }
+    },
+    {
+      "key": "collaboration_modes",
+      "variant": "CollaborationModes",
+      "stage": "removed",
+      "default_enabled": true,
+      "doc": "Enable collaboration modes (Plan, Default). Kept for config backward compatibility; behavior is always collaboration-modes-enabled.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "removed"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "协作模式（Plan/Default）",
+            "summary": "协作模式（Plan、Default）开关；行为已恒为开启，旗标仅为配置兼容保留。"
+          }
+        }
+      }
+    },
+    {
+      "key": "computer_use",
+      "variant": "ComputerUse",
+      "stage": "stable",
+      "default_enabled": true,
+      "doc": "Allow Codex Computer Use. Requirements-only gate: this should be set from requirements, not user config.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "stable"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "计算机操控（Computer Use）",
+            "summary": "允许 Codex Computer Use 桌面操控能力。",
+            "note": "官方注明 requirements 专用闸门：应由系统级 requirements.toml 下发，不建议写进用户配置。"
+          }
+        }
+      }
+    },
+    {
+      "key": "concurrent_reasoning_summaries",
+      "variant": "ConcurrentReasoningSummaries",
+      "stage": "under development",
+      "default_enabled": false,
+      "doc": "Request sequential cutoff reasoning summary delivery.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "under development"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "推理摘要顺序截断交付",
+            "summary": "请求以顺序截断（sequential cutoff）的方式交付推理摘要。"
+          }
+        }
+      }
+    },
+    {
+      "key": "current_time_reminder",
+      "variant": "CurrentTimeReminder",
+      "stage": "under development",
+      "default_enabled": false,
+      "doc": "Add current-time reminders to model-visible context.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "under development"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "当前时间提醒",
+            "summary": "在模型可见上下文中加入当前时间提醒。"
+          }
+        }
+      }
+    },
+    {
+      "key": "cwd_relative_turn_diffs",
+      "variant": "CwdRelativeTurnDiffs",
+      "stage": "under development",
+      "default_enabled": false,
+      "doc": "Use the current working directory for turn diff display paths.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.149.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.149.0",
+            "stage": "under development"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "回合 diff 相对路径",
+            "summary": "回合 diff 的展示路径改用相对当前工作目录的形式。"
+          }
+        }
+      }
+    },
+    {
+      "key": "default_mode_request_user_input",
+      "variant": "DefaultModeRequestUserInput",
+      "stage": "under development",
+      "default_enabled": false,
+      "doc": "Allow request_user_input in Default collaboration mode.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "under development"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "默认模式下询问用户",
+            "summary": "允许在 Default 协作模式中使用 request_user_input（模型主动向用户提问）。"
+          }
+        }
+      }
+    },
+    {
+      "key": "deferred_executor",
+      "variant": "DeferredExecutor",
+      "stage": "under development",
+      "default_enabled": false,
+      "doc": "Allow turns to start while selected executors are still starting.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "under development"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "执行器延迟就绪",
+            "summary": "允许在选定执行器仍在启动时就开始回合。"
+          }
+        }
+      }
+    },
+    {
+      "key": "deferred_tool_world_state",
+      "variant": "DeferredToolWorldState",
+      "stage": "under development",
+      "default_enabled": false,
+      "doc": "Describe deferred tool namespaces in the model-visible world state.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "under development"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "延迟工具的世界状态",
+            "summary": "在模型可见的世界状态中描述被延迟加载的工具命名空间。"
+          }
+        }
+      }
+    },
+    {
+      "key": "elevated_windows_sandbox",
+      "variant": "WindowsSandboxElevated",
+      "stage": "removed",
+      "default_enabled": false,
+      "doc": "Use the elevated Windows sandbox pipeline (setup + runner).",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "removed"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "Windows 提权沙箱",
+            "summary": "使用提权的 Windows 沙箱管线（setup + runner），已移除。"
+          }
+        }
+      }
+    },
+    {
+      "key": "enable_fanout",
+      "variant": "SpawnCsv",
+      "stage": "removed",
+      "default_enabled": false,
+      "doc": "Removed compatibility flag for the deleted agent-job tools.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "removed"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "agent-job 扇出工具",
+            "summary": "已删除的 agent-job 工具的兼容旗标。"
+          }
+        }
+      }
+    },
+    {
+      "key": "enable_mcp_apps",
+      "variant": "EnableMcpApps",
+      "stage": "under development",
+      "default_enabled": false,
+      "doc": "Enable MCP apps.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "under development"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "MCP 应用",
+            "summary": "启用 MCP apps（MCP 生态的应用界面扩展）。"
+          }
+        }
+      }
+    },
+    {
+      "key": "enable_request_compression",
+      "variant": "EnableRequestCompression",
+      "stage": "stable",
+      "default_enabled": true,
+      "doc": "Compress request bodies (zstd) when sending streaming requests to codex-backend.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "stable"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "请求体压缩",
+            "summary": "向 codex-backend 发送流式请求时用 zstd 压缩请求体。"
+          }
+        }
+      }
+    },
+    {
+      "key": "exec_permission_approvals",
+      "variant": "ExecPermissionApprovals",
+      "stage": "under development",
+      "default_enabled": false,
+      "doc": "Allow exec tools to request additional permissions while staying sandboxed.",
+      "experimental": null,
+      "legacy_aliases": [
+        "request_permissions"
+      ],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "under development"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "沙箱内权限申请",
+            "summary": "允许 exec 工具在保持沙箱的前提下申请额外权限。"
+          }
+        }
+      }
+    },
+    {
+      "key": "executed_tool_call_metadata",
+      "variant": "ExecutedToolCallMetadata",
+      "stage": "under development",
+      "default_enabled": false,
+      "doc": "Record model-attempted tool calls in internal Responses metadata.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "under development"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "工具调用记录元数据",
+            "summary": "在内部 Responses 元数据中记录模型尝试过的工具调用。"
+          }
+        }
+      }
+    },
+    {
+      "key": "executor_capability_discovery",
+      "variant": "ExecutorCapabilityDiscovery",
+      "stage": "under development",
+      "default_enabled": false,
+      "doc": "Discover selected-root plugin and skill manifests through one high-level exec-server RPC.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "under development"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "执行器能力发现",
+            "summary": "通过单个高层 exec-server RPC 一次性发现所选根目录的插件与技能清单。"
+          }
+        }
+      }
+    },
+    {
+      "key": "experimental_windows_sandbox",
+      "variant": "WindowsSandbox",
+      "stage": "removed",
+      "default_enabled": false,
+      "doc": "Enable Windows sandbox (restricted token) on Windows.",
+      "experimental": null,
+      "legacy_aliases": [
+        "enable_experimental_windows_sandbox"
+      ],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "removed"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "Windows 受限令牌沙箱",
+            "summary": "在 Windows 上启用受限令牌（restricted token）沙箱，已移除。"
+          }
+        }
+      }
+    },
+    {
+      "key": "external_agent_memory_import",
+      "variant": "ExternalAgentMemoryImport",
+      "stage": "under development",
+      "default_enabled": false,
+      "doc": "Enable importing project-scoped memory from external agents.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "under development"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "外部代理记忆导入",
+            "summary": "支持从外部代理导入项目范围的记忆。"
+          }
+        }
+      }
+    },
+    {
+      "key": "external_migration",
+      "variant": "ExternalMigration",
+      "stage": "removed",
+      "default_enabled": false,
+      "doc": "Removed compatibility flag retained as a no-op.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "removed"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "外部迁移",
+            "summary": "已移除的兼容旗标，现为空操作（no-op）。"
+          }
+        }
+      }
+    },
+    {
+      "key": "fast_mode",
+      "variant": "FastMode",
+      "stage": "stable",
+      "default_enabled": true,
+      "doc": "Enable Fast mode selection in the TUI and request layer.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "stable"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "快速模式（Fast mode）",
+            "summary": "在 TUI 与请求层启用 Fast mode 选择。"
+          }
+        }
+      }
+    },
+    {
+      "key": "goals",
+      "variant": "Goals",
+      "stage": "stable",
+      "default_enabled": true,
+      "doc": "Enable persisted thread goals and automatic goal continuation.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "stable"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "目标（Goals）",
+            "summary": "启用线程目标的持久化与自动目标延续。"
+          }
+        }
+      }
+    },
+    {
+      "key": "guardian_approval",
+      "variant": "GuardianApproval",
+      "stage": "stable",
+      "default_enabled": true,
+      "doc": "Enable automatic review for approval prompts.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "stable"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "Guardian 自动审批",
+            "summary": "对审批弹窗启用自动审查（Guardian 风险审查器）。"
+          }
+        }
+      }
+    },
+    {
+      "key": "guardian_enhanced_node_repl_transcripts",
+      "variant": "GuardianEnhancedNodeReplTranscripts",
+      "stage": "under development",
+      "default_enabled": false,
+      "doc": "Include completed node_repl Code Mode responses in Guardian reviews.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "under development"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "Guardian 纳入代码模式回执",
+            "summary": "Guardian 审查时纳入已完成的 node_repl / cua_repl 代码模式响应。"
+          }
+        }
+      }
+    },
+    {
+      "key": "guardian_node_repl_transcript_images",
+      "variant": "GuardianNodeReplTranscriptImages",
+      "stage": "under development",
+      "default_enabled": false,
+      "doc": "Include completed node_repl Code Mode response images in Guardian reviews.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "under development"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "Guardian 纳入代码模式图片",
+            "summary": "Guardian 审查时纳入已完成代码模式响应中的图片。"
+          }
+        }
+      }
+    },
+    {
+      "key": "guardian_reuse_parent_compaction",
+      "variant": "GuardianReuseParentCompaction",
+      "stage": "under development",
+      "default_enabled": false,
+      "doc": "Reuse encrypted parent compaction when restarting Guardian review sessions.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "under development"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "Guardian 复用父压缩",
+            "summary": "重启 Guardian 审查会话时复用加密的父级压缩上下文。"
+          }
+        }
+      }
+    },
+    {
+      "key": "guardianv2",
+      "variant": "GuardianV2",
+      "stage": "under development",
+      "default_enabled": false,
+      "doc": "Enable Guardian V2 automatic approval reviews.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "under development"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "Guardian V2",
+            "summary": "启用 Guardian V2 自动审批审查。"
+          }
+        }
+      }
+    },
+    {
+      "key": "hooks",
+      "variant": "CodexHooks",
+      "stage": "stable",
+      "default_enabled": true,
+      "doc": "Enable Claude-style lifecycle hooks loaded from hooks.json files.",
+      "experimental": null,
+      "legacy_aliases": [
+        "codex_hooks"
+      ],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "stable"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "生命周期钩子（Hooks）",
+            "summary": "启用从 hooks.json 文件加载的 Claude 风格生命周期钩子。"
+          }
+        }
+      }
+    },
+    {
+      "key": "image_detail_original",
+      "variant": "ImageDetailOriginal",
+      "stage": "removed",
+      "default_enabled": false,
+      "doc": "Removed compatibility flag retained as a no-op so old wrappers can still pass `--enable image_detail_original`.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "removed"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "图片原始精度",
+            "summary": "已移除的兼容旗标，保留为空操作以便旧封装仍能传 --enable image_detail_original。"
+          }
+        }
+      }
+    },
+    {
+      "key": "image_generation",
+      "variant": "ImageGeneration",
+      "stage": "stable",
+      "default_enabled": true,
+      "doc": "Enable extension-backed image generation.",
+      "experimental": null,
+      "legacy_aliases": [
+        "imagegenext"
+      ],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "stable"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "图片生成",
+            "summary": "启用扩展支撑的图片生成能力。"
+          }
+        }
+      }
+    },
+    {
+      "key": "image_resize_notice",
+      "variant": "ImageResizeNotice",
+      "stage": "under development",
+      "default_enabled": false,
+      "doc": "Tell the model when a prompt image was resized and include its dimensions.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "under development"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "图片缩放提示",
+            "summary": "当提示词图片被缩放时告知模型，并附上原始尺寸。"
+          }
+        }
+      }
+    },
+    {
+      "key": "in_app_browser",
+      "variant": "InAppBrowser",
+      "stage": "stable",
+      "default_enabled": true,
+      "doc": "Allow the in-app browser pane in desktop apps. Requirements-only gate: this should be set from requirements, not user config.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "stable"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "应用内浏览器",
+            "summary": "允许桌面端的应用内浏览器面板。",
+            "note": "官方注明 requirements 专用闸门：应由系统级 requirements.toml 下发，不建议写进用户配置。"
+          }
+        }
+      }
+    },
+    {
+      "key": "in_app_chat",
+      "variant": "InAppChat",
+      "stage": "stable",
+      "default_enabled": true,
+      "doc": "Allow the in-app chat pane in desktop apps. Requirements-only gate: this should be set from requirements, not user config.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.149.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.149.0",
+            "stage": "stable"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "应用内聊天",
+            "summary": "允许桌面端的应用内聊天面板。",
+            "note": "官方注明 requirements 专用闸门：应由系统级 requirements.toml 下发，不建议写进用户配置。"
+          }
+        }
+      }
+    },
+    {
+      "key": "in_app_dictation",
+      "variant": "InAppDictation",
+      "stage": "stable",
+      "default_enabled": true,
+      "doc": "Allow in-app dictation in desktop apps. Requirements-only gate: this should be set from requirements, not user config.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.149.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.149.0",
+            "stage": "stable"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "应用内听写",
+            "summary": "允许桌面端的应用内语音听写。",
+            "note": "官方注明 requirements 专用闸门：应由系统级 requirements.toml 下发，不建议写进用户配置。"
+          }
+        }
+      }
+    },
+    {
+      "key": "in_app_updates",
+      "variant": "InAppUpdates",
+      "stage": "stable",
+      "default_enabled": true,
+      "doc": "Allow desktop apps to perform in-app updates. Requirements-only gate: this should be set from requirements, not user config.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "stable"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "应用内更新",
+            "summary": "允许桌面端执行应用内自更新。",
+            "note": "官方注明 requirements 专用闸门：应由系统级 requirements.toml 下发，不建议写进用户配置。"
+          }
+        }
+      }
+    },
+    {
+      "key": "item_ids",
+      "variant": "ItemIds",
+      "stage": "removed",
+      "default_enabled": true,
+      "doc": "Removed compatibility flag for always-on response item IDs.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "removed"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "响应条目 ID",
+            "summary": "响应条目 ID 已恒为开启，此为已移除的兼容旗标。"
+          }
+        }
+      }
+    },
+    {
+      "key": "js_repl",
+      "variant": "JsRepl",
+      "stage": "removed",
+      "default_enabled": false,
+      "doc": "Removed compatibility flag for the deleted JavaScript REPL feature.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "removed"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "JavaScript REPL",
+            "summary": "已删除的 JavaScript REPL 功能的兼容旗标。"
+          }
+        }
+      }
+    },
+    {
+      "key": "js_repl_tools_only",
+      "variant": "JsReplToolsOnly",
+      "stage": "removed",
+      "default_enabled": false,
+      "doc": "Removed compatibility flag for the deleted JavaScript REPL tool-only mode.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "removed"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "JS REPL 仅工具模式",
+            "summary": "已删除的 JavaScript REPL 仅工具模式的兼容旗标。"
+          }
+        }
+      }
+    },
+    {
+      "key": "local_thread_store_compression",
+      "variant": "LocalThreadStoreCompression",
+      "stage": "under development",
+      "default_enabled": false,
+      "doc": "Compress cold local thread-store rollout files.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "under development"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "本地会话存储压缩",
+            "summary": "压缩冷的本地线程存储 rollout 文件（含共享历史）。",
+            "note": "官方注明：要求所有读取 Codex home 的程序都支持压缩的共享历史——多个工具共用一个 CODEX_HOME 时慎开。"
+          }
+        }
+      }
+    },
+    {
+      "key": "mcp_2026_07_28",
+      "variant": "Mcp20260728",
+      "stage": "under development",
+      "default_enabled": false,
+      "doc": "Enable MCP protocol version 2026-07-28 support.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "under development"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "MCP 2026-07-28 协议",
+            "summary": "启用 MCP 协议 2026-07-28 版本支持。"
+          }
+        }
+      }
+    },
+    {
+      "key": "memories",
+      "variant": "MemoryTool",
+      "stage": "stable",
+      "default_enabled": false,
+      "doc": "Enable startup memory extraction and file-backed memory consolidation.",
+      "experimental": null,
+      "legacy_aliases": [
+        "memory_tool"
+      ],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "stable"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "记忆（Memories）",
+            "summary": "启用启动时的记忆提取与文件化的记忆整理。"
+          }
+        }
+      }
+    },
+    {
+      "key": "mentions_v2",
+      "variant": "MentionsV2",
+      "stage": "stable",
+      "default_enabled": true,
+      "doc": "Enable the unified mention popup used by default in the TUI.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "stable"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "统一 @ 提及弹窗",
+            "summary": "启用 TUI 默认使用的统一 mention 弹窗。"
+          }
+        }
+      }
+    },
+    {
+      "key": "multi_agent",
+      "variant": "Collab",
+      "stage": "stable",
+      "default_enabled": true,
+      "doc": "Enable collab tools.",
+      "experimental": null,
+      "legacy_aliases": [
+        "collab"
+      ],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "stable"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "多代理协作工具",
+            "summary": "启用 collab 多代理协作工具。"
+          }
+        }
+      }
+    },
+    {
+      "key": "multi_agent_mode",
+      "variant": "MultiAgentMode",
+      "stage": "removed",
+      "default_enabled": false,
+      "doc": "Removed compatibility flag retained as a no-op.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "removed"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "多代理模式",
+            "summary": "已移除的兼容旗标，现为空操作（no-op）。"
+          }
+        }
+      }
+    },
+    {
+      "key": "multi_agent_v2",
+      "variant": "MultiAgentV2",
+      "stage": "stable",
+      "default_enabled": false,
+      "doc": "Enable task-path-based multi-agent routing.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "stable"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "多代理 V2",
+            "summary": "启用基于任务路径（task-path）的多代理路由。"
+          }
+        }
+      }
+    },
+    {
+      "key": "network_proxy",
+      "variant": "NetworkProxy",
+      "stage": "experimental",
+      "default_enabled": false,
+      "doc": "Start the managed network proxy for sandboxed sessions.",
+      "experimental": {
+        "name": "Network proxy",
+        "menu_description": "Apply network proxy restrictions to sandboxed sessions that already have network access.",
+        "announcement": "NEW: Network proxy can now be enabled from /experimental. Restart Codex after enabling it."
+      },
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "experimental"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "受管网络代理",
+            "summary": "为沙箱会话启动受管网络代理，对已有网络访问的会话施加代理层限制。"
+          }
+        }
+      }
+    },
+    {
+      "key": "non_prefixed_mcp_tool_names",
+      "variant": "NonPrefixedMcpToolNames",
+      "stage": "under development",
+      "default_enabled": false,
+      "doc": "Expose MCP model-visible namespaces without the legacy `mcp__` prefix.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "under development"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "MCP 工具名去前缀",
+            "summary": "MCP 模型可见命名空间不再携带旧式 mcp__ 前缀。"
+          }
+        }
+      }
+    },
+    {
+      "key": "personality",
+      "variant": "Personality",
+      "stage": "stable",
+      "default_enabled": true,
+      "doc": "Enable personality selection in the TUI.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "stable"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "个性（Personality）",
+            "summary": "启用 TUI 中的个性（回复风格）选择。"
+          }
+        }
+      }
+    },
+    {
+      "key": "plugin_hooks",
+      "variant": "PluginHooks",
+      "stage": "removed",
+      "default_enabled": false,
+      "doc": "Removed compatibility flag for plugin-bundled lifecycle hooks.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "removed"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "插件自带钩子",
+            "summary": "插件随包携带生命周期钩子的兼容旗标，已移除。"
+          }
+        }
+      }
+    },
+    {
+      "key": "plugin_sharing",
+      "variant": "PluginSharing",
+      "stage": "stable",
+      "default_enabled": true,
+      "doc": "Enable remote plugin sharing flows.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "stable"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "插件分享",
+            "summary": "启用远程插件分享流程。"
+          }
+        }
+      }
+    },
+    {
+      "key": "plugins",
+      "variant": "Plugins",
+      "stage": "stable",
+      "default_enabled": true,
+      "doc": "Enable plugins.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "stable"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "插件（Plugins）",
+            "summary": "启用插件系统。"
+          }
+        }
+      }
+    },
+    {
+      "key": "prevent_idle_sleep",
+      "variant": "PreventIdleSleep",
+      "stage": "experimental",
+      "default_enabled": false,
+      "doc": "Prevent idle system sleep while a turn is actively running.",
+      "experimental": {
+        "name": "Prevent sleep while running",
+        "menu_description": "Keep your computer awake while Codex is running a thread.",
+        "announcement": "NEW: Prevent sleep while running is now available in /experimental."
+      },
+      "stage_condition": "cfg!(any( target_os = \"macos\", target_os = \"linux\", target_os = \"windows\" ))",
+      "stage_fallback": "under development",
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "experimental"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "运行中防休眠",
+            "summary": "回合运行期间阻止系统进入闲置休眠。"
+          }
+        }
+      }
+    },
+    {
+      "key": "psp",
+      "variant": "Psp",
+      "stage": "under development",
+      "default_enabled": false,
+      "doc": "Route first-party ChatGPT requests through PSP.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "under development"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "PSP 请求路由",
+            "summary": "将第一方 ChatGPT 请求经由 PSP 转发。",
+            "note": "源码未展开 PSP 缩写，具体含义未确认。"
+          }
+        }
+      }
+    },
+    {
+      "key": "realtime_conversation",
+      "variant": "RealtimeConversation",
+      "stage": "under development",
+      "default_enabled": false,
+      "doc": "Enable experimental realtime voice conversation mode in the TUI.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "under development"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "实时语音对话",
+            "summary": "在 TUI 中启用实验性的实时语音对话模式。"
+          }
+        }
+      }
+    },
+    {
+      "key": "recommended_plugins",
+      "variant": "RecommendedPlugins",
+      "stage": "stable",
+      "default_enabled": false,
+      "doc": "Include recommended plugins in model-visible context.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "stable"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "推荐插件",
+            "summary": "在模型可见上下文中加入推荐插件。"
+          }
+        }
+      }
+    },
+    {
+      "key": "remote_compaction_v2",
+      "variant": "RemoteCompactionV2",
+      "stage": "stable",
+      "default_enabled": true,
+      "doc": "Enable remote compaction v2 over the normal Responses API.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "stable"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "远端压缩 V2",
+            "summary": "通过常规 Responses API 启用远端上下文压缩 v2。"
+          }
+        }
+      }
+    },
+    {
+      "key": "remote_control",
+      "variant": "RemoteControl",
+      "stage": "removed",
+      "default_enabled": false,
+      "doc": "Removed compatibility flag for the deleted remote control feature.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "removed"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "远程控制",
+            "summary": "已删除的远程控制功能的兼容旗标。"
+          }
+        }
+      }
+    },
+    {
+      "key": "remote_models",
+      "variant": "RemoteModels",
+      "stage": "removed",
+      "default_enabled": false,
+      "doc": "Legacy remote models flag kept for backward compatibility.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "removed"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "远程模型",
+            "summary": "旧版远程模型旗标，仅为向后兼容保留。"
+          }
+        }
+      }
+    },
+    {
+      "key": "remote_plugin",
+      "variant": "RemotePlugin",
+      "stage": "stable",
+      "default_enabled": true,
+      "doc": "Enable the PS-backed remote plugin catalog.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "stable"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "远程插件目录",
+            "summary": "启用 PS 支撑的远程插件目录。",
+            "note": "源码未展开 PS 缩写，具体含义未确认。"
+          }
+        }
+      }
+    },
+    {
+      "key": "request_permissions_tool",
+      "variant": "RequestPermissionsTool",
+      "stage": "under development",
+      "default_enabled": false,
+      "doc": "Expose the built-in request_permissions tool.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "under development"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "权限申请工具",
+            "summary": "暴露内置的 request_permissions 工具。"
+          }
+        }
+      }
+    },
+    {
+      "key": "request_rule",
+      "variant": "RequestRule",
+      "stage": "removed",
+      "default_enabled": false,
+      "doc": "Allow the model to request approval and propose exec rules.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "removed"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "exec 规则提案",
+            "summary": "允许模型请求审批并提议 exec 规则，已移除。"
+          }
+        }
+      }
+    },
+    {
+      "key": "resize_all_images",
+      "variant": "ResizeAllImages",
+      "stage": "removed",
+      "default_enabled": true,
+      "doc": "Removed compatibility flag for always-on centralized image preparation.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "removed"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "统一图片预处理",
+            "summary": "集中式图片预处理已恒为开启，此为已移除的兼容旗标。"
+          }
+        }
+      }
+    },
+    {
+      "key": "respect_system_proxy",
+      "variant": "RespectSystemProxy",
+      "stage": "under development",
+      "default_enabled": false,
+      "doc": "Respect host system proxy settings for Codex-owned network clients.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "under development"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "跟随系统代理",
+            "summary": "Codex 自有的网络客户端遵循宿主系统的代理设置。"
+          }
+        }
+      }
+    },
+    {
+      "key": "responses_websockets",
+      "variant": "ResponsesWebsockets",
+      "stage": "removed",
+      "default_enabled": false,
+      "doc": "Legacy rollout flag for Responses API WebSocket transport experiments.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "removed"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "Responses WebSocket 传输",
+            "summary": "Responses API WebSocket 传输实验的旧灰度旗标。"
+          }
+        }
+      }
+    },
+    {
+      "key": "responses_websockets_v2",
+      "variant": "ResponsesWebsocketsV2",
+      "stage": "removed",
+      "default_enabled": false,
+      "doc": "Legacy rollout flag for Responses API WebSocket transport v2 experiments.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "removed"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "Responses WebSocket 传输 V2",
+            "summary": "Responses API WebSocket 传输 v2 实验的旧灰度旗标。"
+          }
+        }
+      }
+    },
+    {
+      "key": "retain_client_developer_messages",
+      "variant": "RetainClientDeveloperMessages",
+      "stage": "under development",
+      "default_enabled": false,
+      "doc": "Retain client-authored developer messages across compacted context windows.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "under development"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "保留客户端 developer 消息",
+            "summary": "上下文窗口压缩后保留客户端下发的 developer 消息。"
+          }
+        }
+      }
+    },
+    {
+      "key": "rollout_budget",
+      "variant": "RolloutBudget",
+      "stage": "under development",
+      "default_enabled": false,
+      "doc": "Track and report a shared token budget across a session's agent threads.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "under development"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "会话共享 token 预算",
+            "summary": "跨一个会话的所有代理线程追踪并报告共享 token 预算。"
+          }
+        }
+      }
+    },
+    {
+      "key": "runtime_metrics",
+      "variant": "RuntimeMetrics",
+      "stage": "under development",
+      "default_enabled": false,
+      "doc": "Enable runtime metrics snapshots via a manual reader.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "under development"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "运行时指标",
+            "summary": "启用运行时指标快照（通过手动读取器获取）。"
+          }
+        }
+      }
+    },
+    {
+      "key": "search_tool",
+      "variant": "SearchTool",
+      "stage": "removed",
+      "default_enabled": false,
+      "doc": "Legacy search-tool feature flag kept for backward compatibility.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "removed"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "搜索工具",
+            "summary": "旧版 search-tool 旗标，仅为向后兼容保留。"
+          }
+        }
+      }
+    },
+    {
+      "key": "secret_auth_storage",
+      "variant": "SecretAuthStorage",
+      "stage": "stable",
+      "default_enabled": null,
+      "doc": "Store CLI auth in the encrypted local secrets backend when keyring storage is selected.",
+      "experimental": null,
+      "default_expr": "cfg!(windows)",
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "stable"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "加密凭据存储",
+            "summary": "选择 keyring 存储时，把 CLI 登录凭据存进本地加密 secrets 后端。",
+            "note": "默认值平台相关：Windows 默认开启，其余平台默认关闭（default_expr = cfg!(windows)）。"
+          }
+        }
+      }
+    },
+    {
+      "key": "send_async_message",
+      "variant": "SendAsyncMessage",
+      "stage": "removed",
+      "default_enabled": false,
+      "doc": "Removed compatibility flag for model-enabled async user messaging.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.149.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.149.0",
+            "stage": "removed"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "模型异步消息",
+            "summary": "模型主动异步给用户发消息的兼容旗标，已移除。"
+          }
+        }
+      }
+    },
+    {
+      "key": "shell_snapshot",
+      "variant": "ShellSnapshot",
+      "stage": "stable",
+      "default_enabled": true,
+      "doc": "Experimental shell snapshotting.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "stable"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "Shell 快照",
+            "summary": "实验性的 shell 环境快照能力。"
+          }
+        }
+      }
+    },
+    {
+      "key": "shell_tool",
+      "variant": "ShellTool",
+      "stage": "stable",
+      "default_enabled": true,
+      "doc": "Enable the default shell tool.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "stable"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "Shell 工具",
+            "summary": "启用默认的 shell 工具。"
+          }
+        }
+      }
+    },
+    {
+      "key": "shell_zsh_fork",
+      "variant": "ShellZshFork",
+      "stage": "under development",
+      "default_enabled": false,
+      "doc": "Route shell tool execution through the zsh exec bridge.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "under development"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "zsh 执行桥",
+            "summary": "把 shell 工具的执行路由到 zsh exec 桥。"
+          }
+        }
+      }
+    },
+    {
+      "key": "skill_env_var_dependency_prompt",
+      "variant": "SkillEnvVarDependencyPrompt",
+      "stage": "removed",
+      "default_enabled": false,
+      "doc": "Removed compatibility flag for deleted skill env var dependency prompting.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "removed"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "技能环境变量依赖提示",
+            "summary": "已删除的技能环境变量依赖提示功能的兼容旗标。"
+          }
+        }
+      }
+    },
+    {
+      "key": "skill_mcp_dependency_install",
+      "variant": "SkillMcpDependencyInstall",
+      "stage": "stable",
+      "default_enabled": true,
+      "doc": "Allow prompting and installing missing MCP dependencies.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "stable"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "技能 MCP 依赖安装",
+            "summary": "允许提示并安装技能缺失的 MCP 依赖。"
+          }
+        }
+      }
+    },
+    {
+      "key": "skill_search",
+      "variant": "SkillSearch",
+      "stage": "stable",
+      "default_enabled": true,
+      "doc": "Run cheap skill-search methods in shadow mode and emit experiment metrics.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "stable"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "技能搜索灰度",
+            "summary": "以影子模式运行低成本的技能搜索方法并上报实验指标。"
+          }
+        }
+      }
+    },
+    {
+      "key": "sqlite",
+      "variant": "Sqlite",
+      "stage": "removed",
+      "default_enabled": true,
+      "doc": "Persist rollout metadata to a local SQLite database.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "removed"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "SQLite 元数据存储",
+            "summary": "把 rollout 元数据持久化到本地 SQLite 数据库，已移除。"
+          }
+        }
+      }
+    },
+    {
+      "key": "standalone_web_search",
+      "variant": "StandaloneWebSearch",
+      "stage": "under development",
+      "default_enabled": false,
+      "doc": "Expose the extension-backed standalone web search tool.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "under development"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "独立网页搜索",
+            "summary": "暴露扩展支撑的独立 web 搜索工具。"
+          }
+        }
+      }
+    },
+    {
+      "key": "steer",
+      "variant": "Steer",
+      "stage": "removed",
+      "default_enabled": true,
+      "doc": "Steer feature flag - when enabled, Enter submits immediately instead of queuing. Kept for config backward compatibility; behavior is always steer-enabled.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "removed"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "Enter 立即提交（Steer）",
+            "summary": "开启时 Enter 直接提交而非排队；行为已恒为开启，旗标仅为配置兼容保留。"
+          }
+        }
+      }
+    },
+    {
+      "key": "terminal_resize_reflow",
+      "variant": "TerminalResizeReflow",
+      "stage": "removed",
+      "default_enabled": true,
+      "doc": "Removed compatibility flag. Transcript scrollback reflow on terminal resize is always on.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "removed"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "终端重排",
+            "summary": "终端尺寸变化时的转写回流重排已恒为开启，此为已移除的兼容旗标。"
+          }
+        }
+      }
+    },
+    {
+      "key": "terminal_visualization_instructions",
+      "variant": "TerminalVisualizationInstructions",
+      "stage": "under development",
+      "default_enabled": false,
+      "doc": "Add terminal-specific visualization guidance to TUI developer instructions.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "under development"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "终端可视化指引",
+            "summary": "在 TUI 的 developer 指令中加入终端专属的可视化指引。"
+          }
+        }
+      }
+    },
+    {
+      "key": "token_budget",
+      "variant": "TokenBudget",
+      "stage": "under development",
+      "default_enabled": false,
+      "doc": "Add current context-window metadata to model-visible context.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "under development"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "上下文用量元数据",
+            "summary": "在模型可见上下文中加入当前上下文窗口的元数据。"
+          }
+        }
+      }
+    },
+    {
+      "key": "tool_call_mcp_elicitation",
+      "variant": "ToolCallMcpElicitation",
+      "stage": "stable",
+      "default_enabled": true,
+      "doc": "Route MCP tool approval prompts through the MCP elicitation request path.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "stable"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "MCP 工具审批引导",
+            "summary": "MCP 工具的审批提示改走 MCP elicitation 请求路径。"
+          }
+        }
+      }
+    },
+    {
+      "key": "tool_search",
+      "variant": "ToolSearch",
+      "stage": "removed",
+      "default_enabled": false,
+      "doc": "Removed compatibility flag retained as a no-op now that tool_search is always enabled.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "removed"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "工具搜索",
+            "summary": "tool_search 已恒为开启，此为已移除的兼容旗标。"
+          }
+        }
+      }
+    },
+    {
+      "key": "tool_search_always_defer_mcp_tools",
+      "variant": "ToolSearchAlwaysDeferMcpTools",
+      "stage": "removed",
+      "default_enabled": true,
+      "doc": "Removed compatibility flag. MCP tools are always deferred when tool_search is available.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "removed"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "MCP 工具恒延迟",
+            "summary": "tool_search 可用时 MCP 工具恒被延迟加载，此为已移除的兼容旗标。"
+          }
+        }
+      }
+    },
+    {
+      "key": "tool_suggest",
+      "variant": "ToolSuggest",
+      "stage": "stable",
+      "default_enabled": true,
+      "doc": "Enable discoverable tool suggestions for apps.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "stable"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "工具建议",
+            "summary": "为 apps 启用可发现的工具建议。"
+          }
+        }
+      }
+    },
+    {
+      "key": "tui_app_server",
+      "variant": "TuiAppServer",
+      "stage": "removed",
+      "default_enabled": true,
+      "doc": "Removed compatibility flag. The TUI now always uses the app-server implementation.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "removed"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "TUI app-server 实现",
+            "summary": "TUI 已恒定使用 app-server 实现，此为已移除的兼容旗标。"
+          }
+        }
+      }
+    },
+    {
+      "key": "unavailable_dummy_tools",
+      "variant": "UnavailableDummyTools",
+      "stage": "removed",
+      "default_enabled": false,
+      "doc": "Removed compatibility flag for the deleted unavailable-tool placeholder backfill.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "removed"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "占位工具回填",
+            "summary": "已删除的不可用工具占位回填功能的兼容旗标。"
+          }
+        }
+      }
+    },
+    {
+      "key": "unbounded_connection_retries",
+      "variant": "UnboundedConnectionRetries",
+      "stage": "stable",
+      "default_enabled": true,
+      "doc": "Keep active sampling turns alive until a failed network connection recovers.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "stable"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "断线无限重试",
+            "summary": "网络连接失败时保持进行中的采样回合存活，直到连接恢复（不设重试上限）。"
+          }
+        }
+      }
+    },
+    {
+      "key": "undo",
+      "variant": "GhostCommit",
+      "stage": "removed",
+      "default_enabled": false,
+      "doc": "Removed compatibility flag retained as a no-op so old configs can still parse `undo`.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "removed"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "撤销（Ghost Commit）",
+            "summary": "已移除的兼容旗标，保留为空操作以便旧配置仍能解析 undo；对应源码变体名 GhostCommit。"
+          }
+        }
+      }
+    },
+    {
+      "key": "unified_exec",
+      "variant": "UnifiedExec",
+      "stage": "stable",
+      "default_enabled": true,
+      "doc": "Use the single unified PTY-backed exec tool.",
+      "experimental": null,
+      "legacy_aliases": [
+        "experimental_use_unified_exec_tool"
+      ],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "stable"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "统一执行工具",
+            "summary": "使用单一的、PTY 支撑的统一 exec 工具。"
+          }
+        }
+      }
+    },
+    {
+      "key": "unified_exec_zsh_fork",
+      "variant": "UnifiedExecZshFork",
+      "stage": "under development",
+      "default_enabled": false,
+      "doc": "Allow unified exec to compose with the zsh exec bridge. This flag is only a composition gate. Enabling it by itself must not turn on either `unified_exec` or `shell_zsh_fork` because those features have separate rollout and enterprise controls.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "under development"
+          },
+          {
+            "at": "rust-v0.150.0",
+            "stage": "removed"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "统一执行 × zsh 桥组合",
+            "summary": "允许 unified exec 与 zsh 执行桥组合的纯组合闸门（单开不会启用两者），已移除。"
+          }
+        }
+      }
+    },
+    {
+      "key": "unified_image_budget",
+      "variant": "UnifiedImageBudget",
+      "stage": "under development",
+      "default_enabled": false,
+      "doc": "Apply one shared pixel and token budget to every image, regardless of legacy detail hints.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "under development"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "统一图片预算",
+            "summary": "对所有图片应用同一套像素与 token 预算，忽略旧式 detail 提示。"
+          }
+        }
+      }
+    },
+    {
+      "key": "use_agent_identity",
+      "variant": "UseAgentIdentity",
+      "stage": "under development",
+      "default_enabled": false,
+      "doc": "Use Agent Identity for ChatGPT-authenticated sessions.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "under development"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "Agent Identity",
+            "summary": "ChatGPT 登录的会话使用 Agent Identity（代理身份）。"
+          }
+        }
+      }
+    },
+    {
+      "key": "use_legacy_landlock",
+      "variant": "UseLegacyLandlock",
+      "stage": "deprecated",
+      "default_enabled": false,
+      "doc": "Use the legacy Landlock Linux sandbox fallback instead of the default bubblewrap pipeline.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "deprecated"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "旧版 Landlock 沙箱",
+            "summary": "用旧版 Landlock Linux 沙箱回退替代默认的 bubblewrap 管线（已弃用）。"
+          }
+        }
+      }
+    },
+    {
+      "key": "use_linux_sandbox_bwrap",
+      "variant": "UseLinuxSandboxBwrap",
+      "stage": "removed",
+      "default_enabled": false,
+      "doc": "Removed legacy Linux bubblewrap opt-in flag retained as a no-op so old wrappers and config can still parse it.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "removed"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "Linux bubblewrap 沙箱",
+            "summary": "已移除的旧版 Linux bubblewrap 选择旗标，保留为空操作以便旧封装与配置仍能解析。"
+          }
+        }
+      }
+    },
+    {
+      "key": "view_image",
+      "variant": "ViewImage",
+      "stage": "stable",
+      "default_enabled": true,
+      "doc": "Enable the built-in local image viewer.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "stable"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "图片查看器",
+            "summary": "启用内置的本地图片查看器。"
+          }
+        }
+      }
+    },
+    {
+      "key": "web_search_cached",
+      "variant": "WebSearchCached",
+      "stage": "deprecated",
+      "default_enabled": false,
+      "doc": "Allow the model to request web searches that fetch cached content. Takes precedence over `WebSearchRequest`.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "deprecated"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "缓存网页搜索",
+            "summary": "允许模型请求返回缓存内容的网页搜索；优先级高于 web_search_request（已弃用）。"
+          }
+        }
+      }
+    },
+    {
+      "key": "web_search_request",
+      "variant": "WebSearchRequest",
+      "stage": "deprecated",
+      "default_enabled": false,
+      "doc": "Allow the model to request web searches that fetch live content.",
+      "experimental": null,
+      "legacy_aliases": [
+        "web_search"
+      ],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "deprecated"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "实时网页搜索",
+            "summary": "允许模型请求抓取实时内容的网页搜索（已弃用）。"
+          }
+        }
+      }
+    },
+    {
+      "key": "workspace_dependencies",
+      "variant": "WorkspaceDependencies",
+      "stage": "stable",
+      "default_enabled": true,
+      "doc": "Enable workspace dependency support.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "stable"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "工作区依赖",
+            "summary": "启用工作区依赖支持。"
+          }
+        }
+      }
+    },
+    {
+      "key": "workspace_owner_usage_nudge",
+      "variant": "WorkspaceOwnerUsageNudge",
+      "stage": "removed",
+      "default_enabled": false,
+      "doc": "Removed compatibility flag retained as a no-op now that workspace owner usage nudges are always enabled.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.148.0",
+        "last_seen": "rust-v0.153.4",
+        "stages": [
+          {
+            "at": "rust-v0.148.0",
+            "stage": "removed"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "工作区用量提醒",
+            "summary": "工作区所有者用量提醒已恒为开启，此为已移除的兼容旗标。"
+          }
+        }
+      }
+    }
+  ],
+  "source": {
+    "files": [
+      "codex-rs/features/src/lib.rs",
+      "codex-rs/features/src/legacy.rs"
+    ],
+    "license": "CC-BY-4.0 (registry + annotations); derived from openai/codex (Apache-2.0)",
+    "not_affiliated_with_openai": true
+  }
+}

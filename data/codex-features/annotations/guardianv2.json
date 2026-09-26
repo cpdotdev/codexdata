@@ -1,0 +1,9 @@
+{
+  "key": "guardianv2",
+  "i18n": {
+    "zh": {
+      "title": "Guardian V2",
+      "summary": "启用 Guardian V2 自动审批审查。"
+    }
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "codexdata",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-08-22",
+  "compatibility_flags": ["nodejs_compat"],
+  // Production traffic is served on the custom domain only.
+  "workers_dev": false,
+  // Static assets: the docs page and the pregenerated datasets under public/v1/**.
+  // Asset hits are served by the platform without invoking the Worker.
+  "assets": {
+    "directory": "./public",
+    "binding": "ASSETS",
+  },
+  // Published catalog snapshots and metadata (the read path only reads KV).
+  // No id on purpose: `wrangler deploy` creates the namespace on first deploy.
+  "kv_namespaces": [{ "binding": "CODEXDATA_KV" }],
+  // The only writer: the sync coordinator (SQLite-backed Durable Object that holds the
+  // encrypted OAuth tokens and the run history).
+  "durable_objects": {
+    "bindings": [{ "name": "SYNC", "class_name": "SyncCoordinator" }],
+  },
+  "migrations": [{ "tag": "v1", "new_sqlite_classes": ["SyncCoordinator"] }],
+  // SYNC_MODE=external: GitHub Actions runs the hourly sync (.github/workflows/sync.yml),
+  // so the Worker schedules nothing. Deploying with an empty list also removes any old cron.
+  "triggers": { "crons": [] },
+  // The cp.dev zone must live in the same Cloudflare account as this Worker.
+  "routes": [{ "pattern": "data.cp.dev", "custom_domain": true }],
+  "observability": { "enabled": true, "head_sampling_rate": 1 },
+  "vars": {
+    // Base URL baked into absolute links (/v1/index.json and the static index.json files).
+    "CODEXDATA_PUBLIC_ORIGIN": "https://data.cp.dev",
+    // "external": an external agent fetches the catalog and pushes it back (default).
+    // "worker": the Durable Object fetches it itself; unusable while chatgpt.com blocks
+    //           Workers egress (403 HTML from the edge).
+    "SYNC_MODE": "external",
+  },
+}

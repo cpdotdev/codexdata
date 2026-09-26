@@ -1,0 +1,23 @@
+name: Data error
+description: A served dataset is wrong (catalog, schema, feature registry, hook registry or compat verdict).
+labels: [data]
+body:
+  - type: input
+    id: endpoint
+    attributes:
+      label: Endpoint
+      placeholder: https://data.cp.dev/v1/compat/codex/latest.json
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Codex version involved
+      placeholder: 0.157.1
+  - type: textarea
+    id: what
+    attributes:
+      label: What is wrong, and what did you observe instead?
+      description: For compat verdicts include the exact key and what the Codex binary did with it.
+    validations:
+      required: true

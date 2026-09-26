@@ -1,0 +1,9 @@
+{
+  "key": "responses_websockets",
+  "i18n": {
+    "zh": {
+      "title": "Responses WebSocket 传输",
+      "summary": "Responses API WebSocket 传输实验的旧灰度旗标。"
+    }
+  }
+}

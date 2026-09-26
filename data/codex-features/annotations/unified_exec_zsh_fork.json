@@ -1,0 +1,9 @@
+{
+  "key": "unified_exec_zsh_fork",
+  "i18n": {
+    "zh": {
+      "title": "统一执行 × zsh 桥组合",
+      "summary": "允许 unified exec 与 zsh 执行桥组合的纯组合闸门（单开不会启用两者），已移除。"
+    }
+  }
+}

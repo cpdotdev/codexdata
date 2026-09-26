@@ -1,0 +1,9 @@
+{
+  "key": "steer",
+  "i18n": {
+    "zh": {
+      "title": "Enter 立即提交（Steer）",
+      "summary": "开启时 Enter 直接提交而非排队；行为已恒为开启，旗标仅为配置兼容保留。"
+    }
+  }
+}

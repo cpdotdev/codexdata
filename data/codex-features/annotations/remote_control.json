@@ -1,0 +1,9 @@
+{
+  "key": "remote_control",
+  "i18n": {
+    "zh": {
+      "title": "远程控制",
+      "summary": "已删除的远程控制功能的兼容旗标。"
+    }
+  }
+}

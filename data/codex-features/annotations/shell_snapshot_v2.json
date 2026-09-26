@@ -1,0 +1,9 @@
+{
+  "key": "shell_snapshot_v2",
+  "i18n": {
+    "zh": {
+      "title": "Shell 快照 V2",
+      "summary": "经策略过滤的 shell 快照完全只保存在执行器内存中。"
+    }
+  }
+}

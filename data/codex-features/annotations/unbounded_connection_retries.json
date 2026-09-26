@@ -1,0 +1,9 @@
+{
+  "key": "unbounded_connection_retries",
+  "i18n": {
+    "zh": {
+      "title": "断线无限重试",
+      "summary": "网络连接失败时保持进行中的采样回合存活，直到连接恢复（不设重试上限）。"
+    }
+  }
+}

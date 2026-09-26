@@ -1,0 +1,9 @@
+{
+  "key": "code_mode_host",
+  "i18n": {
+    "zh": {
+      "title": "代码模式独立宿主",
+      "summary": "在独立宿主进程中运行 JavaScript 代码模式。"
+    }
+  }
+}

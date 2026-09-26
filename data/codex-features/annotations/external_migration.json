@@ -1,0 +1,9 @@
+{
+  "key": "external_migration",
+  "i18n": {
+    "zh": {
+      "title": "外部迁移",
+      "summary": "已移除的兼容旗标，现为空操作（no-op）。"
+    }
+  }
+}

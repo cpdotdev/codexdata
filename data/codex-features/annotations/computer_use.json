@@ -1,0 +1,10 @@
+{
+  "key": "computer_use",
+  "i18n": {
+    "zh": {
+      "title": "计算机操控（Computer Use）",
+      "summary": "允许 Codex Computer Use 桌面操控能力。",
+      "note": "官方注明 requirements 专用闸门：应由系统级 requirements.toml 下发，不建议写进用户配置。"
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "key": "prevent_idle_sleep",
+  "i18n": {
+    "zh": {
+      "title": "运行中防休眠",
+      "summary": "回合运行期间阻止系统进入闲置休眠。"
+    }
+  }
+}

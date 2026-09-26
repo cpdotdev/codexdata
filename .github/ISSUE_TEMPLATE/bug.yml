@@ -1,0 +1,22 @@
+name: Bug
+description: Something in the Worker, the scripts, the workflows or the docs page misbehaves.
+labels: [bug]
+body:
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual (include response headers or command output)
+    validations:
+      required: true

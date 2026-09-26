@@ -1,0 +1,9 @@
+{
+  "key": "respect_system_proxy",
+  "i18n": {
+    "zh": {
+      "title": "跟随系统代理",
+      "summary": "Codex 自有的网络客户端遵循宿主系统的代理设置。"
+    }
+  }
+}

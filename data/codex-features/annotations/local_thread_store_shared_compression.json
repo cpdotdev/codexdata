@@ -1,0 +1,9 @@
+{
+  "key": "local_thread_store_shared_compression",
+  "i18n": {
+    "zh": {
+      "title": "共享历史压缩",
+      "summary": "已移除的兼容旗标；现由 local_thread_store_compression 统一控制所有 rollout 文件。"
+    }
+  }
+}

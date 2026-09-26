@@ -1,0 +1,8 @@
+{
+  "dataset": "codex-hook-products",
+  "schema_version": 1,
+  "latest": "https://data.cp.dev/v1/hooks/codex/latest.json",
+  "contribute": "https://github.com/cpdotdev/codexdata/blob/main/docs/HOOKS.md",
+  "license": "CC-BY-4.0",
+  "icon_rights": "Product marks retain their owners' rights; see each product's icon.rights."
+}

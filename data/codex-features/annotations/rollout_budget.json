@@ -1,0 +1,9 @@
+{
+  "key": "rollout_budget",
+  "i18n": {
+    "zh": {
+      "title": "会话共享 token 预算",
+      "summary": "跨一个会话的所有代理线程追踪并报告共享 token 预算。"
+    }
+  }
+}

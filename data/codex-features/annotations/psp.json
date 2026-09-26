@@ -1,0 +1,10 @@
+{
+  "key": "psp",
+  "i18n": {
+    "zh": {
+      "title": "PSP 请求路由",
+      "summary": "将第一方 ChatGPT 请求经由 PSP 转发。",
+      "note": "源码未展开 PSP 缩写，具体含义未确认。"
+    }
+  }
+}

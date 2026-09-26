@@ -1,0 +1,9 @@
+{
+  "key": "code_mode_only",
+  "i18n": {
+    "zh": {
+      "title": "纯代码模式",
+      "summary": "把模型可见的工具收窄为代码模式入口（exec、wait）。"
+    }
+  }
+}

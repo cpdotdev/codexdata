@@ -1,0 +1,18 @@
+# Data license
+
+The curated data under `data/` (the feature-flag annotations, the derived ModelInfo JSON Schema,
+the compatibility intelligence and the hook product registry) is licensed under the Creative
+Commons Attribution 4.0 International License (CC BY 4.0):
+https://creativecommons.org/licenses/by/4.0/
+
+Attribution: "CodexData (https://data.cp.dev) — CC BY 4.0".
+
+Exceptions:
+
+- Files copied from the openai/codex repository (the source snapshots under `data/*/sources/`)
+  keep their original Apache-2.0 license; see the LICENSE and NOTICE files placed next to them.
+- Product marks under `data/codex-hooks/icons/` and their embedded copies in generated registries
+  retain their owners' rights. Neither CC BY 4.0 nor the code's MIT license applies to those
+  images. See each product's `icon.source_url` and `icon.rights` for provenance.
+- The official OpenAI Codex catalog served under `/v1/codex/*` is NOT covered by this license. It
+  is relayed as-is from OpenAI's service; CodexData claims no rights over it and grants no license.

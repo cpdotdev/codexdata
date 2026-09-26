@@ -1,0 +1,103 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://data.cp.dev/v1/compat/codex/compat.schema.json",
+  "title": "Codex compatibility intelligence payload",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "dataset", "codex", "keys", "advisories", "versions"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "dataset": { "const": "codex-compat" },
+    "codex": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["latestStable", "maxProbedStable"],
+      "properties": {
+        "latestStable": { "$ref": "#/$defs/version" },
+        "latestAlpha": { "type": ["string", "null"] },
+        "maxProbedStable": { "$ref": "#/$defs/version" }
+      }
+    },
+    "keys": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["key", "table", "status"],
+        "properties": {
+          "key": { "type": "string", "minLength": 1 },
+          "table": {
+            "enum": ["top", "desktop", "model_providers", "mcp_servers", "analytics", "daemon"]
+          },
+          "status": { "enum": ["active", "missing", "deprecated", "removed", "unprobed"] },
+          "risk": { "enum": ["experimental"] },
+          "removedIn": { "type": ["string", "null"] },
+          "firstMissingIn": { "type": ["string", "null"] },
+          "action": { "enum": ["remove", null] },
+          "note": { "type": "string" }
+        }
+      }
+    },
+    "advisories": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "severity", "kind", "status", "clientAction", "affects", "i18n"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]{2,80}$" },
+          "severity": { "enum": ["info", "warn", "critical"] },
+          "kind": { "enum": ["upgrade-risk", "key-removed", "behavior-change"] },
+          "status": { "enum": ["open", "resolved"] },
+          "clientAction": { "enum": ["hold-upgrade", "remove-key", "none"] },
+          "affects": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "min": { "type": ["string", "null"] },
+              "max": { "type": ["string", "null"] }
+            }
+          },
+          "keys": { "type": "array", "items": { "type": "string" } },
+          "codexPassFixedIn": { "type": ["string", "null"] },
+          "links": { "type": "array", "items": { "type": "string", "pattern": "^https://" } },
+          "i18n": {
+            "type": "object",
+            "minProperties": 1,
+            "additionalProperties": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["title", "body"],
+              "properties": {
+                "title": { "type": "string", "minLength": 1 },
+                "body": { "type": "string", "minLength": 1 }
+              }
+            }
+          }
+        }
+      }
+    },
+    "versions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["version", "channel", "configLoad"],
+        "properties": {
+          "version": { "type": "string" },
+          "channel": { "enum": ["stable", "alpha"] },
+          "publishedAt": { "type": ["string", "null"] },
+          "probedAt": { "type": "string" },
+          "platform": { "type": "string" },
+          "configLoad": { "enum": ["ok", "fail", "unknown"] },
+          "regressions": { "type": "array", "items": { "type": "string" } },
+          "deprecations": { "type": "array", "items": { "type": "string" } },
+          "releaseNotesUrl": { "type": ["string", "null"] }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" }
+  }
+}

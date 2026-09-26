@@ -1,0 +1,9 @@
+{
+  "key": "retain_client_developer_messages",
+  "i18n": {
+    "zh": {
+      "title": "保留客户端 developer 消息",
+      "summary": "上下文窗口压缩后保留客户端下发的 developer 消息。"
+    }
+  }
+}

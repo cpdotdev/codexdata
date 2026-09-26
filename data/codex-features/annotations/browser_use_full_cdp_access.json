@@ -1,0 +1,11 @@
+{
+  "key": "browser_use_full_cdp_access",
+  "i18n": {
+    "zh": {
+      "title": "完整 CDP 权限",
+      "summary": "允许 Browser Use 使用完整的 Chrome DevTools Protocol 能力面。",
+      "note": "官方注明 requirements 专用闸门：应由系统级 requirements.toml 下发，不建议写进用户配置。",
+      "risk": "完整 CDP 意味着对浏览器的完全程序化控制（页面内容、脚本注入、调试接口），企业环境应从 requirements 统一管控。"
+    }
+  }
+}

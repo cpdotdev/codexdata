@@ -1,0 +1,9 @@
+{
+  "key": "unavailable_dummy_tools",
+  "i18n": {
+    "zh": {
+      "title": "占位工具回填",
+      "summary": "已删除的不可用工具占位回填功能的兼容旗标。"
+    }
+  }
+}

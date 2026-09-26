@@ -1,0 +1,9 @@
+{
+  "key": "deferred_executor",
+  "i18n": {
+    "zh": {
+      "title": "执行器延迟就绪",
+      "summary": "允许在选定执行器仍在启动时就开始回合。"
+    }
+  }
+}

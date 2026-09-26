@@ -1,0 +1,9 @@
+{
+  "key": "context_management",
+  "i18n": {
+    "zh": {
+      "title": "上下文管理",
+      "summary": "启用实验性的上下文管理能力。"
+    }
+  }
+}

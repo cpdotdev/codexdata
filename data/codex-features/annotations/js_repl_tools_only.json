@@ -1,0 +1,9 @@
+{
+  "key": "js_repl_tools_only",
+  "i18n": {
+    "zh": {
+      "title": "JS REPL 仅工具模式",
+      "summary": "已删除的 JavaScript REPL 仅工具模式的兼容旗标。"
+    }
+  }
+}

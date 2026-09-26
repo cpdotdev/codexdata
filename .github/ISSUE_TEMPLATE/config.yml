@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Security report
+    url: https://github.com/cpdotdev/codexdata/security/advisories/new
+    about: Report a vulnerability privately; please do not open a public issue for it.
+  - name: Contribution guide
+    url: https://github.com/cpdotdev/codexdata/blob/main/CONTRIBUTING.md
+    about: How to add annotations, translations, hook products and new Codex tags.

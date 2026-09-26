@@ -1,0 +1,9 @@
+{
+  "key": "apply_patch_preserve_line_endings",
+  "i18n": {
+    "zh": {
+      "title": "补丁保留行尾",
+      "summary": "apply_patch 更新文件时保留文件原有的行尾风格（CRLF/LF）。"
+    }
+  }
+}

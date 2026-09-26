@@ -1,0 +1,33 @@
+name: Feature-flag annotation or translation
+description: Propose or correct an annotation, or ask for a language, without opening a PR.
+labels: [annotations]
+body:
+  - type: input
+    id: flag
+    attributes:
+      label: Flag key
+      description: The `[features]` key, as listed by `codex features list`.
+      placeholder: chronicle
+    validations:
+      required: true
+  - type: input
+    id: locale
+    attributes:
+      label: Locale
+      placeholder: en, ja, zh-TW …
+    validations:
+      required: true
+  - type: textarea
+    id: text
+    attributes:
+      label: Proposed title / summary / note / risk
+      description: What the annotation should say. Translations translate the grounded summary; they do not embellish it.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence
+      description: The rustdoc (`doc` in /v1/features/codex/latest.json), the client's menu copy, or the behavior you observed and how. "Unconfirmed" is an acceptable answer; a guess is not.
+    validations:
+      required: true

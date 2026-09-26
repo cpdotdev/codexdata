@@ -1,0 +1,9 @@
+{
+  "key": "unified_exec",
+  "i18n": {
+    "zh": {
+      "title": "统一执行工具",
+      "summary": "使用单一的、PTY 支撑的统一 exec 工具。"
+    }
+  }
+}

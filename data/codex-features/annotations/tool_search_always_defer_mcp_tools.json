@@ -1,0 +1,9 @@
+{
+  "key": "tool_search_always_defer_mcp_tools",
+  "i18n": {
+    "zh": {
+      "title": "MCP 工具恒延迟",
+      "summary": "tool_search 可用时 MCP 工具恒被延迟加载，此为已移除的兼容旗标。"
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "key": "skip_host_skill_discovery",
+  "i18n": {
+    "zh": {
+      "title": "跳过宿主技能发现",
+      "summary": "没有已注册的贡献者需要时，跳过宿主技能快照。"
+    }
+  }
+}

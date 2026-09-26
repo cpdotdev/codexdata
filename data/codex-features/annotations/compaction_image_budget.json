@@ -1,0 +1,9 @@
+{
+  "key": "compaction_image_budget",
+  "i18n": {
+    "zh": {
+      "title": "压缩的图片预算",
+      "summary": "把保留的图片计入远端上下文压缩（compaction）预算。"
+    }
+  }
+}

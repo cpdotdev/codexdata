@@ -1,0 +1,9 @@
+{
+  "key": "enable_mcp_apps",
+  "i18n": {
+    "zh": {
+      "title": "MCP 应用",
+      "summary": "启用 MCP apps（MCP 生态的应用界面扩展）。"
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "key": "background_paginated_rollout_migration",
+  "i18n": {
+    "zh": {
+      "title": "会话记录后台迁移",
+      "summary": "在后台把旧版本地 rollout 会话文件迁移为分页历史。"
+    }
+  }
+}

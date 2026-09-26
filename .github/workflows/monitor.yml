@@ -1,0 +1,46 @@
+name: Monitor
+
+# Probes /healthz every 6 hours. While it is unhealthy, opens (or updates) an issue labelled
+# `ops`; closes the issue again once healthy. Needs no secrets.
+on:
+  schedule:
+    - cron: "23 */6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  health:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      CODEXDATA_ORIGIN: ${{ vars.CODEXDATA_ORIGIN || 'https://data.cp.dev' }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - name: Probe /healthz
+        id: probe
+        run: |
+          status=$(curl -s -o health.json -w '%{http_code}' --max-time 20 "$CODEXDATA_ORIGIN/healthz" || echo "000")
+          echo "status=$status" >> "$GITHUB_OUTPUT"
+          echo "HTTP $status"; cat health.json || true
+      - name: Open or update alert issue
+        if: steps.probe.outputs.status != '200'
+        run: |
+          title="CodexData health check failing"
+          body=$(printf 'Last check: %s\nHTTP %s from %s/healthz\n\n```\n%s\n```\n' "$(date -u +%FT%TZ)" "${{ steps.probe.outputs.status }}" "$CODEXDATA_ORIGIN" "$(cat health.json 2>/dev/null | head -c 2000)")
+          existing=$(gh issue list --repo "$GITHUB_REPOSITORY" --state open --search "\"$title\" in:title" --json number --jq '.[0].number')
+          if [ -n "$existing" ]; then
+            gh issue comment "$existing" --repo "$GITHUB_REPOSITORY" --body "$body"
+          else
+            gh issue create --repo "$GITHUB_REPOSITORY" --title "$title" --body "$body" --label "ops"
+          fi
+      - name: Close alert issue when healthy
+        if: steps.probe.outputs.status == '200'
+        run: |
+          title="CodexData health check failing"
+          existing=$(gh issue list --repo "$GITHUB_REPOSITORY" --state open --search "\"$title\" in:title" --json number --jq '.[0].number')
+          if [ -n "$existing" ]; then
+            gh issue close "$existing" --repo "$GITHUB_REPOSITORY" --comment "Healthy again at $(date -u +%FT%TZ)."
+          fi

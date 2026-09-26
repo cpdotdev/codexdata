@@ -1,0 +1,9 @@
+{
+  "key": "concurrent_reasoning_summaries",
+  "i18n": {
+    "zh": {
+      "title": "推理摘要顺序截断交付",
+      "summary": "请求以顺序截断（sequential cutoff）的方式交付推理摘要。"
+    }
+  }
+}

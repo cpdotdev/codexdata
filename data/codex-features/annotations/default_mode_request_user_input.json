@@ -1,0 +1,9 @@
+{
+  "key": "default_mode_request_user_input",
+  "i18n": {
+    "zh": {
+      "title": "默认模式下询问用户",
+      "summary": "允许在 Default 协作模式中使用 request_user_input（模型主动向用户提问）。"
+    }
+  }
+}

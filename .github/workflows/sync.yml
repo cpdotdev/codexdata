@@ -1,0 +1,30 @@
+name: Sync official Codex catalog
+
+# External sync agent. Cloudflare Workers egress to chatgpt.com is blocked, so a GitHub-hosted
+# runner does the fetch: it leases a short-lived access token from the Worker (10-minute lease),
+# fetches the official catalog, and pushes the raw response back for validation and publishing.
+# The refresh token never leaves the Worker.
+on:
+  schedule:
+    - cron: "7 * * * *" # hourly at :07 UTC; the Worker refreshes the token only when it is about to expire
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+# One sync at a time. The Worker-side lease is the second guard.
+concurrency:
+  group: codexdata-sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+      - name: Lease token, fetch catalog, ingest
+        env:
+          CODEXDATA_ORIGIN: ${{ vars.CODEXDATA_ORIGIN || 'https://data.cp.dev' }}
+          CODEXDATA_ADMIN_TOKEN: ${{ secrets.CODEXDATA_ADMIN_TOKEN }}
+        run: node scripts/sync-agent.mjs

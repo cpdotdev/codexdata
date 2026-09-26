@@ -1,0 +1,135 @@
+# CodexData runbook
+
+Operations reference for maintainers. Contributors do not need any of this; see
+[CONTRIBUTING.md](../CONTRIBUTING.md).
+
+## Topology
+
+- **Worker `codexdata`** (Cloudflare, custom domain `data.cp.dev`; the `cp.dev` zone must be
+  in the same account). Serves the live mirror (`/v1/codex/*`, `/v1/index.json`, `/healthz`)
+  from KV through the edge cache, exposes `/admin/*`, and hosts the `SyncCoordinator` Durable
+  Object (SQLite) that owns the dedicated account's OAuth tokens, encrypted at rest with
+  `REFRESH_TOKEN_KEK`. The DO is the only writer to KV. Static datasets are Workers assets from
+  `public/`.
+- **Sync agent** (`scripts/sync-agent.mjs`, run hourly by `.github/workflows/sync.yml`).
+  Cloudflare Workers cannot reach `chatgpt.com` (403 HTML from the edge), so the GitHub-hosted
+  runner leases a short-lived access token from the Worker (`POST /admin/lease`), fetches
+  `chatgpt.com/backend-api/codex/models`, and pushes the raw response back
+  (`POST /admin/ingest`). The Worker validates against the ModelInfo schema, canonicalises,
+  hashes, diffs and publishes.
+- **Token refresh** happens inside the Worker (`auth.openai.com` is reachable from Workers).
+  The refresh token never leaves the Durable Object; rotation is persisted before anything else
+  runs.
+- **Compat watch** (`scripts/compat-probe.mjs`, `.github/workflows/compat-watch.yml`, every 6
+  hours). Commits probe results to `main` and hot-publishes the payload with
+  `POST /admin/compat/publish`. See [COMPAT.md](COMPAT.md).
+- **GitHub Pages** (`.github/workflows/pages.yml`). Static copy of the docs page and datasets,
+  built by `scripts/build-pages.mjs`. Optional; the Worker does not depend on it.
+
+## Secrets and variables
+
+| Where              | Name                      | Value / where to get it                                                                                                                                                                                                                                                                                                          |
+| ------------------ | ------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Worker secret      | `REFRESH_TOKEN_KEK`       | `openssl rand -base64 32`. Encrypts the OAuth tokens at rest in the DO. Cannot be rotated in place (see Operations).                                                                                                                                                                                                             |
+| Worker secret      | `ADMIN_TOKEN`             | `openssl rand -hex 32`. Bearer for `/admin/*`.                                                                                                                                                                                                                                                                                   |
+| Worker var         | `CODEXDATA_PUBLIC_ORIGIN` | In `wrangler.jsonc`. Base URL baked into absolute links.                                                                                                                                                                                                                                                                         |
+| Worker var         | `SYNC_MODE`               | In `wrangler.jsonc`. `external` (default) or `worker` (DO fetches itself; blocked today).                                                                                                                                                                                                                                        |
+| GitHub secret      | `CODEXDATA_ADMIN_TOKEN`   | Same value as the Worker `ADMIN_TOKEN`. Used by `sync.yml` and `compat-watch.yml`.                                                                                                                                                                                                                                               |
+| GitHub secret      | `CLOUDFLARE_API_TOKEN`    | Cloudflare dashboard → My Profile → API Tokens → Create Token → template "Edit Cloudflare Workers", restricted to the account that owns `cp.dev`. It must carry Account: Workers Scripts:Edit, Workers KV Storage:Edit, Account Settings:Read; Zone (cp.dev): Workers Routes:Edit, DNS:Edit (custom domains create DNS records). |
+| GitHub secret      | `CLOUDFLARE_ACCOUNT_ID`   | Cloudflare dashboard → Workers & Pages → Overview, right-hand "Account ID" (also the first path segment of the dashboard URL). Must be the account that owns the `cp.dev` zone.                                                                                                                                                  |
+| GitHub variable    | `CODEXDATA_ORIGIN`        | Optional. Worker origin used by `sync.yml`, `monitor.yml`, `compat-watch.yml`; defaults to `https://data.cp.dev`.                                                                                                                                                                                                                |
+| GitHub variable    | `PAGES_ORIGIN`            | Optional. Custom domain of the Pages site; defaults to `https://<owner>.github.io/<repo>`.                                                                                                                                                                                                                                       |
+| GitHub variable    | `PAGES_AUTO_DEPLOY`       | Optional. `true` deploys Pages on every push to `main`; otherwise only on manual dispatch.                                                                                                                                                                                                                                       |
+| GitHub environment | `production`              | Used by `deploy.yml`. Create it under Settings → Environments; add yourself as required reviewer if you want a confirmation step before each deploy.                                                                                                                                                                             |
+| GitHub label       | `ops`                     | `monitor.yml` and `compat-watch.yml` label the issues they open with it; create it before the first scheduled run.                                                                                                                                                                                                               |
+
+Set GitHub secrets with `gh secret set NAME` (reads the value from stdin) and variables with
+`gh variable set NAME --body VALUE`. Never paste secrets on a command line.
+
+## Bootstrap (once per Worker)
+
+1. **Dedicated ChatGPT account** (Pro): 2FA on, recovery codes in the password manager. After
+   seeding, **never log this account in anywhere else**: any other `codex login` rotates the
+   refresh token and locks the mirror out (`refresh_token_reused` is permanent).
+2. **Custom domain.** If another Worker currently holds `data.cp.dev`, detach the domain from it
+   first (Workers & Pages → that Worker → Settings → Domains & Routes) or delete that Worker;
+   a deploy cannot claim a domain that is bound elsewhere.
+3. **Deploy**: `pnpm run deploy` locally (with `CLOUDFLARE_API_TOKEN` + `CLOUDFLARE_ACCOUNT_ID`
+   in the environment) or run the `Deploy` workflow. The first deploy creates the KV namespace
+   and applies the DO migration.
+4. **Secrets on the Worker** (interactive prompts; never paste secrets into shell history):
+   ```bash
+   openssl rand -base64 32 | pnpm exec wrangler secret put REFRESH_TOKEN_KEK
+   openssl rand -hex 32   | pnpm exec wrangler secret put ADMIN_TOKEN
+   ```
+   Put the same `ADMIN_TOKEN` value into the GitHub secret `CODEXDATA_ADMIN_TOKEN`.
+5. **Log the dedicated account in** on a trusted machine, into a throwaway Codex home:
+   ```bash
+   CODEX_HOME=/tmp/codexdata-bootstrap codex login
+   ```
+6. **Seed** the Worker and shred the file:
+   ```bash
+   CODEXDATA_ADMIN_TOKEN=… node scripts/seed.mjs --auth /tmp/codexdata-bootstrap/auth.json --shred
+   ```
+7. **First sync**: `gh workflow run sync.yml` (or `CODEXDATA_ADMIN_TOKEN=… node scripts/sync-agent.mjs`
+   from any machine that can reach `chatgpt.com`). Then publish the compat payload once so KV
+   serves it instead of the static fallback: `CODEXDATA_ADMIN_TOKEN=… node scripts/publish-compat.mjs`.
+8. **Check**:
+   ```bash
+   curl -s https://data.cp.dev/v1/codex/meta.json | jq '{fetched_at, client_version, model_count, source}'
+   curl -sI https://data.cp.dev/v1/codex/models.json | grep -iE 'etag|cache-control|x-codexdata'
+   curl -s https://data.cp.dev/healthz
+   ```
+
+## Operations
+
+- **Status**: `curl -H "Authorization: Bearer $ADMIN_TOKEN" https://data.cp.dev/admin/status`
+  (seeded, plan label, last refresh, access-token expiry, active lease, recent runs).
+- **Manual sync**: `gh workflow run sync.yml`.
+- **Schedule**: in `SYNC_MODE=external` only `sync.yml` schedules the catalog sync, hourly at
+  minute 7 UTC; `triggers.crons` is empty so deploying removes any old Worker cron. If Worker
+  egress ever becomes usable, switch to `SYNC_MODE=worker`, set `triggers.crons` to
+  `["7 * * * *"]` and disable the workflow schedule. `POST /admin/sync` remains available in
+  that mode.
+- **Health**: `/healthz` is 200 when a catalog exists, the last successful check is under 24
+  hours old and there is no permanent token failure. `monitor.yml` opens an `ops` issue
+  otherwise and closes it on recovery.
+- **Permanent token failure** (`permanent_failure` in status; `/healthz` 503; the last good
+  catalog keeps being served): the refresh token expired, was reused or was revoked. Recovery:
+  repeat bootstrap steps 5 and 6. Seeding clears the failure flag.
+- **Stuck lease** (agent died mid-run): leases expire after 10 minutes; nothing to do.
+- **Rotate `ADMIN_TOKEN`**: `wrangler secret put ADMIN_TOKEN`, then update the GitHub secret.
+- **Rotate `REFRESH_TOKEN_KEK`**: not supported in place (stored ciphertext would become
+  unreadable). Set the new KEK, then re-seed.
+- **Compat regression issue**: read the probe output, decide, and record the verdict in
+  `data/codex-compat/tracked.json` (`statusOverride` / `action`) or add an advisory; then
+  `pnpm build:compat`, commit, and publish. See [COMPAT.md](COMPAT.md).
+- **Deploy**: run the `Deploy` workflow (manual) after CI is green on `main`. Static dataset
+  changes need a deploy; compat data does not (KV hot update).
+
+## Adding a new Codex tag
+
+Do this on each upstream `rust-v*` release that touches the feature table or `ModelInfo`.
+
+1. **Features**: vendor `codex-rs/features/src/lib.rs` at the new tag into
+   `data/codex-features/sources/<tag>/` (raw.githubusercontent.com). If it is byte-identical
+   to the previous snapshot, add the tag to `snapshot_aliases` in
+   `data/codex-features/tags.json` instead. Diff `legacy.rs` too; it lives once at
+   `sources/legacy.rs` and has been identical across tags so far.
+2. Add the tag to `verified_tags` and `latest` in `data/codex-features/tags.json`, then run
+   `node scripts/extract-features.mjs` and `pnpm build:static`. The parser fails loudly if
+   upstream changed the table's shape; extend it, never hand-edit `registry.json`.
+3. `pnpm validate` prints flags at the new tag that lack a `zh` annotation; add per-flag files
+   under `data/codex-features/annotations/` (coverage gaps warn but do not fail CI).
+4. **Schema**: vendor `config_types.rs` and `openai_models.rs` at the tag into
+   `data/codex-schema/sources/<tag>/`, review the `ModelInfo` diff, update
+   `data/codex-schema/codex-model-info.schema.json` and `tags.json` (notes per tag), and run
+   `pnpm build:static`.
+5. `pnpm check`, open a PR, deploy after merge.
+
+## Known limitations
+
+- The mirror reflects one account's plan and rollout view (`meta.source.plan_label`).
+- It is fetched with the latest npm `@openai/codex` version; older clients ignore unknown
+  fields, but a new required field could make a much older client reject the whole list.
+- Snapshots are kept 180 days in KV; the change feed keeps the latest 500 events.

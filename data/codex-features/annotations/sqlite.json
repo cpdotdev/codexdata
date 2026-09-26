@@ -1,0 +1,9 @@
+{
+  "key": "sqlite",
+  "i18n": {
+    "zh": {
+      "title": "SQLite 元数据存储",
+      "summary": "把 rollout 元数据持久化到本地 SQLite 数据库，已移除。"
+    }
+  }
+}

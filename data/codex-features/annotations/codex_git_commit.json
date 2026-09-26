@@ -1,0 +1,9 @@
+{
+  "key": "codex_git_commit",
+  "i18n": {
+    "zh": {
+      "title": "git 提交署名指引",
+      "summary": "旧版 git 提交署名指引旗标，已移除。"
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "key": "web_search_cached",
+  "i18n": {
+    "zh": {
+      "title": "缓存网页搜索",
+      "summary": "允许模型请求返回缓存内容的网页搜索；优先级高于 web_search_request（已弃用）。"
+    }
+  }
+}
