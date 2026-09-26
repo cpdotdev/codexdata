@@ -28,9 +28,6 @@ products: [docs/HOOKS.md](docs/HOOKS.md).
   Durable Object. Everything else is pregenerated into `public/` by `scripts/build-static.mjs`
   and `scripts/build-compat.mjs` and served by the Workers static-asset layer with
   `public/_headers`; those requests never invoke the Worker.
-- **GitHub Pages** (`.github/workflows/pages.yml`). The same docs page and static datasets,
-  assembled by `scripts/build-pages.mjs` with links baked for the Pages origin. The Pages site
-  links to `data.cp.dev` for the live endpoints it cannot serve.
 - **Catalog sync** (`.github/workflows/sync.yml`, hourly). Cloudflare Workers cannot reach
   `chatgpt.com` (403 from the edge), so a GitHub-hosted runner leases a short-lived access token
   from the Worker, fetches the catalog and pushes it back for validation and publishing. The
@@ -74,7 +71,6 @@ pnpm dev            # local Worker on http://localhost:8787
 node scripts/extract-features.mjs   # sources/*.rs -> data/codex-features/registry.json
 pnpm build:static                   # data/* -> public/v1/** + public/_headers
 pnpm build:compat                   # data/codex-compat -> public/v1/compat/codex/latest.json
-pnpm build:pages -- --origin https://cpdotdev.github.io/codexdata   # Pages bundle -> .artifacts/pages
 ```
 
 Deploys are manual (`Deploy` workflow) after CI is green; see [docs/RUNBOOK.md](docs/RUNBOOK.md).

@@ -2,7 +2,7 @@
   "name": "codexdata",
   "version": "0.1.0",
   "private": true,
-  "description": "CodexData: open datasets for the OpenAI Codex client (official catalog mirror, ModelInfo JSON Schema, feature-flag registry, hook product registry, compatibility intelligence), served from Cloudflare Workers and GitHub Pages. Not affiliated with OpenAI.",
+  "description": "CodexData: open datasets for the OpenAI Codex client (official catalog mirror, ModelInfo JSON Schema, feature-flag registry, hook product registry, compatibility intelligence), served from Cloudflare Workers. Not affiliated with OpenAI.",
   "license": "MIT",
   "type": "module",
   "packageManager": "pnpm@10.12.3",
@@ -24,7 +24,6 @@
     "validate": "node scripts/validate.mjs && node scripts/build-compat.mjs --check && node scripts/build-ui.mjs --check && node --test scripts/hooks.test.mjs",
     "build:static": "node scripts/build-static.mjs",
     "build:compat": "node scripts/build-compat.mjs",
-    "build:pages": "node scripts/build-pages.mjs",
     "probe:compat": "node scripts/compat-probe.mjs",
     "check": "pnpm typecheck && pnpm format:check && pnpm validate && pnpm test",
     "build:ui": "node scripts/build-ui.mjs"

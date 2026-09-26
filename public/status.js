@@ -1,7 +1,6 @@
 // Progressive metadata only. Endpoint links and all documentation work without JS.
-// Static datasets are fetched relative to this page (works on any host, including a
-// GitHub Pages subpath); the live catalog metadata and health come from the Worker origin
-// declared in <meta name="codexdata-live-origin">.
+// Static datasets are fetched relative to this page; the live catalog metadata and health
+// come from the Worker origin declared in <meta name="codexdata-live-origin">.
 (() => {
   const set = (id, value) => {
     const element = document.getElementById(id);

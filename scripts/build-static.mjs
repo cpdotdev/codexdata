@@ -7,7 +7,7 @@
 //   public/_headers                                               CORS + cache headers for /v1/* assets
 // The output is deterministic and committed; validate.mjs runs `--check` to byte-compare it.
 // Absolute links inside the index.json files are baked from CODEXDATA_PUBLIC_ORIGIN in
-// wrangler.jsonc; `--origin` overrides it (used for the GitHub Pages bundle).
+// wrangler.jsonc; `--origin` overrides it.
 //
 // Usage: node scripts/build-static.mjs                       regenerate public/
 //        node scripts/build-static.mjs --check               verify only (exit 1 on drift)

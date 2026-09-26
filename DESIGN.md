@@ -13,9 +13,9 @@ Rules:
   lockfile and the generated CSS together (see `vendor/README.md`).
 - Theme behavior (system / light / dark toggle) lives in `public/theme.js`.
 - Page changes never touch the data API, schemas, KV/DO or cache contracts.
-- Static dataset links in the page are relative so the same HTML works on `data.cp.dev` and on
-  a GitHub Pages subpath; live endpoints (`/v1/codex/*`, `/healthz`, `/v1/index.json`) are
-  absolute links to the Worker origin declared in `<meta name="codexdata-live-origin">`.
+- Static dataset links in the page are relative, so the HTML works from any host; live endpoints
+  (`/v1/codex/*`, `/healthz`, `/v1/index.json`) are absolute links to the Worker origin declared
+  in `<meta name="codexdata-live-origin">`.
 - The "Data at a glance" panel (`public/status.js`) is progressive: without JS every link and
   all documentation still work. Check time and content-fetch time are shown separately, in UTC;
   a 503 shows "Needs attention", a network or data error shows "Unavailable".

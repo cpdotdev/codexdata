@@ -32,5 +32,3 @@ jobs:
         run: pnpm test
       - name: Wrangler config dry run
         run: pnpm exec wrangler deploy --dry-run
-      - name: GitHub Pages bundle builds
-        run: node scripts/build-pages.mjs --origin https://example.invalid --out .artifacts/pages

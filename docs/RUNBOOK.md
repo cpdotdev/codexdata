@@ -23,8 +23,6 @@ Operations reference for maintainers. Contributors do not need any of this; see
 - **Compat watch** (`scripts/compat-probe.mjs`, `.github/workflows/compat-watch.yml`, every 6
   hours). Commits probe results to `main` and hot-publishes the payload with
   `POST /admin/compat/publish`. See [COMPAT.md](COMPAT.md).
-- **GitHub Pages** (`.github/workflows/pages.yml`). Static copy of the docs page and datasets,
-  built by `scripts/build-pages.mjs`. Optional; the Worker does not depend on it.
 
 ## Secrets and variables
 
@@ -39,8 +37,6 @@ Operations reference for maintainers. Contributors do not need any of this; see
 | GitHub secret      | `CLOUDFLARE_API_TOKEN`    | Cloudflare dashboard → My Profile → API Tokens → Create Token → template "Edit Cloudflare Workers", restricted to the account that owns `cp.dev`. It must carry Account: Workers Scripts:Edit, Workers KV Storage:Edit, Account Settings:Read; Zone (cp.dev): Workers Routes:Edit, DNS:Edit (custom domains create DNS records). |
 | GitHub secret      | `CLOUDFLARE_ACCOUNT_ID`   | Cloudflare dashboard → Workers & Pages → Overview, right-hand "Account ID" (also the first path segment of the dashboard URL). Must be the account that owns the `cp.dev` zone.                                                                                                                                                  |
 | GitHub variable    | `CODEXDATA_ORIGIN`        | Optional. Worker origin used by `sync.yml`, `monitor.yml`, `compat-watch.yml`; defaults to `https://data.cp.dev`.                                                                                                                                                                                                                |
-| GitHub variable    | `PAGES_ORIGIN`            | Optional. Custom domain of the Pages site; defaults to `https://<owner>.github.io/<repo>`.                                                                                                                                                                                                                                       |
-| GitHub variable    | `PAGES_AUTO_DEPLOY`       | Optional. `true` deploys Pages on every push to `main`; otherwise only on manual dispatch.                                                                                                                                                                                                                                       |
 | GitHub environment | `production`              | Used by `deploy.yml`. Create it under Settings → Environments; add yourself as required reviewer if you want a confirmation step before each deploy.                                                                                                                                                                             |
 | GitHub label       | `ops`                     | `monitor.yml` and `compat-watch.yml` label the issues they open with it; create it before the first scheduled run.                                                                                                                                                                                                               |
 
