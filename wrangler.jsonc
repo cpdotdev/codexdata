@@ -11,6 +11,9 @@
   "assets": {
     "directory": "./public",
     "binding": "ASSETS",
+    // The compat payload is hot-published to KV; the Worker must see it before the asset layer
+    // answers with the committed fallback file.
+    "run_worker_first": ["/v1/compat/*"],
   },
   // Published catalog snapshots and metadata (the read path only reads KV).
   // No id on purpose: `wrangler deploy` creates the namespace on first deploy.
