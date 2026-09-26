@@ -1,0 +1,42 @@
+name: Seed dedicated account
+
+# One-off bootstrap: hands the dedicated ChatGPT account's `codex login` result to the Worker,
+# which stores the refresh token encrypted. Nothing else ever needs that account's credentials.
+#
+#   1. On a trusted machine, log the dedicated account in to a throwaway Codex home:
+#        CODEX_HOME=/tmp/codexdata-bootstrap codex login
+#   2. Put the resulting file into a temporary repository secret:
+#        gh secret set CODEXDATA_SEED_AUTH -R <owner>/<repo> < /tmp/codexdata-bootstrap/auth.json
+#   3. Run this workflow.
+#   4. Delete the secret and the local file:
+#        gh secret delete CODEXDATA_SEED_AUTH -R <owner>/<repo> && rm -rf /tmp/codexdata-bootstrap
+#
+# After seeding, never log that account in anywhere else: another login rotates the refresh
+# token and locks the mirror out.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  seed:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    environment: production
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version-file: ".node-version"
+      - name: Seed the Worker
+        env:
+          CODEXDATA_ORIGIN: ${{ vars.CODEXDATA_ORIGIN || 'https://data.cp.dev' }}
+          CODEXDATA_ADMIN_TOKEN: ${{ secrets.CODEXDATA_ADMIN_TOKEN }}
+          SEED_AUTH: ${{ secrets.CODEXDATA_SEED_AUTH }}
+        run: |
+          [ -n "$SEED_AUTH" ] || { echo "CODEXDATA_SEED_AUTH secret is not set"; exit 1; }
+          umask 077
+          printf '%s' "$SEED_AUTH" > "$RUNNER_TEMP/auth.json"
+          node scripts/seed.mjs --auth "$RUNNER_TEMP/auth.json" --shred
+          echo "Seeded. Now delete the temporary secret: gh secret delete CODEXDATA_SEED_AUTH -R $GITHUB_REPOSITORY"

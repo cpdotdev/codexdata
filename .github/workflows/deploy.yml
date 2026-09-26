@@ -29,3 +29,19 @@ jobs:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         run: pnpm exec wrangler deploy
+      - name: Configure Worker secrets
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          ADMIN_TOKEN: ${{ secrets.CODEXDATA_ADMIN_TOKEN }}
+        run: |
+          [ -n "$ADMIN_TOKEN" ] || { echo "CODEXDATA_ADMIN_TOKEN secret is not set"; exit 1; }
+          # ADMIN_TOKEN always mirrors the GitHub secret so the workflows and the Worker agree.
+          printf '%s' "$ADMIN_TOKEN" | pnpm exec wrangler secret put ADMIN_TOKEN
+          # The KEK encrypts the stored OAuth tokens; never overwrite an existing one (the stored
+          # ciphertext would become unreadable). Generated once, lives only on the Worker.
+          if pnpm exec wrangler secret list --format json | grep -q '"REFRESH_TOKEN_KEK"'; then
+            echo "REFRESH_TOKEN_KEK already set"
+          else
+            openssl rand -base64 32 | pnpm exec wrangler secret put REFRESH_TOKEN_KEK
+          fi

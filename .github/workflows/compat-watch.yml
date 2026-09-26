@@ -18,6 +18,10 @@ on:
         description: "Re-probe even if already probed (true/false)"
         required: false
         default: "false"
+      publish:
+        description: "Publish the committed compat payload even without new probe data (true/false)"
+        required: false
+        default: "false"
 
 permissions:
   contents: write
@@ -74,7 +78,7 @@ jobs:
             echo "changed=true" >> "$GITHUB_OUTPUT"
           fi
       - name: Publish to data.cp.dev (KV hot update)
-        if: steps.commit.outputs.changed == 'true'
+        if: steps.commit.outputs.changed == 'true' || inputs.publish == 'true'
         env:
           CODEXDATA_ORIGIN: ${{ vars.CODEXDATA_ORIGIN || 'https://data.cp.dev' }}
           CODEXDATA_ADMIN_TOKEN: ${{ secrets.CODEXDATA_ADMIN_TOKEN }}
