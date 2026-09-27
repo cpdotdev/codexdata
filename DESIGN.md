@@ -1,7 +1,7 @@
 # CodexData UI
 
 The docs page is static HTML (`public/index.html`). Colors, typography and the docs layout come
-from `@codexpass/tokens`, the shared Codex Pass design system (Ice Mint light/dark theme). That
+from `@codexpass/tokens`, the shared Codex Pass design system (neutral white/gray light and dark themes with terracotta actions). That
 package is vendored as a tarball under `vendor/` because the design-system repository is private;
 `public/design.css` is generated from it by `scripts/build-ui.mjs` and checked for drift by
 `pnpm validate`.
@@ -11,6 +11,7 @@ Rules:
 - Never edit `public/design.css` by hand. Change the design system, vendor the new archive, run
   `pnpm install && pnpm build:ui && pnpm validate && pnpm test`, and commit the archive, the
   lockfile and the generated CSS together (see `vendor/README.md`).
+- The header uses an inline approved CP mark that inherits light/dark neutral logo tokens.
 - Theme behavior (system / light / dark toggle) lives in `public/theme.js`.
 - Page changes never touch the data API, schemas, KV/DO or cache contracts.
 - Static dataset links in the page are relative, so the HTML works from any host; live endpoints
