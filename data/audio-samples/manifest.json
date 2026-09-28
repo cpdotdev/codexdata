@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "license": "CC-BY-4.0",
+  "generator": "eSpeak NG 1.52.0",
+  "samples": [
+    {
+      "language": "en",
+      "file": "en-v1.wav",
+      "transcript": "You do not have to finish everything today. Take one small step, keep learning, and give yourself credit for making progress.",
+      "sha256": "51b488dd97f778a6b5dc198fa39d37de01cb11ff106a324cd361c1138366385a",
+      "bytes": 293634,
+      "duration_seconds": 9.1746875,
+      "sample_rate": 16000,
+      "channels": 1,
+      "bits_per_sample": 16
+    },
+    {
+      "language": "zh",
+      "file": "zh-v1.wav",
+      "transcript": "不用一次完成所有事情。今天先做好眼前的一小步，你就在前进。",
+      "sha256": "5fe8792afed17b4caafa9e6cbd141c438b62b0e39e46a8d843ed7158b1600c5e",
+      "bytes": 319970,
+      "duration_seconds": 9.9976875,
+      "sample_rate": 16000,
+      "channels": 1,
+      "bits_per_sample": 16
+    }
+  ]
+}

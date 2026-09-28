@@ -4,3 +4,6 @@
   Access-Control-Allow-Headers: If-None-Match, Content-Type
   Access-Control-Expose-Headers: ETag
   Cache-Control: public, max-age=3600, stale-while-revalidate=86400, stale-if-error=86400
+
+/v1/audio/samples/*.wav
+  Content-Type: audio/wav

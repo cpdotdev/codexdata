@@ -17,12 +17,19 @@ import { mkdirSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
 import { dirname, join, relative } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 
+import { createHash } from "node:crypto";
+
 import { buildHooks } from "./hooks.mjs";
 
 export const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 export const REPO_URL = "https://github.com/cpdotdev/codexdata";
 /** Directories fully owned by this script; any extra file in them counts as drift. */
-export const MANAGED_DIRS = ["v1/hooks/codex", "v1/features/codex", "v1/schema/codex-model-info"];
+export const MANAGED_DIRS = [
+  "v1/hooks/codex",
+  "v1/features/codex",
+  "v1/schema/codex-model-info",
+  "v1/audio/samples",
+];
 
 const readJson = (path) => JSON.parse(readFileSync(path, "utf8"));
 const pretty = (value) => `${JSON.stringify(value, null, 2)}\n`;
@@ -173,6 +180,28 @@ export function buildStaticFiles(origin) {
     );
   }
 
+  // Versioned audio sources are copied byte-for-byte, never synthesized at build time.
+  {
+    const manifest = readJson(join(root, "data/audio-samples/manifest.json"));
+    const samples = manifest.samples.map((sample) => {
+      if (!/^(en|zh)-v[1-9][0-9]*\.wav$/.test(sample.file))
+        throw new Error("Invalid audio sample filename");
+      const audio = readFileSync(join(root, "data/audio-samples", sample.file));
+      const sha256 = createHash("sha256").update(audio).digest("hex");
+      if (
+        audio.length !== sample.bytes ||
+        sha256 !== sample.sha256 ||
+        audio.subarray(0, 4).toString() !== "RIFF" ||
+        audio.subarray(8, 12).toString() !== "WAVE"
+      )
+        throw new Error(`Invalid audio sample: ${sample.file}`);
+      const path = `v1/audio/samples/${sample.file}`;
+      files.set(path, audio);
+      return { ...sample, url: `${origin}/${path}` };
+    });
+    files.set("v1/audio/samples/index.json", pretty({ ...manifest, samples }));
+  }
+
   // ── Response headers for /v1/* assets (asset layer only; Worker routes set their own) ──
   files.set(
     "_headers",
@@ -182,6 +211,9 @@ export function buildStaticFiles(origin) {
   Access-Control-Allow-Headers: If-None-Match, Content-Type
   Access-Control-Expose-Headers: ETag
   Cache-Control: public, max-age=3600, stale-while-revalidate=86400, stale-if-error=86400
+
+/v1/audio/samples/*.wav
+  Content-Type: audio/wav
 `,
   );
 
@@ -204,11 +236,12 @@ function main() {
   for (const [rel, content] of files) {
     let existing = null;
     try {
-      existing = readFileSync(join(outDir, rel), "utf8");
+      existing = readFileSync(join(outDir, rel));
     } catch {
       /* missing counts as drift */
     }
-    if (existing !== content) problems.push(`stale or missing: ${rel}`);
+    if (!existing || !existing.equals(Buffer.isBuffer(content) ? content : Buffer.from(content)))
+      problems.push(`stale or missing: ${rel}`);
   }
   for (const dir of MANAGED_DIRS) {
     let names = [];
