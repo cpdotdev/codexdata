@@ -755,6 +755,17 @@
       "releaseNotesUrl": "https://github.com/openai/codex/releases/tag/rust-v0.160.0-alpha.6"
     },
     {
+      "version": "0.161.0-alpha.11",
+      "channel": "alpha",
+      "publishedAt": "2026-10-01T12:20:46Z",
+      "probedAt": "2026-10-01T13:06:28.610Z",
+      "platform": "linux-x64",
+      "configLoad": "ok",
+      "regressions": [],
+      "deprecations": [],
+      "releaseNotesUrl": "https://github.com/openai/codex/releases/tag/rust-v0.161.0-alpha.11"
+    },
+    {
       "version": "0.161.0-alpha.2",
       "channel": "alpha",
       "publishedAt": "2026-09-29T18:32:11Z",
