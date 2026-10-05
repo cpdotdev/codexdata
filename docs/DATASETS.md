@@ -14,6 +14,25 @@ the asset layer only serves `GET`/`HEAD`. Plain browser `fetch` and HTTP-cache r
 unaffected (no preflight); only JavaScript that manually sets `If-None-Match` from a cross-origin
 page trips a preflight. Server-side and native clients are unaffected.
 
+## Quota window policy — `/v1/quotas/codex/`
+
+`latest.json` serves the reviewed `data/codex-quota/policy.json`; `index.json` provides its
+revision, latest URL, documentation and license. It is discoverable as `codex_quota_policy`
+in `/v1/index.json`. Source and generated payload are byte-identical after formatting.
+
+The envelope contains `dataset: "codex-quota-policy"`, `schemaVersion: 1`, a positive safe
+integer `revision`, a calendar-date `verifiedAt`, official HTTPS `sources`, and `plans` keyed
+by lowercase plan labels. Each plan has unique `windows` (`short`, `weekly`, `monthly`),
+`evidenceStatus` (`confirmed` or `unconfirmed`), and a nonempty evidence `note`. Unconfirmed
+plans must have an empty window list. `short` denotes a five-hour allowance in this policy.
+
+Live account readings take priority. Without readings, use only confirmed classifications
+from a compatible validated policy. Unknown and unconfirmed plans supply no windows; empty
+does not mean unlimited. Clients can bundle this file and retain a validated cache when the
+network fails. Accept updates by monotonically increasing revision, and preserve user reserve
+preferences independently. There are no usage percentages, reset times or quota amounts here.
+See [evidence and failure modes](QUOTA-POLICY.md) before changing policy.
+
 ## Feature-flag registry — `/v1/features/codex/`
 
 What every `[features]` flag in the Codex client actually is, per verified client tag. Machine

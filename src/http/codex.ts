@@ -88,6 +88,8 @@ export async function serveIndex(env: Env, origin: string): Promise<Response> {
       description:
         "Open datasets for the OpenAI Codex client: a live mirror of the official model catalog (snapshots + change feed), the ModelInfo JSON Schema, a per-tag feature-flag registry with community annotations, a hook product registry, and compatibility intelligence for Codex Pass. Not affiliated with OpenAI.",
       endpoints: {
+        codex_quota_policy: `${origin}/v1/quotas/codex/latest.json`,
+        codex_quota_policy_index: `${origin}/v1/quotas/codex/index.json`,
         codex_models: `${origin}/v1/codex/models.json`,
         codex_meta: `${origin}/v1/codex/meta.json`,
         codex_snapshots: `${origin}/v1/codex/snapshots/index.json`,
@@ -111,6 +113,7 @@ export async function serveIndex(env: Env, origin: string): Promise<Response> {
           }
         : null,
       licenses: {
+        codex_quota_policy: "CC-BY-4.0",
         code: "MIT",
         codex_hook_products: "CC-BY-4.0 (registry text); product marks retain their owners' rights",
         codex_compat: "CC-BY-4.0",

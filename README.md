@@ -19,6 +19,11 @@ client. CodexData is an independent mirror and dataset for it, run by the
 
 Voice API test audio: [`/v1/audio/samples/index.json`](https://data.cp.dev/v1/audio/samples/index.json) lists original Chinese and English WAV samples, their transcripts and SHA-256 checksums. See [audio samples](docs/AUDIO.md).
 
+Quota policy: `/v1/quotas/codex/latest.json` classifies confirmed plan quota windows as a
+fallback when live readings are unavailable. Source: `data/codex-quota/policy.json`; evidence,
+update procedure and failure modes: [quota policy](docs/QUOTA-POLICY.md). Unknown windows remain
+unconfirmed; this dataset contains no account usage or allowance amounts.
+
 Discovery: `/v1/index.json`. Health: `/healthz`. Field reference for every dataset:
 [docs/DATASETS.md](docs/DATASETS.md); compat details: [docs/COMPAT.md](docs/COMPAT.md); hook
 products: [docs/HOOKS.md](docs/HOOKS.md).
