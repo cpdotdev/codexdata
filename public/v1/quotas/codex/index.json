@@ -1,0 +1,8 @@
+{
+  "dataset": "codex-quota-policy",
+  "schemaVersion": 1,
+  "revision": 2026100501,
+  "latest": "https://data.cp.dev/v1/quotas/codex/latest.json",
+  "documentation": "https://github.com/cpdotdev/codexdata/blob/main/docs/QUOTA-POLICY.md",
+  "license": "CC-BY-4.0"
+}

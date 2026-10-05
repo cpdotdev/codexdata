@@ -20,11 +20,13 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 import { createHash } from "node:crypto";
 
 import { buildHooks } from "./hooks.mjs";
+import { buildQuotaPolicy } from "./quota.mjs";
 
 export const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 export const REPO_URL = "https://github.com/cpdotdev/codexdata";
 /** Directories fully owned by this script; any extra file in them counts as drift. */
 export const MANAGED_DIRS = [
+  "v1/quotas/codex",
   "v1/hooks/codex",
   "v1/features/codex",
   "v1/schema/codex-model-info",
@@ -45,6 +47,23 @@ export function publicOrigin() {
 /** Builds every managed file for `origin`. Returns Map<path relative to public/, content>. */
 export function buildStaticFiles(origin) {
   const files = new Map();
+
+  const quota = buildQuotaPolicy();
+  files.set(
+    "v1/quotas/codex/latest.json",
+    readFileSync(join(root, "data/codex-quota/policy.json"), "utf8"),
+  );
+  files.set(
+    "v1/quotas/codex/index.json",
+    pretty({
+      dataset: quota.dataset,
+      schemaVersion: quota.schemaVersion,
+      revision: quota.revision,
+      latest: `${origin}/v1/quotas/codex/latest.json`,
+      documentation: `${REPO_URL}/blob/main/docs/QUOTA-POLICY.md`,
+      license: "CC-BY-4.0",
+    }),
+  );
 
   // ── Feature-flag registry ──────────────────────────────────────────────────────
   {

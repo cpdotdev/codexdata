@@ -22,6 +22,7 @@ export { SyncCoordinator } from "./sync/coordinator";
 const SNAPSHOT_RE = /^\/v1\/codex\/snapshots\/([0-9a-f]{64})\.json$/;
 // Static dataset prefixes (the assets layer already serves valid requests; reaching the Worker = miss).
 const STATIC_DATASET_PREFIXES = [
+  "/v1/quotas/codex/",
   "/v1/hooks/codex/",
   "/v1/features/codex/",
   "/v1/schema/codex-model-info/",

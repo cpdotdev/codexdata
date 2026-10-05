@@ -1,0 +1,64 @@
+{
+  "dataset": "codex-quota-policy",
+  "schemaVersion": 1,
+  "revision": 2026100501,
+  "verifiedAt": "2026-10-05",
+  "sources": ["https://learn.chatgpt.com/docs/pricing"],
+  "plans": {
+    "plus": {
+      "windows": ["short", "weekly"],
+      "evidenceStatus": "confirmed",
+      "note": "Five-hour allowance; weekly limits may also apply."
+    },
+    "pro": {
+      "windows": ["weekly"],
+      "evidenceStatus": "confirmed",
+      "note": "No five-hour limit; weekly limits may apply."
+    },
+    "free": {
+      "windows": [],
+      "evidenceStatus": "unconfirmed",
+      "note": "A fixed monthly or other recurring quota window is not confirmed by the official pricing documentation."
+    },
+    "go": {
+      "windows": [],
+      "evidenceStatus": "unconfirmed",
+      "note": "A fixed recurring quota window is not confirmed by the official pricing documentation."
+    },
+    "enterprise": {
+      "windows": [],
+      "evidenceStatus": "unconfirmed",
+      "note": "The plan label does not distinguish flexible credit-based usage from standard limits."
+    },
+    "edu": {
+      "windows": [],
+      "evidenceStatus": "unconfirmed",
+      "note": "The plan label does not distinguish flexible credit-based usage from standard limits."
+    },
+    "business": {
+      "windows": [],
+      "evidenceStatus": "unconfirmed",
+      "note": "The plan label does not distinguish Standard Business from flexible credit-based usage."
+    },
+    "team": {
+      "windows": [],
+      "evidenceStatus": "unconfirmed",
+      "note": "The plan label alone does not establish the current Business billing model or its quota windows."
+    },
+    "prolite": {
+      "windows": [],
+      "evidenceStatus": "unconfirmed",
+      "note": "No official evidence establishes that this plan label has the same quota windows as Pro."
+    },
+    "self_serve_business_prolite": {
+      "windows": [],
+      "evidenceStatus": "unconfirmed",
+      "note": "No official evidence establishes the quota windows associated with this plan label."
+    },
+    "self_serve_business_usage_based": {
+      "windows": [],
+      "evidenceStatus": "unconfirmed",
+      "note": "No official evidence establishes fixed quota windows associated with this plan label."
+    }
+  }
+}
