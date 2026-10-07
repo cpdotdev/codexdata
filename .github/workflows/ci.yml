@@ -5,6 +5,8 @@ on:
     branches: [main]
   push:
     branches: [main]
+  # The Codex tag sync dispatches CI on its bot branch (GITHUB_TOKEN pushes start no pull_request run).
+  workflow_dispatch:
 
 permissions:
   contents: read

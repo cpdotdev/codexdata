@@ -111,6 +111,16 @@ Do this on each upstream `rust-v*` release. `node scripts/sync-codex-tags.mjs` d
 and the vendoring half of step 4 for every stable tag after the current `latest`, and prints a
 Markdown summary (`--summary <file>` saves it; `--check` only lists the missing tags).
 
+The `Codex tag sync` workflow (`.github/workflows/codex-tags-sync.yml`) runs this every 6 hours.
+With the `ANTHROPIC_API_KEY` secret set it also drafts step 3 with Claude
+(`scripts/draft-annotations.mjs`: new flags, plus flags whose stage changed). It pushes
+`bot/codex-tags-sync`, opens or updates one pull request with the summary, and dispatches CI on
+the branch. Review the drafts and do the schema half of step 4 on that branch, then merge and
+deploy. The workflow does not overwrite a branch that has hand edits; it comments on the pull
+request when a newer tag arrives. A sync failure opens an `ops` issue. The workflow can open pull
+requests only when Settings → Actions → General → "Allow GitHub Actions to create and approve pull
+requests" is on; otherwise it opens an `ops` issue with the compare link.
+
 1. **Features**: vendor `codex-rs/features/src/lib.rs` at the new tag into
    `data/codex-features/sources/<tag>/` (raw.githubusercontent.com). If it is byte-identical
    to the previous snapshot, add the tag to `snapshot_aliases` in

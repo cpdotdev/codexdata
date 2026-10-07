@@ -25,10 +25,13 @@
     "build:static": "node scripts/build-static.mjs",
     "build:compat": "node scripts/build-compat.mjs",
     "probe:compat": "node scripts/compat-probe.mjs",
+    "sync:tags": "node scripts/sync-codex-tags.mjs",
+    "draft:annotations": "node scripts/draft-annotations.mjs",
     "check": "pnpm typecheck && pnpm format:check && pnpm validate && pnpm test",
     "build:ui": "node scripts/build-ui.mjs"
   },
   "devDependencies": {
+    "@anthropic-ai/sdk": "^0.132.0",
     "@cloudflare/vitest-pool-workers": "^0.22.0",
     "@playwright/test": "1.63.0",
     "prettier": "^3.9.9",
