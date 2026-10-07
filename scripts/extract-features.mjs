@@ -86,7 +86,7 @@ function parseFeaturesTable(text, docs) {
   for (const [, block] of body.matchAll(entryRe)) {
     const context = block.trim().split("\n")[0];
     const id = block.match(/id: Feature::([A-Za-z0-9]+),/);
-    const key = block.match(/key: "([a-z0-9_]+)",/);
+    const key = block.match(/key: "([a-z0-9_.]+)",/);
     const def = block.match(/default_enabled: (true|false|[a-z_!()"= ]+),/);
     if (!id || !key || !def) throw new Error(`FeatureSpec block is missing fields: ${context}`);
     if (!docs.has(id[1]))

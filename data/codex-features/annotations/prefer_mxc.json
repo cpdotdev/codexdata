@@ -1,0 +1,10 @@
+{
+  "key": "prefer_mxc",
+  "i18n": {
+    "zh": {
+      "title": "优先使用原生 Windows 沙箱",
+      "summary": "本机原生 Windows 沙箱（MXC）可用时优先使用，并保留旧沙箱作为回退。",
+      "note": "源码未展开 MXC 缩写，具体含义未确认。"
+    }
+  }
+}

@@ -39,13 +39,27 @@ ok(`schema compiled: ${tags.schema}`);
 if (!tags.verified_tags.includes(tags.latest))
   fail(`latest tag ${tags.latest} not in verified_tags`);
 
+const schemaAliases = tags.snapshot_aliases ?? {};
+for (const [alias, target] of Object.entries(schemaAliases)) {
+  if (
+    !tags.verified_tags.includes(alias) ||
+    !tags.verified_tags.includes(target) ||
+    target in schemaAliases
+  )
+    fail(`snapshot alias ${alias} -> ${target} references an unverified or aliased tag`);
+}
+// Snapshot file names are the source paths below codex-rs/protocol/src/ (submodules keep their
+// openai_models/ directory). Every snapshot has the root files; the latest one has every
+// source file (older snapshots predate vendoring the submodules).
+const localName = (file) => file.replace(/^codex-rs\/protocol\/src\//, "");
+const rootFiles = tags.source_files.map(localName).filter((name) => !name.includes("/"));
+const latestSchemaSnapshot = schemaAliases[tags.latest] ?? tags.latest;
 for (const tag of tags.verified_tags) {
   const dir = join(schemaDir, "sources", tag);
-  // The 0.153.1 and 0.153.4 sources are byte-identical; only the 0.153.4 snapshot is kept.
-  if (tag === "rust-v0.153.1") continue;
-  for (const file of tags.source_files) {
-    const name = file.split("/").pop();
-    if (!existsSync(join(dir, name))) fail(`${tag}: missing source snapshot ${name}`);
+  if (!(tag in schemaAliases)) {
+    const required = tag === latestSchemaSnapshot ? tags.source_files.map(localName) : rootFiles;
+    for (const name of required)
+      if (!existsSync(join(dir, name))) fail(`${tag}: missing source snapshot ${name}`);
   }
   const bundled = join(dir, "models.json");
   if (existsSync(bundled)) {
@@ -63,11 +77,13 @@ for (const tag of tags.verified_tags) {
 
 // Negative cases: a misspelling in any closed enum must be rejected (otherwise the schema degrades
 // into an existence check).
-const sample = readJson(join(schemaDir, "sources", tags.latest, "models.json")).models[0];
+const sample = readJson(join(schemaDir, "sources", latestSchemaSnapshot, "models.json")).models[0];
 const negatives = {
   "shell_type typo": { ...sample, shell_type: "shell" },
   "empty effort": { ...sample, supported_reasoning_levels: [{ effort: "", description: "x" }] },
   "no prompt": { ...sample, base_instructions: undefined, model_messages: null },
+  "access programs without cyber": { ...sample, available_access_programs: {} },
+  "null guardian other_tools": { ...sample, guardian: { other_tools: null } },
 };
 for (const [label, model] of Object.entries(negatives)) {
   const result = validator.validate({ models: [JSON.parse(JSON.stringify(model))] });

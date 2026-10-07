@@ -1,0 +1,9 @@
+{
+  "key": "codex_apps_mcp_2026_07_28",
+  "i18n": {
+    "zh": {
+      "title": "Codex Apps MCP 新协议版本",
+      "summary": "为宿主自带的 Codex Apps 服务器启用 MCP 协议 2026-07-28 版本。"
+    }
+  }
+}

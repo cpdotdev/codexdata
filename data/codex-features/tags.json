@@ -1,7 +1,7 @@
 {
   "registry": "registry.json",
   "annotations": "annotations/",
-  "latest": "rust-v0.153.4",
+  "latest": "rust-v0.161.0",
   "verified_tags": [
     "rust-v0.148.0",
     "rust-v0.149.0",
@@ -9,10 +9,32 @@
     "rust-v0.151.0",
     "rust-v0.152.0",
     "rust-v0.153.1",
-    "rust-v0.153.4"
+    "rust-v0.153.4",
+    "rust-v0.154.0",
+    "rust-v0.155.0",
+    "rust-v0.155.1",
+    "rust-v0.156.0",
+    "rust-v0.156.1",
+    "rust-v0.157.0",
+    "rust-v0.157.1",
+    "rust-v0.158.0",
+    "rust-v0.159.0",
+    "rust-v0.159.1",
+    "rust-v0.159.2",
+    "rust-v0.159.3",
+    "rust-v0.160.0",
+    "rust-v0.160.1",
+    "rust-v0.161.0"
   ],
   "snapshot_aliases": {
-    "rust-v0.153.1": "rust-v0.153.4"
+    "rust-v0.153.1": "rust-v0.153.4",
+    "rust-v0.155.1": "rust-v0.155.0",
+    "rust-v0.156.1": "rust-v0.156.0",
+    "rust-v0.157.1": "rust-v0.157.0",
+    "rust-v0.159.1": "rust-v0.159.0",
+    "rust-v0.159.2": "rust-v0.159.0",
+    "rust-v0.159.3": "rust-v0.159.0",
+    "rust-v0.160.1": "rust-v0.160.0"
   },
   "source_files": ["codex-rs/features/src/lib.rs", "codex-rs/features/src/legacy.rs"],
   "notes": [
@@ -22,7 +44,9 @@
     "rust-v0.153.1: lib.rs byte-identical to rust-v0.153.4; only the 0.153.4 snapshot is kept (see snapshot_aliases).",
     "legacy.rs is byte-identical across all verified tags and is kept once at sources/legacy.rs; it maps legacy config keys (e.g. `telepathy`, `connectors`) to canonical flags.",
     "history.first_seen is bounded by the earliest verified tag (rust-v0.148.0): a flag listed as first seen there may well predate it.",
-    "default_enabled is null when the source default is platform-conditional; the raw Rust expression is then in default_expr (currently only `cfg!(windows)`, for secret_auth_storage)."
+    "default_enabled is null when the source default is platform-conditional; the raw Rust expression is then in default_expr (currently only `cfg!(windows)`, for secret_auth_storage).",
+    "Tags after rust-v0.153.4 are vendored by scripts/sync-codex-tags.mjs, which also aliases patch tags whose lib.rs is byte-identical to the previous snapshot.",
+    "rust-v0.154.0 introduced the first key with a dot (guardianv2.thread_context, removed again in rust-v0.158.0); keys are matched as [a-z0-9_.]."
   ],
   "sources_dir": "sources/",
   "sources_license": "Apache-2.0 (openai/codex); LICENSE and NOTICE reproduced in sources/"

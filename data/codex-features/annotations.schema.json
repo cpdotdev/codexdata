@@ -4,7 +4,7 @@
   "description": "One human-curated annotation file per feature flag (data/codex-features/annotations/<key>.json). `key` must equal the filename. Locale blocks live under `i18n`, keyed by BCP-47-style codes (zh, en, ja, zh-TW, zh-Hant, …); adding a language = adding one block. validate.mjs additionally checks the key exists in the extracted registry.",
   "type": "object",
   "properties": {
-    "key": { "type": "string", "pattern": "^[a-z0-9_]{1,64}$" },
+    "key": { "type": "string", "pattern": "^[a-z0-9_.]{1,64}$" },
     "aka": {
       "type": "string",
       "minLength": 1,

@@ -1,0 +1,9 @@
+{
+  "key": "guardian_root_handoff_context",
+  "i18n": {
+    "zh": {
+      "title": "Guardian 根会话交接上下文",
+      "summary": "把子任务 Guardian 能看到的根会话证据限制在之前的根会话沟通窗口内。"
+    }
+  }
+}

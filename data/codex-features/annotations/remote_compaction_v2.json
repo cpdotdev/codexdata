@@ -3,7 +3,8 @@
   "i18n": {
     "zh": {
       "title": "远端压缩 V2",
-      "summary": "通过常规 Responses API 启用远端上下文压缩 v2。"
+      "summary": "已移除的兼容键，仍会告知 Responses API。",
+      "note": "此前用于通过常规 Responses API 启用远端上下文压缩 v2。"
     }
   }
 }

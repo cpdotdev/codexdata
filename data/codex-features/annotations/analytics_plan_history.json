@@ -1,0 +1,10 @@
+{
+  "key": "analytics_plan_history",
+  "aka": "Analytics plan history",
+  "i18n": {
+    "zh": {
+      "title": "额度用量历史",
+      "summary": "在 /analytics 中预览个人账号的 5 小时额度与每周额度的历史。"
+    }
+  }
+}

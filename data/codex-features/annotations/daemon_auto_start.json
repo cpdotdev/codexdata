@@ -1,0 +1,10 @@
+{
+  "key": "daemon_auto_start",
+  "i18n": {
+    "zh": {
+      "title": "自动启动后台服务",
+      "summary": "符合条件的交互式启动会自动启动并连接共享的本地后台服务（app-server daemon）。",
+      "note": "--no-daemon、--oss、--profile、大多数 -c 覆盖等情况会退回进程内服务。后台服务沿用它启动时的环境变量，之后在新终端里改环境变量不会影响它。"
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "key": "unified_exec_tty",
+  "i18n": {
+    "zh": {
+      "title": "unified exec 交互终端",
+      "summary": "允许 unified exec 命令分配交互式终端（TTY）。"
+    }
+  }
+}

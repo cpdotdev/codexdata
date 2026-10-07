@@ -1,0 +1,10 @@
+{
+  "key": "use_xaa",
+  "i18n": {
+    "zh": {
+      "title": "MCP 企业授权（XAA）",
+      "summary": "为已配置的 MCP 资源启用企业刷新令牌授权。",
+      "note": "源码未展开 XAA 缩写；相关代码使用企业身份的 ID-JAG 令牌交换，具体含义未确认。只能由非项目级设置或托管 requirements 开启。"
+    }
+  }
+}

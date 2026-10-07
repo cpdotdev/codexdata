@@ -1,0 +1,10 @@
+{
+  "key": "guardianv2.thread_context",
+  "i18n": {
+    "zh": {
+      "title": "Guardian v2 线程上下文",
+      "summary": "已移除的兼容旗标；对应功能（始终开启的、线程持有的 Guardian 上下文）已不再需要开关。",
+      "note": "旗标名带点号，是表中少见的写法。"
+    }
+  }
+}

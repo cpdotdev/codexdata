@@ -1,0 +1,9 @@
+{
+  "key": "guardian_conversation_history_tools",
+  "i18n": {
+    "zh": {
+      "title": "Guardian 会话历史工具",
+      "summary": "让 Guardian 能使用根会话的消息历史工具。"
+    }
+  }
+}
