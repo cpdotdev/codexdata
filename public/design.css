@@ -7,7 +7,7 @@
   --cp-card: 0.000 0.000% 100.000%;
   --cp-popover: 0.000 0.000% 100.000%;
   --cp-muted: 0.000 0.000% 93.725%;
-  --cp-muted-foreground: 225.000 3.810% 41.176%;
+  --cp-muted-foreground: 225.000 4.500% 35.000%;
   --cp-secondary-muted: 120.000 12.500% 93.725%;
   --cp-secondary-text: 138.947 10.983% 33.922%;
   --cp-accent: 120.000 10.345% 94.314%;
@@ -33,10 +33,16 @@
   --cp-radius: .75rem;
   --cp-radius-button: 9999px;
   --cp-radius-panel: 1rem;
+  --cp-radius-glass: 1.25rem;
   --cp-radius-media: .75rem;
   --cp-radius-small: .5rem;
   --cp-control-height: 2.25rem;
   --cp-control-small: 2rem;
+  --cp-icon-slot-small: 1.25rem;
+  --cp-icon-slot: 1.5rem;
+  --cp-icon-slot-large: 2rem;
+  --cp-icon-gap: .5rem;
+  --cp-icon-gap-large: .75rem;
   --cp-logo-background: 45.000 12.500% 93.725%;
   --cp-logo-foreground: 80.000 3.704% 15.882%;
   --cp-font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
@@ -52,9 +58,27 @@
   --cp-space-8: 2rem;
   --cp-surface-lines-opacity: .22;
   --cp-shadow: 0 8px 32px rgba(0,0,0,.1), 0 1px 4px rgba(0,0,0,.06);
+  /* Canvas glow, mural and glass groups (see DESIGN.md "形状与层次"). */
+  --cp-canvas-glow-top-color: var(--cp-primary-muted);
+  --cp-canvas-glow-top-alpha: 1;
+  --cp-canvas-wash-alpha: .45;
+  --cp-canvas-glow-alpha: .13;
+  --cp-mural-opacity: .2;
+  --cp-mural-size: 1440px 260px;
+  --cp-glass-alpha: .78;
+  --cp-glass-bar-color: 0.000 0.000% 100.000%;
+  --cp-glass-bar-alpha: .6;
+  --cp-glass-rail-alpha: .5;
+  --cp-glass-blur: 22px;
+  --cp-glass-edge: 0.000 0.000% 88.627%;
+  --cp-glass-edge-alpha: .55;
   --cp-swatch-terracotta: 14.876 49.794% 47.647%;
   --cp-swatch-sage: 148.000 16.304% 36.078%;
   --cp-swatch-graphite: 214.286 8.974% 30.588%;
+  --cp-swatch-cinnabar: 4.248 51.598% 42.941%;
+  --cp-swatch-celadon: 184.762 38.650% 31.961%;
+  --cp-swatch-rouge: 340.465 38.393% 43.922%;
+  --cp-swatch-golden-leaf: 42.000 64.103% 30.588%;
   --cp-brand-terracotta: 15.738 53.509% 55.294%;
   --cp-brand-sage: 105.000 5.405% 70.980%;
   --cp-brand-sand: 41.538 28.889% 82.353%;
@@ -88,7 +112,18 @@
   --cp-card: 0.000 0.000% 14.118%;
   --cp-popover: 0.000 0.000% 16.078%;
   --cp-muted: 0.000 0.000% 18.824%;
-  --cp-muted-foreground: 0.000 0.000% 69.020%;
+  --cp-muted-foreground: 0.000 0.000% 74.000%;
+  --cp-canvas-glow-top-color: var(--cp-primary);
+  --cp-canvas-glow-top-alpha: .22;
+  --cp-canvas-wash-alpha: .05;
+  --cp-canvas-glow-alpha: .16;
+  --cp-mural-opacity: .14;
+  --cp-glass-alpha: .68;
+  --cp-glass-bar-color: 0.000 0.000% 14.118%;
+  --cp-glass-bar-alpha: .56;
+  --cp-glass-rail-alpha: .5;
+  --cp-glass-edge: 0.000 0.000% 100.000%;
+  --cp-glass-edge-alpha: .1;
   --cp-secondary-muted: 144.000 10.870% 18.039%;
   --cp-secondary-text: 136.000 13.761% 78.627%;
   --cp-accent: 145.714 7.216% 19.020%;
@@ -182,6 +217,112 @@
   --cp-secondary-muted: 214.286 7.527% 18.235%;
   --cp-secondary-text: 212.727 11.111% 80.588%;
   --cp-button-icon: 214.286 8.974% 30.588%;
+}
+
+[data-palette='cinnabar'] {
+  --cp-primary: 4.248 51.598% 42.941%;
+  --cp-primary-hover: 3.030 53.514% 36.275%;
+  --cp-primary-text: 3.030 53.514% 36.275%;
+  --cp-primary-muted: 9.231 56.522% 95.490%;
+  --cp-primary-edge: 4.248 51.598% 42.941%;
+  --cp-ring: 4.248 51.598% 42.941%;
+  --cp-accent: 9.231 56.522% 95.490%;
+  --cp-secondary-muted: 9.231 56.522% 95.490%;
+  --cp-secondary-text: 3.030 53.514% 36.275%;
+  --cp-button-icon: 4.248 51.598% 42.941%;
+}
+
+.dark[data-palette='cinnabar'], [data-mode='dark'][data-palette='cinnabar'] {
+  --cp-primary: 4.248 51.598% 42.941%;
+  --cp-primary-hover: 3.030 53.514% 36.275%;
+  --cp-primary-text: 10.141 70.297% 80.196%;
+  --cp-primary-muted: 11.250 20.000% 15.686%;
+  --cp-primary-edge: 11.776 56.614% 62.941%;
+  --cp-ring: 10.141 70.297% 80.196%;
+  --cp-accent: 11.250 20.000% 15.686%;
+  --cp-secondary-muted: 11.250 20.000% 15.686%;
+  --cp-secondary-text: 10.141 70.297% 80.196%;
+  --cp-button-icon: 4.248 51.598% 42.941%;
+}
+
+[data-palette='celadon'] {
+  --cp-primary: 184.762 38.650% 31.961%;
+  --cp-primary-hover: 185.556 40.909% 25.882%;
+  --cp-primary-text: 185.556 40.909% 25.882%;
+  --cp-primary-muted: 172.500 28.571% 94.510%;
+  --cp-primary-edge: 184.762 38.650% 31.961%;
+  --cp-ring: 184.762 38.650% 31.961%;
+  --cp-accent: 172.500 28.571% 94.510%;
+  --cp-secondary-muted: 172.500 28.571% 94.510%;
+  --cp-secondary-text: 185.556 40.909% 25.882%;
+  --cp-button-icon: 184.762 38.650% 31.961%;
+}
+
+.dark[data-palette='celadon'], [data-mode='dark'][data-palette='celadon'] {
+  --cp-primary: 184.762 38.650% 31.961%;
+  --cp-primary-hover: 185.556 40.909% 25.882%;
+  --cp-primary-text: 176.471 27.419% 75.686%;
+  --cp-primary-muted: 180.000 16.883% 15.098%;
+  --cp-primary-edge: 176.538 23.423% 56.471%;
+  --cp-ring: 176.471 27.419% 75.686%;
+  --cp-accent: 180.000 16.883% 15.098%;
+  --cp-secondary-muted: 180.000 16.883% 15.098%;
+  --cp-secondary-text: 176.471 27.419% 75.686%;
+  --cp-button-icon: 184.762 38.650% 31.961%;
+}
+
+
+
+[data-palette='rouge'] {
+  --cp-primary: 340.465 38.393% 43.922%;
+  --cp-primary-hover: 340.274 39.891% 35.882%;
+  --cp-primary-text: 340.274 39.891% 35.882%;
+  --cp-primary-muted: 336.000 41.667% 95.294%;
+  --cp-primary-edge: 340.465 38.393% 43.922%;
+  --cp-ring: 340.465 38.393% 43.922%;
+  --cp-accent: 336.000 41.667% 95.294%;
+  --cp-secondary-muted: 336.000 41.667% 95.294%;
+  --cp-secondary-text: 340.274 39.891% 35.882%;
+  --cp-button-icon: 340.465 38.393% 43.922%;
+}
+
+.dark[data-palette='rouge'], [data-mode='dark'][data-palette='rouge'] {
+  --cp-primary: 340.465 38.393% 43.922%;
+  --cp-primary-hover: 340.274 39.891% 35.882%;
+  --cp-primary-text: 338.491 55.789% 81.373%;
+  --cp-primary-muted: 325.714 17.073% 16.078%;
+  --cp-primary-edge: 338.462 44.828% 65.882%;
+  --cp-ring: 338.491 55.789% 81.373%;
+  --cp-accent: 325.714 17.073% 16.078%;
+  --cp-secondary-muted: 325.714 17.073% 16.078%;
+  --cp-secondary-text: 338.491 55.789% 81.373%;
+  --cp-button-icon: 340.465 38.393% 43.922%;
+}
+
+[data-palette='golden-leaf'] {
+  --cp-primary: 42.000 64.103% 30.588%;
+  --cp-primary-hover: 41.707 65.079% 24.706%;
+  --cp-primary-text: 41.707 65.079% 24.706%;
+  --cp-primary-muted: 45.000 50.000% 93.725%;
+  --cp-primary-edge: 42.000 64.103% 30.588%;
+  --cp-ring: 42.000 64.103% 30.588%;
+  --cp-accent: 45.000 50.000% 93.725%;
+  --cp-secondary-muted: 45.000 50.000% 93.725%;
+  --cp-secondary-text: 41.707 65.079% 24.706%;
+  --cp-button-icon: 42.000 64.103% 30.588%;
+}
+
+.dark[data-palette='golden-leaf'], [data-mode='dark'][data-palette='golden-leaf'] {
+  --cp-primary: 42.000 64.103% 30.588%;
+  --cp-primary-hover: 41.707 65.079% 24.706%;
+  --cp-primary-text: 44.819 56.463% 71.176%;
+  --cp-primary-muted: 40.000 20.000% 14.706%;
+  --cp-primary-edge: 41.714 43.568% 52.745%;
+  --cp-ring: 44.819 56.463% 71.176%;
+  --cp-accent: 40.000 20.000% 14.706%;
+  --cp-secondary-muted: 40.000 20.000% 14.706%;
+  --cp-secondary-text: 44.819 56.463% 71.176%;
+  --cp-button-icon: 42.000 64.103% 30.588%;
 }
 
 /* Static documentation uses the same tokens and control geometry as the React UI. */
