@@ -1,0 +1,213 @@
+name: Codex tag sync
+
+# Watches openai/codex stable releases (rust-vX.Y.Z tags). Every 6 hours it runs
+# scripts/sync-codex-tags.mjs, which vendors each new tag into the feature-flag registry and the
+# ModelInfo schema sources and regenerates registry.json and public/v1/**. When the
+# ANTHROPIC_API_KEY secret is set, scripts/draft-annotations.mjs then drafts zh annotations for new
+# flags and revisits flags whose stage changed. Everything goes to one pull request from
+# bot/codex-tags-sync for review: machine drafts and ModelInfo source changes are never published
+# unreviewed, and the schema file is never edited here. Pushes made with GITHUB_TOKEN do not start
+# pull_request workflows, so the run dispatches CI on the branch itself. A sync failure (for example
+# a feature-table shape the extractor does not know) opens an `ops` issue. Deploy stays the manual
+# Deploy workflow after merge.
+on:
+  schedule:
+    - cron: "41 */6 * * *"
+  workflow_dispatch:
+    inputs:
+      through:
+        description: "Sync only up to this tag, e.g. rust-v0.162.0 (empty = every new stable tag)"
+        required: false
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+  actions: write
+
+concurrency:
+  group: codexdata-codex-tags-sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      GH_TOKEN: ${{ github.token }}
+      BRANCH: bot/codex-tags-sync
+      THROUGH: ${{ inputs.through }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version-file: ".node-version"
+      - run: corepack enable
+      - run: pnpm install --frozen-lockfile
+
+      - name: Decide whether to sync
+        id: plan
+        run: |
+          set +e
+          node scripts/sync-codex-tags.mjs --check ${THROUGH:+--through "$THROUGH"}
+          status=$?
+          set -e
+          if [ "$status" = "0" ]; then
+            echo "run=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          [ "$status" = "10" ] || exit "$status"
+          target="$THROUGH"
+          if [ -z "$target" ]; then
+            target=$(git ls-remote --tags --refs https://github.com/openai/codex.git 'rust-v*' \
+              | sed 's|.*refs/tags/||' | grep -E '^rust-v[0-9]+\.[0-9]+\.[0-9]+$' | sort -V | tail -1)
+          fi
+          echo "target=$target" >> "$GITHUB_OUTPUT"
+          # An open sync branch that already reaches the target needs no new run, so a pull request
+          # waiting for review is not redrafted every 6 hours. Hand edits on it are never overwritten.
+          if git fetch -q origin "$BRANCH" 2>/dev/null; then
+            synced=$(git show "origin/$BRANCH:data/codex-features/tags.json" | node -e \
+              'let s="";process.stdin.on("data",(d)=>(s+=d)).on("end",()=>console.log(JSON.parse(s).latest))')
+            if [ "$synced" = "$target" ]; then
+              echo "$BRANCH is already at $target"
+              echo "run=false" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
+            if git log --format='%ae' "origin/main..origin/$BRANCH" | grep -qv 'github-actions\[bot\]'; then
+              echo "$BRANCH has hand edits; not overwriting it"
+              echo "run=false" >> "$GITHUB_OUTPUT"
+              echo "hand_edited=true" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
+          fi
+          echo "run=true" >> "$GITHUB_OUTPUT"
+
+      - name: Note a newer tag on the hand-edited pull request
+        if: steps.plan.outputs.hand_edited == 'true'
+        env:
+          TARGET: ${{ steps.plan.outputs.target }}
+        run: |
+          pr=$(gh pr list --repo "$GITHUB_REPOSITORY" --head "$BRANCH" --state open --json number --jq '.[0].number')
+          [ -n "$pr" ] || exit 0
+          if gh pr view "$pr" --repo "$GITHUB_REPOSITORY" --json comments --jq '.comments[].body' | grep -qF "$TARGET"; then
+            exit 0
+          fi
+          gh pr comment "$pr" --repo "$GITHUB_REPOSITORY" --body \
+            "Upstream has released $TARGET. This branch has hand edits, so the sync did not overwrite it. Merge this pull request; the next run syncs the newer tags on a fresh branch."
+
+      - name: Sync new tags
+        id: sync
+        if: steps.plan.outputs.run == 'true'
+        run: |
+          echo "before=$(node -p 'require("./data/codex-features/tags.json").latest')" >> "$GITHUB_OUTPUT"
+          set +e
+          node scripts/sync-codex-tags.mjs ${THROUGH:+--through "$THROUGH"} \
+            --summary "$RUNNER_TEMP/summary.md" > "$RUNNER_TEMP/sync.log" 2>&1
+          status=$?
+          set -e
+          cat "$RUNNER_TEMP/sync.log"
+          echo "status=$status" >> "$GITHUB_OUTPUT"
+
+      - name: Report a sync failure
+        if: steps.plan.outputs.run == 'true' && steps.sync.outputs.status != '0'
+        run: |
+          title="Codex tag sync failed"
+          body=$(printf 'scripts/sync-codex-tags.mjs failed at %s (run %s).\n\n```\n%s\n```\n\nUsually upstream changed a source layout the extractor does not know. Extend scripts/extract-features.mjs or scripts/sync-codex-tags.mjs, then run the workflow again (see docs/RUNBOOK.md).\n' \
+            "$(date -u +%FT%TZ)" "$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" "$(tail -40 "$RUNNER_TEMP/sync.log")")
+          existing=$(gh issue list --repo "$GITHUB_REPOSITORY" --state open --search "\"$title\" in:title" --json number --jq '.[0].number')
+          if [ -n "$existing" ]; then
+            gh issue comment "$existing" --repo "$GITHUB_REPOSITORY" --body "$body"
+          else
+            gh issue create --repo "$GITHUB_REPOSITORY" --title "$title" --body "$body" --label "ops"
+          fi
+          exit 1
+
+      - name: Draft annotations with Claude
+        if: steps.plan.outputs.run == 'true' && steps.sync.outputs.status == '0'
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          BEFORE: ${{ steps.sync.outputs.before }}
+        run: |
+          if [ -z "$ANTHROPIC_API_KEY" ]; then
+            printf '### Annotations\n\nThe ANTHROPIC_API_KEY secret is not set, so nothing was drafted. Add the missing zh annotations listed above on this branch.\n' > "$RUNNER_TEMP/drafts.md"
+            exit 0
+          fi
+          set +e
+          node scripts/draft-annotations.mjs --since "$BEFORE" --report "$RUNNER_TEMP/drafts.md"
+          status=$?
+          set -e
+          if [ "$status" != "0" ]; then
+            # Keep the machine data; drop any partial drafts and ask for hand-written annotations.
+            git checkout -- data/codex-features/annotations
+            git clean -fdq data/codex-features/annotations
+            printf '### Annotations\n\nDrafting failed (exit %s, see the run log), so nothing was drafted. Add the missing zh annotations listed above on this branch.\n' "$status" > "$RUNNER_TEMP/drafts.md"
+          fi
+
+      - name: Format and validate
+        id: validate
+        if: steps.plan.outputs.run == 'true' && steps.sync.outputs.status == '0'
+        run: |
+          pnpm exec prettier --write data/codex-features/annotations data/codex-features/tags.json data/codex-schema/tags.json
+          set +e
+          pnpm validate > "$RUNNER_TEMP/validate.log" 2>&1
+          echo "status=$?" >> "$GITHUB_OUTPUT"
+          set -e
+          cat "$RUNNER_TEMP/validate.log"
+
+      - name: Open or update the pull request
+        if: steps.plan.outputs.run == 'true' && steps.sync.outputs.status == '0'
+        env:
+          VALIDATE: ${{ steps.validate.outputs.status }}
+        run: |
+          latest=$(node -p 'require("./data/codex-features/tags.json").latest')
+          title="data: sync Codex tags through $latest"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -B "$BRANCH"
+          git add -A data public
+          git commit -q -m "$title"
+          git push -f origin "$BRANCH"
+          {
+            cat "$RUNNER_TEMP/summary.md"
+            echo
+            cat "$RUNNER_TEMP/drafts.md"
+            echo
+            echo "### Validation"
+            echo
+            if [ "$VALIDATE" = "0" ]; then
+              echo '`pnpm validate` passed in the sync run. CI runs on this branch as well.'
+            else
+              echo '`pnpm validate` failed in the sync run:'
+              echo
+              echo '```'
+              grep -E '✗|⚠' "$RUNNER_TEMP/validate.log" | head -20
+              echo '```'
+            fi
+            echo
+            echo "### Before merging"
+            echo
+            echo "- [ ] Check each drafted annotation against its rustdoc (CONTRIBUTING.md, honesty rules)."
+            echo "- [ ] If ModelInfo sources changed: review the struct diff, then update \`codex-model-info.schema.json\` and the \`tags.json\` notes on this branch."
+            echo "- [ ] After merge, run the Deploy workflow."
+            echo
+            echo "Opened by \`.github/workflows/codex-tags-sync.yml\` ($GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID)."
+          } > "$RUNNER_TEMP/body.md"
+          pr=$(gh pr list --repo "$GITHUB_REPOSITORY" --head "$BRANCH" --state open --json number --jq '.[0].number')
+          if [ -n "$pr" ]; then
+            gh pr edit "$pr" --repo "$GITHUB_REPOSITORY" --title "$title" --body-file "$RUNNER_TEMP/body.md"
+          elif ! gh pr create --repo "$GITHUB_REPOSITORY" --base main --head "$BRANCH" --title "$title" --body-file "$RUNNER_TEMP/body.md"; then
+            # Settings → Actions → General → "Allow GitHub Actions to create and approve pull
+            # requests" is off: leave an issue with the compare link instead.
+            issue_title="Codex tag sync ready for review"
+            issue_body=$(printf 'The sync pushed `%s` (through %s), but the workflow may not open pull requests in this repository.\n\nOpen it here: %s/%s/compare/main...%s?expand=1\n\n%s\n' \
+              "$BRANCH" "$latest" "$GITHUB_SERVER_URL" "$GITHUB_REPOSITORY" "$BRANCH" "$(cat "$RUNNER_TEMP/body.md")")
+            existing=$(gh issue list --repo "$GITHUB_REPOSITORY" --state open --search "\"$issue_title\" in:title" --json number --jq '.[0].number')
+            if [ -n "$existing" ]; then
+              gh issue comment "$existing" --repo "$GITHUB_REPOSITORY" --body "$issue_body"
+            else
+              gh issue create --repo "$GITHUB_REPOSITORY" --title "$issue_title" --body "$issue_body" --label "ops"
+            fi
+          fi
+          gh workflow run ci.yml --repo "$GITHUB_REPOSITORY" --ref "$BRANCH"
