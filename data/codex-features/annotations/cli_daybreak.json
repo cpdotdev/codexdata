@@ -1,0 +1,10 @@
+{
+  "key": "cli_daybreak",
+  "i18n": {
+    "zh": {
+      "title": "CLI 中的 Daybreak",
+      "summary": "在 CLI 客户端启用 Daybreak 控制项（/daybreak）和访问计划的自动选择。",
+      "note": "Daybreak 是面向授权安全工作的访问计划；需要 ChatGPT 登录和 OpenAI 提供方。"
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "key": "worktrees",
+  "i18n": {
+    "zh": {
+      "title": "托管 worktree",
+      "summary": "启用托管的 worktree 创建和感知仓库的会话。"
+    }
+  }
+}

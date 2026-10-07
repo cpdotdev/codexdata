@@ -1,0 +1,9 @@
+{
+  "key": "windows_sandbox_service",
+  "i18n": {
+    "zh": {
+      "title": "Windows 沙箱服务",
+      "summary": "尝试通过已安装的服务来完成提权的 Windows 沙箱配置。"
+    }
+  }
+}

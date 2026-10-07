@@ -1,0 +1,10 @@
+{
+  "key": "browser_annotation_api",
+  "i18n": {
+    "zh": {
+      "title": "网页标注 API",
+      "summary": "允许网站在桌面端打开并自定义标注工具；用户自己发起的普通标注不受此开关影响。",
+      "note": "官方注明 requirements 专用闸门：应由 requirements.toml 或企业托管配置下发，不建议写进用户配置。"
+    }
+  }
+}

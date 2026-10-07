@@ -1,0 +1,10 @@
+{
+  "key": "api_key_model_discovery",
+  "i18n": {
+    "zh": {
+      "title": "API Key 模型目录发现",
+      "summary": "使用 OpenAI API Key 登录时，也从远端拉取模型目录。",
+      "note": "仅对未改 base_url 的内置 openai 提供方或配置了 model_catalog_url 的提供方生效；关闭时回退到客户端内置目录。启动时读取，运行中修改需新会话生效。"
+    }
+  }
+}

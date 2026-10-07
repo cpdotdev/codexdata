@@ -1,6 +1,6 @@
 // The official Codex catalog: fetch, validate, canonicalize, diff.
 //
-// Codex deserialization facts (openai/codex protocol/src/openai_models.rs, rust-v0.148.0 … 0.153.4):
+// Codex deserialization facts (openai/codex protocol/src/openai_models.rs, rust-v0.148.0 … 0.161.0):
 //   - The top level must have a `models` array; unknown top-level keys are ignored.
 //   - Each entry requires: slug, display_name, supported_reasoning_levels, shell_type, visibility,
 //     supported_in_api, priority, support_verbosity, truncation_policy,

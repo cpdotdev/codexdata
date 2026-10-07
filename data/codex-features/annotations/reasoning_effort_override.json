@@ -1,0 +1,9 @@
+{
+  "key": "reasoning_effort_override",
+  "i18n": {
+    "zh": {
+      "title": "推理强度变更配置项",
+      "summary": "切换推理强度时，追加受信任的响应配置项。"
+    }
+  }
+}

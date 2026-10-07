@@ -1,0 +1,9 @@
+{
+  "key": "nonfatal_clock_read_errors",
+  "i18n": {
+    "zh": {
+      "title": "时钟读取失败不中断回合",
+      "summary": "读取时钟失败时只报告给模型，不让当前回合失败。"
+    }
+  }
+}

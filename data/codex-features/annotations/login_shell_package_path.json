@@ -1,0 +1,10 @@
+{
+  "key": "login_shell_package_path",
+  "aka": "Bundled tools in login shells",
+  "i18n": {
+    "zh": {
+      "title": "登录 Shell 中保留内置工具",
+      "summary": "登录 Shell 启动后重置 PATH 时，把内置工具（如 ripgrep）恢复到 PATH 中。"
+    }
+  }
+}

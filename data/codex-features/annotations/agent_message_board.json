@@ -1,0 +1,9 @@
+{
+  "key": "agent_message_board",
+  "i18n": {
+    "zh": {
+      "title": "智能体留言板",
+      "summary": "为一棵智能体树启用共享的讨论工具。"
+    }
+  }
+}

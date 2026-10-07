@@ -107,22 +107,28 @@ Everything except the account login runs in GitHub Actions; no local Cloudflare 
 
 ## Adding a new Codex tag
 
-Do this on each upstream `rust-v*` release that touches the feature table or `ModelInfo`.
+Do this on each upstream `rust-v*` release. `node scripts/sync-codex-tags.mjs` does steps 1, 2
+and the vendoring half of step 4 for every stable tag after the current `latest`, and prints a
+Markdown summary (`--summary <file>` saves it; `--check` only lists the missing tags).
 
 1. **Features**: vendor `codex-rs/features/src/lib.rs` at the new tag into
    `data/codex-features/sources/<tag>/` (raw.githubusercontent.com). If it is byte-identical
    to the previous snapshot, add the tag to `snapshot_aliases` in
-   `data/codex-features/tags.json` instead. Diff `legacy.rs` too; it lives once at
-   `sources/legacy.rs` and has been identical across tags so far.
+   `data/codex-features/tags.json` instead. `legacy.rs` lives once at `sources/legacy.rs`; the
+   script stops if upstream changes it.
 2. Add the tag to `verified_tags` and `latest` in `data/codex-features/tags.json`, then run
    `node scripts/extract-features.mjs` and `pnpm build:static`. The parser fails loudly if
    upstream changed the table's shape; extend it, never hand-edit `registry.json`.
 3. `pnpm validate` prints flags at the new tag that lack a `zh` annotation; add per-flag files
-   under `data/codex-features/annotations/` (coverage gaps warn but do not fail CI).
-4. **Schema**: vendor `config_types.rs` and `openai_models.rs` at the tag into
-   `data/codex-schema/sources/<tag>/`, review the `ModelInfo` diff, update
-   `data/codex-schema/codex-model-info.schema.json` and `tags.json` (notes per tag), and run
-   `pnpm build:static`.
+   under `data/codex-features/annotations/` (coverage gaps warn but do not fail CI). Update the
+   annotations of flags whose stage changed (for example to removed or deprecated).
+4. **Schema**: vendor `openai_models.rs`, the `openai_models/*.rs` submodules it declares,
+   `config_types.rs` and the bundled `codex-rs/models-manager/models.json` at the tag into
+   `data/codex-schema/sources/<tag>/` (or alias the tag in `snapshot_aliases` when the `.rs`
+   files are byte-identical). Review the struct diff, update
+   `data/codex-schema/codex-model-info.schema.json` and the per-tag `notes` in `tags.json`, and
+   run `pnpm build:static`. The Worker gates the mirror with this schema, so only encode what
+   makes the client reject the whole response.
 5. `pnpm check`, open a PR, deploy after merge.
 
 ## Known limitations

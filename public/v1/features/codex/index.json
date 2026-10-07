@@ -1,7 +1,7 @@
 {
   "dataset": "codex-feature-flags",
   "latest": {
-    "tag": "rust-v0.153.4",
+    "tag": "rust-v0.161.0",
     "url": "https://data.cp.dev/v1/features/codex/latest.json"
   },
   "verified_tags": [
@@ -39,6 +39,81 @@
       "tag": "rust-v0.153.4",
       "snapshot_tag": "rust-v0.153.4",
       "url": "https://data.cp.dev/v1/features/codex/rust-v0.153.4.json"
+    },
+    {
+      "tag": "rust-v0.154.0",
+      "snapshot_tag": "rust-v0.154.0",
+      "url": "https://data.cp.dev/v1/features/codex/rust-v0.154.0.json"
+    },
+    {
+      "tag": "rust-v0.155.0",
+      "snapshot_tag": "rust-v0.155.0",
+      "url": "https://data.cp.dev/v1/features/codex/rust-v0.155.0.json"
+    },
+    {
+      "tag": "rust-v0.155.1",
+      "snapshot_tag": "rust-v0.155.0",
+      "url": "https://data.cp.dev/v1/features/codex/rust-v0.155.1.json"
+    },
+    {
+      "tag": "rust-v0.156.0",
+      "snapshot_tag": "rust-v0.156.0",
+      "url": "https://data.cp.dev/v1/features/codex/rust-v0.156.0.json"
+    },
+    {
+      "tag": "rust-v0.156.1",
+      "snapshot_tag": "rust-v0.156.0",
+      "url": "https://data.cp.dev/v1/features/codex/rust-v0.156.1.json"
+    },
+    {
+      "tag": "rust-v0.157.0",
+      "snapshot_tag": "rust-v0.157.0",
+      "url": "https://data.cp.dev/v1/features/codex/rust-v0.157.0.json"
+    },
+    {
+      "tag": "rust-v0.157.1",
+      "snapshot_tag": "rust-v0.157.0",
+      "url": "https://data.cp.dev/v1/features/codex/rust-v0.157.1.json"
+    },
+    {
+      "tag": "rust-v0.158.0",
+      "snapshot_tag": "rust-v0.158.0",
+      "url": "https://data.cp.dev/v1/features/codex/rust-v0.158.0.json"
+    },
+    {
+      "tag": "rust-v0.159.0",
+      "snapshot_tag": "rust-v0.159.0",
+      "url": "https://data.cp.dev/v1/features/codex/rust-v0.159.0.json"
+    },
+    {
+      "tag": "rust-v0.159.1",
+      "snapshot_tag": "rust-v0.159.0",
+      "url": "https://data.cp.dev/v1/features/codex/rust-v0.159.1.json"
+    },
+    {
+      "tag": "rust-v0.159.2",
+      "snapshot_tag": "rust-v0.159.0",
+      "url": "https://data.cp.dev/v1/features/codex/rust-v0.159.2.json"
+    },
+    {
+      "tag": "rust-v0.159.3",
+      "snapshot_tag": "rust-v0.159.0",
+      "url": "https://data.cp.dev/v1/features/codex/rust-v0.159.3.json"
+    },
+    {
+      "tag": "rust-v0.160.0",
+      "snapshot_tag": "rust-v0.160.0",
+      "url": "https://data.cp.dev/v1/features/codex/rust-v0.160.0.json"
+    },
+    {
+      "tag": "rust-v0.160.1",
+      "snapshot_tag": "rust-v0.160.0",
+      "url": "https://data.cp.dev/v1/features/codex/rust-v0.160.1.json"
+    },
+    {
+      "tag": "rust-v0.161.0",
+      "snapshot_tag": "rust-v0.161.0",
+      "url": "https://data.cp.dev/v1/features/codex/rust-v0.161.0.json"
     }
   ],
   "source_files": [
@@ -52,7 +127,9 @@
     "rust-v0.153.1: lib.rs byte-identical to rust-v0.153.4; only the 0.153.4 snapshot is kept (see snapshot_aliases).",
     "legacy.rs is byte-identical across all verified tags and is kept once at sources/legacy.rs; it maps legacy config keys (e.g. `telepathy`, `connectors`) to canonical flags.",
     "history.first_seen is bounded by the earliest verified tag (rust-v0.148.0): a flag listed as first seen there may well predate it.",
-    "default_enabled is null when the source default is platform-conditional; the raw Rust expression is then in default_expr (currently only `cfg!(windows)`, for secret_auth_storage)."
+    "default_enabled is null when the source default is platform-conditional; the raw Rust expression is then in default_expr (currently only `cfg!(windows)`, for secret_auth_storage).",
+    "Tags after rust-v0.153.4 are vendored by scripts/sync-codex-tags.mjs, which also aliases patch tags whose lib.rs is byte-identical to the previous snapshot.",
+    "rust-v0.154.0 introduced the first key with a dot (guardianv2.thread_context, removed again in rust-v0.158.0); keys are matched as [a-z0-9_.]."
   ],
   "license": {
     "registry_and_annotations": "CC-BY-4.0",

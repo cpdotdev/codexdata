@@ -1,0 +1,9 @@
+{
+  "key": "send_message_to_user_async",
+  "i18n": {
+    "zh": {
+      "title": "异步发消息给用户",
+      "summary": "允许根智能体在模型目录不支持时也能异步向用户发送消息。"
+    }
+  }
+}

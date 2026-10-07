@@ -1,6 +1,6 @@
 {
   "schema": "codex-model-info.schema.json",
-  "latest": "rust-v0.153.4",
+  "latest": "rust-v0.161.0",
   "verified_tags": [
     "rust-v0.148.0",
     "rust-v0.149.0",
@@ -8,10 +8,29 @@
     "rust-v0.151.0",
     "rust-v0.152.0",
     "rust-v0.153.1",
-    "rust-v0.153.4"
+    "rust-v0.153.4",
+    "rust-v0.154.0",
+    "rust-v0.155.0",
+    "rust-v0.155.1",
+    "rust-v0.156.0",
+    "rust-v0.156.1",
+    "rust-v0.157.0",
+    "rust-v0.157.1",
+    "rust-v0.158.0",
+    "rust-v0.159.0",
+    "rust-v0.159.1",
+    "rust-v0.159.2",
+    "rust-v0.159.3",
+    "rust-v0.160.0",
+    "rust-v0.160.1",
+    "rust-v0.161.0"
   ],
   "source_files": [
     "codex-rs/protocol/src/openai_models.rs",
+    "codex-rs/protocol/src/openai_models/access_programs.rs",
+    "codex-rs/protocol/src/openai_models/guardian.rs",
+    "codex-rs/protocol/src/openai_models/guardian_v2.rs",
+    "codex-rs/protocol/src/openai_models/reasoning_effort.rs",
     "codex-rs/protocol/src/config_types.rs"
   ],
   "notes": [
@@ -21,8 +40,28 @@
     "rust-v0.151.0: ModelInfo gained multi_agent_reasoning_effort; ModelMessages gained persistent_instructions and confirmation_policies; ReasoningEffort gained persistent.",
     "rust-v0.152.0: ModelMessages gained tools.",
     "rust-v0.153.1 and rust-v0.153.4: openai_models.rs byte-identical to each other; no struct changes since 0.152.0.",
-    "Bundled models.json carries keys the struct does not have (supports_parallel_tool_calls, prefer_websockets, requires_sandboxed_review, supports_reasoning_summaries, available_in_plans, minimal_client_version); the client ignores them."
+    "rust-v0.154.0: ModelInfo gained guardian (GuardianModelPolicy) and supports_experimental_context. openai_models.rs now declares submodules under openai_models/ (guardian.rs, reasoning_effort.rs; guardian_v2.rs has existed since 0.149.0); snapshots vendor them from this tag on.",
+    "rust-v0.155.0 and rust-v0.155.1: sources byte-identical to rust-v0.154.0 (snapshot_aliases).",
+    "rust-v0.156.0: ModelInfo gained available_access_programs (ModelAccessPrograms; `cyber` is required when the object is present) and supports_reasoning_effort_updates. ModelMessages.tools gained multi_agent; ToolMessage gained parameters. GuardianModelPolicy dropped code_mode and gained other_tools, unscored_action, initial_cua_call and sandboxed_exec_commands. Personality selection was removed: supports_personality is always false and instructions_variables is deprecated (still decoded). config_types.rs: comment-only change.",
+    "rust-v0.157.0: ModelMessages.tools gained code_mode (CodeModeToolMessages).",
+    "rust-v0.158.0: ModelMessages.tools gained indirect_description_prefixes and mcp_resources; tools.multi_agent gained the channel tools (create_channel … post). rust-v0.159.0 … rust-v0.159.3: byte-identical to rust-v0.158.0.",
+    "rust-v0.160.0: ModelMessages gained content_filter_guidance. rust-v0.160.1: byte-identical.",
+    "rust-v0.161.0: GuardianV2ModelConfig gained async_classifier_mode (closed enum: snapshot | conversation) and async_classifier_conversation_token_limit; ModelAccessPrograms gained helper methods only.",
+    "Tags after rust-v0.153.4 are vendored by scripts/sync-codex-tags.mjs: a tag whose sources are byte-identical to the previous snapshot is recorded in snapshot_aliases instead of stored again.",
+    "Every stored snapshot keeps the client's own bundled catalog (codex-rs/models-manager/models.json at that tag) as a test vector; validate.mjs checks the schema against all of them. The catalogs carry keys the struct does not have (supports_parallel_tool_calls, prefer_websockets, requires_sandboxed_review, supports_reasoning_summaries, available_in_plans, minimal_client_version); the client ignores them."
   ],
   "sources_dir": "sources/",
-  "sources_license": "Apache-2.0 (openai/codex); LICENSE and NOTICE reproduced in sources/"
+  "sources_license": "Apache-2.0 (openai/codex); LICENSE and NOTICE reproduced in sources/",
+  "snapshot_aliases": {
+    "rust-v0.153.1": "rust-v0.153.4",
+    "rust-v0.155.0": "rust-v0.154.0",
+    "rust-v0.155.1": "rust-v0.154.0",
+    "rust-v0.156.1": "rust-v0.156.0",
+    "rust-v0.157.1": "rust-v0.157.0",
+    "rust-v0.159.0": "rust-v0.158.0",
+    "rust-v0.159.1": "rust-v0.158.0",
+    "rust-v0.159.2": "rust-v0.158.0",
+    "rust-v0.159.3": "rust-v0.158.0",
+    "rust-v0.160.1": "rust-v0.160.0"
+  }
 }

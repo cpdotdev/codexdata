@@ -1,0 +1,10 @@
+{
+  "key": "in_app_voice",
+  "i18n": {
+    "zh": {
+      "title": "应用内语音",
+      "summary": "允许桌面端使用应用内语音（Voice）。",
+      "note": "官方注明 requirements 专用闸门：应由 requirements.toml 或企业托管配置下发，不建议写进用户配置。开启只代表允许，不代表语音可用或提供方支持。"
+    }
+  }
+}
