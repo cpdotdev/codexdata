@@ -38,6 +38,6 @@
   },
   "dependencies": {
     "@cfworker/json-schema": "^4.1.1",
-    "@codexpass/tokens": "file:vendor/codexpass-tokens-0.3.0-a3295947df43.tgz"
+    "@codexpass/tokens": "file:vendor/codexpass-tokens-0.3.0-8aacb9d6e3c4.tgz"
   }
 }
