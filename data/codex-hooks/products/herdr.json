@@ -20,8 +20,8 @@
       "removal": "Removing this registration stops session identity reporting to Herdr. If you no longer use Herdr, remove the registration; if installed, herdr integration uninstall codex also removes its script."
     },
     "zh": {
-      "summary": "把 Codex 会话关联到 Herdr 窗格，供会话恢复使用。已核对的脚本仅在 Herdr 环境中通过本地 socket 上报会话 ID。",
-      "removal": "删除后不再向 Herdr 上报会话身份。不再使用 Herdr 时可删除；若仍安装着 Herdr，也可用 herdr integration uninstall codex 一并卸载脚本。"
+      "summary": "关联 Herdr 对话，方便恢复工作。\n仅在 Herdr 环境上报对话编号。\n通过本机连接发送。",
+      "removal": "删除后不再向 Herdr 报告对话身份。\n不再使用 Herdr 时可删除。\n也可用其卸载命令一并移除脚本。\n命令：herdr integration uninstall codex"
     },
     "zh-TW": {
       "summary": "將 Codex 工作階段關聯至 Herdr 窗格，供還原工作階段使用。已核對的腳本僅在 Herdr 環境中透過本機 socket 回報工作階段 ID。",

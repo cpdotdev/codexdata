@@ -2,8 +2,8 @@
   "key": "local_thread_store_shared_compression",
   "i18n": {
     "zh": {
-      "title": "共享历史压缩",
-      "summary": "已移除的兼容旗标；现由 local_thread_store_compression 统一控制所有 rollout 文件。"
+      "title": "旧版压缩",
+      "summary": "此开关已移除，改由「压缩记录」控制。"
     }
   }
 }

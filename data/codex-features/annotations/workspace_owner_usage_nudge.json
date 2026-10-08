@@ -2,8 +2,8 @@
   "key": "workspace_owner_usage_nudge",
   "i18n": {
     "zh": {
-      "title": "工作区用量提醒",
-      "summary": "工作区所有者用量提醒已恒为开启，此为已移除的兼容旗标。"
+      "title": "用量提醒",
+      "summary": "此功能已始终开启，保留开关仅为兼容。"
     }
   }
 }

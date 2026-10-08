@@ -2,8 +2,8 @@
   "key": "personality",
   "i18n": {
     "zh": {
-      "title": "个性（Personality）",
-      "summary": "已移除的兼容旗标，仅作为空操作保留。",
+      "title": "回复风格",
+      "summary": "旧版风格开关，现已不再生效。",
       "note": "此前用于启用 TUI 中的个性（回复风格）选择。"
     }
   }

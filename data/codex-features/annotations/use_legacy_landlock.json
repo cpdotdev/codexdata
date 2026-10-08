@@ -2,8 +2,8 @@
   "key": "use_legacy_landlock",
   "i18n": {
     "zh": {
-      "title": "旧版 Landlock 沙箱",
-      "summary": "用旧版 Landlock Linux 沙箱回退替代默认的 bubblewrap 管线（已弃用）。"
+      "title": "旧版保护",
+      "summary": "改用旧版 Linux 文件保护，已弃用。"
     }
   }
 }

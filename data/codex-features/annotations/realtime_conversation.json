@@ -2,8 +2,8 @@
   "key": "realtime_conversation",
   "i18n": {
     "zh": {
-      "title": "实时语音对话",
-      "summary": "在 TUI 中启用语音对话。"
+      "title": "语音聊天",
+      "summary": "在终端中开启语音对话。"
     }
   }
 }

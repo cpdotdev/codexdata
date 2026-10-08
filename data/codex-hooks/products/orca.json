@@ -20,8 +20,8 @@
       "removal": "Removing this registration stops these event reports to Orca. If you still use Orca, turn off Agent status hooks in its settings first (orca agent hooks off); otherwise it may register them again."
     },
     "zh": {
-      "summary": "将 Codex 事件交给 Orca，用于显示 Agent 活动、等待与完成状态。已核对的脚本使用本地端点，并可将部分事件暂存到本地。",
-      "removal": "删除后 Orca 将收不到这些事件。若仍使用 Orca，先在其设置中关闭 Agent status hooks（orca agent hooks off），避免应用再次注册。"
+      "summary": "向 Orca 提供活动、等待和完成状态。\n通过本机接口，部分事件暂存本机。",
+      "removal": "删除后 Orca 将收不到任务状态。\n仍使用 Orca 时，请先关闭状态脚本。\n否则应用可能再次添加入口。\n命令：orca agent hooks off"
     },
     "zh-TW": {
       "summary": "將 Codex 事件交給 Orca，用於顯示 Agent 活動、等待與完成狀態。已核對的腳本使用本機端點，也可將部分事件暫存於本機。",

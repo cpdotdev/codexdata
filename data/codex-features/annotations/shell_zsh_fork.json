@@ -2,8 +2,8 @@
   "key": "shell_zsh_fork",
   "i18n": {
     "zh": {
-      "title": "zsh 执行桥",
-      "summary": "把 shell 工具的执行路由到 zsh exec 桥。"
+      "title": "zsh 执行",
+      "summary": "通过 zsh 运行终端命令。"
     }
   }
 }

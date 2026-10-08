@@ -2,8 +2,8 @@
   "key": "remote_compaction_v2",
   "i18n": {
     "zh": {
-      "title": "远端压缩 V2",
-      "summary": "已移除的兼容键，仍会告知 Responses API。",
+      "title": "压缩新版",
+      "summary": "旧版远程压缩，已移除。\n仍会向 Responses API 传递此设置。",
       "note": "此前用于通过常规 Responses API 启用远端上下文压缩 v2。"
     }
   }

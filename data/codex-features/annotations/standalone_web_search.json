@@ -2,8 +2,8 @@
   "key": "standalone_web_search",
   "i18n": {
     "zh": {
-      "title": "独立网页搜索",
-      "summary": "暴露扩展支撑的独立 web 搜索工具。"
+      "title": "网页搜索",
+      "summary": "启用扩展提供的独立网页搜索。"
     }
   }
 }

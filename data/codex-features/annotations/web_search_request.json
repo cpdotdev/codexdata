@@ -2,8 +2,8 @@
   "key": "web_search_request",
   "i18n": {
     "zh": {
-      "title": "实时网页搜索",
-      "summary": "允许模型请求抓取实时内容的网页搜索（已弃用）。"
+      "title": "实时搜索",
+      "summary": "抓取最新网页进行搜索，已弃用。"
     }
   }
 }

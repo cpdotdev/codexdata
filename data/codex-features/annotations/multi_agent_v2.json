@@ -2,8 +2,8 @@
   "key": "multi_agent_v2",
   "i18n": {
     "zh": {
-      "title": "多代理 V2",
-      "summary": "启用基于任务路径（task-path）的多代理路由。"
+      "title": "协作新版",
+      "summary": "按任务路径分配多个助手的工作。"
     }
   }
 }

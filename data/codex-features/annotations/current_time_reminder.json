@@ -2,8 +2,8 @@
   "key": "current_time_reminder",
   "i18n": {
     "zh": {
-      "title": "当前时间提醒",
-      "summary": "在模型可见上下文中加入当前时间提醒。"
+      "title": "时间提醒",
+      "summary": "向模型提供当前时间。"
     }
   }
 }

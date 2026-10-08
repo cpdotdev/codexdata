@@ -2,8 +2,8 @@
   "key": "image_resize_notice",
   "i18n": {
     "zh": {
-      "title": "图片缩放提示",
-      "summary": "当提示词图片被缩放时告知模型，并附上原始尺寸。"
+      "title": "缩放提示",
+      "summary": "图片缩放后，告诉模型原始尺寸。"
     }
   }
 }

@@ -2,8 +2,8 @@
   "key": "code_mode_interrupt",
   "i18n": {
     "zh": {
-      "title": "代码模式可中断",
-      "summary": "回合被打断时，终止仍在运行的代码模式单元。"
+      "title": "停止代码",
+      "summary": "任务中断时，停止仍在运行的代码。"
     }
   }
 }

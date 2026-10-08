@@ -26,8 +26,8 @@
           "removal": "Removing this registration stops session identity reporting to Herdr. If you no longer use Herdr, remove the registration; if installed, herdr integration uninstall codex also removes its script."
         },
         "zh": {
-          "summary": "把 Codex 会话关联到 Herdr 窗格，供会话恢复使用。已核对的脚本仅在 Herdr 环境中通过本地 socket 上报会话 ID。",
-          "removal": "删除后不再向 Herdr 上报会话身份。不再使用 Herdr 时可删除；若仍安装着 Herdr，也可用 herdr integration uninstall codex 一并卸载脚本。"
+          "summary": "关联 Herdr 对话，方便恢复工作。\n仅在 Herdr 环境上报对话编号。\n通过本机连接发送。",
+          "removal": "删除后不再向 Herdr 报告对话身份。\n不再使用 Herdr 时可删除。\n也可用其卸载命令一并移除脚本。\n命令：herdr integration uninstall codex"
         },
         "zh-TW": {
           "summary": "將 Codex 工作階段關聯至 Herdr 窗格，供還原工作階段使用。已核對的腳本僅在 Herdr 環境中透過本機 socket 回報工作階段 ID。",
@@ -80,8 +80,8 @@
           "removal": "Removing this registration stops these event reports to Orca. If you still use Orca, turn off Agent status hooks in its settings first (orca agent hooks off); otherwise it may register them again."
         },
         "zh": {
-          "summary": "将 Codex 事件交给 Orca，用于显示 Agent 活动、等待与完成状态。已核对的脚本使用本地端点，并可将部分事件暂存到本地。",
-          "removal": "删除后 Orca 将收不到这些事件。若仍使用 Orca，先在其设置中关闭 Agent status hooks（orca agent hooks off），避免应用再次注册。"
+          "summary": "向 Orca 提供活动、等待和完成状态。\n通过本机接口，部分事件暂存本机。",
+          "removal": "删除后 Orca 将收不到任务状态。\n仍使用 Orca 时，请先关闭状态脚本。\n否则应用可能再次添加入口。\n命令：orca agent hooks off"
         },
         "zh-TW": {
           "summary": "將 Codex 事件交給 Orca，用於顯示 Agent 活動、等待與完成狀態。已核對的腳本使用本機端點，也可將部分事件暫存於本機。",
@@ -136,8 +136,8 @@
           "removal": "Removing this registration stops the corresponding Xirp callback. If you no longer use Xirp, you can remove it; if still in use, check its integration settings first."
         },
         "zh": {
-          "summary": "Xirp 是 Spotify 推出的 Agent 开发环境。路径对应 Xirp 的 Codex 集成脚本，涉及会话开始、工具调用、停止或权限请求。未取得脚本内容，具体行为尚未核实。",
-          "removal": "删除后将不再触发对应的 Xirp 回调。不再使用 Xirp 时可删除；若仍使用，请先检查其集成设置。"
+          "summary": "匹配到 Xirp 的 Codex 脚本。\nXirp 是 Spotify 的助手开发环境。\n涉及对话、工具和权限请求。\n尚未取得脚本，具体行为未核实。",
+          "removal": "删除后会停止对应的 Xirp 脚本。\n不再使用时可移除。\n仍使用时，请先确认是否需要。"
         },
         "zh-TW": {
           "summary": "Xirp 是 Spotify 推出的 Agent 開發環境。路徑對應 Xirp 的 Codex 整合腳本，涉及工作階段開始、工具呼叫、停止或權限請求。未取得腳本內容，具體行為尚未核實。",

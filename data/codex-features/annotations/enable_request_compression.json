@@ -2,8 +2,8 @@
   "key": "enable_request_compression",
   "i18n": {
     "zh": {
-      "title": "请求体压缩",
-      "summary": "向 codex-backend 发送流式请求时用 zstd 压缩请求体。"
+      "title": "压缩请求",
+      "summary": "用 zstd 压缩发送给 Codex 的请求。"
     }
   }
 }

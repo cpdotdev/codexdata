@@ -2,8 +2,8 @@
   "key": "prevent_idle_sleep",
   "i18n": {
     "zh": {
-      "title": "运行中防休眠",
-      "summary": "回合运行期间阻止系统进入闲置休眠。"
+      "title": "保持唤醒",
+      "summary": "任务运行时，不让电脑自动休眠。"
     }
   }
 }

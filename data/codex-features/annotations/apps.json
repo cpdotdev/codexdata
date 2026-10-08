@@ -2,8 +2,8 @@
   "key": "apps",
   "i18n": {
     "zh": {
-      "title": "应用（Apps）",
-      "summary": "启用 Codex Apps（应用/连接器）能力。"
+      "title": "连接应用",
+      "summary": "连接其他应用，让 Codex 使用其工具。"
     }
   }
 }

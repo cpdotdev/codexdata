@@ -2,9 +2,9 @@
   "key": "computer_use",
   "i18n": {
     "zh": {
-      "title": "计算机操控（Computer Use）",
-      "summary": "允许 Codex Computer Use 桌面操控能力。",
-      "note": "官方注明 requirements 专用闸门：应由系统级 requirements.toml 下发，不建议写进用户配置。"
+      "title": "操作电脑",
+      "summary": "允许 Codex 操作电脑桌面。",
+      "note": "由系统级团队设置控制。\n不建议写入个人设置。"
     }
   }
 }
