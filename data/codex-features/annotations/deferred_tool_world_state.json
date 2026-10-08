@@ -2,8 +2,8 @@
   "key": "deferred_tool_world_state",
   "i18n": {
     "zh": {
-      "title": "延迟工具的世界状态",
-      "summary": "在模型可见的世界状态中描述被延迟加载的工具命名空间。"
+      "title": "待用工具",
+      "summary": "告诉模型有哪些尚未加载的工具。"
     }
   }
 }

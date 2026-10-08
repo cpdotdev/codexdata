@@ -2,9 +2,9 @@
   "key": "browser_use_external",
   "i18n": {
     "zh": {
-      "title": "外部浏览器操控",
-      "summary": "允许 Browser Use 操控外部浏览器。",
-      "note": "官方注明 requirements 专用闸门：应由系统级 requirements.toml 下发，不建议写进用户配置。"
+      "title": "外部浏览",
+      "summary": "允许 Codex 操作外部浏览器。",
+      "note": "由系统级团队设置控制。\n不建议写入个人设置。"
     }
   }
 }

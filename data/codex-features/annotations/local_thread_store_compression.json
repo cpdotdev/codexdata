@@ -2,9 +2,9 @@
   "key": "local_thread_store_compression",
   "i18n": {
     "zh": {
-      "title": "本地会话存储压缩",
-      "summary": "压缩冷的本地线程存储 rollout 文件（含共享历史）。",
-      "note": "官方注明：要求所有读取 Codex home 的程序都支持压缩的共享历史——多个工具共用一个 CODEX_HOME 时慎开。"
+      "title": "压缩记录",
+      "summary": "压缩不常用的对话记录，节省空间。",
+      "note": "共用此数据目录的工具须支持压缩记录。\n请先确认兼容，再开启。"
     }
   }
 }

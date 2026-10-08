@@ -2,8 +2,8 @@
   "key": "skill_mcp_dependency_install",
   "i18n": {
     "zh": {
-      "title": "技能 MCP 依赖安装",
-      "summary": "允许提示并安装技能缺失的 MCP 依赖。"
+      "title": "补装工具",
+      "summary": "提示并安装 Skill 缺少的 MCP 工具。"
     }
   }
 }

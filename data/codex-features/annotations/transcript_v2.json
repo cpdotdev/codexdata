@@ -2,8 +2,8 @@
   "key": "transcript_v2",
   "i18n": {
     "zh": {
-      "title": "会话转写 V2",
-      "summary": "已弃用的空操作旗标，请改用 tui.fullscreen_transcript。",
+      "title": "记录新版",
+      "summary": "此开关已停用。\n请改用 tui.fullscreen_transcript。",
       "note": "此前用于启用交互式转写编辑器与回合选择 UI。"
     }
   }

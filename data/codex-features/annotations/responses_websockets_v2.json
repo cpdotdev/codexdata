@@ -2,8 +2,8 @@
   "key": "responses_websockets_v2",
   "i18n": {
     "zh": {
-      "title": "Responses WebSocket 传输 V2",
-      "summary": "Responses API WebSocket 传输 v2 实验的旧灰度旗标。"
+      "title": "WebSocket V2",
+      "summary": "旧版 Responses V2 连接测试开关。"
     }
   }
 }

@@ -2,8 +2,8 @@
   "key": "artifact",
   "i18n": {
     "zh": {
-      "title": "原生工件（Artifact）",
-      "summary": "启用原生 artifact（工件产出）工具。"
+      "title": "制作文件",
+      "summary": "启用原生文件制作工具。"
     }
   }
 }

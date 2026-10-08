@@ -2,8 +2,8 @@
   "key": "multi_agent_mode",
   "i18n": {
     "zh": {
-      "title": "多代理模式",
-      "summary": "已移除的兼容旗标，现为空操作（no-op）。"
+      "title": "旧版协作",
+      "summary": "功能已移除，此开关不再生效。"
     }
   }
 }

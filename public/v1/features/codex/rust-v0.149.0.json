@@ -34,8 +34,8 @@
       "annotation": {
         "i18n": {
           "zh": {
-            "title": "apply_patch 自由格式回退",
-            "summary": "已删除的 apply_patch 自由格式回退功能的兼容旗标，仅为旧配置能继续解析而保留。"
+            "title": "旧版补丁",
+            "summary": "功能已移除，仅保留旧设置兼容。"
           }
         }
       }
@@ -61,8 +61,8 @@
       "annotation": {
         "i18n": {
           "zh": {
-            "title": "补丁保留行尾",
-            "summary": "apply_patch 更新文件时保留文件原有的行尾风格（CRLF/LF）。"
+            "title": "保留换行",
+            "summary": "修改文件时，保留原有换行格式。"
           }
         }
       }
@@ -88,8 +88,8 @@
       "annotation": {
         "i18n": {
           "zh": {
-            "title": "补丁生成进度流",
-            "summary": "在 apply_patch 输入还在生成时，流式发送结构化进度事件。"
+            "title": "改动进度",
+            "summary": "生成文件改动时，实时报告进度。"
           }
         }
       }
@@ -117,8 +117,8 @@
       "annotation": {
         "i18n": {
           "zh": {
-            "title": "应用（Apps）",
-            "summary": "启用 Codex Apps（应用/连接器）能力。"
+            "title": "连接应用",
+            "summary": "连接其他应用，让 Codex 使用其工具。"
           }
         }
       }
@@ -144,8 +144,8 @@
       "annotation": {
         "i18n": {
           "zh": {
-            "title": "Apps MCP 路径覆盖",
-            "summary": "旧版 Apps MCP 路径覆盖的兼容旗标，已移除。"
+            "title": "旧版路径",
+            "summary": "功能已移除，仅保留旧设置兼容。"
           }
         }
       }
@@ -171,8 +171,8 @@
       "annotation": {
         "i18n": {
           "zh": {
-            "title": "原生工件（Artifact）",
-            "summary": "启用原生 artifact（工件产出）工具。"
+            "title": "制作文件",
+            "summary": "启用原生文件制作工具。"
           }
         }
       }
@@ -198,8 +198,8 @@
       "annotation": {
         "i18n": {
           "zh": {
-            "title": "连接器鉴权引导",
-            "summary": "Codex Apps 连接器鉴权失败时，通过 MCP 的 URL elicitation 机制弹出授权引导。"
+            "title": "应用授权",
+            "summary": "应用连接授权失败时，引导重新授权。"
           }
         }
       }
@@ -225,8 +225,8 @@
       "annotation": {
         "i18n": {
           "zh": {
-            "title": "会话记录后台迁移",
-            "summary": "在后台把旧版本地 rollout 会话文件迁移为分页历史。"
+            "title": "记录升级",
+            "summary": "在后台把旧对话记录升级为分页存储。"
           }
         }
       }
@@ -252,9 +252,9 @@
       "annotation": {
         "i18n": {
           "zh": {
-            "title": "浏览器操控（Browser Use）",
-            "summary": "允许桌面端集成 Browser Use 浏览器操控代理。",
-            "note": "官方注明 requirements 专用闸门：应由系统级 requirements.toml 下发，不建议写进用户配置。"
+            "title": "操作网页",
+            "summary": "允许 Codex 操作浏览器。",
+            "note": "由系统级团队设置控制。\n不建议写入个人设置。"
           }
         }
       }
@@ -280,9 +280,9 @@
       "annotation": {
         "i18n": {
           "zh": {
-            "title": "外部浏览器操控",
-            "summary": "允许 Browser Use 操控外部浏览器。",
-            "note": "官方注明 requirements 专用闸门：应由系统级 requirements.toml 下发，不建议写进用户配置。"
+            "title": "外部浏览",
+            "summary": "允许 Codex 操作外部浏览器。",
+            "note": "由系统级团队设置控制。\n不建议写入个人设置。"
           }
         }
       }
@@ -308,10 +308,10 @@
       "annotation": {
         "i18n": {
           "zh": {
-            "title": "完整 CDP 权限",
-            "summary": "允许 Browser Use 使用完整的 Chrome DevTools Protocol 能力面。",
-            "note": "官方注明 requirements 专用闸门：应由系统级 requirements.toml 下发，不建议写进用户配置。",
-            "risk": "完整 CDP 意味着对浏览器的完全程序化控制（页面内容、脚本注入、调试接口），企业环境应从 requirements 统一管控。"
+            "title": "完整控制",
+            "summary": "允许完整使用浏览器的 CDP 控制功能。",
+            "note": "由系统级团队设置控制。\n不建议写入个人设置。",
+            "risk": "可读取网页、执行脚本和调试浏览器。\n团队应通过系统级设置统一管理。"
           }
         }
       }
@@ -345,9 +345,9 @@
             "note": "This is the flag behind “Computer History” in the ChatGPT desktop app; its earlier internal codename was telepathy (see legacy_aliases)."
           },
           "zh": {
-            "title": "电脑使用历史（Computer History）",
-            "summary": "启用 Chronicle 边车进程，被动记录屏幕上下文形成记忆。",
-            "note": "ChatGPT 桌面端设置里的「Computer History」即此旗标；更早的内部代号是 telepathy（见 legacy_aliases）。"
+            "title": "屏幕历史",
+            "summary": "记录屏幕内容，为 Codex 生成记忆。",
+            "note": "对应 ChatGPT 的 Computer History。\n旧代号为 telepathy。"
           }
         }
       }
@@ -373,9 +373,9 @@
       "annotation": {
         "i18n": {
           "zh": {
-            "title": "代码模式（Code Mode）",
-            "summary": "启用由独立宿主进程支撑的 JavaScript 代码模式。",
-            "note": "配合 code_mode_host / code_mode_only / code_mode_prewarm / code_mode_interrupt 等子旗标使用。"
+            "title": "代码模式",
+            "summary": "在独立进程中运行 JavaScript 代码。",
+            "note": "与代码模式的其他子开关配合使用。"
           }
         }
       }
@@ -401,8 +401,8 @@
       "annotation": {
         "i18n": {
           "zh": {
-            "title": "代码模式 exec 缓冲超时",
-            "summary": "可配置的代码模式 exec 让步超时的兼容旗标，已移除。"
+            "title": "旧版等待",
+            "summary": "功能已移除，仅保留旧设置兼容。"
           }
         }
       }
@@ -428,8 +428,8 @@
       "annotation": {
         "i18n": {
           "zh": {
-            "title": "代码模式独立宿主",
-            "summary": "在独立宿主进程中运行 JavaScript 代码模式。"
+            "title": "独立运行",
+            "summary": "让 JavaScript 代码在独立进程运行。"
           }
         }
       }
@@ -455,8 +455,8 @@
       "annotation": {
         "i18n": {
           "zh": {
-            "title": "代码模式可中断",
-            "summary": "回合被打断时，终止仍在运行的代码模式单元。"
+            "title": "停止代码",
+            "summary": "任务中断时，停止仍在运行的代码。"
           }
         }
       }
@@ -482,8 +482,8 @@
       "annotation": {
         "i18n": {
           "zh": {
-            "title": "纯代码模式",
-            "summary": "把模型可见的工具收窄为代码模式入口（exec、wait）。"
+            "title": "仅用代码",
+            "summary": "只向模型提供代码执行和等待工具。"
           }
         }
       }
@@ -509,8 +509,8 @@
       "annotation": {
         "i18n": {
           "zh": {
-            "title": "git 提交署名指引",
-            "summary": "旧版 git 提交署名指引旗标，已移除。"
+            "title": "旧版署名",
+            "summary": "功能已移除，仅保留旧设置兼容。"
           }
         }
       }
@@ -536,8 +536,8 @@
       "annotation": {
         "i18n": {
           "zh": {
-            "title": "协作模式（Plan/Default）",
-            "summary": "协作模式（Plan、Default）开关；行为已恒为开启，旗标仅为配置兼容保留。"
+            "title": "协作模式",
+            "summary": "此功能已始终开启，保留开关仅为兼容。"
           }
         }
       }
@@ -563,9 +563,9 @@
       "annotation": {
         "i18n": {
           "zh": {
-            "title": "计算机操控（Computer Use）",
-            "summary": "允许 Codex Computer Use 桌面操控能力。",
-            "note": "官方注明 requirements 专用闸门：应由系统级 requirements.toml 下发，不建议写进用户配置。"
+            "title": "操作电脑",
+            "summary": "允许 Codex 操作电脑桌面。",
+            "note": "由系统级团队设置控制。\n不建议写入个人设置。"
           }
         }
       }
@@ -591,8 +591,8 @@
       "annotation": {
         "i18n": {
           "zh": {
-            "title": "推理摘要顺序截断交付",
-            "summary": "请求以顺序截断（sequential cutoff）的方式交付推理摘要。"
+            "title": "思考摘要",
+            "summary": "按先后截取的方式提供思考摘要。"
           }
         }
       }
@@ -618,8 +618,8 @@
       "annotation": {
         "i18n": {
           "zh": {
-            "title": "当前时间提醒",
-            "summary": "在模型可见上下文中加入当前时间提醒。"
+            "title": "时间提醒",
+            "summary": "向模型提供当前时间。"
           }
         }
       }
@@ -645,8 +645,8 @@
       "annotation": {
         "i18n": {
           "zh": {
-            "title": "回合 diff 相对路径",
-            "summary": "回合 diff 的展示路径改用相对当前工作目录的形式。"
+            "title": "简短路径",
+            "summary": "改动文件路径从当前项目位置开始显示。"
           }
         }
       }
@@ -672,8 +672,8 @@
       "annotation": {
         "i18n": {
           "zh": {
-            "title": "默认模式下询问用户",
-            "summary": "允许在 Default 协作模式中使用 request_user_input（模型主动向用户提问）。"
+            "title": "允许提问",
+            "summary": "允许 Codex 在默认模式下向你提问。"
           }
         }
       }
@@ -699,8 +699,8 @@
       "annotation": {
         "i18n": {
           "zh": {
-            "title": "执行器延迟就绪",
-            "summary": "允许在选定执行器仍在启动时就开始回合。"
+            "title": "提前开始",
+            "summary": "执行环境仍在启动时，先开始任务。"
           }
         }
       }
@@ -726,8 +726,8 @@
       "annotation": {
         "i18n": {
           "zh": {
-            "title": "延迟工具的世界状态",
-            "summary": "在模型可见的世界状态中描述被延迟加载的工具命名空间。"
+            "title": "待用工具",
+            "summary": "告诉模型有哪些尚未加载的工具。"
           }
         }
       }
@@ -753,8 +753,8 @@
       "annotation": {
         "i18n": {
           "zh": {
-            "title": "Windows 提权沙箱",
-            "summary": "使用提权的 Windows 沙箱管线（setup + runner），已移除。"
+            "title": "旧版提权",
+            "summary": "Windows 旧版功能已移除，仅保留兼容。"
           }
         }
       }
@@ -780,8 +780,8 @@
       "annotation": {
         "i18n": {
           "zh": {
-            "title": "agent-job 扇出工具",
-            "summary": "已删除的 agent-job 工具的兼容旗标。"
+            "title": "旧版分工",
+            "summary": "功能已移除，仅保留旧设置兼容。"
           }
         }
       }
@@ -808,7 +808,7 @@
         "i18n": {
           "zh": {
             "title": "MCP 应用",
-            "summary": "启用 MCP apps（MCP 生态的应用界面扩展）。"
+            "summary": "启用 MCP 提供的应用界面。"
           }
         }
       }
@@ -834,8 +834,8 @@
       "annotation": {
         "i18n": {
           "zh": {
-            "title": "请求体压缩",
-            "summary": "向 codex-backend 发送流式请求时用 zstd 压缩请求体。"
+            "title": "压缩请求",
+            "summary": "用 zstd 压缩发送给 Codex 的请求。"
           }
         }
       }
@@ -863,8 +863,8 @@
       "annotation": {
         "i18n": {
           "zh": {
-            "title": "沙箱内权限申请",
-            "summary": "允许 exec 工具在保持沙箱的前提下申请额外权限。"
+            "title": "额外权限",
+            "summary": "保留文件保护，同时允许申请额外权限。"
           }
         }
       }
@@ -890,8 +890,8 @@
       "annotation": {
         "i18n": {
           "zh": {
-            "title": "工具调用记录元数据",
-            "summary": "在内部 Responses 元数据中记录模型尝试过的工具调用。"
+            "title": "工具记录",
+            "summary": "在内部回复信息中记录已尝试的工具。"
           }
         }
       }
@@ -917,8 +917,8 @@
       "annotation": {
         "i18n": {
           "zh": {
-            "title": "执行器能力发现",
-            "summary": "通过单个高层 exec-server RPC 一次性发现所选根目录的插件与技能清单。"
+            "title": "查找工具",
+            "summary": "一次获取所选目录中的插件和 Skill。"
           }
         }
       }
@@ -946,8 +946,8 @@
       "annotation": {
         "i18n": {
           "zh": {
-            "title": "Windows 受限令牌沙箱",
-            "summary": "在 Windows 上启用受限令牌（restricted token）沙箱，已移除。"
+            "title": "旧版保护",
+            "summary": "Windows 旧版功能已移除，仅保留兼容。"
           }
         }
       }
@@ -973,8 +973,8 @@
       "annotation": {
         "i18n": {
           "zh": {
-            "title": "外部代理记忆导入",
-            "summary": "支持从外部代理导入项目范围的记忆。"
+            "title": "导入记忆",
+            "summary": "从其他助手导入项目记忆。"
           }
         }
       }
@@ -1000,8 +1000,8 @@
       "annotation": {
         "i18n": {
           "zh": {
-            "title": "外部迁移",
-            "summary": "已移除的兼容旗标，现为空操作（no-op）。"
+            "title": "旧版迁移",
+            "summary": "功能已移除，此开关不再生效。"
           }
         }
       }
@@ -1027,8 +1027,8 @@
       "annotation": {
         "i18n": {
           "zh": {
-            "title": "快速模式（Fast mode）",
-            "summary": "在 TUI 与请求层启用 Fast mode 选择。"
+            "title": "快速模式",
+            "summary": "在终端中选择并使用快速模式。"
           }
         }
       }
@@ -1054,8 +1054,8 @@
       "annotation": {
         "i18n": {
           "zh": {
-            "title": "目标（Goals）",
-            "summary": "启用线程目标的持久化与自动目标延续。"
+            "title": "持续任务",
+            "summary": "保存任务目标，支持自动继续完成。"
           }
         }
       }
@@ -1081,8 +1081,8 @@
       "annotation": {
         "i18n": {
           "zh": {
-            "title": "Guardian 自动审批",
-            "summary": "对审批弹窗启用自动审查（Guardian 风险审查器）。"
+            "title": "自动审查",
+            "summary": "使用 Guardian 审查待批准的操作。"
           }
         }
       }
@@ -1108,8 +1108,8 @@
       "annotation": {
         "i18n": {
           "zh": {
-            "title": "Guardian 纳入代码模式回执",
-            "summary": "Guardian 审查时纳入已完成的 node_repl / cua_repl 代码模式响应。"
+            "title": "代码回执",
+            "summary": "Guardian 审查时参考已完成的代码结果。"
           }
         }
       }
@@ -1135,8 +1135,8 @@
       "annotation": {
         "i18n": {
           "zh": {
-            "title": "Guardian 纳入代码模式图片",
-            "summary": "Guardian 审查时纳入已完成代码模式响应中的图片。"
+            "title": "图片参考",
+            "summary": "Guardian 审查时参考代码结果中的图片。"
           }
         }
       }
@@ -1166,8 +1166,8 @@
       "annotation": {
         "i18n": {
           "zh": {
-            "title": "Guardian 复用父压缩",
-            "summary": "重启 Guardian 审查会话时复用加密的父级压缩上下文。"
+            "title": "复用摘要",
+            "summary": "重开审查时，复用上层任务的压缩记录。"
           }
         }
       }
@@ -1194,7 +1194,7 @@
         "i18n": {
           "zh": {
             "title": "Guardian V2",
-            "summary": "启用 Guardian V2 自动审批审查。"
+            "summary": "使用 Guardian V2 自动审查操作。"
           }
         }
       }
@@ -1222,8 +1222,8 @@
       "annotation": {
         "i18n": {
           "zh": {
-            "title": "生命周期钩子（Hooks）",
-            "summary": "启用从 hooks.json 文件加载的 Claude 风格生命周期钩子。"
+            "title": "自动脚本",
+            "summary": "从 hooks.json 加载自动执行的脚本。"
           }
         }
       }
@@ -1249,8 +1249,8 @@
       "annotation": {
         "i18n": {
           "zh": {
-            "title": "图片原始精度",
-            "summary": "已移除的兼容旗标，保留为空操作以便旧封装仍能传 --enable image_detail_original。"
+            "title": "旧版精度",
+            "summary": "功能已移除，仅保留旧设置兼容。"
           }
         }
       }
@@ -1278,8 +1278,8 @@
       "annotation": {
         "i18n": {
           "zh": {
-            "title": "图片生成",
-            "summary": "启用扩展支撑的图片生成能力。"
+            "title": "生成图片",
+            "summary": "启用扩展提供的图片生成工具。"
           }
         }
       }
@@ -1305,8 +1305,8 @@
       "annotation": {
         "i18n": {
           "zh": {
-            "title": "图片缩放提示",
-            "summary": "当提示词图片被缩放时告知模型，并附上原始尺寸。"
+            "title": "缩放提示",
+            "summary": "图片缩放后，告诉模型原始尺寸。"
           }
         }
       }
@@ -1332,9 +1332,9 @@
       "annotation": {
         "i18n": {
           "zh": {
-            "title": "应用内浏览器",
-            "summary": "允许桌面端的应用内浏览器面板。",
-            "note": "官方注明 requirements 专用闸门：应由系统级 requirements.toml 下发，不建议写进用户配置。"
+            "title": "内置浏览",
+            "summary": "在应用内打开网页。",
+            "note": "由系统级团队设置控制。\n不建议写入个人设置。"
           }
         }
       }
@@ -1360,9 +1360,9 @@
       "annotation": {
         "i18n": {
           "zh": {
-            "title": "应用内聊天",
-            "summary": "允许桌面端的应用内聊天面板。",
-            "note": "官方注明 requirements 专用闸门：应由系统级 requirements.toml 下发，不建议写进用户配置。"
+            "title": "内置聊天",
+            "summary": "在桌面应用中使用聊天面板。",
+            "note": "由系统级团队设置控制。\n不建议写入个人设置。"
           }
         }
       }
@@ -1388,9 +1388,9 @@
       "annotation": {
         "i18n": {
           "zh": {
-            "title": "应用内听写",
-            "summary": "允许桌面端的应用内语音听写。",
-            "note": "官方注明 requirements 专用闸门：应由系统级 requirements.toml 下发，不建议写进用户配置。"
+            "title": "语音输入",
+            "summary": "在桌面应用中用语音输入文字。",
+            "note": "由系统级团队设置控制。\n不建议写入个人设置。"
           }
         }
       }
@@ -1416,9 +1416,9 @@
       "annotation": {
         "i18n": {
           "zh": {
-            "title": "应用内更新",
-            "summary": "允许桌面端执行应用内自更新。",
-            "note": "官方注明 requirements 专用闸门：应由系统级 requirements.toml 下发，不建议写进用户配置。"
+            "title": "应用更新",
+            "summary": "允许桌面应用自行更新。",
+            "note": "由系统级团队设置控制。\n不建议写入个人设置。"
           }
         }
       }
@@ -1444,8 +1444,8 @@
       "annotation": {
         "i18n": {
           "zh": {
-            "title": "响应条目 ID",
-            "summary": "响应条目 ID 已恒为开启，此为已移除的兼容旗标。"
+            "title": "回复编号",
+            "summary": "此功能已始终开启，保留开关仅为兼容。"
           }
         }
       }
@@ -1472,7 +1472,7 @@
         "i18n": {
           "zh": {
             "title": "JavaScript REPL",
-            "summary": "已删除的 JavaScript REPL 功能的兼容旗标。"
+            "summary": "功能已移除，仅保留旧设置兼容。"
           }
         }
       }
@@ -1498,8 +1498,8 @@
       "annotation": {
         "i18n": {
           "zh": {
-            "title": "JS REPL 仅工具模式",
-            "summary": "已删除的 JavaScript REPL 仅工具模式的兼容旗标。"
+            "title": "旧版工具",
+            "summary": "功能已移除，仅保留旧设置兼容。"
           }
         }
       }
@@ -1525,9 +1525,9 @@
       "annotation": {
         "i18n": {
           "zh": {
-            "title": "本地会话存储压缩",
-            "summary": "压缩冷的本地线程存储 rollout 文件（含共享历史）。",
-            "note": "官方注明：要求所有读取 Codex home 的程序都支持压缩的共享历史——多个工具共用一个 CODEX_HOME 时慎开。"
+            "title": "压缩记录",
+            "summary": "压缩不常用的对话记录，节省空间。",
+            "note": "共用此数据目录的工具须支持压缩记录。\n请先确认兼容，再开启。"
           }
         }
       }
@@ -1553,8 +1553,8 @@
       "annotation": {
         "i18n": {
           "zh": {
-            "title": "MCP 2026-07-28 协议",
-            "summary": "启用 MCP 协议 2026-07-28 版本支持。"
+            "title": "MCP 2026-07-28",
+            "summary": "支持 MCP 2026-07-28 版本。"
           }
         }
       }
@@ -1582,8 +1582,8 @@
       "annotation": {
         "i18n": {
           "zh": {
-            "title": "记忆（Memories）",
-            "summary": "启用启动时的记忆提取与文件化的记忆整理。"
+            "title": "记忆",
+            "summary": "从对话提炼记忆，并整理成记忆文件。"
           }
         }
       }
@@ -1609,8 +1609,8 @@
       "annotation": {
         "i18n": {
           "zh": {
-            "title": "统一 @ 提及弹窗",
-            "summary": "启用 TUI 默认使用的统一 mention 弹窗。"
+            "title": "引用菜单",
+            "summary": "在终端使用统一的 @ 引用菜单。"
           }
         }
       }
@@ -1638,8 +1638,8 @@
       "annotation": {
         "i18n": {
           "zh": {
-            "title": "多代理协作工具",
-            "summary": "启用 collab 多代理协作工具。"
+            "title": "多方协作",
+            "summary": "允许多个助手分工完成任务。"
           }
         }
       }
@@ -1665,8 +1665,8 @@
       "annotation": {
         "i18n": {
           "zh": {
-            "title": "多代理模式",
-            "summary": "已移除的兼容旗标，现为空操作（no-op）。"
+            "title": "旧版协作",
+            "summary": "功能已移除，此开关不再生效。"
           }
         }
       }
@@ -1692,8 +1692,8 @@
       "annotation": {
         "i18n": {
           "zh": {
-            "title": "多代理 V2",
-            "summary": "启用基于任务路径（task-path）的多代理路由。"
+            "title": "协作新版",
+            "summary": "按任务路径分配多个助手的工作。"
           }
         }
       }
@@ -1723,8 +1723,8 @@
       "annotation": {
         "i18n": {
           "zh": {
-            "title": "受管网络代理",
-            "summary": "为沙箱会话启动受管网络代理，对已有网络访问的会话施加代理层限制。"
+            "title": "联网限制",
+            "summary": "对已允许联网的任务施加额外网络限制。"
           }
         }
       }
@@ -1750,8 +1750,8 @@
       "annotation": {
         "i18n": {
           "zh": {
-            "title": "MCP 工具名去前缀",
-            "summary": "MCP 模型可见命名空间不再携带旧式 mcp__ 前缀。"
+            "title": "简化名称",
+            "summary": "向模型显示 MCP 工具时，去掉旧前缀。"
           }
         }
       }
@@ -1781,8 +1781,8 @@
       "annotation": {
         "i18n": {
           "zh": {
-            "title": "个性（Personality）",
-            "summary": "已移除的兼容旗标，仅作为空操作保留。",
+            "title": "回复风格",
+            "summary": "旧版风格开关，现已不再生效。",
             "note": "此前用于启用 TUI 中的个性（回复风格）选择。"
           }
         }
@@ -1809,8 +1809,8 @@
       "annotation": {
         "i18n": {
           "zh": {
-            "title": "插件自带钩子",
-            "summary": "插件随包携带生命周期钩子的兼容旗标，已移除。"
+            "title": "旧版脚本",
+            "summary": "功能已移除，仅保留旧设置兼容。"
           }
         }
       }
@@ -1863,7 +1863,7 @@
       "annotation": {
         "i18n": {
           "zh": {
-            "title": "插件（Plugins）",
+            "title": "插件",
             "summary": "启用插件系统。"
           }
         }
@@ -1896,8 +1896,8 @@
       "annotation": {
         "i18n": {
           "zh": {
-            "title": "运行中防休眠",
-            "summary": "回合运行期间阻止系统进入闲置休眠。"
+            "title": "保持唤醒",
+            "summary": "任务运行时，不让电脑自动休眠。"
           }
         }
       }
@@ -1963,8 +1963,8 @@
       "annotation": {
         "i18n": {
           "zh": {
-            "title": "实时语音对话",
-            "summary": "在 TUI 中启用语音对话。"
+            "title": "语音聊天",
+            "summary": "在终端中开启语音对话。"
           }
         }
       }
@@ -1991,7 +1991,7 @@
         "i18n": {
           "zh": {
             "title": "推荐插件",
-            "summary": "在模型可见上下文中加入推荐插件。"
+            "summary": "向模型提供推荐插件。"
           }
         }
       }
@@ -2021,8 +2021,8 @@
       "annotation": {
         "i18n": {
           "zh": {
-            "title": "远端压缩 V2",
-            "summary": "已移除的兼容键，仍会告知 Responses API。",
+            "title": "压缩新版",
+            "summary": "旧版远程压缩，已移除。\n仍会向 Responses API 传递此设置。",
             "note": "此前用于通过常规 Responses API 启用远端上下文压缩 v2。"
           }
         }
@@ -2050,7 +2050,7 @@
         "i18n": {
           "zh": {
             "title": "远程控制",
-            "summary": "已删除的远程控制功能的兼容旗标。"
+            "summary": "功能已移除，仅保留旧设置兼容。"
           }
         }
       }
@@ -2077,7 +2077,7 @@
         "i18n": {
           "zh": {
             "title": "远程模型",
-            "summary": "旧版远程模型旗标，仅为向后兼容保留。"
+            "summary": "旧版开关，仅保留旧设置兼容。"
           }
         }
       }
@@ -2131,8 +2131,8 @@
       "annotation": {
         "i18n": {
           "zh": {
-            "title": "权限申请工具",
-            "summary": "暴露内置的 request_permissions 工具。"
+            "title": "请求权限",
+            "summary": "允许模型使用内置工具向你申请权限。"
           }
         }
       }
@@ -2158,8 +2158,8 @@
       "annotation": {
         "i18n": {
           "zh": {
-            "title": "exec 规则提案",
-            "summary": "允许模型请求审批并提议 exec 规则，已移除。"
+            "title": "旧版规则",
+            "summary": "功能已移除，仅保留旧设置兼容。"
           }
         }
       }
@@ -2185,8 +2185,8 @@
       "annotation": {
         "i18n": {
           "zh": {
-            "title": "统一图片预处理",
-            "summary": "集中式图片预处理已恒为开启，此为已移除的兼容旗标。"
+            "title": "图片处理",
+            "summary": "此功能已始终开启，保留开关仅为兼容。"
           }
         }
       }
@@ -2212,8 +2212,8 @@
       "annotation": {
         "i18n": {
           "zh": {
-            "title": "跟随系统代理",
-            "summary": "Codex 自有的网络客户端遵循宿主系统的代理设置。"
+            "title": "系统代理",
+            "summary": "联网时遵循系统代理设置。"
           }
         }
       }
@@ -2239,8 +2239,8 @@
       "annotation": {
         "i18n": {
           "zh": {
-            "title": "Responses WebSocket 传输",
-            "summary": "Responses API WebSocket 传输实验的旧灰度旗标。"
+            "title": "WebSocket",
+            "summary": "旧版 Responses 连接测试开关。"
           }
         }
       }
@@ -2266,8 +2266,8 @@
       "annotation": {
         "i18n": {
           "zh": {
-            "title": "Responses WebSocket 传输 V2",
-            "summary": "Responses API WebSocket 传输 v2 实验的旧灰度旗标。"
+            "title": "WebSocket V2",
+            "summary": "旧版 Responses V2 连接测试开关。"
           }
         }
       }
@@ -2293,8 +2293,8 @@
       "annotation": {
         "i18n": {
           "zh": {
-            "title": "保留客户端 developer 消息",
-            "summary": "上下文窗口压缩后保留客户端下发的 developer 消息。"
+            "title": "保留指令",
+            "summary": "压缩对话后，保留客户端的开发者指令。"
           }
         }
       }
@@ -2320,8 +2320,8 @@
       "annotation": {
         "i18n": {
           "zh": {
-            "title": "会话共享 token 预算",
-            "summary": "跨一个会话的所有代理线程追踪并报告共享 token 预算。"
+            "title": "共用预算",
+            "summary": "同一对话的多个助手共用 token 预算。"
           }
         }
       }
@@ -2347,8 +2347,8 @@
       "annotation": {
         "i18n": {
           "zh": {
-            "title": "运行时指标",
-            "summary": "启用运行时指标快照（通过手动读取器获取）。"
+            "title": "运行指标",
+            "summary": "记录运行情况，供手动检查。"
           }
         }
       }
@@ -2375,7 +2375,7 @@
         "i18n": {
           "zh": {
             "title": "搜索工具",
-            "summary": "旧版 search-tool 旗标，仅为向后兼容保留。"
+            "summary": "旧版开关，仅保留旧设置兼容。"
           }
         }
       }
@@ -2402,9 +2402,9 @@
       "annotation": {
         "i18n": {
           "zh": {
-            "title": "加密凭据存储",
-            "summary": "选择 keyring 存储时，把 CLI 登录凭据存进本地加密 secrets 后端。",
-            "note": "默认值平台相关：Windows 默认开启，其余平台默认关闭（default_expr = cfg!(windows)）。"
+            "title": "加密保存",
+            "summary": "选择 keyring 时，加密保存本机登录信息。",
+            "note": "Windows 默认开启，其他系统默认关闭。"
           }
         }
       }
@@ -2430,8 +2430,8 @@
       "annotation": {
         "i18n": {
           "zh": {
-            "title": "模型异步消息",
-            "summary": "模型主动异步给用户发消息的兼容旗标，已移除。"
+            "title": "主动消息",
+            "summary": "功能已移除，仅保留旧设置兼容。"
           }
         }
       }
@@ -2457,8 +2457,8 @@
       "annotation": {
         "i18n": {
           "zh": {
-            "title": "Shell 快照",
-            "summary": "实验性的 shell 环境快照能力。"
+            "title": "终端快照",
+            "summary": "试用终端环境快照功能。"
           }
         }
       }
@@ -2484,8 +2484,8 @@
       "annotation": {
         "i18n": {
           "zh": {
-            "title": "Shell 工具",
-            "summary": "启用默认的 shell 工具。"
+            "title": "运行命令",
+            "summary": "启用默认的终端命令工具。"
           }
         }
       }
@@ -2511,8 +2511,8 @@
       "annotation": {
         "i18n": {
           "zh": {
-            "title": "zsh 执行桥",
-            "summary": "把 shell 工具的执行路由到 zsh exec 桥。"
+            "title": "zsh 执行",
+            "summary": "通过 zsh 运行终端命令。"
           }
         }
       }
@@ -2538,8 +2538,8 @@
       "annotation": {
         "i18n": {
           "zh": {
-            "title": "技能环境变量依赖提示",
-            "summary": "已删除的技能环境变量依赖提示功能的兼容旗标。"
+            "title": "旧版提示",
+            "summary": "功能已移除，仅保留旧设置兼容。"
           }
         }
       }
@@ -2565,8 +2565,8 @@
       "annotation": {
         "i18n": {
           "zh": {
-            "title": "技能 MCP 依赖安装",
-            "summary": "允许提示并安装技能缺失的 MCP 依赖。"
+            "title": "补装工具",
+            "summary": "提示并安装 Skill 缺少的 MCP 工具。"
           }
         }
       }
@@ -2592,8 +2592,8 @@
       "annotation": {
         "i18n": {
           "zh": {
-            "title": "技能搜索灰度",
-            "summary": "以影子模式运行低成本的技能搜索方法并上报实验指标。"
+            "title": "搜索试验",
+            "summary": "试算 Skill 搜索结果，仅记录试验数据。"
           }
         }
       }
@@ -2619,8 +2619,8 @@
       "annotation": {
         "i18n": {
           "zh": {
-            "title": "SQLite 元数据存储",
-            "summary": "把 rollout 元数据持久化到本地 SQLite 数据库，已移除。"
+            "title": "旧版存储",
+            "summary": "功能已移除，仅保留旧设置兼容。"
           }
         }
       }
@@ -2646,8 +2646,8 @@
       "annotation": {
         "i18n": {
           "zh": {
-            "title": "独立网页搜索",
-            "summary": "暴露扩展支撑的独立 web 搜索工具。"
+            "title": "网页搜索",
+            "summary": "启用扩展提供的独立网页搜索。"
           }
         }
       }
@@ -2673,8 +2673,8 @@
       "annotation": {
         "i18n": {
           "zh": {
-            "title": "Enter 立即提交（Steer）",
-            "summary": "开启时 Enter 直接提交而非排队；行为已恒为开启，旗标仅为配置兼容保留。"
+            "title": "立即发送",
+            "summary": "按 Enter 直接提交，此行为已始终开启。"
           }
         }
       }
@@ -2701,7 +2701,7 @@
         "i18n": {
           "zh": {
             "title": "终端重排",
-            "summary": "终端尺寸变化时的转写回流重排已恒为开启，此为已移除的兼容旗标。"
+            "summary": "此功能已始终开启，保留开关仅为兼容。"
           }
         }
       }
@@ -2727,8 +2727,8 @@
       "annotation": {
         "i18n": {
           "zh": {
-            "title": "终端可视化指引",
-            "summary": "在 TUI 的 developer 指令中加入终端专属的可视化指引。"
+            "title": "终端展示",
+            "summary": "为终端加入专用的内容展示指引。"
           }
         }
       }
@@ -2754,8 +2754,8 @@
       "annotation": {
         "i18n": {
           "zh": {
-            "title": "上下文用量元数据",
-            "summary": "在模型可见上下文中加入当前上下文窗口的元数据。"
+            "title": "容量信息",
+            "summary": "告诉模型当前对话容量的使用情况。"
           }
         }
       }
@@ -2781,8 +2781,8 @@
       "annotation": {
         "i18n": {
           "zh": {
-            "title": "MCP 工具审批引导",
-            "summary": "MCP 工具的审批提示改走 MCP elicitation 请求路径。"
+            "title": "工具授权",
+            "summary": "通过 MCP 的授权流程确认工具操作。"
           }
         }
       }
@@ -2809,7 +2809,7 @@
         "i18n": {
           "zh": {
             "title": "工具搜索",
-            "summary": "tool_search 已恒为开启，此为已移除的兼容旗标。"
+            "summary": "此功能已始终开启，保留开关仅为兼容。"
           }
         }
       }
@@ -2835,8 +2835,8 @@
       "annotation": {
         "i18n": {
           "zh": {
-            "title": "MCP 工具恒延迟",
-            "summary": "tool_search 可用时 MCP 工具恒被延迟加载，此为已移除的兼容旗标。"
+            "title": "按需加载",
+            "summary": "此功能已始终开启，保留开关仅为兼容。"
           }
         }
       }
@@ -2863,7 +2863,7 @@
         "i18n": {
           "zh": {
             "title": "工具建议",
-            "summary": "为 apps 启用可发现的工具建议。"
+            "summary": "提供应用工具建议，方便模型找到工具。"
           }
         }
       }
@@ -2889,8 +2889,8 @@
       "annotation": {
         "i18n": {
           "zh": {
-            "title": "TUI app-server 实现",
-            "summary": "TUI 已恒定使用 app-server 实现，此为已移除的兼容旗标。"
+            "title": "终端后端",
+            "summary": "此功能已始终开启，保留开关仅为兼容。"
           }
         }
       }
@@ -2916,8 +2916,8 @@
       "annotation": {
         "i18n": {
           "zh": {
-            "title": "占位工具回填",
-            "summary": "已删除的不可用工具占位回填功能的兼容旗标。"
+            "title": "旧版占位",
+            "summary": "功能已移除，仅保留旧设置兼容。"
           }
         }
       }
@@ -2943,8 +2943,8 @@
       "annotation": {
         "i18n": {
           "zh": {
-            "title": "断线无限重试",
-            "summary": "网络连接失败时保持进行中的采样回合存活，直到连接恢复（不设重试上限）。"
+            "title": "持续重连",
+            "summary": "断网后保持任务，持续重试直到连接恢复。"
           }
         }
       }
@@ -2970,8 +2970,8 @@
       "annotation": {
         "i18n": {
           "zh": {
-            "title": "撤销（Ghost Commit）",
-            "summary": "已移除的兼容旗标，保留为空操作以便旧配置仍能解析 undo；对应源码变体名 GhostCommit。"
+            "title": "旧版撤销",
+            "summary": "功能已移除，此开关不再生效。"
           }
         }
       }
@@ -2999,8 +2999,8 @@
       "annotation": {
         "i18n": {
           "zh": {
-            "title": "统一执行工具",
-            "summary": "使用单一的、PTY 支撑的统一 exec 工具。"
+            "title": "统一执行",
+            "summary": "通过统一终端工具执行命令。"
           }
         }
       }
@@ -3030,8 +3030,8 @@
       "annotation": {
         "i18n": {
           "zh": {
-            "title": "统一执行 × zsh 桥组合",
-            "summary": "允许 unified exec 与 zsh 执行桥组合的纯组合闸门（单开不会启用两者），已移除。"
+            "title": "旧版组合",
+            "summary": "组合开关已移除，单独开启不会生效。"
           }
         }
       }
@@ -3057,8 +3057,8 @@
       "annotation": {
         "i18n": {
           "zh": {
-            "title": "统一图片预算",
-            "summary": "对所有图片应用同一套像素与 token 预算，忽略旧式 detail 提示。"
+            "title": "图片预算",
+            "summary": "所有图片共用一套像素和 token 限制。"
           }
         }
       }
@@ -3085,7 +3085,7 @@
         "i18n": {
           "zh": {
             "title": "Agent Identity",
-            "summary": "ChatGPT 登录的会话使用 Agent Identity（代理身份）。"
+            "summary": "ChatGPT 登录的对话使用助手身份。"
           }
         }
       }
@@ -3111,8 +3111,8 @@
       "annotation": {
         "i18n": {
           "zh": {
-            "title": "旧版 Landlock 沙箱",
-            "summary": "用旧版 Landlock Linux 沙箱回退替代默认的 bubblewrap 管线（已弃用）。"
+            "title": "旧版保护",
+            "summary": "改用旧版 Linux 文件保护，已弃用。"
           }
         }
       }
@@ -3138,8 +3138,8 @@
       "annotation": {
         "i18n": {
           "zh": {
-            "title": "Linux bubblewrap 沙箱",
-            "summary": "已移除的旧版 Linux bubblewrap 选择旗标，保留为空操作以便旧封装与配置仍能解析。"
+            "title": "旧版隔离",
+            "summary": "功能已移除，此开关不再生效。"
           }
         }
       }
@@ -3165,8 +3165,8 @@
       "annotation": {
         "i18n": {
           "zh": {
-            "title": "图片查看器",
-            "summary": "启用内置的本地图片查看器。"
+            "title": "查看图片",
+            "summary": "允许 Codex 查看本机图片。"
           }
         }
       }
@@ -3192,8 +3192,8 @@
       "annotation": {
         "i18n": {
           "zh": {
-            "title": "缓存网页搜索",
-            "summary": "允许模型请求返回缓存内容的网页搜索；优先级高于 web_search_request（已弃用）。"
+            "title": "已有搜索",
+            "summary": "使用已保存的网页搜索结果，已弃用。"
           }
         }
       }
@@ -3221,8 +3221,8 @@
       "annotation": {
         "i18n": {
           "zh": {
-            "title": "实时网页搜索",
-            "summary": "允许模型请求抓取实时内容的网页搜索（已弃用）。"
+            "title": "实时搜索",
+            "summary": "抓取最新网页进行搜索，已弃用。"
           }
         }
       }
@@ -3275,8 +3275,8 @@
       "annotation": {
         "i18n": {
           "zh": {
-            "title": "工作区用量提醒",
-            "summary": "工作区所有者用量提醒已恒为开启，此为已移除的兼容旗标。"
+            "title": "用量提醒",
+            "summary": "此功能已始终开启，保留开关仅为兼容。"
           }
         }
       }

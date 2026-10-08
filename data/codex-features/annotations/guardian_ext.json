@@ -2,8 +2,8 @@
   "key": "guardian_ext",
   "i18n": {
     "zh": {
-      "title": "扩展版 Guardian",
-      "summary": "未使用的 Guardian 扩展原型的兼容旗标，已移除。"
+      "title": "扩展审查",
+      "summary": "旧版扩展审查，已移除。"
     }
   }
 }

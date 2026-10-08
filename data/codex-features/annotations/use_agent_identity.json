@@ -3,7 +3,7 @@
   "i18n": {
     "zh": {
       "title": "Agent Identity",
-      "summary": "ChatGPT 登录的会话使用 Agent Identity（代理身份）。"
+      "summary": "ChatGPT 登录的对话使用助手身份。"
     }
   }
 }

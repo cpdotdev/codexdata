@@ -2,8 +2,8 @@
   "key": "executed_tool_call_metadata",
   "i18n": {
     "zh": {
-      "title": "工具调用记录元数据",
-      "summary": "在内部 Responses 元数据中记录模型尝试过的工具调用。"
+      "title": "工具记录",
+      "summary": "在内部回复信息中记录已尝试的工具。"
     }
   }
 }

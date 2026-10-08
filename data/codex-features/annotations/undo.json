@@ -2,8 +2,8 @@
   "key": "undo",
   "i18n": {
     "zh": {
-      "title": "撤销（Ghost Commit）",
-      "summary": "已移除的兼容旗标，保留为空操作以便旧配置仍能解析 undo；对应源码变体名 GhostCommit。"
+      "title": "旧版撤销",
+      "summary": "功能已移除，此开关不再生效。"
     }
   }
 }

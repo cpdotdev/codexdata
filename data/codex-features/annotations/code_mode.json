@@ -2,9 +2,9 @@
   "key": "code_mode",
   "i18n": {
     "zh": {
-      "title": "代码模式（Code Mode）",
-      "summary": "启用由独立宿主进程支撑的 JavaScript 代码模式。",
-      "note": "配合 code_mode_host / code_mode_only / code_mode_prewarm / code_mode_interrupt 等子旗标使用。"
+      "title": "代码模式",
+      "summary": "在独立进程中运行 JavaScript 代码。",
+      "note": "与代码模式的其他子开关配合使用。"
     }
   }
 }

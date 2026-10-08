@@ -2,8 +2,8 @@
   "key": "external_migration",
   "i18n": {
     "zh": {
-      "title": "外部迁移",
-      "summary": "已移除的兼容旗标，现为空操作（no-op）。"
+      "title": "旧版迁移",
+      "summary": "功能已移除，此开关不再生效。"
     }
   }
 }

@@ -2,8 +2,8 @@
   "key": "cwd_relative_turn_diffs",
   "i18n": {
     "zh": {
-      "title": "回合 diff 相对路径",
-      "summary": "回合 diff 的展示路径改用相对当前工作目录的形式。"
+      "title": "简短路径",
+      "summary": "改动文件路径从当前项目位置开始显示。"
     }
   }
 }

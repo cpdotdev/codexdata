@@ -2,8 +2,8 @@
   "key": "runtime_metrics",
   "i18n": {
     "zh": {
-      "title": "运行时指标",
-      "summary": "启用运行时指标快照（通过手动读取器获取）。"
+      "title": "运行指标",
+      "summary": "记录运行情况，供手动检查。"
     }
   }
 }
