@@ -1,7 +1,7 @@
 {
   "schema": "codex-model-info",
   "latest": {
-    "tag": "rust-v0.161.0",
+    "tag": "rust-v0.162.1",
     "url": "https://data.cp.dev/v1/schema/codex-model-info/latest.json"
   },
   "verified_tags": [
@@ -92,6 +92,14 @@
     {
       "tag": "rust-v0.161.0",
       "url": "https://data.cp.dev/v1/schema/codex-model-info/rust-v0.161.0.json"
+    },
+    {
+      "tag": "rust-v0.162.0",
+      "url": "https://data.cp.dev/v1/schema/codex-model-info/rust-v0.162.0.json"
+    },
+    {
+      "tag": "rust-v0.162.1",
+      "url": "https://data.cp.dev/v1/schema/codex-model-info/rust-v0.162.1.json"
     }
   ],
   "source_files": [
