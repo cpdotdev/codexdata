@@ -1,0 +1,1204 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://data.cp.dev/v1/schema/codex-model-info/latest.json",
+  "title": "Codex GET /models response (ModelsResponse) as parsed by the openai/codex client",
+  "description": "Hand-derived from codex-rs/protocol/src/openai_models.rs (openai/codex). Verified byte-for-byte against tags rust-v0.148.0 … rust-v0.161.0 (see tags.json). This schema encodes what makes the client REJECT THE ENTIRE RESPONSE: missing required fields, wrong JSON types, and closed enums. It is deliberately permissive elsewhere because the client ignores unknown keys (no deny_unknown_fields). Caveats: serde rejects JSON floats where an integer is expected (12.0 for priority) while JSON Schema's `integer` accepts them; `tool_mode` / `multi_agent_version` must be strings if present but unknown strings are silently treated as absent; ReasoningEffort is open (any non-empty string), unknown values become Custom(String).",
+  "type": "object",
+  "required": [
+    "models"
+  ],
+  "properties": {
+    "models": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/ModelInfo"
+      }
+    }
+  },
+  "$defs": {
+    "ReasoningEffort": {
+      "type": "string",
+      "minLength": 1,
+      "description": "none | minimal | low | medium | high | xhigh | max | ultra | persistent (0.151+) are known; any other non-empty string parses as Custom and is sent verbatim on the wire. `ultra` is never sent on the wire; `persistent` is sent as `disabled`."
+    },
+    "NullableString": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "NullableInteger": {
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "NullableBoolean": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "ReasoningEffortPreset": {
+      "type": "object",
+      "required": [
+        "effort",
+        "description"
+      ],
+      "properties": {
+        "effort": {
+          "$ref": "#/$defs/ReasoningEffort"
+        },
+        "description": {
+          "type": "string"
+        }
+      }
+    },
+    "ModelServiceTier": {
+      "type": "object",
+      "required": [
+        "id",
+        "name",
+        "description"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        }
+      }
+    },
+    "ModelAvailabilityNux": {
+      "type": "object",
+      "required": [
+        "message"
+      ],
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "ModelInfoUpgrade": {
+      "type": "object",
+      "required": [
+        "model",
+        "migration_markdown"
+      ],
+      "properties": {
+        "model": {
+          "type": "string"
+        },
+        "migration_markdown": {
+          "type": "string"
+        },
+        "retirement_at": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "RFC 3339 timestamp; the client rejects strings it cannot parse as such."
+        }
+      }
+    },
+    "ModelInstructionsVariables": {
+      "type": "object",
+      "properties": {
+        "personality_default": {
+          "$ref": "#/$defs/NullableString"
+        },
+        "personality_friendly": {
+          "$ref": "#/$defs/NullableString"
+        },
+        "personality_pragmatic": {
+          "$ref": "#/$defs/NullableString"
+        }
+      }
+    },
+    "ModelTokenBudgetConfig": {
+      "type": "object",
+      "required": [
+        "reminder_threshold_tokens",
+        "reminder_message_template",
+        "guidance_message",
+        "auto_compact_fallback_prompt",
+        "auto_compact_fallback_buffer_tokens"
+      ],
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        },
+        "use_history_notes_extension": {
+          "type": "boolean"
+        },
+        "reminder_threshold_tokens": {
+          "type": "integer"
+        },
+        "reminder_message_template": {
+          "type": "string"
+        },
+        "guidance_message": {
+          "type": "string"
+        },
+        "auto_compact_fallback_prompt": {
+          "type": "string"
+        },
+        "auto_compact_fallback_buffer_tokens": {
+          "type": "integer"
+        }
+      }
+    },
+    "ToolMessage": {
+      "type": "object",
+      "description": "Model-owned description (and, 0.156+, parameters) for one built-in tool.",
+      "properties": {
+        "description": {
+          "$ref": "#/$defs/NullableString"
+        },
+        "parameters": {
+          "$ref": "#/$defs/NullableString",
+          "description": "0.156+: a complete JSON Schema encoded as a string; invalid schemas fall back to the harness parameters instead of rejecting the response."
+        }
+      }
+    },
+    "ModelAccessPrograms": {
+      "type": "object",
+      "required": [
+        "cyber"
+      ],
+      "description": "0.156+: caller-specific explicit access programs. Discovery metadata does not grant access.",
+      "properties": {
+        "cyber": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "standard | daybreak_blue | daybreak_red are known; unknown strings are dropped. A missing `cyber` or a non-string item rejects the whole response."
+        }
+      }
+    },
+    "GuardianReviewMode": {
+      "type": "string",
+      "description": "disabled | synchronous | adaptive are known; any other string parses as Unknown (keeps synchronous review, never the fast path). Non-strings are rejected."
+    },
+    "GuardianModelPolicy": {
+      "type": "object",
+      "description": "0.154+: model-owned Guardian coverage. An absent policy keeps the legacy settings; omitted scopes are disabled; unknown keys are ignored.",
+      "properties": {
+        "computer_use": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/$defs/GuardianReviewMode"
+            }
+          ]
+        },
+        "shell": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/$defs/GuardianReviewMode"
+            }
+          ]
+        },
+        "code_mode": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/$defs/GuardianReviewMode"
+            }
+          ],
+          "description": "Read by 0.154/0.155 only; 0.156+ ignores the key."
+        },
+        "file_changes": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/$defs/GuardianReviewMode"
+            }
+          ]
+        },
+        "mcp": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/$defs/GuardianReviewMode"
+            }
+          ]
+        },
+        "network": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/$defs/GuardianReviewMode"
+            }
+          ]
+        },
+        "permissions": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/$defs/GuardianReviewMode"
+            }
+          ]
+        },
+        "other_tools": {
+          "$ref": "#/$defs/GuardianReviewMode",
+          "description": "0.156+: coverage for tools without an approval category. Not nullable."
+        },
+        "unscored_action": {
+          "type": "string",
+          "description": "0.156+: ignore | age_score | invalidate_score; other strings parse as invalidate_score. Not nullable."
+        },
+        "initial_cua_call": {
+          "$ref": "#/$defs/NullableBoolean"
+        },
+        "sandboxed_exec_commands": {
+          "$ref": "#/$defs/NullableBoolean"
+        }
+      }
+    },
+    "GuardianV2ModelConfig": {
+      "type": "object",
+      "description": "0.149+: optional model-owned defaults for Guardian v2 classification. Fields were added over time; older clients ignore the newer keys.",
+      "properties": {
+        "async_classifier_mode": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "snapshot",
+            "conversation",
+            null
+          ],
+          "description": "0.161+, closed enum: any other string rejects the whole response."
+        },
+        "async_classifier_conversation_token_limit": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "classifier_instructions": {
+          "$ref": "#/$defs/NullableString"
+        },
+        "review_threshold_basis_points": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 65535
+        },
+        "max_tool_call_lag": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "reasoning_effort": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/$defs/ReasoningEffort"
+            }
+          ]
+        },
+        "transcript": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "properties": {
+            "sources": {
+              "type": [
+                "array",
+                "null"
+              ],
+              "items": {
+                "type": "string"
+              }
+            },
+            "include_images": {
+              "$ref": "#/$defs/NullableBoolean"
+            },
+            "max_message_entry_tokens": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "max_tool_entry_tokens": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "max_message_transcript_tokens": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "max_tool_transcript_tokens": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "max_recent_non_user_entries": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 0
+            }
+          }
+        },
+        "max_action_tokens": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "max_classifier_instruction_tokens": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "reuse_parent_compaction": {
+          "$ref": "#/$defs/NullableBoolean"
+        },
+        "max_parent_compaction_tokens": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        }
+      }
+    },
+    "ModelMessages": {
+      "type": "object",
+      "description": "Model Messages V2. Every field is optional/nullable; absent sub-messages fall back to the client's built-in templates. `instructions_template` is required only through the top-level prompt rule (see ModelInfo.allOf).",
+      "properties": {
+        "content_filter_guidance": {
+          "$ref": "#/$defs/NullableString",
+          "description": "0.160+: developer guidance after a content-filter block; blank or over 512 UTF-8 bytes uses the bundled text."
+        },
+        "persistent_instructions": {
+          "$ref": "#/$defs/NullableString"
+        },
+        "tools": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "properties": {
+            "indirect_description_prefixes": {
+              "type": [
+                "object",
+                "null"
+              ],
+              "description": "0.158+: plain-text prefixes for indirectly presented tool namespaces.",
+              "properties": {
+                "namespaces": {
+                  "type": [
+                    "object",
+                    "null"
+                  ],
+                  "additionalProperties": {
+                    "type": "string"
+                  }
+                },
+                "mcp_servers": {
+                  "type": [
+                    "object",
+                    "null"
+                  ],
+                  "additionalProperties": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "send_user_message_async": {
+              "anyOf": [
+                {
+                  "type": "null"
+                },
+                {
+                  "$ref": "#/$defs/ToolMessage"
+                }
+              ]
+            },
+            "multi_agent": {
+              "type": [
+                "object",
+                "null"
+              ],
+              "description": "0.156+: Multi-Agent V2 tool messages (the channel tools create_channel … post are 0.158+).",
+              "properties": {
+                "spawn_agent": {
+                  "anyOf": [
+                    {
+                      "type": "null"
+                    },
+                    {
+                      "$ref": "#/$defs/ToolMessage"
+                    }
+                  ]
+                },
+                "send_message": {
+                  "anyOf": [
+                    {
+                      "type": "null"
+                    },
+                    {
+                      "$ref": "#/$defs/ToolMessage"
+                    }
+                  ]
+                },
+                "followup_task": {
+                  "anyOf": [
+                    {
+                      "type": "null"
+                    },
+                    {
+                      "$ref": "#/$defs/ToolMessage"
+                    }
+                  ]
+                },
+                "wait_agent": {
+                  "anyOf": [
+                    {
+                      "type": "null"
+                    },
+                    {
+                      "$ref": "#/$defs/ToolMessage"
+                    }
+                  ]
+                },
+                "interrupt_agent": {
+                  "anyOf": [
+                    {
+                      "type": "null"
+                    },
+                    {
+                      "$ref": "#/$defs/ToolMessage"
+                    }
+                  ]
+                },
+                "list_agents": {
+                  "anyOf": [
+                    {
+                      "type": "null"
+                    },
+                    {
+                      "$ref": "#/$defs/ToolMessage"
+                    }
+                  ]
+                },
+                "create_channel": {
+                  "anyOf": [
+                    {
+                      "type": "null"
+                    },
+                    {
+                      "$ref": "#/$defs/ToolMessage"
+                    }
+                  ]
+                },
+                "get_channels": {
+                  "anyOf": [
+                    {
+                      "type": "null"
+                    },
+                    {
+                      "$ref": "#/$defs/ToolMessage"
+                    }
+                  ]
+                },
+                "list_threads": {
+                  "anyOf": [
+                    {
+                      "type": "null"
+                    },
+                    {
+                      "$ref": "#/$defs/ToolMessage"
+                    }
+                  ]
+                },
+                "search_posts": {
+                  "anyOf": [
+                    {
+                      "type": "null"
+                    },
+                    {
+                      "$ref": "#/$defs/ToolMessage"
+                    }
+                  ]
+                },
+                "read_thread": {
+                  "anyOf": [
+                    {
+                      "type": "null"
+                    },
+                    {
+                      "$ref": "#/$defs/ToolMessage"
+                    }
+                  ]
+                },
+                "read_post": {
+                  "anyOf": [
+                    {
+                      "type": "null"
+                    },
+                    {
+                      "$ref": "#/$defs/ToolMessage"
+                    }
+                  ]
+                },
+                "subscribe": {
+                  "anyOf": [
+                    {
+                      "type": "null"
+                    },
+                    {
+                      "$ref": "#/$defs/ToolMessage"
+                    }
+                  ]
+                },
+                "unsubscribe": {
+                  "anyOf": [
+                    {
+                      "type": "null"
+                    },
+                    {
+                      "$ref": "#/$defs/ToolMessage"
+                    }
+                  ]
+                },
+                "post": {
+                  "anyOf": [
+                    {
+                      "type": "null"
+                    },
+                    {
+                      "$ref": "#/$defs/ToolMessage"
+                    }
+                  ]
+                }
+              }
+            },
+            "code_mode": {
+              "type": [
+                "object",
+                "null"
+              ],
+              "description": "0.157+: Code Mode exec/wait tool messages.",
+              "properties": {
+                "exec": {
+                  "anyOf": [
+                    {
+                      "type": "null"
+                    },
+                    {
+                      "$ref": "#/$defs/ToolMessage"
+                    }
+                  ]
+                },
+                "wait": {
+                  "anyOf": [
+                    {
+                      "type": "null"
+                    },
+                    {
+                      "$ref": "#/$defs/ToolMessage"
+                    }
+                  ]
+                },
+                "deferred_nested_tools_guidance": {
+                  "$ref": "#/$defs/NullableString"
+                },
+                "mcp_typescript_preamble": {
+                  "$ref": "#/$defs/NullableString"
+                }
+              }
+            },
+            "mcp_resources": {
+              "type": [
+                "object",
+                "null"
+              ],
+              "description": "0.158+: built-in MCP resource helper messages.",
+              "properties": {
+                "list_mcp_resources": {
+                  "anyOf": [
+                    {
+                      "type": "null"
+                    },
+                    {
+                      "$ref": "#/$defs/ToolMessage"
+                    }
+                  ]
+                },
+                "list_mcp_resource_templates": {
+                  "anyOf": [
+                    {
+                      "type": "null"
+                    },
+                    {
+                      "$ref": "#/$defs/ToolMessage"
+                    }
+                  ]
+                },
+                "read_mcp_resource": {
+                  "anyOf": [
+                    {
+                      "type": "null"
+                    },
+                    {
+                      "$ref": "#/$defs/ToolMessage"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "instructions_template": {
+          "$ref": "#/$defs/NullableString"
+        },
+        "instructions_variables": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/$defs/ModelInstructionsVariables"
+            }
+          ],
+          "description": "Deprecated since 0.156 (personality selection removed); still decoded for older catalogs."
+        },
+        "approvals": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "properties": {
+            "on_request": {
+              "$ref": "#/$defs/NullableString"
+            },
+            "on_request_auto_review": {
+              "$ref": "#/$defs/NullableString"
+            },
+            "never": {
+              "$ref": "#/$defs/NullableString"
+            },
+            "unless_trusted": {
+              "$ref": "#/$defs/NullableString"
+            }
+          }
+        },
+        "collaboration_modes": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "properties": {
+            "default": {
+              "$ref": "#/$defs/NullableString"
+            },
+            "plan": {
+              "$ref": "#/$defs/NullableString"
+            }
+          }
+        },
+        "auto_review": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "properties": {
+            "policy": {
+              "$ref": "#/$defs/NullableString"
+            },
+            "policy_template": {
+              "$ref": "#/$defs/NullableString"
+            },
+            "node_repl_policy": {
+              "$ref": "#/$defs/NullableString"
+            },
+            "rejection_instructions": {
+              "$ref": "#/$defs/NullableString"
+            },
+            "timeout_instructions": {
+              "$ref": "#/$defs/NullableString"
+            }
+          }
+        },
+        "permissions": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "properties": {
+            "danger_full_access": {
+              "$ref": "#/$defs/NullableString"
+            },
+            "workspace_write": {
+              "$ref": "#/$defs/NullableString"
+            },
+            "read_only": {
+              "$ref": "#/$defs/NullableString"
+            }
+          }
+        },
+        "multi_agent": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "properties": {
+            "role": {
+              "type": [
+                "object",
+                "null"
+              ],
+              "properties": {
+                "root": {
+                  "$ref": "#/$defs/NullableString"
+                },
+                "subagent": {
+                  "$ref": "#/$defs/NullableString"
+                }
+              }
+            },
+            "mode": {
+              "type": [
+                "object",
+                "null"
+              ],
+              "properties": {
+                "explicit": {
+                  "$ref": "#/$defs/NullableString"
+                },
+                "proactive": {
+                  "$ref": "#/$defs/NullableString"
+                },
+                "hint_text": {
+                  "$ref": "#/$defs/NullableString"
+                }
+              }
+            }
+          }
+        },
+        "token_budget": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/$defs/ModelTokenBudgetConfig"
+            }
+          ]
+        },
+        "guardian_v2": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/$defs/GuardianV2ModelConfig"
+            }
+          ]
+        },
+        "confirmation_policies": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "properties": {
+            "browser_use": {
+              "$ref": "#/$defs/NullableString"
+            },
+            "computer_use": {
+              "$ref": "#/$defs/NullableString"
+            }
+          }
+        }
+      }
+    },
+    "TruncationPolicyConfig": {
+      "type": "object",
+      "required": [
+        "mode",
+        "limit"
+      ],
+      "properties": {
+        "mode": {
+          "type": "string",
+          "enum": [
+            "bytes",
+            "tokens"
+          ]
+        },
+        "limit": {
+          "type": "integer"
+        }
+      }
+    },
+    "ModelInfo": {
+      "type": "object",
+      "required": [
+        "slug",
+        "display_name",
+        "supported_reasoning_levels",
+        "shell_type",
+        "visibility",
+        "supported_in_api",
+        "priority",
+        "support_verbosity",
+        "truncation_policy",
+        "experimental_supported_tools"
+      ],
+      "properties": {
+        "slug": {
+          "type": "string"
+        },
+        "display_name": {
+          "type": "string"
+        },
+        "description": {
+          "$ref": "#/$defs/NullableString"
+        },
+        "default_reasoning_level": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/$defs/ReasoningEffort"
+            }
+          ],
+          "description": "When absent the picker default becomes `none`."
+        },
+        "supported_reasoning_levels": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ReasoningEffortPreset"
+          }
+        },
+        "shell_type": {
+          "type": "string",
+          "enum": [
+            "unified_exec",
+            "disabled",
+            "default",
+            "local",
+            "shell_command"
+          ],
+          "description": "0.150+: unified_exec | disabled, with default/local/shell_command accepted as aliases of unified_exec. 0.148/0.149: five distinct variants with the same spellings."
+        },
+        "visibility": {
+          "type": "string",
+          "enum": [
+            "list",
+            "hide",
+            "none"
+          ]
+        },
+        "supported_in_api": {
+          "type": "boolean"
+        },
+        "priority": {
+          "type": "integer",
+          "minimum": -2147483648,
+          "maximum": 2147483647
+        },
+        "additional_speed_tiers": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "service_tiers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ModelServiceTier"
+          }
+        },
+        "default_service_tier": {
+          "$ref": "#/$defs/NullableString"
+        },
+        "available_access_programs": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/$defs/ModelAccessPrograms"
+            }
+          ],
+          "description": "0.156+; older clients ignore the key."
+        },
+        "availability_nux": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/$defs/ModelAvailabilityNux"
+            }
+          ]
+        },
+        "upgrade": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/$defs/ModelInfoUpgrade"
+            }
+          ]
+        },
+        "model_messages": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/$defs/ModelMessages"
+            }
+          ]
+        },
+        "base_instructions": {
+          "type": "string",
+          "description": "Legacy top-level prompt. Promoted into model_messages.instructions_template when that is absent."
+        },
+        "include_skills_usage_instructions": {
+          "type": "boolean"
+        },
+        "include_plugin_usage_instructions": {
+          "type": "boolean"
+        },
+        "include_apps_usage_instructions": {
+          "type": "boolean",
+          "description": "Defaults to TRUE when absent."
+        },
+        "supports_reasoning_summary_parameter": {
+          "type": "boolean",
+          "description": "Defaults to true when absent."
+        },
+        "default_reasoning_summary": {
+          "type": "string",
+          "enum": [
+            "auto",
+            "concise",
+            "detailed",
+            "none"
+          ]
+        },
+        "support_verbosity": {
+          "type": "boolean"
+        },
+        "default_verbosity": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "low",
+            "medium",
+            "high",
+            null
+          ]
+        },
+        "apply_patch_tool_type": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "freeform",
+            null
+          ]
+        },
+        "web_search_tool_type": {
+          "type": "string",
+          "enum": [
+            "text",
+            "text_and_image"
+          ]
+        },
+        "truncation_policy": {
+          "$ref": "#/$defs/TruncationPolicyConfig"
+        },
+        "supports_image_detail_original": {
+          "type": "boolean"
+        },
+        "context_window": {
+          "$ref": "#/$defs/NullableInteger"
+        },
+        "max_context_window": {
+          "$ref": "#/$defs/NullableInteger"
+        },
+        "auto_compact_token_limit": {
+          "$ref": "#/$defs/NullableInteger"
+        },
+        "comp_hash": {
+          "$ref": "#/$defs/NullableString"
+        },
+        "effective_context_window_percent": {
+          "type": "integer"
+        },
+        "experimental_supported_tools": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "input_modalities": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "text",
+              "image",
+              "audio"
+            ]
+          }
+        },
+        "supports_search_tool": {
+          "type": "boolean"
+        },
+        "supports_experimental_context": {
+          "type": "boolean",
+          "description": "0.154+; defaults to false. Not nullable."
+        },
+        "use_responses_lite": {
+          "type": "boolean"
+        },
+        "supports_reasoning_effort_updates": {
+          "type": "boolean",
+          "description": "0.156+; whether the model accepts reasoning-effort configuration_update items. Defaults to false. Not nullable."
+        },
+        "node_repl_auto_review_required": {
+          "type": "boolean"
+        },
+        "node_repl_disabled": {
+          "type": "boolean"
+        },
+        "guardian": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/$defs/GuardianModelPolicy"
+            }
+          ],
+          "description": "0.154+; older clients ignore the key."
+        },
+        "auto_review_model_override": {
+          "$ref": "#/$defs/NullableString"
+        },
+        "model_specialty": {
+          "$ref": "#/$defs/NullableString"
+        },
+        "tool_mode": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "direct | code_mode | code_mode_only; other strings are silently treated as absent. Non-string values are rejected."
+        },
+        "multi_agent_version": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "disabled | v1 | v2; other strings are silently treated as absent. Non-string values are rejected."
+        },
+        "multi_agent_reasoning_effort": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/$defs/ReasoningEffort"
+            }
+          ],
+          "description": "0.151+; older clients ignore the key."
+        }
+      },
+      "allOf": [
+        {
+          "description": "Prompt rule: base_instructions or model_messages.instructions_template must be a string, else the WHOLE response is rejected.",
+          "anyOf": [
+            {
+              "required": [
+                "base_instructions"
+              ],
+              "properties": {
+                "base_instructions": {
+                  "type": "string"
+                }
+              }
+            },
+            {
+              "required": [
+                "model_messages"
+              ],
+              "properties": {
+                "model_messages": {
+                  "type": "object",
+                  "required": [
+                    "instructions_template"
+                  ],
+                  "properties": {
+                    "instructions_template": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
