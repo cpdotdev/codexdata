@@ -2,9 +2,9 @@
   "schemaVersion": 1,
   "dataset": "codex-compat",
   "codex": {
-    "latestStable": "0.162.0",
-    "latestAlpha": "0.163.0-alpha.2",
-    "maxProbedStable": "0.162.0"
+    "latestStable": "0.162.1",
+    "latestAlpha": "0.163.0-alpha.4",
+    "maxProbedStable": "0.162.1"
   },
   "keys": [
     {
@@ -1019,6 +1019,17 @@
       "releaseNotesUrl": "https://github.com/openai/codex/releases/tag/rust-v0.162.0-alpha.9"
     },
     {
+      "version": "0.162.1",
+      "channel": "stable",
+      "publishedAt": "2026-10-09T19:44:51Z",
+      "probedAt": "2026-10-09T22:35:13.814Z",
+      "platform": "linux-x64",
+      "configLoad": "ok",
+      "regressions": [],
+      "deprecations": [],
+      "releaseNotesUrl": "https://github.com/openai/codex/releases/tag/rust-v0.162.1"
+    },
+    {
       "version": "0.163.0-alpha.1",
       "channel": "alpha",
       "publishedAt": "2026-10-08T21:07:13Z",
@@ -1039,6 +1050,17 @@
       "regressions": [],
       "deprecations": [],
       "releaseNotesUrl": "https://github.com/openai/codex/releases/tag/rust-v0.163.0-alpha.2"
+    },
+    {
+      "version": "0.163.0-alpha.4",
+      "channel": "alpha",
+      "publishedAt": "2026-10-09T13:21:04Z",
+      "probedAt": "2026-10-09T22:35:22.034Z",
+      "platform": "linux-x64",
+      "configLoad": "ok",
+      "regressions": [],
+      "deprecations": [],
+      "releaseNotesUrl": "https://github.com/openai/codex/releases/tag/rust-v0.163.0-alpha.4"
     }
   ]
 }
