@@ -71,9 +71,9 @@ signature that does not verify fails the deploy. Without the secret the deploy g
 unless `DATA_SIGNATURE_REQUIRED` is `"true"`.
 
 **Compat (Compat watch workflow).** The probe job no longer commits or publishes. The `commit`
-job applies its data-only patch and pushes it; a new `publish` job checks out that commit, refuses
-a commit that is not on `main`, signs
-`public/v1/compat/codex/latest.json` and posts the raw bytes with the header to
+job applies its data-only patch and pushes it; a new `publish` job runs the scripts of the commit
+the run started on, refuses a pushed commit that is not on `main`, reads only
+`public/v1/compat/codex/latest.json` from it, signs those bytes and posts them with the header to
 `/admin/compat/publish`. The Worker verifies the signature against `DATA_SIGNING_PUBLIC_KEYS`,
 stores the exact bytes (it used to re-serialize them) with the signature in the KV metadata, and
 serves both. The ETag covers body and signature, so a re-signed body is fetched again. A bad
@@ -105,7 +105,8 @@ signature is always refused; an unsigned post is refused once `DATA_SIGNATURE_RE
   probe files and the compat payload), and that payload is signed automatically.
 - **Compat before its first signed publish.** The Worker falls back to the static compat file
   when KV is empty, and that response has no signature, so clients treat compat as unavailable
-  until the next publish.
+  until the next publish. The fallback is served `no-store`, so the edge does not keep it after
+  that publish.
 - **Deploy secrets.** The Cloudflare token and `ADMIN_TOKEN` are repository secrets, readable by
   workflows on any branch. With signing, misuse can only serve older signed or unsigned content,
   which clients refuse. Moving them into a `main`-only environment would close that too.

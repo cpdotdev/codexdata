@@ -142,6 +142,21 @@ describe("compat signatures (docs/DATA-SIGNING.md)", () => {
     expect((await publishCompat(strict, bytes, signature)).status).toBe(200);
   });
 
+  it("serves the unsigned static fallback as no-store, so it never outlives a signed publish", async () => {
+    await env.CODEXDATA_KV.delete(KV_COMPAT);
+    const fallback = await SELF.fetch(URL_LATEST);
+    expect(fallback.status).toBe(200);
+    expect(fallback.headers.get("cache-control")).toBe("no-store");
+    expect(fallback.headers.get("x-codexdata-signature")).toBeNull();
+    expect(((await fallback.json()) as { dataset: string }).dataset).toBe("codex-compat");
+
+    const signature = await signData(DATA_SIGNING_VECTOR, DATA_CONTEXTS.compat, bytes);
+    expect((await publish(compatText, signature)).status).toBe(200);
+    const signed = await SELF.fetch(URL_LATEST);
+    expect(signed.headers.get("x-codexdata-signature")).toBe(signature);
+    expect(signed.headers.get("cache-control")).toMatch(/^public/);
+  });
+
   it("refuses a body that is not UTF-8", async () => {
     const response = await publish(new Uint8Array([0x7b, 0xff, 0x7d]));
     expect(response.status).toBe(400);

@@ -1,6 +1,7 @@
 #!/usr/bin/env node
-// POST public/v1/compat/codex/latest.json to the Worker's /admin/compat/publish (KV hot update, no
-// redeploy needed). Called by the compat-watch publish job; can also be run manually.
+// POST public/v1/compat/codex/latest.json (or the file given as the first argument) to the Worker's
+// /admin/compat/publish (KV hot update, no redeploy needed). Called by the compat-watch publish
+// job; can also be run manually.
 // With DATA_SIGNING_KEY set, the exact file bytes are signed (scripts/data-signature.mjs, dataset
 // "compat") and the signature goes in the X-CodexData-Signature request header; the Worker
 // verifies it, stores the bytes verbatim and serves the signature with them.
@@ -24,7 +25,9 @@ if (!token) {
   process.exit(1);
 }
 
-const payload = readFileSync(join(root, "public", "v1", "compat", "codex", "latest.json"));
+const payload = readFileSync(
+  process.argv[2] ?? join(root, "public", "v1", "compat", "codex", "latest.json"),
+);
 const headers = { authorization: `Bearer ${token}`, "content-type": "application/json" };
 if (signingKey) {
   try {

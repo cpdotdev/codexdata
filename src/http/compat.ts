@@ -12,7 +12,7 @@
 import { Validator } from "@cfworker/json-schema";
 import compatSchema from "../../data/codex-compat/compat.schema.json";
 import { DATA_CONTEXTS, SIGNATURE_HEADER, verifySignature } from "../sync/signature";
-import { CACHE_LIVE, errorResponse, jsonResponse } from "./headers";
+import { CACHE_LIVE, CACHE_NONE, errorResponse, jsonResponse } from "./headers";
 
 export const KV_COMPAT = "compat:codex:latest";
 export const COMPAT_PATH = "/v1/compat/codex/latest.json";
@@ -49,8 +49,12 @@ export async function serveCompat(env: Env, origin: string): Promise<Response> {
     });
   }
   // Nothing published to KV yet: fall back to the static artifact bundled at deploy time (matches
-  // the git commit).
-  return env.ASSETS.fetch(new Request(`${origin}${COMPAT_PATH}`));
+  // the git commit). It has no signature, so it must not enter the edge cache: a cached copy would
+  // keep clients on an unsigned (refused) payload for an hour after the first signed publish.
+  const asset = await env.ASSETS.fetch(new Request(`${origin}${COMPAT_PATH}`));
+  const headers = new Headers(asset.headers);
+  headers.set("cache-control", CACHE_NONE);
+  return new Response(asset.body, { status: asset.status, headers });
 }
 
 /// `raw` is the request body as sent; it is stored byte for byte, because the signature covers
