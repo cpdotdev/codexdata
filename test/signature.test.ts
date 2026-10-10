@@ -1,7 +1,18 @@
 import { describe, expect, it } from "vitest";
 import { canonicalCatalogText, type CatalogModel } from "../src/sync/catalog";
-import { keyId, parseSignatureHeader, verifyCatalogSignature } from "../src/sync/signature";
-import { SIGNING_VECTOR as VECTOR, SECOND_TEST_KEY } from "./fixtures";
+import {
+  DATA_CONTEXTS,
+  keyId,
+  parseSignatureHeader,
+  verifyCatalogSignature,
+  verifySignature,
+} from "../src/sync/signature";
+import {
+  DATA_SIGNING_VECTOR,
+  SIGNING_VECTOR as VECTOR,
+  SECOND_TEST_KEY,
+  signData,
+} from "./fixtures";
 
 describe("format v1 test vector", () => {
   it("verifies the shared vector against the Worker's canonical text", async () => {
@@ -79,6 +90,57 @@ describe("verifyCatalogSignature", () => {
       expect(await verifyCatalogSignature(VECTOR.body, VECTOR.header, keys)).toEqual({
         ok: true,
         kid: VECTOR.kid,
+      });
+    }
+  });
+});
+
+describe("data signatures (docs/DATA-SIGNING.md)", () => {
+  it("verifies the shared data vector, one context per dataset", async () => {
+    const D = DATA_SIGNING_VECTOR;
+    expect(Object.keys(D.headers).sort()).toEqual(Object.keys(DATA_CONTEXTS).sort());
+    for (const [dataset, context] of Object.entries(DATA_CONTEXTS)) {
+      const header = D.headers[dataset as keyof typeof D.headers];
+      expect(await verifySignature(context, D.body, header, D.publicKey), dataset).toEqual({
+        ok: true,
+        kid: D.kid,
+      });
+      // Bytes and string give the same verdict; WebCrypto signing matches the shared vector.
+      const bytes = new TextEncoder().encode(D.body);
+      expect(await verifySignature(context, bytes, header, D.publicKey)).toMatchObject({
+        ok: true,
+      });
+      expect(await signData(D, context, bytes)).toBe(header);
+      for (const [other, otherContext] of Object.entries(DATA_CONTEXTS)) {
+        if (other === dataset) continue;
+        expect(
+          await verifySignature(otherContext, D.body, header, D.publicKey),
+          `${dataset} as ${other}`,
+        ).toEqual({ ok: false, reason: "bad_signature" });
+      }
+      // A data signature is never a catalog signature, and the catalog key is not the data key.
+      expect(await verifyCatalogSignature(D.body, header, D.publicKey)).toEqual({
+        ok: false,
+        reason: "bad_signature",
+      });
+      expect(await verifySignature(context, D.body, header, VECTOR.publicKey)).toEqual({
+        ok: false,
+        reason: "unknown_kid",
+      });
+    }
+    expect(DATA_CONTEXTS).toEqual({
+      quotaPolicy: "codexdata-quota-policy-v1\n",
+      features: "codexdata-features-v1\n",
+      compat: "codexdata-compat-v1\n",
+      hooks: "codexdata-hooks-v1\n",
+    });
+  });
+
+  it("a catalog signature does not verify as any dataset", async () => {
+    for (const context of Object.values(DATA_CONTEXTS)) {
+      expect(await verifySignature(context, VECTOR.body, VECTOR.header, VECTOR.publicKey)).toEqual({
+        ok: false,
+        reason: "bad_signature",
       });
     }
   });

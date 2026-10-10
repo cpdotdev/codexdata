@@ -2,6 +2,7 @@
 // Bearer ADMIN_TOKEN, compared in constant time.
 
 import { timingSafeEqualString } from "../sync/crypto";
+import { SIGNATURE_HEADER } from "../sync/signature";
 import type { IngestInput, SeedInput } from "../sync/coordinator";
 import { publishCompat } from "./compat";
 import { errorResponse, jsonResponse } from "./headers";
@@ -31,6 +32,14 @@ async function readJsonBody<T>(request: Request, limit: number): Promise<T | Res
   } catch {
     return errorResponse(400, "body must be JSON", "bad_request");
   }
+}
+
+async function readRawBody(request: Request, limit: number): Promise<Uint8Array | Response> {
+  const declared = Number(request.headers.get("content-length") ?? "0");
+  if (declared > limit) return errorResponse(413, "body too large", "too_large");
+  const bytes = new Uint8Array(await request.arrayBuffer());
+  if (bytes.byteLength > limit) return errorResponse(413, "body too large", "too_large");
+  return bytes;
 }
 
 export async function handleAdmin(request: Request, env: Env, path: string): Promise<Response> {
@@ -75,9 +84,10 @@ export async function handleAdmin(request: Request, env: Env, path: string): Pro
         return jsonResponse(await stub.release(body));
       }
       case "/admin/compat/publish": {
-        const body = await readJsonBody<unknown>(request, MAX_COMPAT_BODY_BYTES);
+        // Raw bytes, not parsed JSON: the signature covers the exact body.
+        const body = await readRawBody(request, MAX_COMPAT_BODY_BYTES);
         if (body instanceof Response) return body;
-        return publishCompat(env, body);
+        return publishCompat(env, body, request.headers.get(SIGNATURE_HEADER));
       }
       default:
         return errorResponse(404, "not found", "not_found");

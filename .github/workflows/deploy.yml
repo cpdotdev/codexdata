@@ -12,7 +12,33 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  # Signs the static datasets' latest.json files of this commit (docs/DATA-SIGNING.md). The key
+  # lives only in the `data-signing` environment, whose deployment branch rule admits only `main`;
+  # the `if` skips the job (and so the deploy) on any other ref. This job runs no third-party code:
+  # no `pnpm install`, only Node built-ins. Only the signatures (public data) leave it.
+  sign:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    environment: data-signing
+    outputs:
+      signatures: ${{ steps.sign.outputs.signatures }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version-file: ".node-version"
+      - name: Sign static datasets
+        id: sign
+        env:
+          DATA_SIGNING_KEY: ${{ secrets.DATA_SIGNING_KEY }}
+        run: |
+          # An assignment fails the step when the command fails (an echo of $(...) would not).
+          signatures=$(node scripts/data-signature.mjs sign-static)
+          echo "signatures=$signatures" >> "$GITHUB_OUTPUT"
+
   deploy:
+    needs: sign
     runs-on: ubuntu-latest
     timeout-minutes: 15
     environment: production
@@ -24,6 +50,14 @@ jobs:
       - run: corepack enable
       - run: pnpm install --frozen-lockfile
       - run: pnpm typecheck
+      # Verifies each signature against this checkout and DATA_SIGNING_PUBLIC_KEYS (wrangler.jsonc)
+      # and appends one exact-path X-CodexData-Signature rule per file to public/_headers. A bad
+      # signature fails the deploy; no signatures deploy unsigned only while
+      # DATA_SIGNATURE_REQUIRED is not "true".
+      - name: Attach dataset signatures
+        env:
+          SIGNATURES: ${{ needs.sign.outputs.signatures }}
+        run: node scripts/data-signature.mjs apply-static "$SIGNATURES"
       - name: Deploy Worker
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}

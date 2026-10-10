@@ -18,6 +18,11 @@ export default defineConfig({
           // Tests start in transition mode; the enforcement tests switch it on themselves
           // (withSignatureRequired in test/coordinator.test.ts). Production enforces it.
           CATALOG_SIGNATURE_REQUIRED: "false",
+          // TEST-ONLY data-signing key (test/fixtures.ts DATA_SIGNING_VECTOR); never a catalog key.
+          DATA_SIGNING_PUBLIC_KEYS: "zxe3l2ZwZCtAnr2Q6TD29dlJK3kpeUzDWxwQuMfW6S8",
+          // Tests start in transition mode whatever production uses; the enforcement test passes
+          // its own env to publishCompat (test/compat.test.ts).
+          DATA_SIGNATURE_REQUIRED: "false",
         },
         // Intercept every outbound fetch (including the OAuth refresh inside the DO): tests never
         // reach the network.

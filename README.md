@@ -48,6 +48,11 @@ products: [docs/HOOKS.md](docs/HOOKS.md).
   Clients should verify the header with embedded public keys instead of trusting the transport;
   `meta.json` → `signature_kid` names the current key. Details:
   [docs/RUNBOOK.md](docs/RUNBOOK.md#catalog-signing).
+- **Dataset signatures.** `/v1/quotas/codex/latest.json`, `/v1/features/codex/latest.json`,
+  `/v1/hooks/codex/latest.json` and `/v1/compat/codex/latest.json` carry the same header, signed
+  with a separate key over a per-dataset context string (`codexdata-quota-policy-v1\n`,
+  `codexdata-features-v1\n`, `codexdata-hooks-v1\n`, `codexdata-compat-v1\n`) followed by the
+  exact body. Details: [docs/DATA-SIGNING.md](docs/DATA-SIGNING.md).
 - **Compat watch** (`.github/workflows/compat-watch.yml`, every 6 hours). Downloads each new
   Codex CLI release, probes it, commits the results and hot-publishes them to KV.
 

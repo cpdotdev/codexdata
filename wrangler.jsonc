@@ -44,5 +44,13 @@
     // "true" (since 2026-10-10, after signed syncs were confirmed): an unsigned catalog is refused
     // and the last signed one keeps being served. "false" was the transition mode.
     "CATALOG_SIGNATURE_REQUIRED": "true",
+    // Ed25519 public keys for the other datasets (quota policy, feature annotations, hook registry,
+    // compat; docs/DATA-SIGNING.md). A separate key from the catalog's: never list a catalog key
+    // here. The Worker checks compat publishes against it; the Deploy job checks the static
+    // signatures against it before deploying. kid a7229bb069807ce6, generated 2026-10-10; the private
+    // key exists only in the `data-signing` environment (DATA_SIGNING_KEY).
+    "DATA_SIGNING_PUBLIC_KEYS": "V1D8bGU_gWJtVb-vSYH4d9cD17VKX9MQgnfeyJAkSzA",
+    // "true" refuses unsigned compat publishes and unsigned deploys of the static datasets.
+    "DATA_SIGNATURE_REQUIRED": "false",
   },
 }

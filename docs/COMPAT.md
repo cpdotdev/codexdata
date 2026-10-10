@@ -24,7 +24,7 @@ data/codex-compat/probes/<version>.json     (probe facts, committed to the repos
    ▼
 scripts/build-compat.mjs → public/v1/compat/codex/latest.json   (deterministic; --check guards drift)
    ▼
-scripts/publish-compat.mjs → POST /admin/compat/publish → KV    (hot update, no Worker redeploy)
+scripts/publish-compat.mjs → POST /admin/compat/publish → KV    (signed in the publish job; hot update)
    ▼
 GET https://data.cp.dev/v1/compat/codex/latest.json             (KV first, static asset as fallback; ETag/304)
 ```

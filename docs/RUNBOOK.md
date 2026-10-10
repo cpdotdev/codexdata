@@ -10,7 +10,7 @@ Operations reference for maintainers. Contributors do not need any of this; see
   from KV through the edge cache, exposes `/admin/*`, and hosts the `SyncCoordinator` Durable
   Object (SQLite) that owns the dedicated account's OAuth tokens, encrypted at rest with
   `REFRESH_TOKEN_KEK`. The DO is the only writer to KV. Static datasets are Workers assets from
-  `public/`.
+  `public/`; `Deploy` signs their `latest.json` files (see [Data signing](#data-signing)).
 - **Sync agent** (`scripts/sync-agent.mjs`, run hourly by `.github/workflows/sync.yml`).
   Cloudflare Workers cannot reach `chatgpt.com` (403 HTML from the edge), so the GitHub-hosted
   runner leases a short-lived access token from the Worker (`POST /admin/lease`), fetches
@@ -22,8 +22,10 @@ Operations reference for maintainers. Contributors do not need any of this; see
   The refresh token never leaves the Durable Object; rotation is persisted before anything else
   runs.
 - **Compat watch** (`scripts/compat-probe.mjs`, `.github/workflows/compat-watch.yml`, every 6
-  hours). Commits probe results to `main` and hot-publishes the payload with
-  `POST /admin/compat/publish`. See [COMPAT.md](COMPAT.md).
+  hours). The probe job (read-only token) hands its results to the `commit` job as a data-only
+  patch, which pushes them to `main`; the `publish` job signs the payload and hot-publishes it
+  with `POST /admin/compat/publish`. See [COMPAT.md](COMPAT.md) and
+  [Data signing](#data-signing).
 
 ## Secrets and variables
 
@@ -35,6 +37,8 @@ Operations reference for maintainers. Contributors do not need any of this; see
 | Worker var         | `SYNC_MODE`                   | In `wrangler.jsonc`. `external` (default) or `worker` (DO fetches itself; blocked today).                                                                                                                                                                                                                                        |
 | Worker var         | `CATALOG_SIGNING_PUBLIC_KEYS` | In `wrangler.jsonc`. Trusted Ed25519 public keys (raw, base64url), comma- or space-separated. See [Catalog signing](#catalog-signing).                                                                                                                                                                                           |
 | Worker var         | `CATALOG_SIGNATURE_REQUIRED`  | In `wrangler.jsonc`. `"false"` publishes unsigned ingests too (transition); `"true"` refuses them.                                                                                                                                                                                                                               |
+| Worker var         | `DATA_SIGNING_PUBLIC_KEYS`    | In `wrangler.jsonc`. Trusted public keys for the other datasets; never a catalog key. See [Data signing](#data-signing).                                                                                                                                                                                                         |
+| Worker var         | `DATA_SIGNATURE_REQUIRED`     | In `wrangler.jsonc`. `"true"` refuses unsigned compat publishes and unsigned deploys of the static datasets.                                                                                                                                                                                                                     |
 | GitHub secret      | `CODEXDATA_ADMIN_TOKEN`       | `openssl rand -hex 32`. Used by `sync.yml`, `compat-watch.yml` and `seed.yml`; the `Deploy` workflow copies it to the Worker.                                                                                                                                                                                                    |
 | GitHub secret      | `CODEXDATA_SEED_AUTH`         | Temporary: the dedicated account's `auth.json`, consumed by the `Seed dedicated account` workflow. Delete it right after seeding.                                                                                                                                                                                                |
 | GitHub secret      | `CLOUDFLARE_API_TOKEN`        | Cloudflare dashboard → My Profile → API Tokens → Create Token → template "Edit Cloudflare Workers", restricted to the account that owns `cp.dev`. It must carry Account: Workers Scripts:Edit, Workers KV Storage:Edit, Account Settings:Read; Zone (cp.dev): Workers Routes:Edit, DNS:Edit (custom domains create DNS records). |
@@ -43,6 +47,8 @@ Operations reference for maintainers. Contributors do not need any of this; see
 | GitHub environment | `production`                  | Used by `deploy.yml`. Create it under Settings → Environments; add yourself as required reviewer if you want a confirmation step before each deploy.                                                                                                                                                                             |
 | GitHub environment | `catalog-signing`             | Used by `sync.yml`. Deployment branches restricted to `main`, no required reviewers. Holds the secret below.                                                                                                                                                                                                                     |
 | Environment secret | `CATALOG_SIGNING_KEY`         | In `catalog-signing` only. Ed25519 private key (PKCS#8 PEM) that signs the catalog. See [Catalog signing](#catalog-signing).                                                                                                                                                                                                     |
+| GitHub environment | `data-signing`                | Used by the `sign` job of `deploy.yml` and the `publish` job of `compat-watch.yml`. Deployment branches restricted to `main`, no required reviewers.                                                                                                                                                                             |
+| Environment secret | `DATA_SIGNING_KEY`            | In `data-signing` only. Ed25519 private key (PKCS#8 PEM) that signs the other datasets. See [Data signing](#data-signing).                                                                                                                                                                                                       |
 | GitHub label       | `ops`                         | `monitor.yml` and `compat-watch.yml` label the issues they open with it; create it before the first scheduled run.                                                                                                                                                                                                               |
 
 Set GitHub secrets with `gh secret set NAME` (reads the value from stdin) and variables with
@@ -110,8 +116,9 @@ Everything except the account login runs in GitHub Actions; no local Cloudflare 
 - **Compat regression issue**: read the probe output, decide, and record the verdict in
   `data/codex-compat/tracked.json` (`statusOverride` / `action`) or add an advisory; then
   `pnpm build:compat`, commit, and publish. See [COMPAT.md](COMPAT.md).
-- **Deploy**: run the `Deploy` workflow (manual) after CI is green on `main`. Static dataset
-  changes need a deploy; compat data does not (KV hot update).
+- **Deploy**: run the `Deploy` workflow (manual) on `main` after CI is green there. Static dataset
+  changes need a deploy; compat data does not (KV hot update). Deploy no longer runs from other
+  branches (its `sign` job needs the `main`-only `data-signing` environment).
 
 ## Catalog signing
 
@@ -212,6 +219,56 @@ remove it from `CATALOG_SIGNING_PUBLIC_KEYS`, and rotate as above.
   serve an unsigned catalog; clients refuse it, so it denies fresh data but forges nothing. The
   Worker-side threat is closed only after `CATALOG_SIGNATURE_REQUIRED` is `"true"`. A KV writer can
   always serve a broken or unsigned record directly; clients refuse that too.
+
+## Data signing
+
+The quota policy, feature annotations, hook registry and compat payload are signed too, with a
+separate key. Design, impact ranking and client fallback: [DATA-SIGNING.md](DATA-SIGNING.md).
+
+- **Format**: catalog format v1 with one context string per dataset:
+  `codexdata-quota-policy-v1\n`, `codexdata-features-v1\n`, `codexdata-hooks-v1\n`,
+  `codexdata-compat-v1\n`. Signed bytes: the context string + the exact response body.
+- **Static datasets**: the `sign` job of `Deploy` (environment `data-signing`, Node built-ins only)
+  signs `v1/{quotas,features,hooks}/codex/latest.json`. The `deploy` job checks the signatures
+  against its checkout and `DATA_SIGNING_PUBLIC_KEYS` (`scripts/data-signature.mjs apply-static`)
+  and appends one `X-CodexData-Signature` rule per file to `public/_headers`. A bad signature fails
+  the deploy. Without the secret the run logs `unsigned deploy` and deploys unsigned, unless
+  `DATA_SIGNATURE_REQUIRED` is `"true"`.
+- **Compat**: the `publish` job of `compat-watch.yml` (same environment) checks out the commit the
+  `commit` job pushed, refuses one that is not on `main`, and runs `scripts/publish-compat.mjs`, which
+  signs the file bytes and sends the signature as a request header. The Worker refuses a bad
+  signature (`422 signature: <reason>`), stores the exact bytes with the signature in the KV
+  metadata and serves `X-CodexData-Signature` with them. The ETag covers the signature.
+
+- **Untrusted jobs cannot change `main`**: jobs that run third-party code (the compat probe, the
+  Codex tag sync, CI, Deploy) have read-only tokens. The probe and the tag sync hand their changes
+  to a trusted job as a patch, which `scripts/apply-data-patch.mjs` applies only within the
+  dataset paths. Keep it that way when adding a workflow: a job with `contents: write` must not
+  run `pnpm install`, downloaded binaries or fetched code.
+
+### Set up (once)
+
+1. **Environment**: create `data-signing` like `catalog-signing` (deployment branches: `main`
+   only, no reviewers) before adding the secret.
+2. **Key and secret** (one pipe; only the public key is printed):
+   ```bash
+   node -e 'const c=require("crypto");const k=c.generateKeyPairSync("ed25519");console.error("public key: "+k.publicKey.export({format:"jwk"}).x);process.stdout.write(k.privateKey.export({type:"pkcs8",format:"pem"}))' | gh secret set DATA_SIGNING_KEY -R cpdotdev/codexdata --env data-signing
+   ```
+3. **Trust the public key**: add it to `DATA_SIGNING_PUBLIC_KEYS` in `wrangler.jsonc` and to
+   `DATA_SIGNING_PUBLIC_KEYS` in the Codex Pass client (`src-tauri/src/codexdata_signature.rs`).
+   Never reuse the catalog key. Merge, then run `Deploy`.
+4. **Check**: the `sign` job logs `signed 3 files, kid <kid>`, then
+   ```bash
+   for p in quotas features hooks; do curl -sI "https://data.cp.dev/v1/$p/codex/latest.json" | grep -i x-codexdata-signature; done
+   gh workflow run compat-watch.yml -R cpdotdev/codexdata -f publish=true
+   curl -sI https://data.cp.dev/v1/compat/codex/latest.json | grep -i x-codexdata-signature
+   ```
+5. **Enforce**: set `DATA_SIGNATURE_REQUIRED` to `"true"` and deploy.
+
+**Rotate or replace the key**: as for the catalog key (add the new public key to the Worker var
+and the client, release, then replace the secret and run `Deploy` and a compat publish). Static
+files keep their ETag when only the signature changes, so clients holding the old ETag keep the
+old signature until the content changes; keep the old public key in the client until then.
 
 ## Adding a new Codex tag
 

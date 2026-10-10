@@ -10,6 +10,11 @@ name: Codex tag sync
 # pull_request workflows, so the run dispatches CI on the branch itself. A sync failure (for example
 # a feature-table shape the extractor does not know) opens an `ops` issue. Deploy stays the manual
 # Deploy workflow after merge.
+#
+# The sync job runs pnpm install and upstream code paths with a read-only token and hands over its
+# changes as a patch. The branch job holds the write token, runs no third-party code, and pushes
+# the patch only if it touches nothing but data/ and public/v1/ (scripts/apply-data-patch.mjs), so
+# a compromised dependency cannot change code on main or on the branch (docs/DATA-SIGNING.md).
 on:
   schedule:
     - cron: "41 */6 * * *"
@@ -20,10 +25,7 @@ on:
         required: false
 
 permissions:
-  contents: write
-  pull-requests: write
-  issues: write
-  actions: write
+  contents: read
 
 concurrency:
   group: codexdata-codex-tags-sync
@@ -33,6 +35,12 @@ jobs:
   sync:
     runs-on: ubuntu-latest
     timeout-minutes: 20
+    permissions:
+      contents: read
+      issues: write
+      pull-requests: write
+    outputs:
+      ready: ${{ steps.collect.outputs.ready }}
     env:
       GH_TOKEN: ${{ github.token }}
       BRANCH: bot/codex-tags-sync
@@ -41,6 +49,7 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           fetch-depth: 0
+          persist-credentials: false
       - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
           node-version-file: ".node-version"
@@ -156,19 +165,16 @@ jobs:
           set -e
           cat "$RUNNER_TEMP/validate.log"
 
-      - name: Open or update the pull request
+      - name: Collect the changes and the pull request body
+        id: collect
         if: steps.plan.outputs.run == 'true' && steps.sync.outputs.status == '0'
         env:
           VALIDATE: ${{ steps.validate.outputs.status }}
         run: |
-          latest=$(node -p 'require("./data/codex-features/tags.json").latest')
-          title="data: sync Codex tags through $latest"
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git checkout -B "$BRANCH"
+          mkdir -p "$RUNNER_TEMP/handover"
           git add -A data public
-          git commit -q -m "$title"
-          git push -f origin "$BRANCH"
+          git diff --cached --binary > "$RUNNER_TEMP/handover/sync.patch"
+          git diff --cached --stat
           {
             cat "$RUNNER_TEMP/summary.md"
             echo
@@ -193,16 +199,70 @@ jobs:
             echo "- [ ] After merge, run the Deploy workflow."
             echo
             echo "Opened by \`.github/workflows/codex-tags-sync.yml\` ($GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID)."
-          } > "$RUNNER_TEMP/body.md"
+          } > "$RUNNER_TEMP/handover/body.md"
+          echo "ready=true" >> "$GITHUB_OUTPUT"
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        if: steps.collect.outputs.ready == 'true'
+        with:
+          name: tags-sync-handover
+          path: ${{ runner.temp }}/handover/
+          retention-days: 3
+
+  # Holds the write token and runs no third-party code: checkout, the artifact download, git, gh
+  # and Node built-ins. The patch may touch only data/ and public/v1/.
+  branch:
+    needs: sync
+    if: needs.sync.outputs.ready == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: write
+      pull-requests: write
+      issues: write
+      actions: write
+    env:
+      GH_TOKEN: ${{ github.token }}
+      BRANCH: bot/codex-tags-sync
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          # Full history: the hand-edit check below compares the branch with main.
+          fetch-depth: 0
+      - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          name: tags-sync-handover
+          path: ${{ runner.temp }}/handover
+      - name: Apply the data-only patch
+        run: node scripts/apply-data-patch.mjs "$RUNNER_TEMP/handover/sync.patch" data/ public/v1/
+      - name: Push the branch and open or update the pull request
+        run: |
+          latest=$(node -p 'require("./data/codex-features/tags.json").latest')
+          [[ "$latest" =~ ^rust-v[0-9]+\.[0-9]+\.[0-9]+$ ]] || { echo "unexpected tag: $latest"; exit 1; }
+          title="data: sync Codex tags through $latest"
+          # Never overwrite hand edits on the branch. The sync job checks this too, but that job runs
+          # third-party code, so this job does not trust its answer.
+          if git fetch -q origin "$BRANCH" 2>/dev/null; then
+            authors=$(git log --format='%ae' "origin/main..origin/$BRANCH")
+            if [ -n "$authors" ] && grep -qv 'github-actions\[bot\]' <<<"$authors"; then
+              echo "$BRANCH has hand edits; not overwriting it"
+              exit 1
+            fi
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -B "$BRANCH"
+          git commit -q -m "$title"
+          git push -f origin "$BRANCH"
+          body="$RUNNER_TEMP/handover/body.md"
           pr=$(gh pr list --repo "$GITHUB_REPOSITORY" --head "$BRANCH" --state open --json number --jq '.[0].number')
           if [ -n "$pr" ]; then
-            gh pr edit "$pr" --repo "$GITHUB_REPOSITORY" --title "$title" --body-file "$RUNNER_TEMP/body.md"
-          elif ! gh pr create --repo "$GITHUB_REPOSITORY" --base main --head "$BRANCH" --title "$title" --body-file "$RUNNER_TEMP/body.md"; then
+            gh pr edit "$pr" --repo "$GITHUB_REPOSITORY" --title "$title" --body-file "$body"
+          elif ! gh pr create --repo "$GITHUB_REPOSITORY" --base main --head "$BRANCH" --title "$title" --body-file "$body"; then
             # Settings → Actions → General → "Allow GitHub Actions to create and approve pull
             # requests" is off: leave an issue with the compare link instead.
             issue_title="Codex tag sync ready for review"
             issue_body=$(printf 'The sync pushed `%s` (through %s), but the workflow may not open pull requests in this repository.\n\nOpen it here: %s/%s/compare/main...%s?expand=1\n\n%s\n' \
-              "$BRANCH" "$latest" "$GITHUB_SERVER_URL" "$GITHUB_REPOSITORY" "$BRANCH" "$(cat "$RUNNER_TEMP/body.md")")
+              "$BRANCH" "$latest" "$GITHUB_SERVER_URL" "$GITHUB_REPOSITORY" "$BRANCH" "$(cat "$body")")
             existing=$(gh issue list --repo "$GITHUB_REPOSITORY" --state open --search "\"$issue_title\" in:title" --json number --jq '.[0].number')
             if [ -n "$existing" ]; then
               gh issue comment "$existing" --repo "$GITHUB_REPOSITORY" --body "$issue_body"

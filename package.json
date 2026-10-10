@@ -21,7 +21,7 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "seed": "node scripts/seed.mjs",
-    "validate": "node scripts/validate.mjs && node scripts/build-compat.mjs --check && node scripts/build-ui.mjs --check && node --test scripts/hooks.test.mjs scripts/quota.test.mjs scripts/catalog-signature.test.mjs",
+    "validate": "node scripts/validate.mjs && node scripts/build-compat.mjs --check && node scripts/build-ui.mjs --check && node --test scripts/hooks.test.mjs scripts/quota.test.mjs scripts/catalog-signature.test.mjs scripts/data-signature.test.mjs scripts/apply-data-patch.test.mjs",
     "build:static": "node scripts/build-static.mjs",
     "build:compat": "node scripts/build-compat.mjs",
     "probe:compat": "node scripts/compat-probe.mjs",
