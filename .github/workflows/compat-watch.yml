@@ -2,8 +2,8 @@ name: Compat watch
 
 # Watches Codex CLI releases. Every 6 hours it compares the npm dist-tags (latest / alpha) with
 # the probes already committed; for each new version it downloads the official binary, runs
-# scripts/compat-probe.mjs, commits the probe results and hot-publishes the compat payload to
-# data.cp.dev (KV; no Worker redeploy). A regression (a managed key vanished from the binary, or
+# scripts/compat-probe.mjs and commits the probe results. The publish job then signs the committed
+# compat payload and hot-publishes it to data.cp.dev (KV; no Worker redeploy). A regression (a managed key vanished from the binary, or
 # a Codex-Pass-shaped config.toml is rejected as a whole) opens an `ops` issue for human triage;
 # the verdict goes into data/codex-compat/tracked.json (statusOverride/action) or advisories/.
 on:
@@ -35,6 +35,9 @@ jobs:
   probe:
     runs-on: ubuntu-latest
     timeout-minutes: 20
+    outputs:
+      changed: ${{ steps.commit.outputs.changed }}
+      sha: ${{ steps.commit.outputs.sha }}
     env:
       GH_TOKEN: ${{ github.token }}
       GITHUB_TOKEN: ${{ github.token }}
@@ -76,13 +79,8 @@ jobs:
             git pull --rebase origin main
             git push origin HEAD:main
             echo "changed=true" >> "$GITHUB_OUTPUT"
+            echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
           fi
-      - name: Publish to data.cp.dev (KV hot update)
-        if: steps.commit.outputs.changed == 'true' || inputs.publish == 'true'
-        env:
-          CODEXDATA_ORIGIN: ${{ vars.CODEXDATA_ORIGIN || 'https://data.cp.dev' }}
-          CODEXDATA_ADMIN_TOKEN: ${{ secrets.CODEXDATA_ADMIN_TOKEN }}
-        run: node scripts/publish-compat.mjs
       - name: Open or update regression issue
         if: steps.probe.outputs.status == '20'
         run: |
@@ -95,3 +93,36 @@ jobs:
           else
             gh issue create --repo "$GITHUB_REPOSITORY" --title "$title" --body "$body" --label "ops"
           fi
+
+  # Signs and publishes the committed compat payload (docs/DATA-SIGNING.md). The signing key lives
+  # only in the `data-signing` environment (deployment branch rule: `main`), so it stays out of the
+  # probe job, which runs downloaded Codex binaries and `pnpm install`. This job runs neither: only
+  # Node built-ins on a commit that must be on main.
+  publish:
+    needs: probe
+    if: >-
+      github.ref == 'refs/heads/main' &&
+      (needs.probe.outputs.changed == 'true' || inputs.publish == 'true')
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    environment: data-signing
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ needs.probe.outputs.sha || github.sha }}
+          fetch-depth: 0
+      - name: Refuse a commit that is not on main
+        run: |
+          git fetch -q origin main
+          git merge-base --is-ancestor HEAD origin/main || { echo "HEAD is not on main"; exit 1; }
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version-file: ".node-version"
+      - name: Sign and publish to data.cp.dev (KV hot update)
+        env:
+          CODEXDATA_ORIGIN: ${{ vars.CODEXDATA_ORIGIN || 'https://data.cp.dev' }}
+          CODEXDATA_ADMIN_TOKEN: ${{ secrets.CODEXDATA_ADMIN_TOKEN }}
+          DATA_SIGNING_KEY: ${{ secrets.DATA_SIGNING_KEY }}
+        run: node scripts/publish-compat.mjs

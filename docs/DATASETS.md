@@ -8,6 +8,8 @@ compat endpoint, and JSON 404s on unknown dataset paths. Not affiliated with Ope
 
 All dataset responses carry `Access-Control-Allow-Origin: *`, a strong `ETag` (send
 `If-None-Match`, get `304`), and `Cache-Control: public, max-age=3600` (see `public/_headers`).
+The `latest.json` files of the quota policy, feature-flag registry, hook registry and compat
+payload also carry `X-CodexData-Signature` (Ed25519; see [DATA-SIGNING.md](DATA-SIGNING.md)).
 
 One asset-layer limitation (confirmed in production): `OPTIONS` on a dataset URL returns `405`;
 the asset layer only serves `GET`/`HEAD`. Plain browser `fetch` and HTTP-cache revalidation are

@@ -1,5 +1,6 @@
-// Catalog signature verification (format v1, shared with scripts/catalog-signature.mjs and the
-// Codex Pass client).
+// Signature verification (format v1, shared with scripts/catalog-signature.mjs,
+// scripts/data-signature.mjs and the Codex Pass client). The catalog and the other datasets use
+// the same format with different context strings and different keys (docs/DATA-SIGNING.md).
 //
 // The sync agent signs the canonical catalog text with an Ed25519 key that lives only in GitHub
 // (environment `catalog-signing`); the Worker publishes a signed catalog only if the signature
@@ -14,6 +15,15 @@
 
 export const SIGNATURE_HEADER = "x-codexdata-signature";
 const SIGNATURE_CONTEXT = "codexdata-catalog-v1\n";
+
+/// Context strings of the other datasets (scripts/data-signature.mjs DATASET_CONTEXTS), verified
+/// against DATA_SIGNING_PUBLIC_KEYS. Never reuse the catalog's.
+export const DATA_CONTEXTS = {
+  quotaPolicy: "codexdata-quota-policy-v1\n",
+  features: "codexdata-features-v1\n",
+  compat: "codexdata-compat-v1\n",
+  hooks: "codexdata-hooks-v1\n",
+} as const;
 const KID_RE = /^[0-9a-f]{16}$/;
 const BASE64URL_RE = /^[A-Za-z0-9_-]+$/;
 
@@ -47,6 +57,17 @@ export async function verifyCatalogSignature(
   headerValue: string,
   publicKeysVar: string | undefined,
 ): Promise<SignatureVerdict> {
+  return verifySignature(SIGNATURE_CONTEXT, canonicalText, headerValue, publicKeysVar);
+}
+
+/// Verify `headerValue` over `context` + `body` (a string is signed as its UTF-8 bytes). Same rules
+/// as verifyCatalogSignature(), which is this with the catalog context.
+export async function verifySignature(
+  context: string,
+  body: string | Uint8Array,
+  headerValue: string,
+  publicKeysVar: string | undefined,
+): Promise<SignatureVerdict> {
   const parsed = parseSignatureHeader(headerValue);
   if (!parsed) return { ok: false, reason: "malformed" };
 
@@ -66,12 +87,12 @@ export async function verifyCatalogSignature(
   } catch {
     return { ok: false, reason: "bad_public_key" };
   }
-  const valid = await crypto.subtle.verify(
-    { name: "Ed25519" },
-    key,
-    parsed.signature,
-    new TextEncoder().encode(SIGNATURE_CONTEXT + canonicalText),
-  );
+  const prefix = new TextEncoder().encode(context);
+  const tail = typeof body === "string" ? new TextEncoder().encode(body) : body;
+  const message = new Uint8Array(prefix.byteLength + tail.byteLength);
+  message.set(prefix, 0);
+  message.set(tail, prefix.byteLength);
+  const valid = await crypto.subtle.verify({ name: "Ed25519" }, key, parsed.signature, message);
   return valid ? { ok: true, kid: parsed.kid } : { ok: false, reason: "bad_signature" };
 }
 

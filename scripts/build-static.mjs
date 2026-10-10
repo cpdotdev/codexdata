@@ -5,6 +5,7 @@
 //   public/v1/schema/codex-model-info/{latest,<tag>,index}.json   ModelInfo JSON Schema
 //   public/v1/hooks/codex/{latest,index}.json                     hook product registry
 //   public/_headers                                               CORS + cache headers for /v1/* assets
+//                                                                 (Deploy appends the signature rules)
 // The output is deterministic and committed; validate.mjs runs `--check` to byte-compare it.
 // Absolute links inside the index.json files are baked from CODEXDATA_PUBLIC_ORIGIN in
 // wrangler.jsonc; `--origin` overrides it.
@@ -222,13 +223,15 @@ export function buildStaticFiles(origin) {
   }
 
   // ── Response headers for /v1/* assets (asset layer only; Worker routes set their own) ──
+  // The Deploy job appends one exact-path X-CodexData-Signature rule per signed latest.json
+  // (scripts/data-signature.mjs apply-static); the committed file carries no signatures.
   files.set(
     "_headers",
     `/v1/*
   Access-Control-Allow-Origin: *
   Access-Control-Allow-Methods: GET, HEAD, OPTIONS
   Access-Control-Allow-Headers: If-None-Match, Content-Type
-  Access-Control-Expose-Headers: ETag
+  Access-Control-Expose-Headers: ETag, X-CodexData-Signature
   Cache-Control: public, max-age=3600, stale-while-revalidate=86400, stale-if-error=86400
 
 /v1/audio/samples/*.wav
