@@ -85,6 +85,8 @@ test("refuses code, files outside the allowed paths, symlinks and executable bit
         mkdirSync(join(w, "data/codex-compat/probes-evil"), { recursive: true });
         writeFileSync(join(w, "data/codex-compat/probes-evil/x.json"), "{}");
       },
+      gitattributes: (w) =>
+        writeFileSync(join(w, "data/codex-compat/probes/.gitattributes"), "*.json filter=x\n"),
       symlink: (w) =>
         symlinkSync(
           "../../../scripts/data-signature.mjs",

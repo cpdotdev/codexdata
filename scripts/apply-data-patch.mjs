@@ -27,7 +27,10 @@ export function parseRaw(raw) {
   return entries;
 }
 
+/// Inside the allowed paths, and no `.git*` segment (`.gitattributes` and `.gitmodules` change how
+/// git treats files; datasets never need them).
 function allowedPath(path, allowed) {
+  if (path.split("/").some((segment) => segment.startsWith(".git"))) return false;
   return allowed.some((entry) => (entry.endsWith("/") ? path.startsWith(entry) : path === entry));
 }
 
