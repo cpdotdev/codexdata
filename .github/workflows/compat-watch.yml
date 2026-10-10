@@ -100,8 +100,10 @@ jobs:
   # Node built-ins on a commit that must be on main.
   publish:
     needs: probe
+    # `!cancelled()`: a probe job that pushed its commit and then failed later (for example while
+    # opening the regression issue) still gets its data published, as before the split.
     if: >-
-      github.ref == 'refs/heads/main' &&
+      !cancelled() && github.ref == 'refs/heads/main' &&
       (needs.probe.outputs.changed == 'true' || inputs.publish == 'true')
     runs-on: ubuntu-latest
     timeout-minutes: 5
