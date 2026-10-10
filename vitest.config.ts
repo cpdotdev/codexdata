@@ -11,6 +11,10 @@ export default defineConfig({
         bindings: {
           REFRESH_TOKEN_KEK: "dGVzdC1rZWstMzItYnl0ZXMtdGVzdC1rZWstMzItYnk=",
           ADMIN_TOKEN: "test-admin-token",
+          // TEST-ONLY signing keys (test/fixtures.ts): the shared format test vector and a
+          // second key for rotation. Overrides the production list in wrangler.jsonc.
+          CATALOG_SIGNING_PUBLIC_KEYS:
+            "SuxU8H8gxEBdAdAX9_-DtBtEaVSNvwtwkak1JGCnl5s,\n CAtY-p-zYUSkwpCfopdnaBgUkg702k7l4A9FCUKyIZE",
         },
         // Intercept every outbound fetch (including the OAuth refresh inside the DO): tests never
         // reach the network.

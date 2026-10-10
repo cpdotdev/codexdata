@@ -99,6 +99,15 @@ describe("canonicalization", () => {
     const c = canonicalCatalogText([officialModel({ priority: 7 })]);
     expect(await catalogHash(c)).not.toBe(await catalogHash(a));
   });
+
+  it("matches the sync agent's canonical text on the client's bundled catalog", async () => {
+    // scripts/catalog-signature.test.mjs pins the same hash for the agent's copy of canonicalize():
+    // the agent signs its canonical text and the Worker verifies against this one.
+    const text = canonicalCatalogText(bundledCatalog.models as unknown as CatalogModel[]);
+    expect(await catalogHash(text)).toBe(
+      "b35e6649dc23939f5f39fdd3341fb9bb362b3f0eec5f1115cce1d22521c580e3",
+    );
+  });
 });
 
 describe("diffCatalogs", () => {

@@ -37,5 +37,12 @@
     // "worker": the Durable Object fetches it itself; unusable while chatgpt.com blocks
     //           Workers egress (403 HTML from the edge).
     "SYNC_MODE": "external",
+    // Ed25519 public keys (raw 32 bytes, base64url, comma- or space-separated) that may sign the
+    // catalog; filled with the production public key. Keep old keys during rotation until every
+    // signer has switched (docs/RUNBOOK.md#catalog-signing).
+    "CATALOG_SIGNING_PUBLIC_KEYS": "S_N7CqDkKYYuDX-9V5-8EBPiQVN17NxIfeeVNhWvXhg",
+    // Transition switch: "false" still publishes unsigned ingests; set "true" once signed syncs are
+    // confirmed, so an unsigned catalog is refused.
+    "CATALOG_SIGNATURE_REQUIRED": "false",
   },
 }

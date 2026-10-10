@@ -6,9 +6,12 @@ import {
   KV_META,
   KV_SNAPSHOTS_INDEX,
   kvSnapshotKey,
+  type CatalogKvMetadata,
   type CodexMeta,
 } from "../sync/coordinator";
-import { CACHE_IMMUTABLE, CACHE_LIVE, errorResponse, jsonResponse } from "./headers";
+import { sha256Hex } from "../sync/crypto";
+import { SIGNATURE_HEADER } from "../sync/signature";
+import { CACHE_HOURLY, CACHE_IMMUTABLE, CACHE_LIVE, errorResponse, jsonResponse } from "./headers";
 
 const HASH_RE = /^[0-9a-f]{64}$/;
 
@@ -22,30 +25,82 @@ async function readMeta(env: Env): Promise<CodexMeta | null> {
   }
 }
 
-function metaHeaders(meta: CodexMeta): Record<string, string> {
+interface CatalogHeaderFields {
+  fetched_at: string;
+  client_version: string;
+  content_hash: string;
+  plan_label?: string | null | undefined;
+}
+
+function catalogHeaders(fields: CatalogHeaderFields): Record<string, string> {
   const headers: Record<string, string> = {
-    "x-codexdata-fetched-at": meta.fetched_at,
-    "x-codexdata-client-version": meta.client_version,
-    "x-codexdata-content-hash": meta.content_hash,
+    "x-codexdata-fetched-at": fields.fetched_at,
+    "x-codexdata-client-version": fields.client_version,
+    "x-codexdata-content-hash": fields.content_hash,
   };
-  if (meta.source.plan_label) headers["x-codexdata-source-plan"] = meta.source.plan_label;
+  if (fields.plan_label) headers["x-codexdata-source-plan"] = fields.plan_label;
   return headers;
+}
+
+function metaHeaders(meta: CodexMeta): Record<string, string> {
+  return catalogHeaders({ ...meta, plan_label: meta.source.plan_label });
+}
+
+/// The signature is read from the metadata of the same KV entry as the body, so the pair is always
+/// consistent; the coordinator stored it only after verifying it. Clients verify it themselves.
+function signatureHeaders(metadata: CatalogKvMetadata | null): Record<string, string> {
+  const signature = metadata?.signature;
+  return typeof signature === "string" ? { [SIGNATURE_HEADER]: signature } : {};
+}
+
+/// The record's own headers, or null for an entry written before records carried them.
+function recordFields(
+  metadata: CatalogKvMetadata | null,
+): (CatalogHeaderFields & { etag: string }) | null {
+  if (
+    typeof metadata?.etag !== "string" ||
+    typeof metadata.content_hash !== "string" ||
+    typeof metadata.fetched_at !== "string" ||
+    typeof metadata.client_version !== "string"
+  ) {
+    return null;
+  }
+  return {
+    etag: metadata.etag,
+    content_hash: metadata.content_hash,
+    fetched_at: metadata.fetched_at,
+    client_version: metadata.client_version,
+    plan_label: typeof metadata.plan_label === "string" ? metadata.plan_label : null,
+  };
 }
 
 function notSynced(): Response {
   return errorResponse(503, "official catalog not synced yet", "catalog_not_synced");
 }
 
+/// Body, ETag and every x-codexdata-* header come from one KV record (codex:current and its
+/// metadata), so a response never pairs one publish's body with another publish's ETag.
 export async function serveCodexModels(env: Env): Promise<Response> {
-  const [meta, body] = await Promise.all([
-    readMeta(env),
-    env.CODEXDATA_KV.get(KV_CURRENT, { cacheTtl: 300 }),
-  ]);
-  if (!meta || !body) return notSynced();
-  return jsonResponse(body, {
+  const current = await env.CODEXDATA_KV.getWithMetadata<CatalogKvMetadata>(KV_CURRENT, {
+    cacheTtl: 300,
+  });
+  if (!current.value) return notSynced();
+  const record = recordFields(current.metadata);
+  if (record) {
+    return jsonResponse(current.value, {
+      cacheControl: CACHE_LIVE,
+      etag: record.etag,
+      headers: { ...catalogHeaders(record), ...signatureHeaders(current.metadata) },
+    });
+  }
+  // Entry written before records carried their headers: fall back to codex:meta until the next
+  // signed sync or new publish rewrites it.
+  const meta = await readMeta(env);
+  if (!meta) return notSynced();
+  return jsonResponse(current.value, {
     cacheControl: CACHE_LIVE,
     etag: meta.etag,
-    headers: metaHeaders(meta),
+    headers: { ...metaHeaders(meta), ...signatureHeaders(current.metadata) },
   });
 }
 
@@ -66,11 +121,21 @@ export async function serveSnapshotsIndex(env: Env): Promise<Response> {
 
 export async function serveSnapshot(env: Env, hash: string): Promise<Response> {
   if (!HASH_RE.test(hash)) return errorResponse(404, "unknown snapshot", "not_found");
-  const text = await env.CODEXDATA_KV.get(kvSnapshotKey(hash), { cacheTtl: 3600 });
-  if (!text) return errorResponse(404, "unknown snapshot", "not_found");
-  return jsonResponse(text, {
-    cacheControl: CACHE_IMMUTABLE,
+  const snapshot = await env.CODEXDATA_KV.getWithMetadata<CatalogKvMetadata>(kvSnapshotKey(hash), {
+    cacheTtl: 3600,
+  });
+  // The URL names the content: a body that does not hash to it is not that snapshot. Only cache
+  // misses pay for the hash.
+  if (!snapshot.value || (await sha256Hex(snapshot.value)) !== hash) {
+    return errorResponse(404, "unknown snapshot", "not_found");
+  }
+  // Immutable only once signed: an unsigned snapshot can still gain a signature (same-hash re-sign)
+  // and must not stay cached without it for a year.
+  const headers = signatureHeaders(snapshot.metadata);
+  return jsonResponse(snapshot.value, {
+    cacheControl: headers[SIGNATURE_HEADER] ? CACHE_IMMUTABLE : CACHE_HOURLY,
     etag: `"sha256-${hash.slice(0, 32)}"`,
+    headers,
   });
 }
 

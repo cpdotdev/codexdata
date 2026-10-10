@@ -14,11 +14,21 @@
 //     Both modes share the validate / canonicalize / publish logic.
 //   - The token is AES-GCM encrypted with the KEK (a Workers Secret) and stored in DO storage;
 //     KV holds only the catalog.
+//   - Catalog signatures (src/sync/signature.ts): an ingest may carry the sync agent's Ed25519
+//     signature over the canonical text. It is verified before the catalog is written and stored
+//     in the KV metadata of the body it covers. `CATALOG_SIGNATURE_REQUIRED=true` refuses unsigned
+//     ingests.
+//   - codex:current is one self-contained record: its metadata (CatalogKvMetadata) carries every
+//     header /v1/codex/models.json serves (ETag, content hash, fetch time, client version, plan,
+//     signature), written in the same put as the body. The read path does not mix it with
+//     codex:meta (only entries written before records existed fall back to it), so an edge cannot
+//     pair one publish's body with another publish's ETag.
 //
 // KV keys:
-//   codex:current          latest successful official envelope (canonical JSON text)
+//   codex:current          latest successful official envelope (canonical JSON text + record
+//                          metadata)
 //   codex:meta             CodexMeta (JSON)
-//   codex:snapshot:<hash>  historical snapshot (TTL 180 days)
+//   codex:snapshot:<hash>  historical snapshot (TTL 180 days; same metadata as codex:current)
 //   codex:snapshots:index  index of the 50 most recent snapshots
 //   codex:changes          change events (newest first, ≤500)
 
@@ -36,12 +46,45 @@ import {
 } from "./catalog";
 import { latestCodexClientVersion } from "./npm";
 import { jwtExpSeconds, planLabelFromIdToken, refreshAccessToken } from "./oauth";
+import { verifyCatalogSignature } from "./signature";
 
 export const KV_CURRENT = "codex:current";
 export const KV_META = "codex:meta";
 export const KV_CHANGES = "codex:changes";
 export const KV_SNAPSHOTS_INDEX = "codex:snapshots:index";
 export const kvSnapshotKey = (hash: string): string => `codex:snapshot:${hash}`;
+
+/// KV metadata on codex:current and codex:snapshot:<hash>, written in the same put as the body:
+/// the response headers for exactly that body. `signature` is the verified `x-codexdata-signature`
+/// value, absent for catalogs published unsigned. Entries written before this record existed carry
+/// no metadata (or only `signature`); the read path then falls back to codex:meta.
+export interface CatalogKvMetadata {
+  etag?: string;
+  content_hash?: string;
+  fetched_at?: string;
+  client_version?: string;
+  plan_label?: string | null;
+  signature?: string;
+}
+
+/// KV rejects metadata over 1024 bytes (serialized JSON). Every field of the record is bounded so
+/// the worst case stays well below that (test/coordinator.test.ts checks it).
+export const KV_METADATA_LIMIT_BYTES = 1024;
+/// Upstream ETags longer than this are replaced by the content-derived one.
+const MAX_UPSTREAM_ETAG_CHARS = 128;
+/// Realistic values are far shorter; the cut only guarantees the metadata limit.
+const MAX_RECORD_FIELD_CHARS = 64;
+
+export function catalogRecord(meta: CodexMeta, signature: string | null): CatalogKvMetadata {
+  return {
+    etag: meta.etag,
+    content_hash: meta.content_hash,
+    fetched_at: meta.fetched_at,
+    client_version: meta.client_version.slice(0, MAX_RECORD_FIELD_CHARS),
+    plan_label: meta.source.plan_label?.slice(0, MAX_RECORD_FIELD_CHARS) ?? null,
+    ...(signature ? { signature } : {}),
+  };
+}
 
 const SNAPSHOT_TTL_SECONDS = 180 * 24 * 60 * 60;
 const SNAPSHOT_INDEX_LIMIT = 50;
@@ -98,6 +141,8 @@ export interface CodexMeta {
   listed_slugs: string[];
   last_run: LastRun | null;
   snapshot_id: string;
+  /// Key id of the signature stored with codex:current; null when the current catalog is unsigned.
+  signature_kid: string | null;
 }
 
 export interface SyncStatus {
@@ -110,6 +155,7 @@ export interface SyncStatus {
   permanent_failure: PermanentFailure | null;
   lease: { agent: string; at: string; expires_at: string } | null;
   current_hash: string | null;
+  signature_kid: string | null;
   last_run: LastRun | null;
   recent_runs: Array<{
     at: string;
@@ -152,6 +198,9 @@ export interface IngestInput {
   status: number;
   etag: string | null;
   body: string;
+  /// `x-codexdata-signature` value over the canonical catalog text (scripts/catalog-signature.mjs);
+  /// absent when the agent has no signing key.
+  signature?: string | null;
 }
 
 export class SyncCoordinator extends DurableObject<Env> {
@@ -238,6 +287,7 @@ export class SyncCoordinator extends DurableObject<Env> {
         ? { agent: lease.agent, at: lease.at, expires_at: new Date(lease.expires_at).toISOString() }
         : null,
       current_hash: meta?.content_hash ?? null,
+      signature_kid: meta?.signature_kid ?? null,
       last_run: meta?.last_run ?? null,
       recent_runs: rows,
     };
@@ -301,7 +351,7 @@ export class SyncCoordinator extends DurableObject<Env> {
       );
       return { status: "error", reason: `fetch: ${String(error)}`, permanent: false };
     }
-    return this.publish(fetched, clientVersion, at, reason, "worker", started);
+    return this.publish(fetched, clientVersion, at, reason, "worker", started, null);
   }
 
   // ------------------------------------------------------------------
@@ -368,7 +418,19 @@ export class SyncCoordinator extends DurableObject<Env> {
       etag: typeof input.etag === "string" && input.etag ? input.etag : null,
       text: typeof input.body === "string" ? input.body : "",
     };
-    return this.publish(fetched, input.client_version, at, "external", lease.agent, started);
+    // null/absent = unsigned. A present non-string value is passed on so it fails as malformed
+    // instead of silently downgrading to an unsigned publish.
+    const signature =
+      input.signature === undefined || input.signature === null ? null : String(input.signature);
+    return this.publish(
+      fetched,
+      input.client_version,
+      at,
+      "external",
+      lease.agent,
+      started,
+      signature,
+    );
   }
 
   /// The external agent's fetch failed: release the lease and record the reason.
@@ -471,6 +533,7 @@ export class SyncCoordinator extends DurableObject<Env> {
     reason: RunReason,
     agent: string | null,
     started: number,
+    signature: string | null,
   ): Promise<SyncResult> {
     if (fetched.status < 200 || fetched.status >= 300) {
       const detail = `catalog HTTP ${fetched.status}`;
@@ -486,7 +549,31 @@ export class SyncCoordinator extends DurableObject<Env> {
 
     const canonical = canonicalCatalogText(validated.models);
     const hash = await catalogHash(canonical);
-    const etag = fetched.etag ?? `"sha256-${hash.slice(0, 32)}"`;
+
+    // Signature gate, decided before any catalog write: a refused ingest publishes nothing and
+    // leaves the catalog untouched (only the run record and meta.last_run are written).
+    let signed: { value: string; kid: string } | null = null;
+    if (signature !== null) {
+      const verdict = await verifyCatalogSignature(
+        canonical,
+        signature,
+        this.env.CATALOG_SIGNING_PUBLIC_KEYS,
+      );
+      if (!verdict.ok) {
+        const detail = `signature: ${verdict.reason}`;
+        await this.record(at, reason, "error", detail, hash, clientVersion, started);
+        return { status: "error", reason: detail, permanent: false };
+      }
+      signed = { value: signature, kid: verdict.kid };
+    } else if (signatureRequired(this.env.CATALOG_SIGNATURE_REQUIRED)) {
+      const detail = "unsigned catalog refused";
+      await this.record(at, reason, "error", detail, hash, clientVersion, started);
+      return { status: "error", reason: detail, permanent: false };
+    }
+
+    const upstreamEtag =
+      fetched.etag !== null && fetched.etag.length <= MAX_UPSTREAM_ETAG_CHARS ? fetched.etag : null;
+    const etag = upstreamEtag ?? `"sha256-${hash.slice(0, 32)}"`;
     const previousMeta = await this.readMeta();
     const auth = await this.ctx.storage.get<StoredAuth>("auth");
 
@@ -496,9 +583,14 @@ export class SyncCoordinator extends DurableObject<Env> {
         checked_at: at,
         client_version: clientVersion,
         etag,
+        signature_kid: signed ? signed.kid : (previousMeta.signature_kid ?? null),
       };
-      await this.env.CODEXDATA_KV.put(KV_META, JSON.stringify(meta));
-      await this.record(at, reason, "unchanged", null, hash, clientVersion, started);
+      // Same content. A verified signature always rewrites the record, without comparing it with
+      // what KV holds: a KV writer may have replaced the body and kept the metadata, and reads
+      // inside the DO can be stale. An unsigned ingest leaves codex:current untouched, so it never
+      // strips a signature (the record keeps the values of its last write).
+      if (signed) await this.writeCatalog(hash, canonical, catalogRecord(meta, signed.value));
+      await this.record(at, reason, "unchanged", null, hash, clientVersion, started, meta);
       return { status: "unchanged", hash, client_version: clientVersion };
     }
 
@@ -534,16 +626,13 @@ export class SyncCoordinator extends DurableObject<Env> {
       listed_slugs: validated.models.filter((m) => m["visibility"] === "list").map((m) => m.slug),
       last_run: null,
       snapshot_id: hash,
+      signature_kid: signed?.kid ?? null,
     };
 
-    await this.env.CODEXDATA_KV.put(kvSnapshotKey(hash), canonical, {
-      expirationTtl: SNAPSHOT_TTL_SECONDS,
-    });
-    await this.env.CODEXDATA_KV.put(KV_CURRENT, canonical);
+    await this.writeCatalog(hash, canonical, catalogRecord(meta, signed?.value ?? null));
     await this.env.CODEXDATA_KV.put(KV_CHANGES, JSON.stringify(changes));
     await this.env.CODEXDATA_KV.put(KV_SNAPSHOTS_INDEX, JSON.stringify(index));
-    await this.env.CODEXDATA_KV.put(KV_META, JSON.stringify(meta));
-    await this.record(at, reason, "ok", null, hash, clientVersion, started);
+    await this.record(at, reason, "ok", null, hash, clientVersion, started, meta);
     return {
       status: "ok",
       hash,
@@ -553,6 +642,22 @@ export class SyncCoordinator extends DurableObject<Env> {
     };
   }
 
+  /// Write the snapshot and codex:current, each with its record in the same put as the body. An
+  /// unsigned record carries no signature (and so drops any previous one).
+  private async writeCatalog(
+    hash: string,
+    canonical: string,
+    metadata: CatalogKvMetadata,
+  ): Promise<void> {
+    await this.env.CODEXDATA_KV.put(kvSnapshotKey(hash), canonical, {
+      expirationTtl: SNAPSHOT_TTL_SECONDS,
+      metadata,
+    });
+    await this.env.CODEXDATA_KV.put(KV_CURRENT, canonical, { metadata });
+  }
+
+  /// Append a run and stamp it as meta.last_run. A publish passes the meta it just built, so meta and
+  /// last_run go out in one put instead of a read-back that could return the previous meta.
   private async record(
     at: string,
     reason: RunReason,
@@ -561,6 +666,7 @@ export class SyncCoordinator extends DurableObject<Env> {
     hash: string | null,
     clientVersion: string | null,
     started: number,
+    publishedMeta: CodexMeta | null = null,
   ): Promise<void> {
     const duration = Date.now() - started;
     this.ctx.storage.sql.exec(
@@ -576,7 +682,7 @@ export class SyncCoordinator extends DurableObject<Env> {
     this.ctx.storage.sql.exec(
       `DELETE FROM runs WHERE id NOT IN (SELECT id FROM runs ORDER BY id DESC LIMIT ${RUNS_LIMIT})`,
     );
-    const meta = await this.readMeta();
+    const meta = publishedMeta ?? (await this.readMeta());
     if (meta) {
       const lastRun: LastRun = { at, reason, status, error, duration_ms: duration };
       await this.env.CODEXDATA_KV.put(KV_META, JSON.stringify({ ...meta, last_run: lastRun }));
@@ -623,4 +729,10 @@ export class SyncCoordinator extends DurableObject<Env> {
 /// to look up.
 function accountFingerprint(accountId: string | null): string | null {
   return accountId ? accountId.slice(0, 8) : null;
+}
+
+/// "true" (case-sensitive, surrounding whitespace ignored) turns enforcement on; anything else keeps
+/// the transition mode.
+function signatureRequired(value: string | undefined): boolean {
+  return typeof value === "string" && value.trim() === "true";
 }
