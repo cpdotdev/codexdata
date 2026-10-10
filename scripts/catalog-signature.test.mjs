@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { createHash, createPublicKey, generateKeyPairSync, verify } from "node:crypto";
-import { readFileSync } from "node:fs";
+import { readdirSync, readFileSync } from "node:fs";
 import { test } from "node:test";
 import {
   canonicalCatalogText,
@@ -106,14 +106,46 @@ test("rejects unusable keys without echoing them", () => {
   assert.throws(() => signCatalog(VECTOR.body, ec), /expected ed25519/);
 });
 
-test("wrangler.jsonc trusts only well-formed keys, never the test key", () => {
+/// Public keys of every private key committed under test/ and scripts/ (PEM blocks, also written
+/// with `\n` escapes inside string literals). Their private halves are public, so production must
+/// never trust them.
+function committedTestKeys() {
+  const pem =
+    /-----BEGIN PRIVATE KEY-----(?:\\n|\s)+([A-Za-z0-9+/=]+)(?:\\n|\s)+-----END PRIVATE KEY-----/g;
+  const keys = new Set();
+  for (const dir of ["../test/", "../scripts/"]) {
+    const base = new URL(dir, import.meta.url);
+    for (const entry of readdirSync(base, { recursive: true })) {
+      if (!/\.(ts|mjs|js|json)$/.test(entry)) continue;
+      const text = readFileSync(new URL(entry, base), "utf8");
+      for (const [, body] of text.matchAll(pem)) {
+        const block = `-----BEGIN PRIVATE KEY-----\n${body}\n-----END PRIVATE KEY-----\n`;
+        try {
+          keys.add(loadSigningKey(block).publicKey);
+        } catch {
+          // Not a usable Ed25519 key (e.g. a deliberately broken fixture): nothing to exclude.
+        }
+      }
+    }
+  }
+  return keys;
+}
+
+test("wrangler.jsonc trusts at least one well-formed production key and no test key", () => {
+  const testKeys = committedTestKeys();
+  // The shared vector and the second key in test/fixtures.ts; a scan that finds fewer is broken.
+  assert(testKeys.has(VECTOR.publicKey));
+  assert(testKeys.size >= 2, `found only ${testKeys.size} committed test key(s)`);
+
   const config = readFileSync(new URL("../wrangler.jsonc", import.meta.url), "utf8");
   const match = /"CATALOG_SIGNING_PUBLIC_KEYS":\s*"([^"]*)"/.exec(config);
   assert(match, "CATALOG_SIGNING_PUBLIC_KEYS is missing from wrangler.jsonc");
-  for (const key of match[1].split(/[\s,]+/).filter(Boolean)) {
+  const trusted = match[1].split(/[\s,]+/).filter(Boolean);
+  assert(trusted.length >= 1, "CATALOG_SIGNING_PUBLIC_KEYS lists no production key");
+  for (const key of trusted) {
     assert.match(key, /^[A-Za-z0-9_-]{43}$/, `malformed public key ${key}`);
     assert.equal(Buffer.from(key, "base64url").toString("base64url"), key);
-    assert.notEqual(key, VECTOR.publicKey, "the test-vector key must never be trusted");
+    assert(!testKeys.has(key), `${key} has a committed private key and must never be trusted`);
   }
   assert.match(config, /"CATALOG_SIGNATURE_REQUIRED":\s*"(true|false)"/);
 });

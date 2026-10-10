@@ -130,14 +130,20 @@ app.
   that parses to `{"models":[...]}` (`scripts/catalog-signature.mjs`). A key that is set but
   cannot be loaded fails the run before it takes a lease. Without the key the agent logs
   `unsigned` and ingests unsigned.
-- **Worker**: verifies against `CATALOG_SIGNING_PUBLIC_KEYS` before writing anything. A refused
-  catalog is recorded as an error run `signature: <reason>` (`malformed`, `unknown_kid`,
-  `bad_signature`, `no_trusted_keys`, `bad_public_key`) and nothing changes; the last good
-  catalog keeps being served. The signature is stored as KV metadata of the body it covers and
-  served as `X-CodexData-Signature` on `models.json` (also on `304`s) and on
-  `snapshots/<hash>.json`. `signature_kid` appears in `meta.json` and `/admin/status`. Unchanged
-  content that arrives with a new valid signature gets that signature attached; an unsigned
-  ingest of unchanged content keeps the stored one.
+- **Worker**: verifies against `CATALOG_SIGNING_PUBLIC_KEYS` before it writes the catalog. A
+  refused catalog is recorded as an error run `signature: <reason>` (`malformed`, `unknown_kid`,
+  `bad_signature`, `no_trusted_keys`, `bad_public_key`); it publishes nothing and leaves the
+  catalog untouched (only the run record and `meta.json` → `last_run` change), and the last good
+  catalog keeps being served. `codex:current` is one KV record: the body plus, in the metadata of
+  the same put, every header `models.json` serves (ETag, content hash, fetch time, client
+  version, plan, signature), so an edge never pairs one publish's body with another's ETag. The
+  signature is served as `X-CodexData-Signature` on `models.json` (also on `304`s) and on
+  `snapshots/<hash>.json`; `signature_kid` appears in `meta.json` and `/admin/status`. Unchanged
+  content that arrives with a valid signature always rewrites the record (which also repairs a
+  tampered body); an unsigned ingest of unchanged content leaves the record untouched.
+- **Snapshots**: `snapshots/<hash>.json` answers `404` when the stored body does not hash to
+  `<hash>`. Signed snapshots are cached as immutable; unsigned ones only for an hour, so a later
+  signature reaches the edge.
 - **Enforcement**: `CATALOG_SIGNATURE_REQUIRED`. While `"false"`, unsigned ingests still publish
   (without a header). With `"true"`, they are refused (`unsigned catalog refused`).
 
@@ -190,6 +196,20 @@ app.
 **Compromised key**: the clients are the trust anchor, because someone holding the private key and
 KV write access can bypass the Worker entirely. Release a client without the compromised key,
 remove it from `CATALOG_SIGNING_PUBLIC_KEYS`, and rotate as above.
+
+### Known limits
+
+- **Rollback to older signed content.** A signature covers the body only; it carries no timestamp
+  or sequence number. Every signed catalog stays valid, and its body and signature are public
+  (`snapshots/<hash>.json`). So an `ADMIN_TOKEN` holder (through `/admin/ingest`) or anyone who can
+  write KV can republish any catalog that was signed before: older official content, never a
+  forged one. Stopping that needs a format v2 that signs a timestamp or counter which clients
+  check for freshness.
+- **Missing header.** The Codex Pass client rejects a `models.json` without the header. While
+  `CATALOG_SIGNATURE_REQUIRED` is `"false"`, an `ADMIN_TOKEN` holder can still make the Worker
+  serve an unsigned catalog; clients refuse it, so it denies fresh data but forges nothing. The
+  Worker-side threat is closed only after `CATALOG_SIGNATURE_REQUIRED` is `"true"`. A KV writer can
+  always serve a broken or unsigned record directly; clients refuse that too.
 
 ## Adding a new Codex tag
 

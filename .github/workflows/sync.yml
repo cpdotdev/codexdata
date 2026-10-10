@@ -21,8 +21,11 @@ jobs:
   sync:
     runs-on: ubuntu-latest
     timeout-minutes: 10
-    # The catalog signing key lives only in this environment, which only `main` may use, so pull
-    # request workflows cannot read it (docs/RUNBOOK.md#catalog-signing).
+    # The catalog signing key lives only in the `catalog-signing` environment, whose deployment
+    # branch rule admits only `main`, so pull request workflows cannot read it
+    # (docs/RUNBOOK.md#catalog-signing). The `if` is a second guard: a dispatch on another branch
+    # skips the job instead of failing on the environment rule.
+    if: github.ref == 'refs/heads/main'
     environment: catalog-signing
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
