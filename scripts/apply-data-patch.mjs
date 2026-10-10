@@ -27,10 +27,25 @@ export function parseRaw(raw) {
   return entries;
 }
 
-/// Inside the allowed paths, and no `.git*` segment (`.gitattributes` and `.gitmodules` change how
-/// git treats files; datasets never need them).
-function allowedPath(path, allowed) {
-  if (path.split("/").some((segment) => segment.startsWith(".git"))) return false;
+/// A plain relative path inside the allowed paths. git already refuses `..`, absolute paths and
+/// `.git/` in a patch; this check does not rely on that. No `.git*` segment either
+/// (`.gitattributes` and `.gitmodules` change how git treats files; datasets never need them).
+export function allowedPath(path, allowed) {
+  if (typeof path !== "string" || path === "" || path.startsWith("/") || path.includes("\\")) {
+    return false;
+  }
+  const segments = path.split("/");
+  if (
+    segments.some(
+      (segment) =>
+        segment === "" ||
+        segment === "." ||
+        segment === ".." ||
+        segment.toLowerCase().startsWith(".git"),
+    )
+  ) {
+    return false;
+  }
   return allowed.some((entry) => (entry.endsWith("/") ? path.startsWith(entry) : path === entry));
 }
 

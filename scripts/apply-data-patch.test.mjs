@@ -5,7 +5,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { test } from "node:test";
 
-import { applyDataPatch, parseRaw, violations } from "./apply-data-patch.mjs";
+import { allowedPath, applyDataPatch, parseRaw, violations } from "./apply-data-patch.mjs";
 
 const ALLOWED = ["data/codex-compat/probes/", "public/v1/compat/codex/latest.json"];
 
@@ -119,6 +119,23 @@ test("refuses to run in a dirty checkout or without allowed paths", () => {
   } finally {
     rmSync(s.root, { recursive: true, force: true });
   }
+});
+
+test("allowedPath refuses traversal, absolute, empty and .git segments on its own", () => {
+  for (const path of [
+    "data/codex-compat/probes/../../.github/workflows/pwn.yml",
+    "data/codex-compat/probes/./a.json",
+    "data/codex-compat/probes//a.json",
+    "/data/codex-compat/probes/a.json",
+    "data/codex-compat/probes/a\\..\\b.json",
+    "data/codex-compat/probes/.git/config",
+    "data/codex-compat/probes/.GITattributes",
+    "",
+  ]) {
+    assert.equal(allowedPath(path, ALLOWED), false, path);
+  }
+  assert.equal(allowedPath("data/codex-compat/probes/0.2.0.json", ALLOWED), true);
+  assert.equal(allowedPath("public/v1/compat/codex/latest.json", ALLOWED), true);
 });
 
 test("parseRaw and violations cover type changes and odd modes", () => {
