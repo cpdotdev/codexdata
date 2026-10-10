@@ -50,6 +50,13 @@ whose deployment branch rule admits only `main`. The catalog key stays where it 
   the compat probe runs downloaded Codex binaries. Signing therefore happens in a small extra job
   that checks out the commit and runs `scripts/data-signature.mjs` with Node built-ins only, and
   only signatures (public data) leave that job.
+- The signing jobs run the scripts on `main`, so nothing that runs third-party code may be able
+  to change `main` either. No such job holds a token that can push: the compat probe and the
+  Codex tag sync run with read-only tokens and hand their data changes to a second job as a patch.
+  That job runs no third-party code and applies the patch only if it adds, changes or deletes
+  regular files under the dataset paths (`scripts/apply-data-patch.mjs`); a change to a script, a
+  workflow, a symlink or an executable bit is refused. CI, Deploy and the catalog sync already
+  had read-only tokens.
 - Pull request workflows cannot read the secret (branch rule), and the signing jobs also check
   `github.ref == 'refs/heads/main'`. A side effect: Deploy can no longer run from other branches.
 
@@ -63,8 +70,9 @@ layer serves the body and the header from the same deployment, so they cannot ge
 signature that does not verify fails the deploy. Without the secret the deploy goes out unsigned,
 unless `DATA_SIGNATURE_REQUIRED` is `"true"`.
 
-**Compat (Compat watch workflow).** The probe job no longer publishes. A new `publish` job checks
-out the commit the probe job pushed, refuses a commit that is not on `main`, signs
+**Compat (Compat watch workflow).** The probe job no longer commits or publishes. The `commit`
+job applies its data-only patch and pushes it; a new `publish` job checks out that commit, refuses
+a commit that is not on `main`, signs
 `public/v1/compat/codex/latest.json` and posts the raw bytes with the header to
 `/admin/compat/publish`. The Worker verifies the signature against `DATA_SIGNING_PUBLIC_KEYS`,
 stores the exact bytes (it used to re-serialize them) with the signature in the KV metadata, and
@@ -93,8 +101,8 @@ signature is always refused; an unsigned post is refused once `DATA_SIGNATURE_RE
   for data.cp.dev can serve any older signed copy. The quota policy still refuses lower revisions;
   the other datasets have no ordering. A format v2 would sign a timestamp or counter.
 - **The signature means "on `main` when signed", not "reviewed".** Anyone who can push to `main`
-  can get content signed. The compat probe job can push data to `main` by design, and its output
-  is signed automatically.
+  can get content signed. The compat probe's data reaches `main` without review by design (only
+  probe files and the compat payload), and that payload is signed automatically.
 - **Compat before its first signed publish.** The Worker falls back to the static compat file
   when KV is empty, and that response has no signature, so clients treat compat as unavailable
   until the next publish.

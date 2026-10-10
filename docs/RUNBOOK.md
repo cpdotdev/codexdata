@@ -22,8 +22,9 @@ Operations reference for maintainers. Contributors do not need any of this; see
   The refresh token never leaves the Durable Object; rotation is persisted before anything else
   runs.
 - **Compat watch** (`scripts/compat-probe.mjs`, `.github/workflows/compat-watch.yml`, every 6
-  hours). Commits probe results to `main`; its `publish` job signs the payload and hot-publishes
-  it with `POST /admin/compat/publish`. See [COMPAT.md](COMPAT.md) and
+  hours). The probe job (read-only token) hands its results to the `commit` job as a data-only
+  patch, which pushes them to `main`; the `publish` job signs the payload and hot-publishes it
+  with `POST /admin/compat/publish`. See [COMPAT.md](COMPAT.md) and
   [Data signing](#data-signing).
 
 ## Secrets and variables
@@ -234,10 +235,16 @@ separate key. Design, impact ranking and client fallback: [DATA-SIGNING.md](DATA
   the deploy. Without the secret the run logs `unsigned deploy` and deploys unsigned, unless
   `DATA_SIGNATURE_REQUIRED` is `"true"`.
 - **Compat**: the `publish` job of `compat-watch.yml` (same environment) checks out the commit the
-  probe pushed, refuses one that is not on `main`, and runs `scripts/publish-compat.mjs`, which
+  `commit` job pushed, refuses one that is not on `main`, and runs `scripts/publish-compat.mjs`, which
   signs the file bytes and sends the signature as a request header. The Worker refuses a bad
   signature (`422 signature: <reason>`), stores the exact bytes with the signature in the KV
   metadata and serves `X-CodexData-Signature` with them. The ETag covers the signature.
+
+- **Untrusted jobs cannot change `main`**: jobs that run third-party code (the compat probe, the
+  Codex tag sync, CI, Deploy) have read-only tokens. The probe and the tag sync hand their changes
+  to a trusted job as a patch, which `scripts/apply-data-patch.mjs` applies only within the
+  dataset paths. Keep it that way when adding a workflow: a job with `contents: write` must not
+  run `pnpm install`, downloaded binaries or fetched code.
 
 ### Set up (once)
 
