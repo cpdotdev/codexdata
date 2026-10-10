@@ -263,7 +263,9 @@ separate key. Design, impact ranking and client fallback: [DATA-SIGNING.md](DATA
    gh workflow run compat-watch.yml -R cpdotdev/codexdata -f publish=true
    curl -sI https://data.cp.dev/v1/compat/codex/latest.json | grep -i x-codexdata-signature
    ```
-5. **Enforce**: set `DATA_SIGNATURE_REQUIRED` to `"true"` and deploy.
+5. **Enforce**: set `DATA_SIGNATURE_REQUIRED` to `"true"` and deploy. Production has been `"true"`
+   since 2026-10-10 (kid `a7229bb069807ce6`; first signed deploy run 38031608630, first signed
+   compat publish run 38031671887). Tests start in transition mode (`vitest.config.ts`).
 
 **Rotate or replace the key**: as for the catalog key (add the new public key to the Worker var
 and the client, release, then replace the secret and run `Deploy` and a compat publish). Static
