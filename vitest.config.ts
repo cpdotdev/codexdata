@@ -15,6 +15,9 @@ export default defineConfig({
           // second key for rotation. Overrides the production list in wrangler.jsonc.
           CATALOG_SIGNING_PUBLIC_KEYS:
             "SuxU8H8gxEBdAdAX9_-DtBtEaVSNvwtwkak1JGCnl5s,\n CAtY-p-zYUSkwpCfopdnaBgUkg702k7l4A9FCUKyIZE",
+          // Tests start in transition mode; the enforcement tests switch it on themselves
+          // (withSignatureRequired in test/coordinator.test.ts). Production enforces it.
+          CATALOG_SIGNATURE_REQUIRED: "false",
         },
         // Intercept every outbound fetch (including the OAuth refresh inside the DO): tests never
         // reach the network.

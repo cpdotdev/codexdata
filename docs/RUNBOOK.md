@@ -145,7 +145,9 @@ app.
   `<hash>`. Signed snapshots are cached as immutable; unsigned ones only for an hour, so a later
   signature reaches the edge.
 - **Enforcement**: `CATALOG_SIGNATURE_REQUIRED`. While `"false"`, unsigned ingests still publish
-  (without a header). With `"true"`, they are refused (`unsigned catalog refused`).
+  (without a header). With `"true"`, they are refused (`unsigned catalog refused`). Production
+  has been `"true"` since 2026-10-10 (first signed syncs: a manual run at 04:22Z and the next
+  scheduled run). Tests start in transition mode (`vitest.config.ts`).
 
 ### Set up (once)
 
