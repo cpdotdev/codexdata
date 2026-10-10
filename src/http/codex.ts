@@ -6,8 +6,10 @@ import {
   KV_META,
   KV_SNAPSHOTS_INDEX,
   kvSnapshotKey,
+  type CatalogKvMetadata,
   type CodexMeta,
 } from "../sync/coordinator";
+import { SIGNATURE_HEADER } from "../sync/signature";
 import { CACHE_IMMUTABLE, CACHE_LIVE, errorResponse, jsonResponse } from "./headers";
 
 const HASH_RE = /^[0-9a-f]{64}$/;
@@ -32,20 +34,27 @@ function metaHeaders(meta: CodexMeta): Record<string, string> {
   return headers;
 }
 
+/// The signature is read from the metadata of the same KV entry as the body, so the pair is always
+/// consistent; the coordinator stored it only after verifying it. Clients verify it themselves.
+function signatureHeaders(metadata: CatalogKvMetadata | null): Record<string, string> {
+  const signature = metadata?.signature;
+  return typeof signature === "string" ? { [SIGNATURE_HEADER]: signature } : {};
+}
+
 function notSynced(): Response {
   return errorResponse(503, "official catalog not synced yet", "catalog_not_synced");
 }
 
 export async function serveCodexModels(env: Env): Promise<Response> {
-  const [meta, body] = await Promise.all([
+  const [meta, current] = await Promise.all([
     readMeta(env),
-    env.CODEXDATA_KV.get(KV_CURRENT, { cacheTtl: 300 }),
+    env.CODEXDATA_KV.getWithMetadata<CatalogKvMetadata>(KV_CURRENT, { cacheTtl: 300 }),
   ]);
-  if (!meta || !body) return notSynced();
-  return jsonResponse(body, {
+  if (!meta || !current.value) return notSynced();
+  return jsonResponse(current.value, {
     cacheControl: CACHE_LIVE,
     etag: meta.etag,
-    headers: metaHeaders(meta),
+    headers: { ...metaHeaders(meta), ...signatureHeaders(current.metadata) },
   });
 }
 
@@ -66,11 +75,14 @@ export async function serveSnapshotsIndex(env: Env): Promise<Response> {
 
 export async function serveSnapshot(env: Env, hash: string): Promise<Response> {
   if (!HASH_RE.test(hash)) return errorResponse(404, "unknown snapshot", "not_found");
-  const text = await env.CODEXDATA_KV.get(kvSnapshotKey(hash), { cacheTtl: 3600 });
-  if (!text) return errorResponse(404, "unknown snapshot", "not_found");
-  return jsonResponse(text, {
+  const snapshot = await env.CODEXDATA_KV.getWithMetadata<CatalogKvMetadata>(kvSnapshotKey(hash), {
+    cacheTtl: 3600,
+  });
+  if (!snapshot.value) return errorResponse(404, "unknown snapshot", "not_found");
+  return jsonResponse(snapshot.value, {
     cacheControl: CACHE_IMMUTABLE,
     etag: `"sha256-${hash.slice(0, 32)}"`,
+    headers: signatureHeaders(snapshot.metadata),
   });
 }
 

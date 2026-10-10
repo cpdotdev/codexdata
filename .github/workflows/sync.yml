@@ -21,10 +21,14 @@ jobs:
   sync:
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    # The catalog signing key lives only in this environment, which only `main` may use, so pull
+    # request workflows cannot read it (docs/RUNBOOK.md#catalog-signing).
+    environment: catalog-signing
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - name: Lease token, fetch catalog, ingest
         env:
           CODEXDATA_ORIGIN: ${{ vars.CODEXDATA_ORIGIN || 'https://data.cp.dev' }}
           CODEXDATA_ADMIN_TOKEN: ${{ secrets.CODEXDATA_ADMIN_TOKEN }}
+          CATALOG_SIGNING_KEY: ${{ secrets.CATALOG_SIGNING_KEY }}
         run: node scripts/sync-agent.mjs

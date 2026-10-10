@@ -14,11 +14,16 @@
 //     Both modes share the validate / canonicalize / publish logic.
 //   - The token is AES-GCM encrypted with the KEK (a Workers Secret) and stored in DO storage;
 //     KV holds only the catalog.
+//   - Catalog signatures (src/sync/signature.ts): an ingest may carry the sync agent's Ed25519
+//     signature over the canonical text. It is verified before anything is written and stored as
+//     KV metadata of the body it covers, so body and signature are always replaced together.
+//     `CATALOG_SIGNATURE_REQUIRED=true` refuses unsigned ingests.
 //
 // KV keys:
-//   codex:current          latest successful official envelope (canonical JSON text)
+//   codex:current          latest successful official envelope (canonical JSON text; metadata
+//                          { signature } when signed)
 //   codex:meta             CodexMeta (JSON)
-//   codex:snapshot:<hash>  historical snapshot (TTL 180 days)
+//   codex:snapshot:<hash>  historical snapshot (TTL 180 days; same metadata as codex:current)
 //   codex:snapshots:index  index of the 50 most recent snapshots
 //   codex:changes          change events (newest first, ≤500)
 
@@ -36,12 +41,19 @@ import {
 } from "./catalog";
 import { latestCodexClientVersion } from "./npm";
 import { jwtExpSeconds, planLabelFromIdToken, refreshAccessToken } from "./oauth";
+import { verifyCatalogSignature } from "./signature";
 
 export const KV_CURRENT = "codex:current";
 export const KV_META = "codex:meta";
 export const KV_CHANGES = "codex:changes";
 export const KV_SNAPSHOTS_INDEX = "codex:snapshots:index";
 export const kvSnapshotKey = (hash: string): string => `codex:snapshot:${hash}`;
+
+/// KV metadata on codex:current and codex:snapshot:<hash>: the verified `x-codexdata-signature`
+/// value for exactly that body. Absent for catalogs published unsigned.
+export interface CatalogKvMetadata {
+  signature?: string;
+}
 
 const SNAPSHOT_TTL_SECONDS = 180 * 24 * 60 * 60;
 const SNAPSHOT_INDEX_LIMIT = 50;
@@ -98,6 +110,8 @@ export interface CodexMeta {
   listed_slugs: string[];
   last_run: LastRun | null;
   snapshot_id: string;
+  /// Key id of the signature stored with codex:current; null when the current catalog is unsigned.
+  signature_kid: string | null;
 }
 
 export interface SyncStatus {
@@ -110,6 +124,7 @@ export interface SyncStatus {
   permanent_failure: PermanentFailure | null;
   lease: { agent: string; at: string; expires_at: string } | null;
   current_hash: string | null;
+  signature_kid: string | null;
   last_run: LastRun | null;
   recent_runs: Array<{
     at: string;
@@ -152,6 +167,9 @@ export interface IngestInput {
   status: number;
   etag: string | null;
   body: string;
+  /// `x-codexdata-signature` value over the canonical catalog text (scripts/catalog-signature.mjs);
+  /// absent when the agent has no signing key.
+  signature?: string | null;
 }
 
 export class SyncCoordinator extends DurableObject<Env> {
@@ -238,6 +256,7 @@ export class SyncCoordinator extends DurableObject<Env> {
         ? { agent: lease.agent, at: lease.at, expires_at: new Date(lease.expires_at).toISOString() }
         : null,
       current_hash: meta?.content_hash ?? null,
+      signature_kid: meta?.signature_kid ?? null,
       last_run: meta?.last_run ?? null,
       recent_runs: rows,
     };
@@ -301,7 +320,7 @@ export class SyncCoordinator extends DurableObject<Env> {
       );
       return { status: "error", reason: `fetch: ${String(error)}`, permanent: false };
     }
-    return this.publish(fetched, clientVersion, at, reason, "worker", started);
+    return this.publish(fetched, clientVersion, at, reason, "worker", started, null);
   }
 
   // ------------------------------------------------------------------
@@ -368,7 +387,19 @@ export class SyncCoordinator extends DurableObject<Env> {
       etag: typeof input.etag === "string" && input.etag ? input.etag : null,
       text: typeof input.body === "string" ? input.body : "",
     };
-    return this.publish(fetched, input.client_version, at, "external", lease.agent, started);
+    // null/absent = unsigned. A present non-string value is passed on so it fails as malformed
+    // instead of silently downgrading to an unsigned publish.
+    const signature =
+      input.signature === undefined || input.signature === null ? null : String(input.signature);
+    return this.publish(
+      fetched,
+      input.client_version,
+      at,
+      "external",
+      lease.agent,
+      started,
+      signature,
+    );
   }
 
   /// The external agent's fetch failed: release the lease and record the reason.
@@ -471,6 +502,7 @@ export class SyncCoordinator extends DurableObject<Env> {
     reason: RunReason,
     agent: string | null,
     started: number,
+    signature: string | null,
   ): Promise<SyncResult> {
     if (fetched.status < 200 || fetched.status >= 300) {
       const detail = `catalog HTTP ${fetched.status}`;
@@ -486,16 +518,48 @@ export class SyncCoordinator extends DurableObject<Env> {
 
     const canonical = canonicalCatalogText(validated.models);
     const hash = await catalogHash(canonical);
+
+    // Signature gate: decided before any write, so a refused catalog changes nothing in KV.
+    let signed: { value: string; kid: string } | null = null;
+    if (signature !== null) {
+      const verdict = await verifyCatalogSignature(
+        canonical,
+        signature,
+        this.env.CATALOG_SIGNING_PUBLIC_KEYS,
+      );
+      if (!verdict.ok) {
+        const detail = `signature: ${verdict.reason}`;
+        await this.record(at, reason, "error", detail, hash, clientVersion, started);
+        return { status: "error", reason: detail, permanent: false };
+      }
+      signed = { value: signature, kid: verdict.kid };
+    } else if (signatureRequired(this.env.CATALOG_SIGNATURE_REQUIRED)) {
+      const detail = "unsigned catalog refused";
+      await this.record(at, reason, "error", detail, hash, clientVersion, started);
+      return { status: "error", reason: detail, permanent: false };
+    }
+
     const etag = fetched.etag ?? `"sha256-${hash.slice(0, 32)}"`;
     const previousMeta = await this.readMeta();
     const auth = await this.ctx.storage.get<StoredAuth>("auth");
 
     if (previousMeta && previousMeta.content_hash === hash) {
+      // Same content. A newly verified signature (first signed sync, or a rotated key) is attached
+      // to the stored body; an unsigned ingest never strips an existing signature.
+      let signatureKid = previousMeta.signature_kid ?? null;
+      if (signed) {
+        const stored = await this.env.CODEXDATA_KV.getWithMetadata<CatalogKvMetadata>(KV_CURRENT);
+        if (stored.value === null || stored.metadata?.signature !== signed.value) {
+          await this.writeCatalog(hash, canonical, signed.value);
+        }
+        signatureKid = signed.kid;
+      }
       const meta: CodexMeta = {
         ...previousMeta,
         checked_at: at,
         client_version: clientVersion,
         etag,
+        signature_kid: signatureKid,
       };
       await this.env.CODEXDATA_KV.put(KV_META, JSON.stringify(meta));
       await this.record(at, reason, "unchanged", null, hash, clientVersion, started);
@@ -534,12 +598,10 @@ export class SyncCoordinator extends DurableObject<Env> {
       listed_slugs: validated.models.filter((m) => m["visibility"] === "list").map((m) => m.slug),
       last_run: null,
       snapshot_id: hash,
+      signature_kid: signed?.kid ?? null,
     };
 
-    await this.env.CODEXDATA_KV.put(kvSnapshotKey(hash), canonical, {
-      expirationTtl: SNAPSHOT_TTL_SECONDS,
-    });
-    await this.env.CODEXDATA_KV.put(KV_CURRENT, canonical);
+    await this.writeCatalog(hash, canonical, signed?.value ?? null);
     await this.env.CODEXDATA_KV.put(KV_CHANGES, JSON.stringify(changes));
     await this.env.CODEXDATA_KV.put(KV_SNAPSHOTS_INDEX, JSON.stringify(index));
     await this.env.CODEXDATA_KV.put(KV_META, JSON.stringify(meta));
@@ -551,6 +613,21 @@ export class SyncCoordinator extends DurableObject<Env> {
       changes: events.length,
       client_version: clientVersion,
     };
+  }
+
+  /// Write the snapshot and codex:current. The signature travels as metadata of the same put as the
+  /// body it covers; an unsigned write stores no metadata (and so drops any previous signature).
+  private async writeCatalog(
+    hash: string,
+    canonical: string,
+    signature: string | null,
+  ): Promise<void> {
+    const metadata: CatalogKvMetadata | null = signature ? { signature } : null;
+    await this.env.CODEXDATA_KV.put(kvSnapshotKey(hash), canonical, {
+      expirationTtl: SNAPSHOT_TTL_SECONDS,
+      ...(metadata ? { metadata } : {}),
+    });
+    await this.env.CODEXDATA_KV.put(KV_CURRENT, canonical, metadata ? { metadata } : {});
   }
 
   private async record(
@@ -623,4 +700,10 @@ export class SyncCoordinator extends DurableObject<Env> {
 /// to look up.
 function accountFingerprint(accountId: string | null): string | null {
   return accountId ? accountId.slice(0, 8) : null;
+}
+
+/// "true" (case-sensitive, surrounding whitespace ignored) turns enforcement on; anything else keeps
+/// the transition mode.
+function signatureRequired(value: string | undefined): boolean {
+  return typeof value === "string" && value.trim() === "true";
 }

@@ -7,11 +7,17 @@
 // Credential boundary: the agent only receives an access token valid for 10 minutes (leased by the
 // Worker); the refresh token never leaves the Worker. The fetch result is pushed back verbatim;
 // validation and publishing happen inside the Worker.
+// Signing: with CATALOG_SIGNING_KEY set, the agent also signs the canonical catalog text
+// (scripts/catalog-signature.mjs) and the Worker publishes only if the signature verifies against
+// its trusted public keys. The key exists only in this job's environment; it is never logged.
 //
 // Environment variables:
 //   CODEXDATA_ORIGIN       Worker origin (default https://data.cp.dev)
 //   CODEXDATA_ADMIN_TOKEN  Bearer token for /admin/* (required)
 //   CODEXDATA_AGENT        name of this agent (default: hostname or GITHUB_RUN_ID)
+//   CATALOG_SIGNING_KEY    Ed25519 private key, PKCS#8 PEM (optional; unset = unsigned ingest)
+
+import { canonicalCatalogText, loadSigningKey, signCatalog } from "./catalog-signature.mjs";
 
 const origin = (process.env.CODEXDATA_ORIGIN ?? "https://data.cp.dev").replace(/\/+$/, "");
 const adminToken = process.env.CODEXDATA_ADMIN_TOKEN ?? "";
@@ -20,6 +26,7 @@ const agent =
   (process.env.GITHUB_RUN_ID
     ? `github-actions#${process.env.GITHUB_RUN_ID}`
     : `host:${process.env.HOSTNAME ?? "unknown"}`);
+const signingKey = process.env.CATALOG_SIGNING_KEY ?? "";
 
 const NPM_LATEST = "https://registry.npmjs.org/@openai/codex/latest";
 const OFFICIAL_CATALOG_URL = "https://chatgpt.com/backend-api/codex/models";
@@ -74,8 +81,36 @@ async function latestClientVersion(hint) {
   return hint;
 }
 
+/// Signature over the canonical text of a 2xx response, or null when there is nothing to sign
+/// (unparsable body or no `models` array: the Worker rejects that catalog anyway).
+function catalogSignature(status, body) {
+  if (!signingKey || status < 200 || status >= 300) return null;
+  let parsed;
+  try {
+    parsed = JSON.parse(body);
+  } catch {
+    return null;
+  }
+  if (!parsed || typeof parsed !== "object" || !Array.isArray(parsed.models)) return null;
+  return signCatalog(canonicalCatalogText(parsed.models), signingKey);
+}
+
 async function main() {
   if (!adminToken) throw new Error("CODEXDATA_ADMIN_TOKEN is required");
+  if (signingKey) {
+    // Fail before taking a lease: a configured but broken key must turn the run red, not silently
+    // fall back to unsigned ingests.
+    let kid;
+    try {
+      ({ kid } = loadSigningKey(signingKey));
+    } catch (error) {
+      log("signing_key_invalid", { error: error.message });
+      process.exit(1);
+    }
+    log("signing", { kid });
+  } else {
+    log("unsigned", { reason: "CATALOG_SIGNING_KEY not set" });
+  }
 
   const lease = await withRetry(
     "lease",
@@ -145,6 +180,9 @@ async function main() {
       client_version: clientVersion,
     });
 
+    const signature = catalogSignature(res.status, body);
+    if (signature) log("signed", { kid: signature.split(".")[1] });
+
     ingestResult = await withRetry("ingest", async () => {
       const { status, json } = await admin("/admin/ingest", {
         lease_id: lease.lease_id,
@@ -152,6 +190,7 @@ async function main() {
         status: res.status,
         etag: res.headers.get("etag"),
         body,
+        ...(signature ? { signature } : {}),
       });
       if (status >= 500) throw new Error(`ingest ${status}: ${JSON.stringify(json).slice(0, 200)}`);
       return json;

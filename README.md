@@ -39,6 +39,15 @@ products: [docs/HOOKS.md](docs/HOOKS.md).
   `chatgpt.com` (403 from the edge), so a GitHub-hosted runner leases a short-lived access token
   from the Worker, fetches the catalog and pushes it back for validation and publishing. The
   refresh token never leaves the Worker. Details: [docs/RUNBOOK.md](docs/RUNBOOK.md).
+- **Catalog signature.** `/v1/codex/models.json` (including `304` responses) and
+  `/v1/codex/snapshots/<hash>.json` carry `X-CodexData-Signature: v1.<kid>.<signature>` once the
+  sync job signs: an Ed25519 signature (base64url, no padding) over the UTF-8 bytes of
+  `"codexdata-catalog-v1\n"` followed by the exact response body; `kid` is the first 16 hex
+  characters of SHA-256 of the raw 32-byte public key. The private key lives only in the sync
+  job's GitHub environment, and the Worker publishes a signed catalog only after verifying it.
+  Clients should verify the header with embedded public keys instead of trusting the transport;
+  `meta.json` → `signature_kid` names the current key. Details:
+  [docs/RUNBOOK.md](docs/RUNBOOK.md#catalog-signing).
 - **Compat watch** (`.github/workflows/compat-watch.yml`, every 6 hours). Downloads each new
   Codex CLI release, probes it, commits the results and hot-publishes them to KV.
 

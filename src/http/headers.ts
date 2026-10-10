@@ -5,7 +5,7 @@ export const CORS_HEADERS: Record<string, string> = {
   "access-control-allow-methods": "GET, HEAD, OPTIONS",
   "access-control-allow-headers": "If-None-Match, Content-Type",
   "access-control-expose-headers":
-    "ETag, X-CodexData-Fetched-At, X-CodexData-Client-Version, X-CodexData-Source-Plan, X-CodexData-Content-Hash",
+    "ETag, X-CodexData-Fetched-At, X-CodexData-Client-Version, X-CodexData-Source-Plan, X-CodexData-Content-Hash, X-CodexData-Signature",
   "access-control-max-age": "86400",
 };
 

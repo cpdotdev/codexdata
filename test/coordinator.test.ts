@@ -5,13 +5,30 @@ import {
   createScheduledController,
   env,
   reset,
+  runInDurableObject,
   SELF,
   waitOnExecutionContext,
 } from "cloudflare:test";
 import { beforeEach, describe, expect, it } from "vitest";
 import worker from "../src/index";
-import { KV_CHANGES, KV_CURRENT, KV_META, type CodexMeta } from "../src/sync/coordinator";
-import { officialModel } from "./fixtures";
+import { canonicalCatalogText, catalogHash } from "../src/sync/catalog";
+import {
+  KV_CHANGES,
+  KV_CURRENT,
+  KV_META,
+  kvSnapshotKey,
+  type CatalogKvMetadata,
+  type CodexMeta,
+} from "../src/sync/coordinator";
+import { keyId, verifyCatalogSignature } from "../src/sync/signature";
+import {
+  officialModel,
+  SECOND_TEST_KEY,
+  signCatalogText,
+  signWithCryptoKey,
+  SIGNING_VECTOR,
+  type TestSigningKey,
+} from "./fixtures";
 
 const mock = {
   reset: () => fetch("https://mock.local/reset", { method: "POST" }),
@@ -65,7 +82,12 @@ function catalogBody(models = [officialModel()]): string {
   return JSON.stringify({ models });
 }
 
-async function leaseAndIngest(body: string, etag = 'W/"v1"', status = 200): Promise<Response> {
+async function leaseAndIngest(
+  body: string,
+  etag = 'W/"v1"',
+  status = 200,
+  extra: Record<string, unknown> = {},
+): Promise<Response> {
   const lease = (await (await admin("/admin/lease", { agent: "test" })).json()) as {
     ok: boolean;
     lease_id: string;
@@ -77,6 +99,7 @@ async function leaseAndIngest(body: string, etag = 'W/"v1"', status = 200): Prom
     status,
     etag,
     body,
+    ...extra,
   });
 }
 
@@ -309,5 +332,185 @@ describe("modes", () => {
     await worker.scheduled(createScheduledController({ cron: "7 * * * *" }), env, ctx);
     await waitOnExecutionContext(ctx);
     expect(await env.CODEXDATA_KV.get(KV_META)).toBeNull();
+  });
+});
+
+describe("catalog signatures", () => {
+  const VECTOR_KEY: TestSigningKey = SIGNING_VECTOR;
+  const models = [officialModel()];
+  const signed = (key: TestSigningKey = VECTOR_KEY) =>
+    signCatalogText(key, canonicalCatalogText(models));
+  const ingestSigned = (signature: string) =>
+    leaseAndIngest(catalogBody(models), 'W/"v1"', 200, { signature });
+  const served = () => SELF.fetch("https://codexdata.test/v1/codex/models.json");
+  const current = () => env.CODEXDATA_KV.getWithMetadata<CatalogKvMetadata>(KV_CURRENT);
+  const readMeta = async () =>
+    JSON.parse((await env.CODEXDATA_KV.get(KV_META)) ?? "null") as CodexMeta | null;
+  const hashOf = async () => (await readMeta())?.content_hash ?? "";
+
+  /// Run `fn` with CATALOG_SIGNATURE_REQUIRED="true" in the coordinator, then restore its env.
+  async function withSignatureRequired(fn: () => Promise<void>): Promise<void> {
+    const stub = env.SYNC.getByName("primary");
+    const original = await runInDurableObject(stub, (instance) => {
+      const target = instance as unknown as { env: Env };
+      const before = target.env;
+      target.env = { ...before, CATALOG_SIGNATURE_REQUIRED: "true" } as unknown as Env;
+      return before;
+    });
+    try {
+      await fn();
+    } finally {
+      await runInDurableObject(stub, (instance) => {
+        (instance as unknown as { env: Env }).env = original;
+      });
+    }
+  }
+
+  it("publishes a verified catalog and serves the signature with models.json, 304s and snapshots", async () => {
+    await seed();
+    const signature = await signed();
+    const ingest = await ingestSigned(signature);
+    expect(ingest.status, await ingest.clone().text()).toBe(200);
+    expect(await ingest.json()).toMatchObject({ status: "ok" });
+
+    const res = await served();
+    expect(res.headers.get("x-codexdata-signature")).toBe(signature);
+    expect(res.headers.get("access-control-expose-headers")).toContain("X-CodexData-Signature");
+    // The header covers the exact served bytes.
+    expect(
+      await verifyCatalogSignature(await res.text(), signature, SIGNING_VECTOR.publicKey),
+    ).toEqual({ ok: true, kid: SIGNING_VECTOR.kid });
+
+    const conditional = await SELF.fetch("https://codexdata.test/v1/codex/models.json", {
+      headers: { "if-none-match": 'W/"v1"' },
+    });
+    expect(conditional.status).toBe(304);
+    expect(conditional.headers.get("x-codexdata-signature")).toBe(signature);
+    const head = await SELF.fetch("https://codexdata.test/v1/codex/models.json", {
+      method: "HEAD",
+    });
+    expect(head.headers.get("x-codexdata-signature")).toBe(signature);
+
+    const meta = await readMeta();
+    expect(meta?.signature_kid).toBe(SIGNING_VECTOR.kid);
+    const status = (await (await admin("/admin/status", undefined, "GET")).json()) as {
+      signature_kid: string | null;
+    };
+    expect(status.signature_kid).toBe(SIGNING_VECTOR.kid);
+
+    const snapshot = await SELF.fetch(
+      `https://codexdata.test/v1/codex/snapshots/${meta?.content_hash}.json`,
+    );
+    expect(snapshot.status).toBe(200);
+    expect(snapshot.headers.get("x-codexdata-signature")).toBe(signature);
+    expect(snapshot.headers.get("cache-control")).toContain("immutable");
+  });
+
+  it("refuses a bad or malformed signature and leaves KV untouched", async () => {
+    await seed();
+    const signature = await signed();
+    expect((await ingestSigned(signature)).status).toBe(200);
+    const before = await current();
+    const hash = await hashOf();
+
+    const changed = [officialModel({ priority: 9 })];
+    for (const [label, bad, reason] of [
+      // A genuine signature, but over the previously published catalog.
+      ["other catalog", signature, "signature: bad_signature"],
+      ["malformed", "v1.not-a-signature", "signature: malformed"],
+      ["non-string", 42, "signature: malformed"],
+      ["empty", "", "signature: malformed"],
+    ] as const) {
+      const res = await leaseAndIngest(catalogBody(changed), 'W/"v2"', 200, { signature: bad });
+      expect(res.status, label).toBe(422);
+      expect(await res.json(), label).toMatchObject({ status: "error", reason });
+      expect(await current(), label).toEqual(before);
+      expect(await hashOf(), label).toBe(hash);
+    }
+    const refusedHash = await catalogHash(canonicalCatalogText(changed));
+    expect(await env.CODEXDATA_KV.get(kvSnapshotKey(refusedHash))).toBeNull();
+    const status = (await (await admin("/admin/status", undefined, "GET")).json()) as {
+      recent_runs: Array<{ status: string; error: string | null }>;
+    };
+    expect(status.recent_runs[0]).toMatchObject({ status: "error", error: "signature: malformed" });
+  });
+
+  it("refuses a signature from a key that is not trusted", async () => {
+    await seed();
+    const untrusted = (await crypto.subtle.generateKey({ name: "Ed25519" }, true, [
+      "sign",
+      "verify",
+    ])) as CryptoKeyPair;
+    const raw = new Uint8Array(
+      (await crypto.subtle.exportKey("raw", untrusted.publicKey)) as ArrayBuffer,
+    );
+    const res = await ingestSigned(
+      await signWithCryptoKey(untrusted.privateKey, await keyId(raw), canonicalCatalogText(models)),
+    );
+    expect(res.status).toBe(422);
+    expect(await res.json()).toMatchObject({ status: "error", reason: "signature: unknown_kid" });
+    expect((await current()).value).toBeNull();
+    expect(await readMeta()).toBeNull();
+  });
+
+  it("publishes unsigned catalogs while signatures are not required, without a stale header", async () => {
+    await seed();
+    expect((await ingestSigned(await signed())).status).toBe(200);
+    const next = [officialModel({ priority: 9 })];
+    const res = await leaseAndIngest(catalogBody(next), 'W/"v2"');
+    expect(await res.json()).toMatchObject({ status: "ok" });
+    // A signature never outlives the body it covers.
+    expect((await served()).headers.get("x-codexdata-signature")).toBeNull();
+    expect((await current()).metadata).toBeNull();
+    expect((await readMeta())?.signature_kid).toBeNull();
+  });
+
+  it("refuses unsigned catalogs once signatures are required", async () => {
+    await seed();
+    await withSignatureRequired(async () => {
+      const unsigned = await leaseAndIngest(catalogBody());
+      expect(unsigned.status).toBe(422);
+      expect(await unsigned.json()).toMatchObject({
+        status: "error",
+        reason: "unsigned catalog refused",
+      });
+      expect((await current()).value).toBeNull();
+
+      const signature = await signed();
+      expect(await (await ingestSigned(signature)).json()).toMatchObject({ status: "ok" });
+      expect((await served()).headers.get("x-codexdata-signature")).toBe(signature);
+    });
+  });
+
+  it("attaches a signature to unchanged content and replaces it after key rotation", async () => {
+    await seed();
+    expect(await (await leaseAndIngest(catalogBody())).json()).toMatchObject({ status: "ok" });
+    expect((await served()).headers.get("x-codexdata-signature")).toBeNull();
+    const hash = await hashOf();
+
+    const first = await signed();
+    expect(await (await ingestSigned(first)).json()).toMatchObject({ status: "unchanged" });
+    expect((await served()).headers.get("x-codexdata-signature")).toBe(first);
+    expect((await readMeta())?.signature_kid).toBe(SIGNING_VECTOR.kid);
+    const snapshot = await SELF.fetch(`https://codexdata.test/v1/codex/snapshots/${hash}.json`);
+    expect(snapshot.headers.get("x-codexdata-signature")).toBe(first);
+
+    const rotated = await signed(SECOND_TEST_KEY);
+    expect(await (await ingestSigned(rotated)).json()).toMatchObject({ status: "unchanged" });
+    expect((await served()).headers.get("x-codexdata-signature")).toBe(rotated);
+    expect((await readMeta())?.signature_kid).toBe(SECOND_TEST_KEY.kid);
+    expect((await readMeta())?.content_hash).toBe(hash);
+  });
+
+  it("keeps the stored signature when the same content arrives unsigned", async () => {
+    await seed();
+    const signature = await signed();
+    expect((await ingestSigned(signature)).status).toBe(200);
+    const unsigned = await leaseAndIngest(catalogBody(), 'W/"v1b"');
+    expect(await unsigned.json()).toMatchObject({ status: "unchanged" });
+    const res = await served();
+    expect(res.headers.get("x-codexdata-signature")).toBe(signature);
+    expect(res.headers.get("etag")).toBe('W/"v1b"');
+    expect((await readMeta())?.signature_kid).toBe(SIGNING_VECTOR.kid);
   });
 });
