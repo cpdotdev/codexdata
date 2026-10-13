@@ -1,0 +1,9 @@
+{
+  "key": "code_mode_only_strict_3p_tools",
+  "i18n": {
+    "zh": {
+      "title": "严格按需",
+      "summary": "仅用代码模式下，让 MCP、应用和动态工具在代码执行中保持按需加载，并忽略相关的加载和跳过设置。"
+    }
+  }
+}

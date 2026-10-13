@@ -1,0 +1,9 @@
+{
+  "key": "multi_agent_v2_dynamic_tools",
+  "i18n": {
+    "zh": {
+      "title": "继承动态工具",
+      "summary": "协作新版中新建的子助手沿用客户端定义的动态工具。"
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "key": "incremental_tools",
+  "i18n": {
+    "zh": {
+      "title": "增量工具",
+      "summary": "记录顶层工具定义，工具变化时只增量更新上下文。"
+    }
+  }
+}

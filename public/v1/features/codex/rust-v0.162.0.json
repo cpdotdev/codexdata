@@ -7,10 +7,10 @@
   ],
   "counts": {
     "total": 167,
-    "annotated": 160,
+    "annotated": 167,
     "locales": {
       "en": 1,
-      "zh": 160
+      "zh": 167
     }
   },
   "flags": [
@@ -186,7 +186,8 @@
         "i18n": {
           "zh": {
             "title": "保留换行",
-            "summary": "修改文件时，保留原有换行格式。"
+            "summary": "修改文件时，保留原有换行格式。",
+            "note": "从 rust-v0.162.0 起始终开启，开关仅为兼容旧设置而保留。"
           }
         }
       }
@@ -713,7 +714,14 @@
           }
         ]
       },
-      "annotation": null
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "严格按需",
+            "summary": "仅用代码模式下，让 MCP、应用和动态工具在代码执行中保持按需加载，并忽略相关的加载和跳过设置。"
+          }
+        }
+      }
     },
     {
       "key": "code_mode_prewarm",
@@ -760,7 +768,14 @@
           }
         ]
       },
-      "annotation": null
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "代码内搜工具",
+            "summary": "在 JavaScript 代码模式中按相关度查找可用工具。"
+          }
+        }
+      }
     },
     {
       "key": "codex_apps_mcp_2026_07_28",
@@ -1787,7 +1802,14 @@
           }
         ]
       },
-      "annotation": null
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "审查对比",
+            "summary": "与 Guardian V2 同时运行 Decisions 以作评估，不改变审批结果。"
+          }
+        }
+      }
     },
     {
       "key": "hooks",
@@ -2087,7 +2109,14 @@
           }
         ]
       },
-      "annotation": null
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "增量工具",
+            "summary": "记录顶层工具定义，工具变化时只增量更新上下文。"
+          }
+        }
+      }
     },
     {
       "key": "instant_interrupt",
@@ -2526,7 +2555,14 @@
           }
         ]
       },
-      "annotation": null
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "继承动态工具",
+            "summary": "协作新版中新建的子助手沿用客户端定义的动态工具。"
+          }
+        }
+      }
     },
     {
       "key": "network_proxy",
@@ -3717,7 +3753,14 @@
           }
         ]
       },
-      "annotation": null
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "提前列出工具",
+            "summary": "执行环境就绪前，先向模型列出已启用的环境工具及其命令参数；实际执行仍需环境可用且符合其策略。"
+          }
+        }
+      }
     },
     {
       "key": "standalone_web_search",
@@ -4093,7 +4136,15 @@
           }
         ]
       },
-      "annotation": null
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "超快模式",
+            "summary": "独立于快速模式，单独控制超快模式。",
+            "note": "只决定 ultrafast 档位是否可用，所选模型仍需支持该档位。"
+          }
+        }
+      }
     },
     {
       "key": "unavailable_dummy_tools",

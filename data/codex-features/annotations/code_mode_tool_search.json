@@ -1,0 +1,9 @@
+{
+  "key": "code_mode_tool_search",
+  "i18n": {
+    "zh": {
+      "title": "代码内搜工具",
+      "summary": "在 JavaScript 代码模式中按相关度查找可用工具。"
+    }
+  }
+}
