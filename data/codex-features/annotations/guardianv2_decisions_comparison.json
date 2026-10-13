@@ -1,0 +1,9 @@
+{
+  "key": "guardianv2_decisions_comparison",
+  "i18n": {
+    "zh": {
+      "title": "审查对比",
+      "summary": "与 Guardian V2 同时运行 Decisions 以作评估，不改变审批结果。"
+    }
+  }
+}

@@ -266,7 +266,7 @@
         "instructions_template": { "$ref": "#/$defs/NullableString" },
         "instructions_variables": {
           "anyOf": [{ "type": "null" }, { "$ref": "#/$defs/ModelInstructionsVariables" }],
-          "description": "Deprecated since 0.156 (personality selection removed); still decoded for older catalogs."
+          "description": "Deprecated since 0.156 (personality selection removed). Decoded by 0.156–0.161; removed from the struct in 0.162 and ignored as an unknown key from then on."
         },
         "approvals": {
           "type": ["object", "null"],

@@ -1,7 +1,7 @@
 {
   "schema": "codex-model-info",
   "latest": {
-    "tag": "rust-v0.161.0",
+    "tag": "rust-v0.162.1",
     "url": "https://data.cp.dev/v1/schema/codex-model-info/latest.json"
   },
   "verified_tags": [
@@ -92,6 +92,14 @@
     {
       "tag": "rust-v0.161.0",
       "url": "https://data.cp.dev/v1/schema/codex-model-info/rust-v0.161.0.json"
+    },
+    {
+      "tag": "rust-v0.162.0",
+      "url": "https://data.cp.dev/v1/schema/codex-model-info/rust-v0.162.0.json"
+    },
+    {
+      "tag": "rust-v0.162.1",
+      "url": "https://data.cp.dev/v1/schema/codex-model-info/rust-v0.162.1.json"
     }
   ],
   "source_files": [
@@ -116,6 +124,7 @@
     "rust-v0.158.0: ModelMessages.tools gained indirect_description_prefixes and mcp_resources; tools.multi_agent gained the channel tools (create_channel … post). rust-v0.159.0 … rust-v0.159.3: byte-identical to rust-v0.158.0.",
     "rust-v0.160.0: ModelMessages gained content_filter_guidance. rust-v0.160.1: byte-identical.",
     "rust-v0.161.0: GuardianV2ModelConfig gained async_classifier_mode (closed enum: snapshot | conversation) and async_classifier_conversation_token_limit; ModelAccessPrograms gained helper methods only.",
+    "rust-v0.162.0: ModelMessages dropped instructions_variables (and the ModelInstructionsVariables struct); catalogs that still send it are accepted because the key is ignored. supports_personality and instructions_template: comment-only changes. rust-v0.162.1: byte-identical.",
     "Tags after rust-v0.153.4 are vendored by scripts/sync-codex-tags.mjs: a tag whose sources are byte-identical to the previous snapshot is recorded in snapshot_aliases instead of stored again.",
     "Every stored snapshot keeps the client's own bundled catalog (codex-rs/models-manager/models.json at that tag) as a test vector; validate.mjs checks the schema against all of them. The catalogs carry keys the struct does not have (supports_parallel_tool_calls, prefer_websockets, requires_sandboxed_review, supports_reasoning_summaries, available_in_plans, minimal_client_version); the client ignores them."
   ],
