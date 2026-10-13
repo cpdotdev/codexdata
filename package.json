@@ -37,7 +37,7 @@
     "prettier": "^3.9.9",
     "typescript": "^5.9.3",
     "vitest": "^4.1.11",
-    "wrangler": "^4.137.0"
+    "wrangler": "^4.142.0"
   },
   "dependencies": {
     "@cfworker/json-schema": "^4.1.1",
