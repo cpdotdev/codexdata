@@ -1,7 +1,7 @@
 {
   "schema": "codex-model-info",
   "latest": {
-    "tag": "rust-v0.162.1",
+    "tag": "rust-v0.163.0",
     "url": "https://data.cp.dev/v1/schema/codex-model-info/latest.json"
   },
   "verified_tags": [
@@ -100,11 +100,16 @@
     {
       "tag": "rust-v0.162.1",
       "url": "https://data.cp.dev/v1/schema/codex-model-info/rust-v0.162.1.json"
+    },
+    {
+      "tag": "rust-v0.163.0",
+      "url": "https://data.cp.dev/v1/schema/codex-model-info/rust-v0.163.0.json"
     }
   ],
   "source_files": [
     "codex-rs/protocol/src/openai_models.rs",
     "codex-rs/protocol/src/openai_models/access_programs.rs",
+    "codex-rs/protocol/src/openai_models/incremental_tools.rs",
     "codex-rs/protocol/src/openai_models/guardian.rs",
     "codex-rs/protocol/src/openai_models/guardian_v2.rs",
     "codex-rs/protocol/src/openai_models/reasoning_effort.rs",

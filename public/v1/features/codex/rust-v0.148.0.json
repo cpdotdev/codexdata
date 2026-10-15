@@ -23,7 +23,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -50,7 +50,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -82,7 +82,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -111,7 +111,7 @@
       ],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -138,7 +138,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -165,7 +165,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -192,7 +192,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -219,7 +219,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -246,7 +246,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -274,7 +274,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -302,7 +302,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -333,7 +333,7 @@
       ],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -367,7 +367,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -395,7 +395,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -422,7 +422,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -449,11 +449,15 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
             "stage": "under development"
+          },
+          {
+            "at": "rust-v0.163.0",
+            "stage": "stable"
           }
         ]
       },
@@ -476,7 +480,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -503,7 +507,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -530,7 +534,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -557,7 +561,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -585,7 +589,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -612,7 +616,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -639,7 +643,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -666,7 +670,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -693,7 +697,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -720,7 +724,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -747,7 +751,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -774,7 +778,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -801,7 +805,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -830,7 +834,7 @@
       ],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -857,7 +861,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -884,7 +888,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -913,7 +917,7 @@
       ],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -940,7 +944,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -967,7 +971,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -994,7 +998,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -1021,7 +1025,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -1048,7 +1052,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -1075,7 +1079,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -1102,7 +1106,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -1129,7 +1133,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -1160,7 +1164,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -1189,7 +1193,7 @@
       ],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -1216,7 +1220,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -1245,7 +1249,7 @@
       ],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -1272,7 +1276,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -1299,7 +1303,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -1327,7 +1331,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -1355,7 +1359,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -1382,7 +1386,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -1409,7 +1413,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -1436,7 +1440,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -1464,7 +1468,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -1493,7 +1497,7 @@
       ],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -1520,7 +1524,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -1549,7 +1553,7 @@
       ],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -1576,7 +1580,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -1603,7 +1607,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -1634,7 +1638,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -1661,7 +1665,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -1688,7 +1692,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -1720,7 +1724,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -1747,7 +1751,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -1774,7 +1778,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -1807,7 +1811,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -1834,7 +1838,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -1862,7 +1866,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -1901,7 +1905,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -1928,7 +1932,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -1960,7 +1964,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -1987,7 +1991,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -2014,7 +2018,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -2042,7 +2046,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -2069,7 +2073,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -2096,7 +2100,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -2123,7 +2127,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -2150,7 +2154,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -2177,7 +2181,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -2204,7 +2208,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -2231,7 +2235,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -2258,7 +2262,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -2285,7 +2289,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -2313,7 +2317,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -2341,7 +2345,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -2368,7 +2372,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -2395,11 +2399,15 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
             "stage": "under development"
+          },
+          {
+            "at": "rust-v0.163.0",
+            "stage": "removed"
           }
         ]
       },
@@ -2422,7 +2430,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -2449,7 +2457,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -2476,7 +2484,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -2503,7 +2511,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -2530,7 +2538,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -2557,7 +2565,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -2584,7 +2592,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -2611,7 +2619,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -2638,7 +2646,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -2665,7 +2673,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -2692,7 +2700,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -2719,7 +2727,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -2746,7 +2754,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -2773,7 +2781,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -2800,7 +2808,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -2827,7 +2835,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -2854,7 +2862,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -2883,7 +2891,7 @@
       ],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -2910,7 +2918,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -2941,7 +2949,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -2968,7 +2976,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -2995,7 +3003,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -3022,7 +3030,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -3049,7 +3057,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -3076,7 +3084,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -3105,7 +3113,7 @@
       ],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -3132,7 +3140,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -3159,7 +3167,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.162.1",
+        "last_seen": "rust-v0.163.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
