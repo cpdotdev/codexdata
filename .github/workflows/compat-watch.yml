@@ -1,8 +1,9 @@
 name: Compat watch
 
-# Watches Codex CLI releases. Every 6 hours it compares the npm dist-tags (latest / alpha) with
-# the probes already committed; for each new version it downloads the official binary and runs
-# scripts/compat-probe.mjs. A regression (a managed key vanished from the binary, or a
+# Watches Codex CLI releases. Every 6 hours it compares the npm dist-tags (latest / alpha) and the
+# stable versions npm lists up to `latest` with the probes already committed; for each new version
+# it downloads the official binary and runs scripts/compat-probe.mjs. A stable release replaced
+# between two runs is probed late instead of never. A regression (a managed key vanished from the binary, or a
 # Codex-Pass-shaped config.toml is rejected as a whole) opens an `ops` issue for human triage; the
 # verdict goes into data/codex-compat/tracked.json (statusOverride/action) or advisories/.
 #
@@ -20,7 +21,7 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        description: "Probe only this Codex version (empty = npm dist-tags latest + alpha)"
+        description: "Probe only this Codex version (empty = npm dist-tags latest + alpha, plus missed stable versions)"
         required: false
       force:
         description: "Re-probe even if already probed (true/false)"
