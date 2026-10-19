@@ -12,7 +12,7 @@ you believe a verdict is wrong, open an issue with the Codex version and what yo
 ## Data flow
 
 ```
-npm dist-tags (latest / alpha)
+npm dist-tags (latest / alpha) + stable versions without a probe (oldest probed stable … latest)
    │  .github/workflows/compat-watch.yml (every 6 hours)
    ▼
 scripts/compat-probe.mjs        download binary → key-string probe / deprecation scan / config loadability / release notes
@@ -76,5 +76,9 @@ the publish endpoint validates against it, so invalid data never reaches KV. Cli
   convention). `clientAction: "hold-upgrade"` plus `codexPassFixedIn` drives the "update Codex
   Pass before updating Codex" reminder.
 - Treat versions above `codex.maxProbedStable` as unverified.
+- `versions[]` lists every stable release from the oldest probed one (0.153.4) to
+  `codex.latestStable`; a stable release replaced before the next run is backfilled on a later
+  run. Alpha versions are probed only while they hold the `alpha` dist-tag, so the alpha entries
+  are a sample, not a complete list.
 - Degrade silently when the fetch fails (same pattern as the feature annotations: hourly refresh,
   10-minute backoff, on-disk cache).

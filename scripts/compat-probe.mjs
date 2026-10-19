@@ -11,7 +11,8 @@
 //   4. GitHub release notes (rust-v<version> tag).
 // Results go to data/codex-compat/probes/<version>.json (once per version, idempotent).
 //
-// Usage: node scripts/compat-probe.mjs                 probe the not-yet-probed versions among the npm dist-tags latest and alpha
+// Usage: node scripts/compat-probe.mjs                 probe the not-yet-probed versions among the npm dist-tags latest and alpha,
+//                                                      plus stable versions missed earlier (selectTargets)
 //        node scripts/compat-probe.mjs --version 0.155.1 [--force]
 // Exit codes: 0 = nothing new or probe passed; 20 = regression found (key missing / config rejected),
 // for the workflow to open an issue; 1 = script failure.
@@ -28,7 +29,7 @@ import {
 } from "node:fs";
 import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
-import { fileURLToPath } from "node:url";
+import { fileURLToPath, pathToFileURL } from "node:url";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const compatDir = join(root, "data", "codex-compat");
@@ -37,6 +38,9 @@ const tracked = JSON.parse(readFileSync(join(compatDir, "tracked.json"), "utf8")
 
 const NPM_PACKAGE = "@openai/codex";
 const REGISTRY = "https://registry.npmjs.org";
+// Missed stable versions probed per run (each one downloads and unpacks a ~370 MB platform
+// package); the rest wait for the next run.
+const MAX_BACKFILL = 5;
 // User-facing deprecation messages; exclude Rust ecosystem noise (Error::description, dependency
 // source paths, etc.).
 const DEPRECATION_RE = /no longer supported|is deprecated/;
@@ -73,6 +77,37 @@ function compareCore(a, b) {
 
 function isStable(version) {
   return !version.includes("-");
+}
+
+/** The versions to probe this run, from the npm packument (`dist-tags`, `versions`) and the
+ *  versions that already have a probe. The dist-tags alone miss every stable release that is
+ *  superseded before the next run: 0.155.1 replaced 0.155.0 as `latest` before the watch first
+ *  ran, so 0.155.0 never got a probe. So every stable version from the oldest probed stable up to
+ *  `latest` that has no probe yet is a target too (at most `maxBackfill` per run, oldest first).
+ *  Stable targets come in ascending order, so each one is compared against its real predecessor
+ *  (previousStableProbe); the alpha comes last. */
+export function selectTargets(meta, probed, maxBackfill = MAX_BACKFILL) {
+  const have = new Set(probed);
+  const latest = meta["dist-tags"]?.latest;
+  const alpha = meta["dist-tags"]?.alpha;
+  const floor = [...have].filter((v) => isStable(v) && versionCore(v)).sort(compareCore)[0];
+  const backfill =
+    floor && latest && versionCore(latest)
+      ? Object.keys(meta.versions ?? {})
+          .filter(
+            (v) =>
+              isStable(v) &&
+              versionCore(v) &&
+              !have.has(v) &&
+              compareCore(v, floor) > 0 &&
+              compareCore(v, latest) < 0,
+          )
+          .sort(compareCore)
+          .slice(0, maxBackfill)
+      : [];
+  const targets = latest && !have.has(latest) ? [...backfill, latest] : backfill;
+  if (alpha && !have.has(alpha) && !targets.includes(alpha)) targets.push(alpha);
+  return targets;
 }
 
 /** Download the platform package and locate the codex binary; returns { binary, cleanup }. */
@@ -300,6 +335,7 @@ async function main() {
   const versionArg = args.includes("--version") ? args[args.indexOf("--version") + 1] : null;
   const force = args.includes("--force");
 
+  mkdirSync(probesDir, { recursive: true });
   let targets = [];
   if (versionArg) {
     targets = [versionArg];
@@ -307,10 +343,12 @@ async function main() {
     const meta = await fetchJson(`${REGISTRY}/${NPM_PACKAGE}`, {
       accept: "application/vnd.npm.install-v1+json",
     });
-    targets = [meta["dist-tags"].latest, meta["dist-tags"].alpha].filter(Boolean);
+    const probed = readdirSync(probesDir)
+      .filter((name) => name.endsWith(".json"))
+      .map((name) => name.slice(0, -5));
+    targets = selectTargets(meta, probed);
   }
 
-  mkdirSync(probesDir, { recursive: true });
   let sawRegression = false;
   let probedAny = false;
   for (const version of targets) {
@@ -336,7 +374,9 @@ async function main() {
   process.exit(sawRegression ? 20 : 0);
 }
 
-main().catch((error) => {
-  console.error(error);
-  process.exit(1);
-});
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+  main().catch((error) => {
+    console.error(error);
+    process.exit(1);
+  });
+}
