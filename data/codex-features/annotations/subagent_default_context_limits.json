@@ -1,0 +1,9 @@
+{
+  "key": "subagent_default_context_limits",
+  "i18n": {
+    "zh": {
+      "title": "子助手默认容量",
+      "summary": "子助手使用各自模型默认的上下文窗口和自动压缩阈值。"
+    }
+  }
+}

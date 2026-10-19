@@ -1,0 +1,9 @@
+{
+  "key": "code_mode_tool_description_first",
+  "i18n": {
+    "zh": {
+      "title": "工具说明在前",
+      "summary": "代码模式中，把每个工具的说明放在所属命名空间的说明之前。"
+    }
+  }
+}

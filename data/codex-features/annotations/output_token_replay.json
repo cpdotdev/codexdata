@@ -1,0 +1,10 @@
+{
+  "key": "output_token_replay",
+  "i18n": {
+    "zh": {
+      "title": "输出重放",
+      "summary": "请求加密的采样输出，用于保留原有 token 的重放。",
+      "note": "重放的具体用途未确认。"
+    }
+  }
+}

@@ -95,7 +95,7 @@
           "zh": {
             "title": "API Key 会话的网络安全访问计划",
             "summary": "使用内置 OpenAI 提供方和 API Key 登录时，允许把显式指定的网络安全访问计划（cyber access program）随请求转发。",
-            "note": "客户端在请求体里写入 access_programs.cyber（standard / daybreak_blue / daybreak_red），是否授权由服务端决定。ChatGPT 登录时总会转发；API Key 登录且旗标关闭时，显式指定计划的请求会被拒绝；非 openai 提供方一律不转发。Daybreak 是面向授权安全工作的访问计划。"
+            "note": "客户端在请求体里写入 access_programs.cyber（standard / daybreak_blue / daybreak_red），是否授权由服务端决定。ChatGPT 登录时总会转发；API Key 登录且旗标关闭时，显式指定计划的请求会被拒绝；非 openai 提供方一律不转发。Daybreak 是面向授权安全工作的访问计划。\n0.163.0 起默认开启。"
           }
         }
       }
@@ -558,7 +558,7 @@
           "zh": {
             "title": "CLI 中的 Daybreak",
             "summary": "在 CLI 客户端启用 Daybreak 控制项（/daybreak）和访问计划的自动选择。",
-            "note": "Daybreak 是面向授权安全工作的访问计划；需要 ChatGPT 登录和 OpenAI 提供方。"
+            "note": "Daybreak 是面向授权安全工作的访问计划；需要 ChatGPT 登录和 OpenAI 提供方。\n0.163.0 起为正式功能，默认开启。"
           }
         }
       }
@@ -671,7 +671,8 @@
         "i18n": {
           "zh": {
             "title": "停止代码",
-            "summary": "任务中断时，停止仍在运行的代码。"
+            "summary": "任务中断时，停止仍在运行的代码。",
+            "note": "0.163.0 起为正式功能，默认开启。"
           }
         }
       }
@@ -3443,8 +3444,8 @@
       "annotation": {
         "i18n": {
           "zh": {
-            "title": "zsh 执行",
-            "summary": "通过 zsh 运行终端命令。"
+            "title": "旧版 zsh 执行",
+            "summary": "已移除的兼容开关。打过补丁的 zsh 后端已停用，开启不会生效。"
           }
         }
       }
@@ -4130,7 +4131,7 @@
         "i18n": {
           "zh": {
             "title": "旧版组合",
-            "summary": "组合开关已移除，单独开启不会生效。"
+            "summary": "已移除的兼容开关。打过补丁的 zsh 后端已停用，开启不会生效。"
           }
         }
       }
