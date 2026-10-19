@@ -2,14 +2,14 @@ name: Codex tag sync
 
 # Watches openai/codex stable releases (rust-vX.Y.Z tags). Every 6 hours it runs
 # scripts/sync-codex-tags.mjs, which vendors each new tag into the feature-flag registry and the
-# ModelInfo schema sources and regenerates registry.json and public/v1/**. When the
-# ANTHROPIC_API_KEY secret is set, scripts/draft-annotations.mjs then drafts zh annotations for new
-# flags and revisits flags whose stage changed. Everything goes to one pull request from
-# bot/codex-tags-sync for review: machine drafts and ModelInfo source changes are never published
-# unreviewed, and the schema file is never edited here. Pushes made with GITHUB_TOKEN do not start
-# pull_request workflows, so the run dispatches CI on the branch itself. A sync failure (for example
-# a feature-table shape the extractor does not know) opens an `ops` issue. Deploy stays the manual
-# Deploy workflow after merge.
+# ModelInfo schema sources and regenerates registry.json and public/v1/**. It does not draft zh
+# annotations (no model key is stored in GitHub): a maintainer runs scripts/draft-sync-pr.mjs on a
+# local machine, which drafts them with kimi or agy and pushes them to the branch. Everything goes
+# to one pull request from bot/codex-tags-sync for review: machine drafts and ModelInfo source
+# changes are never published unreviewed, and the schema file is never edited here. Pushes made
+# with GITHUB_TOKEN do not start pull_request workflows, so the run dispatches CI on the branch
+# itself. A sync failure (for example a feature-table shape the extractor does not know) opens an
+# `ops` issue. Deploy stays the manual Deploy workflow after merge.
 #
 # The sync job runs pnpm install and upstream code paths with a read-only token and hands over its
 # changes as a patch. The branch job holds the write token, runs no third-party code, and pushes
@@ -110,7 +110,6 @@ jobs:
         id: sync
         if: steps.plan.outputs.run == 'true'
         run: |
-          echo "before=$(node -p 'require("./data/codex-features/tags.json").latest')" >> "$GITHUB_OUTPUT"
           set +e
           node scripts/sync-codex-tags.mjs ${THROUGH:+--through "$THROUGH"} \
             --summary "$RUNNER_TEMP/summary.md" > "$RUNNER_TEMP/sync.log" 2>&1
@@ -133,26 +132,10 @@ jobs:
           fi
           exit 1
 
-      - name: Draft annotations with Claude
+      - name: Note how to draft annotations
         if: steps.plan.outputs.run == 'true' && steps.sync.outputs.status == '0'
-        env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          BEFORE: ${{ steps.sync.outputs.before }}
         run: |
-          if [ -z "$ANTHROPIC_API_KEY" ]; then
-            printf '### Annotations\n\nThe ANTHROPIC_API_KEY secret is not set, so nothing was drafted. Add the missing zh annotations listed above on this branch.\n' > "$RUNNER_TEMP/drafts.md"
-            exit 0
-          fi
-          set +e
-          node scripts/draft-annotations.mjs --since "$BEFORE" --report "$RUNNER_TEMP/drafts.md"
-          status=$?
-          set -e
-          if [ "$status" != "0" ]; then
-            # Keep the machine data; drop any partial drafts and ask for hand-written annotations.
-            git checkout -- data/codex-features/annotations
-            git clean -fdq data/codex-features/annotations
-            printf '### Annotations\n\nDrafting failed (exit %s, see the run log), so nothing was drafted. Add the missing zh annotations listed above on this branch.\n' "$status" > "$RUNNER_TEMP/drafts.md"
-          fi
+          printf '### Annotations\n\nCI does not draft annotations. If a flag above lacks a zh annotation or changed stage, run `pnpm draft:sync-pr` on a maintainer machine with kimi or agy signed in: it drafts them on this branch, runs `pnpm check`, pushes the commit here and comments the drafts (docs/RUNBOOK.md).\n' > "$RUNNER_TEMP/drafts.md"
 
       - name: Format and validate
         id: validate
@@ -194,6 +177,7 @@ jobs:
             echo
             echo "### Before merging"
             echo
+            echo "- [ ] Run \`pnpm draft:sync-pr\` locally if any flag lacks a zh annotation or changed stage."
             echo "- [ ] Check each drafted annotation against its rustdoc (CONTRIBUTING.md, honesty rules)."
             echo "- [ ] If ModelInfo sources changed: review the struct diff, then update \`codex-model-info.schema.json\` and the \`tags.json\` notes on this branch."
             echo "- [ ] After merge, run the Deploy workflow."
