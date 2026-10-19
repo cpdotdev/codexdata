@@ -6,10 +6,10 @@
   ],
   "counts": {
     "total": 175,
-    "annotated": 167,
+    "annotated": 175,
     "locales": {
       "en": 1,
-      "zh": 167
+      "zh": 175
     }
   },
   "flags": [
@@ -95,7 +95,7 @@
           "zh": {
             "title": "API Key 会话的网络安全访问计划",
             "summary": "使用内置 OpenAI 提供方和 API Key 登录时，允许把显式指定的网络安全访问计划（cyber access program）随请求转发。",
-            "note": "客户端在请求体里写入 access_programs.cyber（standard / daybreak_blue / daybreak_red），是否授权由服务端决定。ChatGPT 登录时总会转发；API Key 登录且旗标关闭时，显式指定计划的请求会被拒绝；非 openai 提供方一律不转发。Daybreak 是面向授权安全工作的访问计划。"
+            "note": "客户端在请求体里写入 access_programs.cyber（standard / daybreak_blue / daybreak_red），是否授权由服务端决定。ChatGPT 登录时总会转发；API Key 登录且旗标关闭时，显式指定计划的请求会被拒绝；非 openai 提供方一律不转发。Daybreak 是面向授权安全工作的访问计划。\n0.163.0 起默认开启。"
           }
         }
       }
@@ -319,7 +319,15 @@
           }
         ]
       },
-      "annotation": null
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "后台压缩",
+            "summary": "对话快到容量上限前，先在后台准备远程压缩。",
+            "note": "也可写成表 [features.async_compaction]：enabled 开关，model_async_compact_threshold_percent 设定开始后台压缩的上下文占比（1–100，默认 65）。只写阈值不会开启此功能。"
+          }
+        }
+      }
     },
     {
       "key": "auth_elicitation",
@@ -578,7 +586,7 @@
           "zh": {
             "title": "CLI 中的 Daybreak",
             "summary": "在 CLI 客户端启用 Daybreak 控制项（/daybreak）和访问计划的自动选择。",
-            "note": "Daybreak 是面向授权安全工作的访问计划；需要 ChatGPT 登录和 OpenAI 提供方。"
+            "note": "Daybreak 是面向授权安全工作的访问计划；需要 ChatGPT 登录和 OpenAI 提供方。\n0.163.0 起为正式功能，默认开启。"
           }
         }
       }
@@ -683,7 +691,14 @@
           }
         ]
       },
-      "annotation": null
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "代码宿主 gRPC",
+            "summary": "代码模式的宿主进程改用标准输入输出上的 gRPC 通信。"
+          }
+        }
+      }
     },
     {
       "key": "code_mode_interrupt",
@@ -711,7 +726,8 @@
         "i18n": {
           "zh": {
             "title": "停止代码",
-            "summary": "任务中断时，停止仍在运行的代码。"
+            "summary": "任务中断时，停止仍在运行的代码。",
+            "note": "0.163.0 起为正式功能，默认开启。"
           }
         }
       }
@@ -815,7 +831,14 @@
           }
         ]
       },
-      "annotation": null
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "工具说明在前",
+            "summary": "代码模式中，把每个工具的说明放在所属命名空间的说明之前。"
+          }
+        }
+      }
     },
     {
       "key": "code_mode_tool_search",
@@ -1087,7 +1110,15 @@
           }
         ]
       },
-      "annotation": null
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "凭据遮蔽",
+            "summary": "遮蔽凭据，再通过已开启的网络代理注入凭据。",
+            "note": "需要先开启网络代理。遮蔽的范围和注入方式未确认。"
+          }
+        }
+      }
     },
     {
       "key": "current_time_reminder",
@@ -1826,7 +1857,14 @@
           }
         ]
       },
-      "annotation": null
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "信任编排连接器",
+            "summary": "Guardian V2 信任插件服务编排器提供的连接器身份。"
+          }
+        }
+      }
     },
     {
       "key": "guardianv2",
@@ -2801,7 +2839,15 @@
           }
         ]
       },
-      "annotation": null
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "输出重放",
+            "summary": "请求加密的采样输出，用于保留原有 token 的重放。",
+            "note": "重放的具体用途未确认。"
+          }
+        }
+      }
     },
     {
       "key": "personality",
@@ -3446,7 +3492,14 @@
           }
         ]
       },
-      "annotation": null
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "保留工具结果",
+            "summary": "切换上下文窗口时，按客户端的要求保留工具输出。"
+          }
+        }
+      }
     },
     {
       "key": "rollout_budget",
@@ -3718,8 +3771,8 @@
       "annotation": {
         "i18n": {
           "zh": {
-            "title": "zsh 执行",
-            "summary": "通过 zsh 运行终端命令。"
+            "title": "旧版 zsh 执行",
+            "summary": "已移除的兼容开关。打过补丁的 zsh 后端已停用，开启不会生效。"
           }
         }
       }
@@ -4012,7 +4065,14 @@
           }
         ]
       },
-      "annotation": null
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "子助手默认容量",
+            "summary": "子助手使用各自模型默认的上下文窗口和自动压缩阈值。"
+          }
+        }
+      }
     },
     {
       "key": "system_proxy_fallback",
@@ -4480,7 +4540,7 @@
         "i18n": {
           "zh": {
             "title": "旧版组合",
-            "summary": "组合开关已移除，单独开启不会生效。"
+            "summary": "已移除的兼容开关。打过补丁的 zsh 后端已停用，开启不会生效。"
           }
         }
       }

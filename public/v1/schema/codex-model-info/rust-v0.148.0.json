@@ -426,6 +426,40 @@
             "null"
           ],
           "properties": {
+            "incremental_tools": {
+              "type": [
+                "object",
+                "null"
+              ],
+              "description": "0.163+: wording for incremental tool-catalog notices; values over 512 bytes fall back to the bundled text instead of rejecting the response.",
+              "properties": {
+                "tool_update_hint": {
+                  "$ref": "#/$defs/NullableString"
+                },
+                "removed_tools_header": {
+                  "$ref": "#/$defs/NullableString"
+                },
+                "removed_namespaces_header": {
+                  "$ref": "#/$defs/NullableString"
+                },
+                "namespace_instructions_prefix": {
+                  "$ref": "#/$defs/NullableString"
+                },
+                "namespace_instructions_cleared": {
+                  "$ref": "#/$defs/NullableString"
+                }
+              }
+            },
+            "functions_namespace_functions_description_prefixes": {
+              "type": [
+                "object",
+                "null"
+              ],
+              "description": "0.163+: per-function description prefixes for the `functions` namespace, keyed by unqualified name. The 256-byte budget is checked when a turn builds its tools (an over-budget turn fails with an invalid-request error); it does not reject the response, so it is not encoded here.",
+              "additionalProperties": {
+                "type": "string"
+              }
+            },
             "indirect_description_prefixes": {
               "type": [
                 "object",

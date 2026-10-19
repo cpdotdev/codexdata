@@ -1,0 +1,9 @@
+{
+  "key": "guardian_trust_orchestrator_connectors",
+  "i18n": {
+    "zh": {
+      "title": "信任编排连接器",
+      "summary": "Guardian V2 信任插件服务编排器提供的连接器身份。"
+    }
+  }
+}

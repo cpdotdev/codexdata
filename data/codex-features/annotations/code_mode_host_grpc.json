@@ -1,0 +1,9 @@
+{
+  "key": "code_mode_host_grpc",
+  "i18n": {
+    "zh": {
+      "title": "代码宿主 gRPC",
+      "summary": "代码模式的宿主进程改用标准输入输出上的 gRPC 通信。"
+    }
+  }
+}

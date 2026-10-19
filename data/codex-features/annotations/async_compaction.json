@@ -1,0 +1,10 @@
+{
+  "key": "async_compaction",
+  "i18n": {
+    "zh": {
+      "title": "后台压缩",
+      "summary": "对话快到容量上限前，先在后台准备远程压缩。",
+      "note": "也可写成表 [features.async_compaction]：enabled 开关，model_async_compact_threshold_percent 设定开始后台压缩的上下文占比（1–100，默认 65）。只写阈值不会开启此功能。"
+    }
+  }
+}
