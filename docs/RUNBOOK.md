@@ -279,12 +279,16 @@ and the vendoring half of step 4 for every stable tag after the current `latest`
 Markdown summary (`--summary <file>` saves it; `--check` only lists the missing tags).
 
 The `Codex tag sync` workflow (`.github/workflows/codex-tags-sync.yml`) runs this every 6 hours.
-With the `ANTHROPIC_API_KEY` secret set it also drafts step 3 with Claude
-(`scripts/draft-annotations.mjs`: new flags, plus flags whose stage changed). It pushes
-`bot/codex-tags-sync`, opens or updates one pull request with the summary, and dispatches CI on
-the branch. Review the drafts and do the schema half of step 4 on that branch, then merge and
-deploy. The workflow does not overwrite a branch that has hand edits; it comments on the pull
-request when a newer tag arrives. A sync failure opens an `ops` issue. The workflow can open pull
+It pushes `bot/codex-tags-sync`, opens or updates one pull request with the summary, and dispatches
+CI on the branch. CI does not draft step 3; no model key is stored in GitHub. On a maintainer
+machine with the kimi CLI (or agy) signed in, run `pnpm draft:sync-pr`
+(`scripts/draft-sync-pr.mjs`): it checks the pull request head out in a temporary worktree, drafts
+the missing zh annotations and revisits flags whose stage changed (`scripts/draft-annotations.mjs`,
+`--cli kimi,agy` by default, each tried in turn), runs `pnpm check`, pushes the commit to the
+branch and comments the drafts on the pull request. `--no-push` stops after the local commit.
+Review the drafts and do the schema half of step 4 on that branch, then merge and deploy. The
+workflow does not overwrite a branch that has hand edits (a local draft push makes it one); it
+comments on the pull request when a newer tag arrives. A sync failure opens an `ops` issue. The workflow can open pull
 requests only when Settings → Actions → General → "Allow GitHub Actions to create and approve pull
 requests" is on; otherwise it opens an `ops` issue with the compare link.
 
