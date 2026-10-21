@@ -3,7 +3,7 @@
   "dataset": "codex-compat",
   "codex": {
     "latestStable": "0.163.0",
-    "latestAlpha": "0.164.0-alpha.8",
+    "latestAlpha": "0.164.0-alpha.9",
     "maxProbedStable": "0.163.0"
   },
   "keys": [
@@ -1206,6 +1206,17 @@
       "regressions": [],
       "deprecations": [],
       "releaseNotesUrl": "https://github.com/openai/codex/releases/tag/rust-v0.164.0-alpha.8"
+    },
+    {
+      "version": "0.164.0-alpha.9",
+      "channel": "alpha",
+      "publishedAt": "2026-10-21T14:12:01Z",
+      "probedAt": "2026-10-21T17:07:26.724Z",
+      "platform": "linux-x64",
+      "configLoad": "ok",
+      "regressions": [],
+      "deprecations": [],
+      "releaseNotesUrl": "https://github.com/openai/codex/releases/tag/rust-v0.164.0-alpha.9"
     }
   ]
 }
