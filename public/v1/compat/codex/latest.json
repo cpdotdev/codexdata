@@ -2,9 +2,9 @@
   "schemaVersion": 1,
   "dataset": "codex-compat",
   "codex": {
-    "latestStable": "0.164.0",
-    "latestAlpha": "0.166.0-alpha.2",
-    "maxProbedStable": "0.164.0"
+    "latestStable": "0.165.0",
+    "latestAlpha": "0.166.0-alpha.3",
+    "maxProbedStable": "0.165.0"
   },
   "keys": [
     {
@@ -1252,6 +1252,17 @@
       "releaseNotesUrl": "https://github.com/openai/codex/releases/tag/rust-v0.164.0-alpha.9"
     },
     {
+      "version": "0.165.0",
+      "channel": "stable",
+      "publishedAt": "2026-10-27T20:09:38Z",
+      "probedAt": "2026-10-27T22:09:17.231Z",
+      "platform": "linux-x64",
+      "configLoad": "ok",
+      "regressions": [],
+      "deprecations": [],
+      "releaseNotesUrl": "https://github.com/openai/codex/releases/tag/rust-v0.165.0"
+    },
+    {
       "version": "0.165.0-alpha.1",
       "channel": "alpha",
       "publishedAt": "2026-10-23T14:09:53Z",
@@ -1298,6 +1309,19 @@
       "regressions": [],
       "deprecations": [],
       "releaseNotesUrl": "https://github.com/openai/codex/releases/tag/rust-v0.166.0-alpha.2"
+    },
+    {
+      "version": "0.166.0-alpha.3",
+      "channel": "alpha",
+      "publishedAt": "2026-10-27T19:23:16Z",
+      "probedAt": "2026-10-27T22:09:24.999Z",
+      "platform": "linux-x64",
+      "configLoad": "ok",
+      "regressions": [],
+      "deprecations": [
+        "delayapproval_policy = \"untrusted\" is no longer supported; remove this settingunexpected end of sequenceunexpected end of mappingfile_sizecodex_connector_idcodex_action_namecodex_modelcf-rayx-ms-req"
+      ],
+      "releaseNotesUrl": "https://github.com/openai/codex/releases/tag/rust-v0.166.0-alpha.3"
     }
   ]
 }
