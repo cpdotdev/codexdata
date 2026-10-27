@@ -3,7 +3,7 @@
   "dataset": "codex-compat",
   "codex": {
     "latestStable": "0.164.0",
-    "latestAlpha": "0.166.0-alpha.1",
+    "latestAlpha": "0.166.0-alpha.2",
     "maxProbedStable": "0.164.0"
   },
   "keys": [
@@ -1287,6 +1287,17 @@
         "esting at the root is no longer supported."
       ],
       "releaseNotesUrl": "https://github.com/openai/codex/releases/tag/rust-v0.166.0-alpha.1"
+    },
+    {
+      "version": "0.166.0-alpha.2",
+      "channel": "alpha",
+      "publishedAt": "2026-10-27T11:54:48Z",
+      "probedAt": "2026-10-27T17:57:16.986Z",
+      "platform": "linux-x64",
+      "configLoad": "ok",
+      "regressions": [],
+      "deprecations": [],
+      "releaseNotesUrl": "https://github.com/openai/codex/releases/tag/rust-v0.166.0-alpha.2"
     }
   ]
 }
