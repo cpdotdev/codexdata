@@ -6,10 +6,10 @@
   ],
   "counts": {
     "total": 186,
-    "annotated": 175,
+    "annotated": 186,
     "locales": {
       "en": 1,
-      "zh": 175
+      "zh": 186
     }
   },
   "flags": [
@@ -150,7 +150,14 @@
           }
         ]
       },
-      "annotation": null
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "App Server WebSocket 压缩",
+            "summary": "为 App Server 的 WebSocket 和 UDS 连接启用协商式 zstd 压缩。"
+          }
+        }
+      }
     },
     {
       "key": "apply_patch_freeform",
@@ -1547,7 +1554,14 @@
           }
         ]
       },
-      "annotation": null
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "执行器能力发现 V2",
+            "summary": "获取 V2 执行器能力清单，但不发布或启用其中的能力。"
+          }
+        }
+      }
     },
     {
       "key": "experimental_windows_sandbox",
@@ -1843,7 +1857,14 @@
           }
         ]
       },
-      "annotation": null
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "Guardian 记录条目",
+            "summary": "将私有审查器条目和中断转发给原始事件观察器。"
+          }
+        }
+      }
     },
     {
       "key": "guardian_reuse_parent_compaction",
@@ -2038,7 +2059,14 @@
           }
         ]
       },
-      "annotation": null
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "Guardian V3",
+            "summary": "启用 Guardian V3 集成。"
+          }
+        }
+      }
     },
     {
       "key": "hooks",
@@ -2626,7 +2654,14 @@
           }
         ]
       },
-      "annotation": null
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "MCP 工具列表变更",
+            "summary": "在单次对话轮次内响应常规 MCP 服务器的工具列表变更通知。"
+          }
+        }
+      }
     },
     {
       "key": "memories",
@@ -2839,7 +2874,14 @@
           }
         ]
       },
-      "annotation": null
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "跨环境复制文件",
+            "summary": "在明确选择的执行环境之间复制文件。"
+          }
+        }
+      }
     },
     {
       "key": "network_proxy",
@@ -3139,7 +3181,14 @@
           }
         ]
       },
-      "annotation": null
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "预测分支保留父级工具",
+            "summary": "在禁用 MCP 的预测分支中保留继承的工具声明。"
+          }
+        }
+      }
     },
     {
       "key": "prefer_mxc",
@@ -3706,7 +3755,14 @@
           }
         ]
       },
-      "annotation": null
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "运行时 Agent 实例",
+            "summary": "注册临时运行时，用于 OpenAI 请求身份验证。"
+          }
+        }
+      }
     },
     {
       "key": "runtime_metrics",
@@ -4276,7 +4332,14 @@
           }
         ]
       },
-      "annotation": null
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "子 Agent 线程环境",
+            "summary": "继承已配置的线程环境，而不是临时选择的对话轮次环境。"
+          }
+        }
+      }
     },
     {
       "key": "system_proxy_fallback",
@@ -4575,7 +4638,14 @@
           }
         ]
       },
-      "annotation": null
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "TUI 多后端",
+            "summary": "允许 TUI 发现并选择多个对话后端。"
+          }
+        }
+      }
     },
     {
       "key": "ultrafast_mode",
@@ -4954,7 +5024,14 @@
           }
         ]
       },
-      "annotation": null
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "Agent 消息唤醒",
+            "summary": "允许 Agent 消息在根会话完成一个对话轮次后将其从空闲状态唤醒。"
+          }
+        }
+      }
     },
     {
       "key": "web_search_cached",

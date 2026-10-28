@@ -1,0 +1,9 @@
+{
+  "key": "mcp_tool_list_changed",
+  "i18n": {
+    "zh": {
+      "title": "MCP 工具列表变更",
+      "summary": "在单次对话轮次内响应常规 MCP 服务器的工具列表变更通知。"
+    }
+  }
+}

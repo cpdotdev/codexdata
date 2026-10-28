@@ -1,0 +1,9 @@
+{
+  "key": "guardianv3",
+  "i18n": {
+    "zh": {
+      "title": "Guardian V3",
+      "summary": "启用 Guardian V3 集成。"
+    }
+  }
+}

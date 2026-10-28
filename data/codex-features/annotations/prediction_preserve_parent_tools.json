@@ -1,0 +1,9 @@
+{
+  "key": "prediction_preserve_parent_tools",
+  "i18n": {
+    "zh": {
+      "title": "预测分支保留父级工具",
+      "summary": "在禁用 MCP 的预测分支中保留继承的工具声明。"
+    }
+  }
+}

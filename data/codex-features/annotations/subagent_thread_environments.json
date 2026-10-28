@@ -1,0 +1,9 @@
+{
+  "key": "subagent_thread_environments",
+  "i18n": {
+    "zh": {
+      "title": "子 Agent 线程环境",
+      "summary": "继承已配置的线程环境，而不是临时选择的对话轮次环境。"
+    }
+  }
+}

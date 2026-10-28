@@ -1,0 +1,9 @@
+{
+  "key": "runtime_agent_instances",
+  "i18n": {
+    "zh": {
+      "title": "运行时 Agent 实例",
+      "summary": "注册临时运行时，用于 OpenAI 请求身份验证。"
+    }
+  }
+}
