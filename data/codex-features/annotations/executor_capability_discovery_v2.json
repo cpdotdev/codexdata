@@ -1,0 +1,9 @@
+{
+  "key": "executor_capability_discovery_v2",
+  "i18n": {
+    "zh": {
+      "title": "执行器能力发现 V2",
+      "summary": "获取 V2 执行器能力清单，但不发布或启用其中的能力。"
+    }
+  }
+}

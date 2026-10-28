@@ -1,0 +1,9 @@
+{
+  "key": "wake_on_agent_messages",
+  "i18n": {
+    "zh": {
+      "title": "Agent 消息唤醒",
+      "summary": "允许 Agent 消息在根会话完成一个对话轮次后将其从空闲状态唤醒。"
+    }
+  }
+}

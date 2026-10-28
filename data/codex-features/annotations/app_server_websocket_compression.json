@@ -1,0 +1,9 @@
+{
+  "key": "app_server_websocket_compression",
+  "i18n": {
+    "zh": {
+      "title": "App Server WebSocket 压缩",
+      "summary": "为 App Server 的 WebSocket 和 UDS 连接启用协商式 zstd 压缩。"
+    }
+  }
+}

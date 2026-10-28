@@ -1,0 +1,9 @@
+{
+  "key": "guardian_recorded_items",
+  "i18n": {
+    "zh": {
+      "title": "Guardian 记录条目",
+      "summary": "将私有审查器条目和中断转发给原始事件观察器。"
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "key": "multi_env_copy_file",
+  "i18n": {
+    "zh": {
+      "title": "跨环境复制文件",
+      "summary": "在明确选择的执行环境之间复制文件。"
+    }
+  }
+}

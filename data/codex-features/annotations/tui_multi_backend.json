@@ -1,0 +1,9 @@
+{
+  "key": "tui_multi_backend",
+  "i18n": {
+    "zh": {
+      "title": "TUI 多后端",
+      "summary": "允许 TUI 发现并选择多个对话后端。"
+    }
+  }
+}
