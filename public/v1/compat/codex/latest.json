@@ -3,7 +3,7 @@
   "dataset": "codex-compat",
   "codex": {
     "latestStable": "0.165.0",
-    "latestAlpha": "0.166.0-alpha.5",
+    "latestAlpha": "0.166.0-alpha.5.1",
     "maxProbedStable": "0.165.0"
   },
   "keys": [
@@ -1335,6 +1335,19 @@
         "eed after completioninteger number overflowedapproval_policy = \"untrusted\" is no longer supported; remove this settingfile_sizecodex_connector_idcodex_action_namecodex_modelcf-rayx-ms-request-idx-ms-error-codehttp_status"
       ],
       "releaseNotesUrl": "https://github.com/openai/codex/releases/tag/rust-v0.166.0-alpha.5"
+    },
+    {
+      "version": "0.166.0-alpha.5.1",
+      "channel": "alpha",
+      "publishedAt": "2026-10-28T19:17:02Z",
+      "probedAt": "2026-10-28T22:31:25.898Z",
+      "platform": "linux-x64",
+      "configLoad": "ok",
+      "regressions": [],
+      "deprecations": [
+        "eed after completioninteger number overflowedapproval_policy = \"untrusted\" is no longer supported; remove this settingfile_sizecodex_connector_idcodex_action_namecodex_modelcf-rayx-ms-request-idx-ms-error-codehttp_status"
+      ],
+      "releaseNotesUrl": "https://github.com/openai/codex/releases/tag/rust-v0.166.0-alpha.5.1"
     }
   ]
 }
