@@ -2,9 +2,9 @@
   "schemaVersion": 1,
   "dataset": "codex-compat",
   "codex": {
-    "latestStable": "0.165.0",
+    "latestStable": "0.166.0",
     "latestAlpha": "0.166.0-alpha.6",
-    "maxProbedStable": "0.165.0"
+    "maxProbedStable": "0.166.0"
   },
   "keys": [
     {
@@ -1285,6 +1285,19 @@
         "esting at the root is no longer supported."
       ],
       "releaseNotesUrl": "https://github.com/openai/codex/releases/tag/rust-v0.165.0-alpha.3"
+    },
+    {
+      "version": "0.166.0",
+      "channel": "stable",
+      "publishedAt": "2026-10-29T19:47:53Z",
+      "probedAt": "2026-10-29T22:42:21.000Z",
+      "platform": "linux-x64",
+      "configLoad": "ok",
+      "regressions": [],
+      "deprecations": [
+        "delayapproval_policy = \"untrusted\" is no longer supported; remove this settingone_ofunexpected end of sequenceunexpected end of mappingfile_sizecodex_connector_idcodex_action_namecodex_modelcf-rayx-"
+      ],
+      "releaseNotesUrl": "https://github.com/openai/codex/releases/tag/rust-v0.166.0"
     },
     {
       "version": "0.166.0-alpha.1",
