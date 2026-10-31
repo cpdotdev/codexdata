@@ -1,0 +1,9 @@
+{
+  "key": "simplified_selection_hints",
+  "i18n": {
+    "zh": {
+      "title": "精简选择提示",
+      "summary": "对显式选择的插件使用更精简的开发者提示。"
+    }
+  }
+}

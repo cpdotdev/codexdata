@@ -1,0 +1,9 @@
+{
+  "key": "mcp_connection_sharing",
+  "i18n": {
+    "zh": {
+      "title": "MCP 连接共享",
+      "summary": "发现符合条件的本地 stdio 连接，并在不同对话之间共享。"
+    }
+  }
+}

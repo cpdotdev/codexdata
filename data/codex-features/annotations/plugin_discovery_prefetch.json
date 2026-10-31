@@ -1,0 +1,10 @@
+{
+  "key": "plugin_discovery_prefetch",
+  "i18n": {
+    "zh": {
+      "title": "插件预取",
+      "summary": "在 app-server 启动时预取插件目录、精选插件和推荐内容。",
+      "note": "仅 Inventory-only 主机可停用；旧版建议读取缓存的插件目录。"
+    }
+  }
+}

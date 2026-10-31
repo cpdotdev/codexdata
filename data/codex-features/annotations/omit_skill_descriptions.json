@@ -1,0 +1,9 @@
+{
+  "key": "omit_skill_descriptions",
+  "i18n": {
+    "zh": {
+      "title": "省略技能说明",
+      "summary": "在模型可见的可用技能目录中省略技能说明。"
+    }
+  }
+}
