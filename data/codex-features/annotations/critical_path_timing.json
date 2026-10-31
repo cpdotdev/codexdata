@@ -1,0 +1,9 @@
+{
+  "key": "critical_path_timing",
+  "i18n": {
+    "zh": {
+      "title": "关键路径计时",
+      "summary": "记录内部直接工具之间的依赖路径，用于回合归因。"
+    }
+  }
+}

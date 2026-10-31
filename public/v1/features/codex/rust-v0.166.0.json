@@ -6,10 +6,10 @@
   ],
   "counts": {
     "total": 194,
-    "annotated": 186,
+    "annotated": 194,
     "locales": {
       "en": 1,
-      "zh": 186
+      "zh": 194
     }
   },
   "flags": [
@@ -870,7 +870,8 @@
         "i18n": {
           "zh": {
             "title": "工具说明在前",
-            "summary": "代码模式中，把每个工具的说明放在所属命名空间的说明之前。"
+            "summary": "此开关已移除，仅保留旧设置兼容。",
+            "note": "此前用于在代码模式中把每个工具的说明放在所属命名空间的说明之前。"
           }
         }
       }
@@ -1173,7 +1174,14 @@
           }
         ]
       },
-      "annotation": null
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "关键路径计时",
+            "summary": "记录内部直接工具之间的依赖路径，用于回合归因。"
+          }
+        }
+      }
     },
     {
       "key": "current_time_reminder",
@@ -1854,7 +1862,15 @@
           }
         ]
       },
-      "annotation": null
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "Guardian 历史",
+            "summary": "审查 MAv2 中改变状态的调用，并在 Guardian 历史中保留原生调用。",
+            "note": "源码未展开 MAv2 缩写，具体含义未确认。"
+          }
+        }
+      }
     },
     {
       "key": "guardian_node_repl_transcript_images",
@@ -2667,7 +2683,14 @@
           }
         ]
       },
-      "annotation": null
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "MCP 连接共享",
+            "summary": "发现符合条件的本地 stdio 连接，并在不同对话之间共享。"
+          }
+        }
+      }
     },
     {
       "key": "mcp_oauth_refresh_coordination",
@@ -3077,7 +3100,14 @@
           }
         ]
       },
-      "annotation": null
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "省略技能说明",
+            "summary": "在模型可见的可用技能目录中省略技能说明。"
+          }
+        }
+      }
     },
     {
       "key": "output_token_replay",
@@ -3157,7 +3187,15 @@
           }
         ]
       },
-      "annotation": null
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "插件预取",
+            "summary": "在 app-server 启动时预取插件目录、精选插件和推荐内容。",
+            "note": "仅 Inventory-only 主机可停用；旧版建议读取缓存的插件目录。"
+          }
+        }
+      }
     },
     {
       "key": "plugin_hooks",
@@ -4135,7 +4173,14 @@
           }
         ]
       },
-      "annotation": null
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "精简选择提示",
+            "summary": "对显式选择的插件使用更精简的开发者提示。"
+          }
+        }
+      }
     },
     {
       "key": "skill_catalog_deltas",
@@ -4155,7 +4200,14 @@
           }
         ]
       },
-      "annotation": null
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "技能目录增量",
+            "summary": "在累计上下文预算内追加技能的新增和修改内容。"
+          }
+        }
+      }
     },
     {
       "key": "skill_env_var_dependency_prompt",
@@ -5032,7 +5084,14 @@
           }
         ]
       },
-      "annotation": null
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "不可信工具输出",
+            "summary": "把客户端提供的不可信上下文渲染为独立的具名工具输出。"
+          }
+        }
+      }
     },
     {
       "key": "use_agent_identity",

@@ -1,0 +1,10 @@
+{
+  "key": "guardian_native_multi_agent_history",
+  "i18n": {
+    "zh": {
+      "title": "Guardian 历史",
+      "summary": "审查 MAv2 中改变状态的调用，并在 Guardian 历史中保留原生调用。",
+      "note": "源码未展开 MAv2 缩写，具体含义未确认。"
+    }
+  }
+}

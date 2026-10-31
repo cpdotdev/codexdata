@@ -1,0 +1,9 @@
+{
+  "key": "untrusted_as_tool_output",
+  "i18n": {
+    "zh": {
+      "title": "不可信工具输出",
+      "summary": "把客户端提供的不可信上下文渲染为独立的具名工具输出。"
+    }
+  }
+}
