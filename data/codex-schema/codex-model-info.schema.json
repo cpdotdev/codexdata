@@ -176,6 +176,11 @@
       "type": "object",
       "description": "Model Messages V2. Every field is optional/nullable; absent sub-messages fall back to the client's built-in templates. `instructions_template` is required only through the top-level prompt rule (see ModelInfo.allOf).",
       "properties": {
+        "apps": {
+          "type": ["object", "null"],
+          "description": "0.167+: model-owned Apps wording, carried unchanged; the client does not use it yet.",
+          "properties": { "usage_instructions": { "$ref": "#/$defs/NullableString" } }
+        },
         "content_filter_guidance": {
           "$ref": "#/$defs/NullableString",
           "description": "0.160+: developer guidance after a content-filter block; blank or over 512 UTF-8 bytes uses the bundled text."
