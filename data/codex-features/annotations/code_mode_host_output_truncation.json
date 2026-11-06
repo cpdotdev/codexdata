@@ -1,0 +1,9 @@
+{
+  "key": "code_mode_host_output_truncation",
+  "i18n": {
+    "zh": {
+      "title": "代码模式输出截断",
+      "summary": "在进程持有的代码模式宿主中先截断输出，再发送给核心模块。"
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "key": "gcp_setup_wizard",
+  "i18n": {
+    "zh": {
+      "title": "Vertex AI 向导",
+      "summary": "在终端界面登录引导中提供 Google Cloud Vertex AI 配置。"
+    }
+  }
+}

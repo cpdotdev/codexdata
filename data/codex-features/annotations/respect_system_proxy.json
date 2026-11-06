@@ -1,9 +1,11 @@
 {
   "key": "respect_system_proxy",
+  "aka": "System proxy",
   "i18n": {
     "zh": {
       "title": "系统代理",
-      "summary": "联网时遵循系统代理设置。"
+      "summary": "联网时遵循系统代理设置。",
+      "note": "适用于 macOS 与 Windows。"
     }
   }
 }

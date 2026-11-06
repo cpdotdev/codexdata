@@ -1,0 +1,9 @@
+{
+  "key": "apps_early_resource_discovery",
+  "i18n": {
+    "zh": {
+      "title": "提前读取应用",
+      "summary": "在清点初始工具的同时，读取宿主管理的应用目录。"
+    }
+  }
+}

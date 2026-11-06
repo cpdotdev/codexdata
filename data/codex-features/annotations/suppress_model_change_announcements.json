@@ -1,0 +1,9 @@
+{
+  "key": "suppress_model_change_announcements",
+  "i18n": {
+    "zh": {
+      "title": "屏蔽模型切换通知",
+      "summary": "切换模型后，屏蔽增量上下文中的模型 ID 通知。"
+    }
+  }
+}
