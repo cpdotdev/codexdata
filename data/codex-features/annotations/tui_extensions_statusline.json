@@ -1,0 +1,9 @@
+{
+  "key": "tui_extensions_statusline",
+  "i18n": {
+    "zh": {
+      "title": "状态栏扩展渲染",
+      "summary": "通过终端界面扩展渲染器绘制已配置的状态栏。"
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "key": "interrupt_on_cancel",
+  "i18n": {
+    "zh": {
+      "title": "取消时中断推理",
+      "summary": "取消回合时中断上游推理。"
+    }
+  }
+}

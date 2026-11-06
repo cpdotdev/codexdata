@@ -6,10 +6,10 @@
   ],
   "counts": {
     "total": 201,
-    "annotated": 194,
+    "annotated": 201,
     "locales": {
       "en": 1,
-      "zh": 194
+      "zh": 201
     }
   },
   "flags": [
@@ -292,7 +292,14 @@
           }
         ]
       },
-      "annotation": null
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "提前读取应用",
+            "summary": "在清点初始工具的同时，读取宿主管理的应用目录。"
+          }
+        }
+      }
     },
     {
       "key": "apps_mcp_path_override",
@@ -769,7 +776,14 @@
           }
         ]
       },
-      "annotation": null
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "代码模式输出截断",
+            "summary": "在进程持有的代码模式宿主中先截断输出，再发送给核心模块。"
+          }
+        }
+      }
     },
     {
       "key": "code_mode_interrupt",
@@ -1767,7 +1781,14 @@
           }
         ]
       },
-      "annotation": null
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "Vertex AI 向导",
+            "summary": "在终端界面登录引导中提供 Google Cloud Vertex AI 配置。"
+          }
+        }
+      }
     },
     {
       "key": "goals",
@@ -2490,7 +2511,14 @@
           }
         ]
       },
-      "annotation": null
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "增量执行工具",
+            "summary": "在增量工具目录中比对仅限代码模式的 exec 定义差异。"
+          }
+        }
+      }
     },
     {
       "key": "incremental_tools",
@@ -2568,7 +2596,14 @@
           }
         ]
       },
-      "annotation": null
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "取消时中断推理",
+            "summary": "取消回合时中断上游推理。"
+          }
+        }
+      }
     },
     {
       "key": "item_ids",
@@ -3848,10 +3883,12 @@
         ]
       },
       "annotation": {
+        "aka": "System proxy",
         "i18n": {
           "zh": {
             "title": "系统代理",
-            "summary": "联网时遵循系统代理设置。"
+            "summary": "联网时遵循系统代理设置。",
+            "note": "适用于 macOS 与 Windows。"
           }
         }
       }
@@ -4667,7 +4704,14 @@
           }
         ]
       },
-      "annotation": null
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "屏蔽模型切换通知",
+            "summary": "切换模型后，屏蔽增量上下文中的模型 ID 通知。"
+          }
+        }
+      }
     },
     {
       "key": "system_proxy_fallback",
@@ -4966,7 +5010,14 @@
           }
         ]
       },
-      "annotation": null
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "状态栏扩展渲染",
+            "summary": "通过终端界面扩展渲染器绘制已配置的状态栏。"
+          }
+        }
+      }
     },
     {
       "key": "tui_multi_backend",

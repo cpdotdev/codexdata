@@ -1,0 +1,9 @@
+{
+  "key": "incremental_exec_tools",
+  "i18n": {
+    "zh": {
+      "title": "增量执行工具",
+      "summary": "在增量工具目录中比对仅限代码模式的 exec 定义差异。"
+    }
+  }
+}
