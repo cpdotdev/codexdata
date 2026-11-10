@@ -1,7 +1,7 @@
 {
   "schema": "codex-model-info",
   "latest": {
-    "tag": "rust-v0.167.0",
+    "tag": "rust-v0.167.1",
     "url": "https://data.cp.dev/v1/schema/codex-model-info/latest.json"
   },
   "verified_tags": [
@@ -120,6 +120,10 @@
     {
       "tag": "rust-v0.167.0",
       "url": "https://data.cp.dev/v1/schema/codex-model-info/rust-v0.167.0.json"
+    },
+    {
+      "tag": "rust-v0.167.1",
+      "url": "https://data.cp.dev/v1/schema/codex-model-info/rust-v0.167.1.json"
     }
   ],
   "source_files": [
