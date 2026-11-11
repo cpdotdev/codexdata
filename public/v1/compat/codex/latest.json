@@ -1489,6 +1489,20 @@
       "releaseNotesUrl": "https://github.com/openai/codex/releases/tag/rust-v0.169.0-alpha.10"
     },
     {
+      "version": "0.169.0-alpha.11",
+      "channel": "alpha",
+      "publishedAt": "2026-11-11T10:11:06Z",
+      "probedAt": "2026-11-11T14:11:29.683Z",
+      "platform": "linux-x64",
+      "configLoad": "ok",
+      "regressions": [],
+      "deprecations": [
+        "esting at the root is no longer supported.",
+        "his method is deprecated, use `resolve_auth_scheme_options_v2` instead."
+      ],
+      "releaseNotesUrl": "https://github.com/openai/codex/releases/tag/rust-v0.169.0-alpha.11"
+    },
+    {
       "version": "0.169.0-alpha.2",
       "channel": "alpha",
       "publishedAt": "2026-11-06T22:13:30Z",
