@@ -3,7 +3,7 @@
   "dataset": "codex-compat",
   "codex": {
     "latestStable": "0.167.2",
-    "latestAlpha": "0.170.0-alpha.2",
+    "latestAlpha": "0.170.0-alpha.4",
     "maxProbedStable": "0.167.2"
   },
   "keys": [
@@ -1582,6 +1582,20 @@
         "his method is deprecated, use `resolve_auth_scheme_options_v2` instead."
       ],
       "releaseNotesUrl": "https://github.com/openai/codex/releases/tag/rust-v0.170.0-alpha.2"
+    },
+    {
+      "version": "0.170.0-alpha.4",
+      "channel": "alpha",
+      "publishedAt": "2026-11-12T22:59:08Z",
+      "probedAt": "2026-11-12T23:33:30.632Z",
+      "platform": "linux-x64",
+      "configLoad": "ok",
+      "regressions": [],
+      "deprecations": [
+        "esting at the root is no longer supported.",
+        "his method is deprecated, use `resolve_auth_scheme_options_v2` instead."
+      ],
+      "releaseNotesUrl": "https://github.com/openai/codex/releases/tag/rust-v0.170.0-alpha.4"
     }
   ]
 }
