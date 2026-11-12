@@ -6,10 +6,10 @@
   ],
   "counts": {
     "total": 202,
-    "annotated": 201,
+    "annotated": 202,
     "locales": {
       "en": 1,
-      "zh": 201
+      "zh": 202
     }
   },
   "flags": [
@@ -2569,7 +2569,14 @@
           }
         ]
       },
-      "annotation": null
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "增量工具（旧版）",
+            "summary": "在常规 Amazon Bedrock Responses 上发布增量工具声明。"
+          }
+        }
+      }
     },
     {
       "key": "instant_interrupt",
