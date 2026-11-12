@@ -1,7 +1,7 @@
 {
   "dataset": "codex-feature-flags",
   "latest": {
-    "tag": "rust-v0.167.0",
+    "tag": "rust-v0.167.1",
     "url": "https://data.cp.dev/v1/features/codex/latest.json"
   },
   "verified_tags": [
@@ -149,6 +149,11 @@
       "tag": "rust-v0.167.0",
       "snapshot_tag": "rust-v0.167.0",
       "url": "https://data.cp.dev/v1/features/codex/rust-v0.167.0.json"
+    },
+    {
+      "tag": "rust-v0.167.1",
+      "snapshot_tag": "rust-v0.167.1",
+      "url": "https://data.cp.dev/v1/features/codex/rust-v0.167.1.json"
     }
   ],
   "source_files": [
