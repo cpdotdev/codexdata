@@ -6,10 +6,10 @@
   ],
   "counts": {
     "total": 203,
-    "annotated": 202,
+    "annotated": 203,
     "locales": {
       "en": 1,
-      "zh": 202
+      "zh": 203
     }
   },
   "flags": [
@@ -2600,7 +2600,14 @@
           }
         ]
       },
-      "annotation": null
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "增量工具（旧版 GCP）",
+            "summary": "在常规 GCP Responses 上发布增量工具声明。"
+          }
+        }
+      }
     },
     {
       "key": "instant_interrupt",

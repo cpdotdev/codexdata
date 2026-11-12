@@ -1,0 +1,9 @@
+{
+  "key": "incremental_tools_legacy_gcp",
+  "i18n": {
+    "zh": {
+      "title": "增量工具（旧版 GCP）",
+      "summary": "在常规 GCP Responses 上发布增量工具声明。"
+    }
+  }
+}
