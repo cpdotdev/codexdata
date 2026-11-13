@@ -26743,12 +26743,1675 @@
         "telepathy": "chronicle",
         "web_search": "web_search_request"
       }
+    },
+    "rust-v0.167.2": {
+      "flags": [
+        {
+          "key": "agent_message_board",
+          "variant": "AgentMessageBoard",
+          "stage": "under development",
+          "default_enabled": false,
+          "doc": "Enable shared discussion tools for an agent tree.",
+          "experimental": null
+        },
+        {
+          "key": "analytics_plan_history",
+          "variant": "AnalyticsPlanHistory",
+          "stage": "experimental",
+          "default_enabled": false,
+          "doc": "Preview consumer five-hour and weekly allowance history.",
+          "experimental": {
+            "name": "Analytics plan history",
+            "menu_description": "Preview five-hour and weekly allowance history for consumer accounts in /analytics.",
+            "announcement": null
+          }
+        },
+        {
+          "key": "api_key_cyber_access_programs",
+          "variant": "ApiKeyCyberAccessPrograms",
+          "stage": "stable",
+          "default_enabled": true,
+          "doc": "Forward explicit programs with builtin OpenAI API keys.",
+          "experimental": null
+        },
+        {
+          "key": "api_key_model_discovery",
+          "variant": "ApiKeyModelDiscovery",
+          "stage": "stable",
+          "default_enabled": true,
+          "doc": "Discover model catalogs for OpenAI API-key authentication.",
+          "experimental": null
+        },
+        {
+          "key": "app_server_websocket_compression",
+          "variant": "AppServerWebSocketCompression",
+          "stage": "under development",
+          "default_enabled": false,
+          "doc": "Enable negotiated zstd compression for app-server WebSocket and UDS connections.",
+          "experimental": null
+        },
+        {
+          "key": "apply_patch_freeform",
+          "variant": "ApplyPatchFreeform",
+          "stage": "removed",
+          "default_enabled": false,
+          "doc": "Removed compatibility flag for the deleted apply_patch fallback feature.",
+          "experimental": null
+        },
+        {
+          "key": "apply_patch_preserve_line_endings",
+          "variant": "ApplyPatchPreserveLineEndings",
+          "stage": "removed",
+          "default_enabled": false,
+          "doc": "Removed compatibility flag. Patches always preserve existing line endings.",
+          "experimental": null
+        },
+        {
+          "key": "apply_patch_streaming_events",
+          "variant": "ApplyPatchStreamingEvents",
+          "stage": "under development",
+          "default_enabled": false,
+          "doc": "Stream structured progress while apply_patch input is being generated.",
+          "experimental": null
+        },
+        {
+          "key": "apps",
+          "variant": "Apps",
+          "stage": "stable",
+          "default_enabled": true,
+          "doc": "Enable apps.",
+          "experimental": null
+        },
+        {
+          "key": "apps_early_resource_discovery",
+          "variant": "AppsEarlyResourceDiscovery",
+          "stage": "under development",
+          "default_enabled": false,
+          "doc": "Let host-owned Apps catalog reads overlap the initial tool inventory.",
+          "experimental": null
+        },
+        {
+          "key": "apps_mcp_path_override",
+          "variant": "AppsMcpPathOverride",
+          "stage": "removed",
+          "default_enabled": false,
+          "doc": "Removed compatibility flag for the legacy Apps MCP path override.",
+          "experimental": null
+        },
+        {
+          "key": "artifact",
+          "variant": "Artifact",
+          "stage": "under development",
+          "default_enabled": false,
+          "doc": "Enable native artifact tools.",
+          "experimental": null
+        },
+        {
+          "key": "async_compaction",
+          "variant": "AsyncCompaction",
+          "stage": "under development",
+          "default_enabled": false,
+          "doc": "Prepare remote compaction in the background before the foreground limit is reached.",
+          "experimental": null
+        },
+        {
+          "key": "auth_elicitation",
+          "variant": "AuthElicitation",
+          "stage": "stable",
+          "default_enabled": true,
+          "doc": "Prompt Codex Apps connector auth failures through MCP URL elicitations.",
+          "experimental": null
+        },
+        {
+          "key": "background_paginated_rollout_migration",
+          "variant": "BackgroundPaginatedRolloutMigration",
+          "stage": "under development",
+          "default_enabled": false,
+          "doc": "Migrate legacy local rollout files to paginated history in the background.",
+          "experimental": null
+        },
+        {
+          "key": "bedrock_setup_wizard",
+          "variant": "BedrockSetupWizard",
+          "stage": "stable",
+          "default_enabled": true,
+          "doc": "Offer Amazon Bedrock setup during TUI sign-in onboarding.",
+          "experimental": null
+        },
+        {
+          "key": "browser_annotation_api",
+          "variant": "BrowserAnnotationApi",
+          "stage": "stable",
+          "default_enabled": true,
+          "doc": "Allow websites to open and customize annotation tools in desktop apps. Ordinary user-driven annotation is independent of this gate. Requirements-only gate: this should be set from requirements, not user config.",
+          "experimental": null
+        },
+        {
+          "key": "browser_use",
+          "variant": "BrowserUse",
+          "stage": "stable",
+          "default_enabled": true,
+          "doc": "Allow Browser Use agent integration in desktop apps. Requirements-only gate: this should be set from requirements, not user config.",
+          "experimental": null
+        },
+        {
+          "key": "browser_use_external",
+          "variant": "BrowserUseExternal",
+          "stage": "stable",
+          "default_enabled": true,
+          "doc": "Allow Browser Use integration with external browsers. Requirements-only gate: this should be set from requirements, not user config.",
+          "experimental": null
+        },
+        {
+          "key": "browser_use_full_cdp_access",
+          "variant": "BrowserUseFullCdpAccess",
+          "stage": "stable",
+          "default_enabled": true,
+          "doc": "Allow Browser Use integration to access the full Chrome DevTools Protocol surface. Requirements-only gate: this should be set from requirements, not user config.",
+          "experimental": null
+        },
+        {
+          "key": "chronicle",
+          "variant": "Chronicle",
+          "stage": "under development",
+          "default_enabled": false,
+          "doc": "Enable the Chronicle sidecar for passive screen-context memories.",
+          "experimental": null
+        },
+        {
+          "key": "cli_daybreak",
+          "variant": "CliDaybreak",
+          "stage": "stable",
+          "default_enabled": true,
+          "doc": "Enable Daybreak controls and automatic access-program selection in CLI clients.",
+          "experimental": null
+        },
+        {
+          "key": "code_mode",
+          "variant": "CodeMode",
+          "stage": "under development",
+          "default_enabled": false,
+          "doc": "Enable JavaScript code mode backed by the standalone host process.",
+          "experimental": null
+        },
+        {
+          "key": "code_mode_buffered_exec",
+          "variant": "CodeModeBufferedExec",
+          "stage": "removed",
+          "default_enabled": false,
+          "doc": "Removed compatibility flag for the configurable code-mode exec yield timeout.",
+          "experimental": null
+        },
+        {
+          "key": "code_mode_host",
+          "variant": "CodeModeHost",
+          "stage": "stable",
+          "default_enabled": true,
+          "doc": "Run JavaScript code mode in the standalone host process.",
+          "experimental": null
+        },
+        {
+          "key": "code_mode_host_grpc",
+          "variant": "CodeModeHostGrpc",
+          "stage": "under development",
+          "default_enabled": false,
+          "doc": "Use gRPC over stdio for the process-owned code-mode host.",
+          "experimental": null
+        },
+        {
+          "key": "code_mode_host_output_truncation",
+          "variant": "CodeModeHostOutputTruncation",
+          "stage": "under development",
+          "default_enabled": false,
+          "doc": "Truncate output in the process-owned code-mode host before sending it to Core.",
+          "experimental": null
+        },
+        {
+          "key": "code_mode_interrupt",
+          "variant": "CodeModeInterrupt",
+          "stage": "stable",
+          "default_enabled": true,
+          "doc": "Terminate active code mode cells when their turn is interrupted.",
+          "experimental": null
+        },
+        {
+          "key": "code_mode_only",
+          "variant": "CodeModeOnly",
+          "stage": "under development",
+          "default_enabled": false,
+          "doc": "Restrict model-visible tools to code mode entrypoints (`exec`, `wait`).",
+          "experimental": null
+        },
+        {
+          "key": "code_mode_only_strict_3p_tools",
+          "variant": "CodeModeOnlyStrictThirdPartyTools",
+          "stage": "under development",
+          "default_enabled": false,
+          "doc": "Keep eligible MCP/app and dynamic tools deferred in exec, only in Code Mode Only. Ignores deferLoading, omit_tools_from, and namespace skip settings.",
+          "experimental": null
+        },
+        {
+          "key": "code_mode_prewarm",
+          "variant": "CodeModePrewarm",
+          "stage": "under development",
+          "default_enabled": false,
+          "doc": "Establish the code-mode host connection during session startup.",
+          "experimental": null
+        },
+        {
+          "key": "code_mode_tool_description_first",
+          "variant": "CodeModeToolDescriptionFirst",
+          "stage": "removed",
+          "default_enabled": false,
+          "doc": "Removed compatibility flag for Code Mode tool description ordering.",
+          "experimental": null
+        },
+        {
+          "key": "code_mode_tool_search",
+          "variant": "CodeModeToolSearch",
+          "stage": "under development",
+          "default_enabled": false,
+          "doc": "Expose ranked tool discovery inside JavaScript code mode.",
+          "experimental": null
+        },
+        {
+          "key": "codex_apps_mcp_2026_07_28",
+          "variant": "CodexAppsMcp20260728",
+          "stage": "under development",
+          "default_enabled": false,
+          "doc": "Enable MCP protocol version 2026-07-28 for the host-owned Codex Apps server.",
+          "experimental": null
+        },
+        {
+          "key": "codex_git_commit",
+          "variant": "CodexGitCommit",
+          "stage": "removed",
+          "default_enabled": false,
+          "doc": "Removed legacy git commit attribution guidance flag.",
+          "experimental": null
+        },
+        {
+          "key": "collaboration_modes",
+          "variant": "CollaborationModes",
+          "stage": "removed",
+          "default_enabled": true,
+          "doc": "Enable collaboration modes (Plan, Default). Kept for config backward compatibility; behavior is always collaboration-modes-enabled.",
+          "experimental": null
+        },
+        {
+          "key": "compaction_image_budget",
+          "variant": "CompactionImageBudget",
+          "stage": "stable",
+          "default_enabled": true,
+          "doc": "Include retained images in the remote compaction context budget.",
+          "experimental": null
+        },
+        {
+          "key": "computer_use",
+          "variant": "ComputerUse",
+          "stage": "stable",
+          "default_enabled": true,
+          "doc": "Allow Codex Computer Use. Requirements-only gate: this should be set from requirements, not user config.",
+          "experimental": null
+        },
+        {
+          "key": "concurrent_reasoning_summaries",
+          "variant": "ConcurrentReasoningSummaries",
+          "stage": "under development",
+          "default_enabled": false,
+          "doc": "Request sequential cutoff reasoning summary delivery.",
+          "experimental": null
+        },
+        {
+          "key": "content_item_kinds",
+          "variant": "ContentItemKinds",
+          "stage": "stable",
+          "default_enabled": true,
+          "doc": "Send per-content-entry classifications in internal Responses metadata.",
+          "experimental": null
+        },
+        {
+          "key": "context_management",
+          "variant": "ContextManagement",
+          "stage": "under development",
+          "default_enabled": false,
+          "doc": "Enables experimental context management.",
+          "experimental": null
+        },
+        {
+          "key": "credential_masking",
+          "variant": "CredentialMasking",
+          "stage": "under development",
+          "default_enabled": false,
+          "doc": "Mask credentials and inject them through an already enabled network proxy.",
+          "experimental": null
+        },
+        {
+          "key": "critical_path_timing",
+          "variant": "CriticalPathTiming",
+          "stage": "under development",
+          "default_enabled": false,
+          "doc": "Capture internal direct-tool dependency paths for turn attribution.",
+          "experimental": null
+        },
+        {
+          "key": "current_time_reminder",
+          "variant": "CurrentTimeReminder",
+          "stage": "under development",
+          "default_enabled": false,
+          "doc": "Add current-time reminders to model-visible context.",
+          "experimental": null
+        },
+        {
+          "key": "cwd_relative_turn_diffs",
+          "variant": "CwdRelativeTurnDiffs",
+          "stage": "under development",
+          "default_enabled": false,
+          "doc": "Use the current working directory for turn diff display paths.",
+          "experimental": null
+        },
+        {
+          "key": "daemon_auto_start",
+          "variant": "DaemonAutoStart",
+          "stage": "stable",
+          "default_enabled": true,
+          "doc": "Automatically start the shared local daemon for eligible interactive launches.",
+          "experimental": null
+        },
+        {
+          "key": "default_mode_request_user_input",
+          "variant": "DefaultModeRequestUserInput",
+          "stage": "under development",
+          "default_enabled": false,
+          "doc": "Allow request_user_input in Default collaboration mode.",
+          "experimental": null
+        },
+        {
+          "key": "defer_mailbox_preemption",
+          "variant": "DeferMailboxPreemption",
+          "stage": "under development",
+          "default_enabled": false,
+          "doc": "Keep sampling through reasoning and commentary boundaries when agent mail arrives. Pending mail is delivered at the next normal input boundary instead.",
+          "experimental": null
+        },
+        {
+          "key": "deferred_executor",
+          "variant": "DeferredExecutor",
+          "stage": "under development",
+          "default_enabled": false,
+          "doc": "Allow turns to start while selected executors are still starting.",
+          "experimental": null
+        },
+        {
+          "key": "deferred_tool_world_state",
+          "variant": "DeferredToolWorldState",
+          "stage": "stable",
+          "default_enabled": true,
+          "doc": "Describe deferred tool namespaces in the model-visible world state.",
+          "experimental": null
+        },
+        {
+          "key": "elevated_windows_sandbox",
+          "variant": "WindowsSandboxElevated",
+          "stage": "removed",
+          "default_enabled": false,
+          "doc": "Use the elevated Windows sandbox pipeline (setup + runner).",
+          "experimental": null
+        },
+        {
+          "key": "enable_fanout",
+          "variant": "SpawnCsv",
+          "stage": "removed",
+          "default_enabled": false,
+          "doc": "Removed compatibility flag for the deleted agent-job tools.",
+          "experimental": null
+        },
+        {
+          "key": "enable_mcp_apps",
+          "variant": "EnableMcpApps",
+          "stage": "under development",
+          "default_enabled": false,
+          "doc": "Enable MCP apps.",
+          "experimental": null
+        },
+        {
+          "key": "enable_request_compression",
+          "variant": "EnableRequestCompression",
+          "stage": "stable",
+          "default_enabled": true,
+          "doc": "Compress request bodies (zstd) when sending streaming requests to codex-backend.",
+          "experimental": null
+        },
+        {
+          "key": "exec_permission_approvals",
+          "variant": "ExecPermissionApprovals",
+          "stage": "under development",
+          "default_enabled": false,
+          "doc": "Allow exec tools to request additional permissions while staying sandboxed.",
+          "experimental": null
+        },
+        {
+          "key": "executed_tool_call_metadata",
+          "variant": "ExecutedToolCallMetadata",
+          "stage": "under development",
+          "default_enabled": false,
+          "doc": "Record model-attempted tool calls in internal Responses metadata.",
+          "experimental": null
+        },
+        {
+          "key": "executor_capability_discovery",
+          "variant": "ExecutorCapabilityDiscovery",
+          "stage": "under development",
+          "default_enabled": false,
+          "doc": "Discover selected-root plugin and skill manifests through one high-level exec-server RPC.",
+          "experimental": null
+        },
+        {
+          "key": "executor_capability_discovery_v2",
+          "variant": "ExecutorCapabilityDiscoveryV2",
+          "stage": "under development",
+          "default_enabled": false,
+          "doc": "Acquire V2 executor inventories without publishing or activating their capabilities.",
+          "experimental": null
+        },
+        {
+          "key": "experimental_windows_sandbox",
+          "variant": "WindowsSandbox",
+          "stage": "removed",
+          "default_enabled": false,
+          "doc": "Enable Windows sandbox (restricted token) on Windows.",
+          "experimental": null
+        },
+        {
+          "key": "external_agent_memory_import",
+          "variant": "ExternalAgentMemoryImport",
+          "stage": "under development",
+          "default_enabled": false,
+          "doc": "Enable importing project-scoped memory from external agents.",
+          "experimental": null
+        },
+        {
+          "key": "external_migration",
+          "variant": "ExternalMigration",
+          "stage": "removed",
+          "default_enabled": false,
+          "doc": "Removed compatibility flag retained as a no-op.",
+          "experimental": null
+        },
+        {
+          "key": "fast_mode",
+          "variant": "FastMode",
+          "stage": "stable",
+          "default_enabled": true,
+          "doc": "Enable Fast mode selection in the TUI and request layer.",
+          "experimental": null
+        },
+        {
+          "key": "gcp_setup_wizard",
+          "variant": "GcpSetupWizard",
+          "stage": "stable",
+          "default_enabled": false,
+          "doc": "Offer Google Cloud Vertex AI setup during TUI sign-in onboarding.",
+          "experimental": null
+        },
+        {
+          "key": "goals",
+          "variant": "Goals",
+          "stage": "stable",
+          "default_enabled": true,
+          "doc": "Enable persisted thread goals and automatic goal continuation.",
+          "experimental": null
+        },
+        {
+          "key": "guardian_approval",
+          "variant": "GuardianApproval",
+          "stage": "stable",
+          "default_enabled": true,
+          "doc": "Enable automatic review for approval prompts.",
+          "experimental": null
+        },
+        {
+          "key": "guardian_conversation_history_tools",
+          "variant": "GuardianConversationHistoryTools",
+          "stage": "under development",
+          "default_enabled": false,
+          "doc": "Give Guardian access to the root conversation's message history tools.",
+          "experimental": null
+        },
+        {
+          "key": "guardian_enhanced_node_repl_transcripts",
+          "variant": "GuardianEnhancedNodeReplTranscripts",
+          "stage": "under development",
+          "default_enabled": false,
+          "doc": "Include completed node_repl or cua_repl Code Mode responses in Guardian reviews.",
+          "experimental": null
+        },
+        {
+          "key": "guardian_ext",
+          "variant": "GuardianExt",
+          "stage": "removed",
+          "default_enabled": false,
+          "doc": "Removed compatibility flag for the unused Guardian extension prototype.",
+          "experimental": null
+        },
+        {
+          "key": "guardian_native_multi_agent_history",
+          "variant": "GuardianNativeMultiAgentHistory",
+          "stage": "under development",
+          "default_enabled": false,
+          "doc": "Review state-changing MAv2 calls and preserve native calls in Guardian history.",
+          "experimental": null
+        },
+        {
+          "key": "guardian_node_repl_transcript_images",
+          "variant": "GuardianNodeReplTranscriptImages",
+          "stage": "under development",
+          "default_enabled": false,
+          "doc": "Include completed node_repl or cua_repl Code Mode response images in Guardian reviews.",
+          "experimental": null
+        },
+        {
+          "key": "guardian_recorded_items",
+          "variant": "GuardianRecordedItems",
+          "stage": "under development",
+          "default_enabled": false,
+          "doc": "Forward private reviewer items and interruptions to raw-event observers.",
+          "experimental": null
+        },
+        {
+          "key": "guardian_reuse_parent_compaction",
+          "variant": "GuardianReuseParentCompaction",
+          "stage": "stable",
+          "default_enabled": true,
+          "doc": "Reuse encrypted parent compaction when restarting Guardian review sessions. When disabled, retain an independent review transcript across parent compaction.",
+          "experimental": null
+        },
+        {
+          "key": "guardian_root_handoff_context",
+          "variant": "GuardianRootHandoffContext",
+          "stage": "under development",
+          "default_enabled": false,
+          "doc": "Limit worker Guardian root evidence to preceding root communication windows.",
+          "experimental": null
+        },
+        {
+          "key": "guardian_trust_orchestrator_connectors",
+          "variant": "GuardianTrustOrchestratorConnectors",
+          "stage": "under development",
+          "default_enabled": false,
+          "doc": "Trust connector identities from the plugin service orchestrator in Guardian V2.",
+          "experimental": null
+        },
+        {
+          "key": "guardianv2",
+          "variant": "GuardianV2",
+          "stage": "under development",
+          "default_enabled": false,
+          "doc": "Enable Guardian V2 automatic approval reviews.",
+          "experimental": null
+        },
+        {
+          "key": "guardianv2.thread_context",
+          "variant": "GuardianThreadContext",
+          "stage": "removed",
+          "default_enabled": false,
+          "doc": "Removed compatibility flag for always-on thread-owned Guardian context.",
+          "experimental": null
+        },
+        {
+          "key": "guardianv2_decisions_comparison",
+          "variant": "GuardianV2DecisionsComparison",
+          "stage": "under development",
+          "default_enabled": false,
+          "doc": "Run Decisions alongside Guardian V2 for measurement without changing approvals.",
+          "experimental": null
+        },
+        {
+          "key": "guardianv3",
+          "variant": "GuardianV3",
+          "stage": "under development",
+          "default_enabled": false,
+          "doc": "Enable Guardian V3 integrations.",
+          "experimental": null
+        },
+        {
+          "key": "hooks",
+          "variant": "CodexHooks",
+          "stage": "stable",
+          "default_enabled": true,
+          "doc": "Enable Claude-style lifecycle hooks loaded from hooks.json files.",
+          "experimental": null
+        },
+        {
+          "key": "image_detail_original",
+          "variant": "ImageDetailOriginal",
+          "stage": "removed",
+          "default_enabled": false,
+          "doc": "Removed compatibility flag retained as a no-op so old wrappers can still pass `--enable image_detail_original`.",
+          "experimental": null
+        },
+        {
+          "key": "image_generation",
+          "variant": "ImageGeneration",
+          "stage": "stable",
+          "default_enabled": true,
+          "doc": "Enable extension-backed image generation.",
+          "experimental": null
+        },
+        {
+          "key": "image_resize_notice",
+          "variant": "ImageResizeNotice",
+          "stage": "under development",
+          "default_enabled": false,
+          "doc": "Tell the model when a prompt image was resized and include its dimensions.",
+          "experimental": null
+        },
+        {
+          "key": "in_app_browser",
+          "variant": "InAppBrowser",
+          "stage": "stable",
+          "default_enabled": true,
+          "doc": "Allow the in-app browser pane in desktop apps. Requirements-only gate: this should be set from requirements, not user config.",
+          "experimental": null
+        },
+        {
+          "key": "in_app_chat",
+          "variant": "InAppChat",
+          "stage": "stable",
+          "default_enabled": true,
+          "doc": "Allow the in-app chat pane in desktop apps. Requirements-only gate: this should be set from requirements, not user config.",
+          "experimental": null
+        },
+        {
+          "key": "in_app_dictation",
+          "variant": "InAppDictation",
+          "stage": "stable",
+          "default_enabled": true,
+          "doc": "Allow in-app dictation in desktop apps. Requirements-only gate: this should be set from requirements, not user config.",
+          "experimental": null
+        },
+        {
+          "key": "in_app_local_automation",
+          "variant": "InAppLocalAutomation",
+          "stage": "stable",
+          "default_enabled": true,
+          "doc": "Allow desktop apps to run local automations. Requirements-only gate: this should be set from requirements, not user config.",
+          "experimental": null
+        },
+        {
+          "key": "in_app_updates",
+          "variant": "InAppUpdates",
+          "stage": "stable",
+          "default_enabled": true,
+          "doc": "Allow desktop apps to perform in-app updates. Requirements-only gate: this should be set from requirements, not user config.",
+          "experimental": null
+        },
+        {
+          "key": "in_app_voice",
+          "variant": "InAppVoice",
+          "stage": "stable",
+          "default_enabled": true,
+          "doc": "Allow in-app Voice in desktop apps. Requirements-only gate: this should be set from requirements, not user config. Permission does not establish Voice availability or provider support.",
+          "experimental": null
+        },
+        {
+          "key": "incremental_exec_tools",
+          "variant": "IncrementalExecTools",
+          "stage": "under development",
+          "default_enabled": false,
+          "doc": "Diff CodeModeOnly exec definitions within the incremental tool catalog.",
+          "experimental": null
+        },
+        {
+          "key": "incremental_tools",
+          "variant": "IncrementalTools",
+          "stage": "stable",
+          "default_enabled": true,
+          "doc": "Track top-level tool definitions in world state and emit incremental context updates.",
+          "experimental": null
+        },
+        {
+          "key": "incremental_tools_legacy",
+          "variant": "IncrementalToolsLegacy",
+          "stage": "stable",
+          "default_enabled": false,
+          "doc": "Publish incremental tool declarations on regular Amazon Bedrock Responses.",
+          "experimental": null
+        },
+        {
+          "key": "incremental_tools_legacy_gcp",
+          "variant": "IncrementalToolsLegacyGcp",
+          "stage": "stable",
+          "default_enabled": true,
+          "doc": "Publish incremental tool declarations on regular GCP Responses.",
+          "experimental": null
+        },
+        {
+          "key": "instant_interrupt",
+          "variant": "InstantInterrupt",
+          "stage": "under development",
+          "default_enabled": true,
+          "doc": "Preempt responses and yield foreground code-mode observations on new user input.",
+          "experimental": null
+        },
+        {
+          "key": "interrupt_on_cancel",
+          "variant": "InterruptOnCancel",
+          "stage": "under development",
+          "default_enabled": false,
+          "doc": "Interrupt upstream inference when a turn is cancelled.",
+          "experimental": null
+        },
+        {
+          "key": "item_ids",
+          "variant": "ItemIds",
+          "stage": "removed",
+          "default_enabled": true,
+          "doc": "Removed compatibility flag for always-on response item IDs.",
+          "experimental": null
+        },
+        {
+          "key": "js_repl",
+          "variant": "JsRepl",
+          "stage": "removed",
+          "default_enabled": false,
+          "doc": "Removed compatibility flag for the deleted JavaScript REPL feature.",
+          "experimental": null
+        },
+        {
+          "key": "js_repl_tools_only",
+          "variant": "JsReplToolsOnly",
+          "stage": "removed",
+          "default_enabled": false,
+          "doc": "Removed compatibility flag for the deleted JavaScript REPL tool-only mode.",
+          "experimental": null
+        },
+        {
+          "key": "local_thread_store_compression",
+          "variant": "LocalThreadStoreCompression",
+          "stage": "under development",
+          "default_enabled": false,
+          "doc": "Compress cold local thread-store rollout files, including shared histories. Requires every reader of the Codex home to support compressed shared histories.",
+          "experimental": null
+        },
+        {
+          "key": "local_thread_store_shared_compression",
+          "variant": "LocalThreadStoreSharedCompression",
+          "stage": "removed",
+          "default_enabled": false,
+          "doc": "Removed compatibility flag; local_thread_store_compression controls all rollout files.",
+          "experimental": null
+        },
+        {
+          "key": "login_shell_package_path",
+          "variant": "LoginShellPackagePath",
+          "stage": "experimental",
+          "default_enabled": false,
+          "doc": "Restore bundled tools to PATH after Codex's login shell starts.",
+          "experimental": {
+            "name": "Bundled tools in login shells",
+            "menu_description": "Keep bundled tools such as ripgrep available when login shell startup resets PATH.",
+            "announcement": null
+          }
+        },
+        {
+          "key": "mcp_2026_07_28",
+          "variant": "Mcp20260728",
+          "stage": "under development",
+          "default_enabled": false,
+          "doc": "Enable MCP protocol version 2026-07-28 support.",
+          "experimental": null
+        },
+        {
+          "key": "mcp_connection_sharing",
+          "variant": "McpConnectionSharing",
+          "stage": "under development",
+          "default_enabled": false,
+          "doc": "Discover and share eligible local stdio connections across chats.",
+          "experimental": null
+        },
+        {
+          "key": "mcp_oauth_refresh_coordination",
+          "variant": "McpOAuthRefreshCoordination",
+          "stage": "stable",
+          "default_enabled": true,
+          "doc": "Let RMCP coordinate OAuth refresh through the configured credential store.",
+          "experimental": null
+        },
+        {
+          "key": "mcp_tool_list_changed",
+          "variant": "McpToolListChanged",
+          "stage": "under development",
+          "default_enabled": false,
+          "doc": "Honor ordinary MCP server tool-list notifications within a turn.",
+          "experimental": null
+        },
+        {
+          "key": "memories",
+          "variant": "MemoryTool",
+          "stage": "stable",
+          "default_enabled": false,
+          "doc": "Enable startup memory extraction and file-backed memory consolidation.",
+          "experimental": null
+        },
+        {
+          "key": "mentions_v2",
+          "variant": "MentionsV2",
+          "stage": "stable",
+          "default_enabled": true,
+          "doc": "Enable the unified mention popup used by default in the TUI.",
+          "experimental": null
+        },
+        {
+          "key": "model_catalog_in_context",
+          "variant": "ModelCatalogInContext",
+          "stage": "under development",
+          "default_enabled": false,
+          "doc": "Keep spawn model choices in append-only context instead of tool descriptions.",
+          "experimental": null
+        },
+        {
+          "key": "multi_agent",
+          "variant": "Collab",
+          "stage": "stable",
+          "default_enabled": true,
+          "doc": "Enable collab tools.",
+          "experimental": null
+        },
+        {
+          "key": "multi_agent_mode",
+          "variant": "MultiAgentMode",
+          "stage": "removed",
+          "default_enabled": false,
+          "doc": "Removed compatibility flag retained as a no-op.",
+          "experimental": null
+        },
+        {
+          "key": "multi_agent_v2",
+          "variant": "MultiAgentV2",
+          "stage": "stable",
+          "default_enabled": false,
+          "doc": "Enable task-path-based multi-agent routing.",
+          "experimental": null
+        },
+        {
+          "key": "multi_agent_v2_dynamic_tools",
+          "variant": "MultiAgentV2DynamicTools",
+          "stage": "under development",
+          "default_enabled": false,
+          "doc": "Inherit client-defined dynamic tools in fresh V2 subagents.",
+          "experimental": null
+        },
+        {
+          "key": "multi_env_copy_file",
+          "variant": "MultiEnvCopyFile",
+          "stage": "under development",
+          "default_enabled": false,
+          "doc": "Copy files between explicitly selected execution environments.",
+          "experimental": null
+        },
+        {
+          "key": "network_proxy",
+          "variant": "NetworkProxy",
+          "stage": "experimental",
+          "default_enabled": false,
+          "doc": "Start the managed network proxy for sandboxed sessions.",
+          "experimental": {
+            "name": "Network proxy",
+            "menu_description": "Apply network proxy restrictions to sandboxed sessions that already have network access.",
+            "announcement": "NEW: Network proxy can now be enabled from /experimental. Restart Codex after enabling it."
+          }
+        },
+        {
+          "key": "non_prefixed_mcp_tool_names",
+          "variant": "NonPrefixedMcpToolNames",
+          "stage": "under development",
+          "default_enabled": false,
+          "doc": "Expose MCP model-visible namespaces without the legacy `mcp__` prefix.",
+          "experimental": null
+        },
+        {
+          "key": "nonfatal_clock_read_errors",
+          "variant": "NonfatalClockReadErrors",
+          "stage": "under development",
+          "default_enabled": false,
+          "doc": "Report failed clock reads to the model without failing the turn.",
+          "experimental": null
+        },
+        {
+          "key": "omit_app_server_notification_media",
+          "variant": "OmitAppServerNotificationMedia",
+          "stage": "under development",
+          "default_enabled": false,
+          "doc": "Omit inline image and audio content from app-server item notifications.",
+          "experimental": null
+        },
+        {
+          "key": "omit_skill_descriptions",
+          "variant": "OmitSkillDescriptions",
+          "stage": "under development",
+          "default_enabled": false,
+          "doc": "Omit descriptions from the model-visible available-skills catalog.",
+          "experimental": null
+        },
+        {
+          "key": "output_token_replay",
+          "variant": "OutputTokenReplay",
+          "stage": "under development",
+          "default_enabled": false,
+          "doc": "Request encrypted sampled output for token-preserving replay.",
+          "experimental": null
+        },
+        {
+          "key": "personality",
+          "variant": "Personality",
+          "stage": "removed",
+          "default_enabled": false,
+          "doc": "Removed compatibility flag retained as a no-op.",
+          "experimental": null
+        },
+        {
+          "key": "plugin_discovery_prefetch",
+          "variant": "PluginDiscoveryPrefetch",
+          "stage": "stable",
+          "default_enabled": true,
+          "doc": "Prefetch the plugin directory, featured plugins, and recommendations at app-server startup. Inventory-only hosts can disable this. Legacy suggestions read the cached directory.",
+          "experimental": null
+        },
+        {
+          "key": "plugin_hooks",
+          "variant": "PluginHooks",
+          "stage": "removed",
+          "default_enabled": false,
+          "doc": "Removed compatibility flag for plugin-bundled lifecycle hooks.",
+          "experimental": null
+        },
+        {
+          "key": "plugin_sharing",
+          "variant": "PluginSharing",
+          "stage": "stable",
+          "default_enabled": true,
+          "doc": "Enable remote plugin sharing flows.",
+          "experimental": null
+        },
+        {
+          "key": "plugins",
+          "variant": "Plugins",
+          "stage": "stable",
+          "default_enabled": true,
+          "doc": "Enable plugins.",
+          "experimental": null
+        },
+        {
+          "key": "powershell_shell_version",
+          "variant": "PowerShellShellVersion",
+          "stage": "under development",
+          "default_enabled": false,
+          "doc": "Expose the selected PowerShell execution host's bounded major/minor version.",
+          "experimental": null
+        },
+        {
+          "key": "prediction_preserve_parent_tools",
+          "variant": "PredictionPreserveParentTools",
+          "stage": "stable",
+          "default_enabled": true,
+          "doc": "Preserve inherited tool declarations in MCP-disabled prediction forks.",
+          "experimental": null
+        },
+        {
+          "key": "prefer_mxc",
+          "variant": "PreferMxc",
+          "stage": "under development",
+          "default_enabled": false,
+          "doc": "Prefer the local native Windows sandbox when available, retaining legacy fallback.",
+          "experimental": null
+        },
+        {
+          "key": "prevent_idle_sleep",
+          "variant": "PreventIdleSleep",
+          "stage": "experimental",
+          "default_enabled": false,
+          "doc": "Prevent idle system sleep while a turn is actively running.",
+          "experimental": {
+            "name": "Prevent sleep while running",
+            "menu_description": "Keep your computer awake while Codex is running a thread.",
+            "announcement": "NEW: Prevent sleep while running is now available in /experimental."
+          },
+          "stage_condition": "cfg!(any( target_os = \"macos\", target_os = \"linux\", target_os = \"windows\" ))",
+          "stage_fallback": "under development"
+        },
+        {
+          "key": "psp",
+          "variant": "Psp",
+          "stage": "under development",
+          "default_enabled": false,
+          "doc": "Route first-party ChatGPT requests through PSP.",
+          "experimental": null
+        },
+        {
+          "key": "realtime_conversation",
+          "variant": "RealtimeConversation",
+          "stage": "removed",
+          "default_enabled": true,
+          "doc": "Removed compatibility flag. TUI voice availability follows platform support.",
+          "experimental": null
+        },
+        {
+          "key": "reasoning_effort_override",
+          "variant": "ReasoningEffortOverride",
+          "stage": "stable",
+          "default_enabled": true,
+          "doc": "Append trusted response configuration items when the selected reasoning effort changes.",
+          "experimental": null
+        },
+        {
+          "key": "recommended_plugins",
+          "variant": "RecommendedPlugins",
+          "stage": "stable",
+          "default_enabled": false,
+          "doc": "Include recommended plugins in model-visible context.",
+          "experimental": null
+        },
+        {
+          "key": "remote_compaction_v2",
+          "variant": "RemoteCompactionV2",
+          "stage": "removed",
+          "default_enabled": false,
+          "doc": "Removed compatibility key, still advertised to the Responses API.",
+          "experimental": null
+        },
+        {
+          "key": "remote_control",
+          "variant": "RemoteControl",
+          "stage": "removed",
+          "default_enabled": false,
+          "doc": "Removed compatibility flag for the deleted remote control feature.",
+          "experimental": null
+        },
+        {
+          "key": "remote_models",
+          "variant": "RemoteModels",
+          "stage": "removed",
+          "default_enabled": false,
+          "doc": "Legacy remote models flag kept for backward compatibility.",
+          "experimental": null
+        },
+        {
+          "key": "remote_plugin",
+          "variant": "RemotePlugin",
+          "stage": "stable",
+          "default_enabled": true,
+          "doc": "Enable the PS-backed remote plugin catalog.",
+          "experimental": null
+        },
+        {
+          "key": "request_permissions_tool",
+          "variant": "RequestPermissionsTool",
+          "stage": "under development",
+          "default_enabled": false,
+          "doc": "Expose the built-in request_permissions tool.",
+          "experimental": null
+        },
+        {
+          "key": "request_rule",
+          "variant": "RequestRule",
+          "stage": "removed",
+          "default_enabled": false,
+          "doc": "Allow the model to request approval and propose exec rules.",
+          "experimental": null
+        },
+        {
+          "key": "resize_all_images",
+          "variant": "ResizeAllImages",
+          "stage": "removed",
+          "default_enabled": true,
+          "doc": "Removed compatibility flag for always-on centralized image preparation.",
+          "experimental": null
+        },
+        {
+          "key": "respect_system_proxy",
+          "variant": "RespectSystemProxy",
+          "stage": "experimental",
+          "default_enabled": false,
+          "doc": "Respect host system proxy settings for Codex-owned network clients.",
+          "experimental": {
+            "name": "System proxy",
+            "menu_description": "Use macOS or Windows system proxy settings for Codex requests.",
+            "announcement": null
+          }
+        },
+        {
+          "key": "responses_websockets",
+          "variant": "ResponsesWebsockets",
+          "stage": "removed",
+          "default_enabled": false,
+          "doc": "Legacy rollout flag for Responses API WebSocket transport experiments.",
+          "experimental": null
+        },
+        {
+          "key": "responses_websockets_v2",
+          "variant": "ResponsesWebsocketsV2",
+          "stage": "removed",
+          "default_enabled": false,
+          "doc": "Legacy rollout flag for Responses API WebSocket transport v2 experiments.",
+          "experimental": null
+        },
+        {
+          "key": "retain_client_developer_messages",
+          "variant": "RetainClientDeveloperMessages",
+          "stage": "under development",
+          "default_enabled": false,
+          "doc": "Retain client-authored developer messages across compacted context windows.",
+          "experimental": null
+        },
+        {
+          "key": "retain_client_tool_outputs",
+          "variant": "RetainClientToolOutputs",
+          "stage": "under development",
+          "default_enabled": false,
+          "doc": "Honor client-requested tool-output retention across context windows.",
+          "experimental": null
+        },
+        {
+          "key": "rollout_budget",
+          "variant": "RolloutBudget",
+          "stage": "under development",
+          "default_enabled": false,
+          "doc": "Track and report a shared token budget across a session's agent threads.",
+          "experimental": null
+        },
+        {
+          "key": "runtime_agent_instances",
+          "variant": "RuntimeAgentInstances",
+          "stage": "under development",
+          "default_enabled": false,
+          "doc": "Register an ephemeral runtime for OpenAI request authentication.",
+          "experimental": null
+        },
+        {
+          "key": "runtime_metrics",
+          "variant": "RuntimeMetrics",
+          "stage": "under development",
+          "default_enabled": false,
+          "doc": "Enable runtime metrics snapshots via a manual reader.",
+          "experimental": null
+        },
+        {
+          "key": "search_tool",
+          "variant": "SearchTool",
+          "stage": "removed",
+          "default_enabled": false,
+          "doc": "Legacy search-tool feature flag kept for backward compatibility.",
+          "experimental": null
+        },
+        {
+          "key": "secret_auth_storage",
+          "variant": "SecretAuthStorage",
+          "stage": "stable",
+          "default_enabled": null,
+          "doc": "Store CLI auth in the encrypted local secrets backend when keyring storage is selected.",
+          "experimental": null,
+          "default_expr": "cfg!(windows)"
+        },
+        {
+          "key": "send_async_message",
+          "variant": "SendAsyncMessage",
+          "stage": "removed",
+          "default_enabled": false,
+          "doc": "Removed compatibility flag for model-enabled async user messaging.",
+          "experimental": null
+        },
+        {
+          "key": "send_message_to_user_async",
+          "variant": "SendMessageToUserAsync",
+          "stage": "under development",
+          "default_enabled": false,
+          "doc": "Allow root agents to send async user messages without model catalog support.",
+          "experimental": null
+        },
+        {
+          "key": "shell_snapshot",
+          "variant": "ShellSnapshot",
+          "stage": "stable",
+          "default_enabled": true,
+          "doc": "Experimental shell snapshotting.",
+          "experimental": null
+        },
+        {
+          "key": "shell_snapshot_v2",
+          "variant": "ShellSnapshotV2",
+          "stage": "under development",
+          "default_enabled": false,
+          "doc": "Keep policy-filtered shell snapshots entirely in executor memory.",
+          "experimental": null
+        },
+        {
+          "key": "shell_tool",
+          "variant": "ShellTool",
+          "stage": "stable",
+          "default_enabled": true,
+          "doc": "Enable the default shell tool.",
+          "experimental": null
+        },
+        {
+          "key": "shell_zsh_fork",
+          "variant": "ShellZshFork",
+          "stage": "removed",
+          "default_enabled": false,
+          "doc": "Removed compatibility flag for the retired patched zsh backend.",
+          "experimental": null
+        },
+        {
+          "key": "simplified_selection_hints",
+          "variant": "SimplifiedSelectionHints",
+          "stage": "under development",
+          "default_enabled": false,
+          "doc": "Use concise developer hints for explicitly selected plugins.",
+          "experimental": null
+        },
+        {
+          "key": "skill_catalog_deltas",
+          "variant": "SkillCatalogDeltas",
+          "stage": "under development",
+          "default_enabled": false,
+          "doc": "Append skill additions and edits within a cumulative context budget.",
+          "experimental": null
+        },
+        {
+          "key": "skill_env_var_dependency_prompt",
+          "variant": "SkillEnvVarDependencyPrompt",
+          "stage": "removed",
+          "default_enabled": false,
+          "doc": "Removed compatibility flag for deleted skill env var dependency prompting.",
+          "experimental": null
+        },
+        {
+          "key": "skill_mcp_dependency_install",
+          "variant": "SkillMcpDependencyInstall",
+          "stage": "stable",
+          "default_enabled": true,
+          "doc": "Allow prompting and installing missing MCP dependencies.",
+          "experimental": null
+        },
+        {
+          "key": "skill_search",
+          "variant": "SkillSearch",
+          "stage": "stable",
+          "default_enabled": true,
+          "doc": "Run cheap skill-search methods in shadow mode and emit experiment metrics.",
+          "experimental": null
+        },
+        {
+          "key": "skip_host_skill_discovery",
+          "variant": "SkipHostSkillDiscovery",
+          "stage": "under development",
+          "default_enabled": false,
+          "doc": "Skip host skill snapshots when no registered contributor requires them.",
+          "experimental": null
+        },
+        {
+          "key": "sleep_tool",
+          "variant": "SleepTool",
+          "stage": "stable",
+          "default_enabled": true,
+          "doc": "Allow registration of the built-in sleep tool.",
+          "experimental": null
+        },
+        {
+          "key": "sqlite",
+          "variant": "Sqlite",
+          "stage": "removed",
+          "default_enabled": true,
+          "doc": "Persist rollout metadata to a local SQLite database.",
+          "experimental": null
+        },
+        {
+          "key": "stable_environment_tools",
+          "variant": "StableEnvironmentTools",
+          "stage": "removed",
+          "default_enabled": false,
+          "doc": "Advertise enabled environment-backed tools and their shell parameters before the executor is ready. Actual execution still requires a usable environment and its policy.",
+          "experimental": null
+        },
+        {
+          "key": "standalone_web_search",
+          "variant": "StandaloneWebSearch",
+          "stage": "under development",
+          "default_enabled": false,
+          "doc": "Expose the extension-backed standalone web search tool.",
+          "experimental": null
+        },
+        {
+          "key": "steer",
+          "variant": "Steer",
+          "stage": "removed",
+          "default_enabled": true,
+          "doc": "Steer feature flag - when enabled, Enter submits immediately instead of queuing. Kept for config backward compatibility; behavior is always steer-enabled.",
+          "experimental": null
+        },
+        {
+          "key": "step_model_switching",
+          "variant": "StepModelSwitching",
+          "stage": "under development",
+          "default_enabled": false,
+          "doc": "Enable explicitly requested model changes for later step captures.",
+          "experimental": null
+        },
+        {
+          "key": "subagent_default_context_limits",
+          "variant": "SubagentDefaultContextLimits",
+          "stage": "under development",
+          "default_enabled": false,
+          "doc": "Use each subagent model's default context window and auto-compaction threshold.",
+          "experimental": null
+        },
+        {
+          "key": "subagent_thread_environments",
+          "variant": "SubagentThreadEnvironments",
+          "stage": "under development",
+          "default_enabled": false,
+          "doc": "Inherit configured thread environments instead of temporary turn selections.",
+          "experimental": null
+        },
+        {
+          "key": "suppress_model_change_announcements",
+          "variant": "SuppressModelChangeAnnouncements",
+          "stage": "stable",
+          "default_enabled": false,
+          "doc": "Suppress the model ID announcement in incremental context after a model switch.",
+          "experimental": null
+        },
+        {
+          "key": "system_proxy_fallback",
+          "variant": "SystemProxyFallback",
+          "stage": "stable",
+          "default_enabled": true,
+          "doc": "Retry eligible bootstrap requests through the system proxy after normal routing fails.",
+          "experimental": null
+        },
+        {
+          "key": "terminal_resize_reflow",
+          "variant": "TerminalResizeReflow",
+          "stage": "removed",
+          "default_enabled": true,
+          "doc": "Removed compatibility flag. Transcript scrollback reflow on terminal resize is always on.",
+          "experimental": null
+        },
+        {
+          "key": "terminal_visualization_instructions",
+          "variant": "TerminalVisualizationInstructions",
+          "stage": "under development",
+          "default_enabled": false,
+          "doc": "Add terminal-specific visualization guidance to TUI developer instructions.",
+          "experimental": null
+        },
+        {
+          "key": "token_budget",
+          "variant": "TokenBudget",
+          "stage": "under development",
+          "default_enabled": false,
+          "doc": "Add current context-window metadata to model-visible context.",
+          "experimental": null
+        },
+        {
+          "key": "tool_call_mcp_elicitation",
+          "variant": "ToolCallMcpElicitation",
+          "stage": "stable",
+          "default_enabled": true,
+          "doc": "Route MCP tool approval prompts through the MCP elicitation request path.",
+          "experimental": null
+        },
+        {
+          "key": "tool_search",
+          "variant": "ToolSearch",
+          "stage": "removed",
+          "default_enabled": false,
+          "doc": "Removed compatibility flag retained as a no-op now that tool_search is always enabled.",
+          "experimental": null
+        },
+        {
+          "key": "tool_search_always_defer_mcp_tools",
+          "variant": "ToolSearchAlwaysDeferMcpTools",
+          "stage": "removed",
+          "default_enabled": true,
+          "doc": "Removed compatibility flag. MCP tools are always deferred when tool_search is available.",
+          "experimental": null
+        },
+        {
+          "key": "tool_suggest",
+          "variant": "ToolSuggest",
+          "stage": "stable",
+          "default_enabled": true,
+          "doc": "Enable discoverable tool suggestions for apps.",
+          "experimental": null
+        },
+        {
+          "key": "transcript_v2",
+          "variant": "TranscriptV2",
+          "stage": "removed",
+          "default_enabled": false,
+          "doc": "Removed no-op; use `tui.fullscreen_transcript` instead.",
+          "experimental": null
+        },
+        {
+          "key": "tui_app_server",
+          "variant": "TuiAppServer",
+          "stage": "removed",
+          "default_enabled": true,
+          "doc": "Removed compatibility flag. The TUI now always uses the app-server implementation.",
+          "experimental": null
+        },
+        {
+          "key": "tui_extensions_statusline",
+          "variant": "TuiExtensionsStatusLine",
+          "stage": "under development",
+          "default_enabled": false,
+          "doc": "Render the configured status line through the experimental TUI Extensions renderer.",
+          "experimental": null
+        },
+        {
+          "key": "tui_multi_backend",
+          "variant": "TuiMultiBackend",
+          "stage": "under development",
+          "default_enabled": false,
+          "doc": "Allow the TUI to discover and select among multiple conversation backends.",
+          "experimental": null
+        },
+        {
+          "key": "ultrafast_mode",
+          "variant": "UltrafastMode",
+          "stage": "stable",
+          "default_enabled": true,
+          "doc": "Enable Ultra Fast mode independently of Fast mode.",
+          "experimental": null
+        },
+        {
+          "key": "unavailable_dummy_tools",
+          "variant": "UnavailableDummyTools",
+          "stage": "removed",
+          "default_enabled": false,
+          "doc": "Removed compatibility flag for the deleted unavailable-tool placeholder backfill.",
+          "experimental": null
+        },
+        {
+          "key": "unbounded_connection_retries",
+          "variant": "UnboundedConnectionRetries",
+          "stage": "stable",
+          "default_enabled": true,
+          "doc": "Keep active sampling turns alive until a failed network connection recovers.",
+          "experimental": null
+        },
+        {
+          "key": "undo",
+          "variant": "GhostCommit",
+          "stage": "removed",
+          "default_enabled": false,
+          "doc": "Removed compatibility flag retained as a no-op so old configs can still parse `undo`.",
+          "experimental": null
+        },
+        {
+          "key": "unified_exec",
+          "variant": "UnifiedExec",
+          "stage": "stable",
+          "default_enabled": true,
+          "doc": "Use the single unified PTY-backed exec tool.",
+          "experimental": null
+        },
+        {
+          "key": "unified_exec_tty",
+          "variant": "UnifiedExecTty",
+          "stage": "stable",
+          "default_enabled": true,
+          "doc": "Allow unified exec commands to allocate an interactive terminal.",
+          "experimental": null
+        },
+        {
+          "key": "unified_exec_zsh_fork",
+          "variant": "UnifiedExecZshFork",
+          "stage": "removed",
+          "default_enabled": false,
+          "doc": "Removed compatibility flag for the retired patched zsh backend.",
+          "experimental": null
+        },
+        {
+          "key": "unified_image_budget",
+          "variant": "UnifiedImageBudget",
+          "stage": "under development",
+          "default_enabled": false,
+          "doc": "Apply one shared pixel and token budget to every image, regardless of legacy detail hints.",
+          "experimental": null
+        },
+        {
+          "key": "untrusted_as_tool_output",
+          "variant": "UntrustedAsToolOutput",
+          "stage": "under development",
+          "default_enabled": false,
+          "doc": "Render client-supplied untrusted context as standalone named tool outputs.",
+          "experimental": null
+        },
+        {
+          "key": "use_agent_identity",
+          "variant": "UseAgentIdentity",
+          "stage": "under development",
+          "default_enabled": false,
+          "doc": "Use Agent Identity for ChatGPT-authenticated sessions.",
+          "experimental": null
+        },
+        {
+          "key": "use_legacy_landlock",
+          "variant": "UseLegacyLandlock",
+          "stage": "deprecated",
+          "default_enabled": false,
+          "doc": "Use the legacy Landlock Linux sandbox fallback instead of the default bubblewrap pipeline.",
+          "experimental": null
+        },
+        {
+          "key": "use_linux_sandbox_bwrap",
+          "variant": "UseLinuxSandboxBwrap",
+          "stage": "removed",
+          "default_enabled": false,
+          "doc": "Removed legacy Linux bubblewrap opt-in flag retained as a no-op so old wrappers and config can still parse it.",
+          "experimental": null
+        },
+        {
+          "key": "use_xaa",
+          "variant": "UseXaa",
+          "stage": "under development",
+          "default_enabled": false,
+          "doc": "Enable enterprise refresh-token authorization for configured MCP resources.",
+          "experimental": null
+        },
+        {
+          "key": "view_image",
+          "variant": "ViewImage",
+          "stage": "stable",
+          "default_enabled": true,
+          "doc": "Enable the built-in local image viewer.",
+          "experimental": null
+        },
+        {
+          "key": "wake_on_agent_messages",
+          "variant": "WakeOnAgentMessages",
+          "stage": "under development",
+          "default_enabled": false,
+          "doc": "Allow agent messages to wake idle root sessions after a completed turn.",
+          "experimental": null
+        },
+        {
+          "key": "web_search_cached",
+          "variant": "WebSearchCached",
+          "stage": "deprecated",
+          "default_enabled": false,
+          "doc": "Allow the model to request web searches that fetch cached content. Takes precedence over `WebSearchRequest`.",
+          "experimental": null
+        },
+        {
+          "key": "web_search_request",
+          "variant": "WebSearchRequest",
+          "stage": "deprecated",
+          "default_enabled": false,
+          "doc": "Allow the model to request web searches that fetch live content.",
+          "experimental": null
+        },
+        {
+          "key": "windows_sandbox_service",
+          "variant": "WindowsSandboxService",
+          "stage": "under development",
+          "default_enabled": false,
+          "doc": "Attempt elevated Windows sandbox provisioning through the installed service.",
+          "experimental": null
+        },
+        {
+          "key": "workspace_dependencies",
+          "variant": "WorkspaceDependencies",
+          "stage": "stable",
+          "default_enabled": true,
+          "doc": "Enable workspace dependency support.",
+          "experimental": null
+        },
+        {
+          "key": "workspace_owner_usage_nudge",
+          "variant": "WorkspaceOwnerUsageNudge",
+          "stage": "removed",
+          "default_enabled": false,
+          "doc": "Removed compatibility flag retained as a no-op now that workspace owner usage nudges are always enabled.",
+          "experimental": null
+        },
+        {
+          "key": "worktrees",
+          "variant": "Worktrees",
+          "stage": "removed",
+          "default_enabled": true,
+          "doc": "Removed compatibility flag. Managed worktrees and repository-aware sessions are always available.",
+          "experimental": null
+        },
+        {
+          "key": "write_stdin_approval",
+          "variant": "WriteStdinApproval",
+          "stage": "stable",
+          "default_enabled": true,
+          "doc": "Require approval before writing input to escalated unified-exec terminals.",
+          "experimental": null
+        }
+      ],
+      "legacy_aliases": {
+        "codex_hooks": "hooks",
+        "collab": "multi_agent",
+        "connectors": "apps",
+        "enable_experimental_windows_sandbox": "experimental_windows_sandbox",
+        "experimental_use_unified_exec_tool": "unified_exec",
+        "imagegenext": "image_generation",
+        "memory_tool": "memories",
+        "request_permissions": "exec_permission_approvals",
+        "telepathy": "chronicle",
+        "web_search": "web_search_request"
+      }
     }
   },
   "history": {
     "agent_message_board": {
       "first_seen": "rust-v0.156.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.156.0",
@@ -26758,7 +28421,7 @@
     },
     "analytics_plan_history": {
       "first_seen": "rust-v0.156.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.156.0",
@@ -26768,7 +28431,7 @@
     },
     "api_key_cyber_access_programs": {
       "first_seen": "rust-v0.161.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.161.0",
@@ -26778,7 +28441,7 @@
     },
     "api_key_model_discovery": {
       "first_seen": "rust-v0.155.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.155.0",
@@ -26792,7 +28455,7 @@
     },
     "app_server_websocket_compression": {
       "first_seen": "rust-v0.164.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.164.0",
@@ -26802,7 +28465,7 @@
     },
     "apply_patch_freeform": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -26812,7 +28475,7 @@
     },
     "apply_patch_preserve_line_endings": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -26826,7 +28489,7 @@
     },
     "apply_patch_streaming_events": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -26836,7 +28499,7 @@
     },
     "apps": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -26846,7 +28509,7 @@
     },
     "apps_early_resource_discovery": {
       "first_seen": "rust-v0.167.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.167.0",
@@ -26856,7 +28519,7 @@
     },
     "apps_mcp_path_override": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -26866,7 +28529,7 @@
     },
     "artifact": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -26876,7 +28539,7 @@
     },
     "async_compaction": {
       "first_seen": "rust-v0.163.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.163.0",
@@ -26886,7 +28549,7 @@
     },
     "auth_elicitation": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -26896,7 +28559,7 @@
     },
     "background_paginated_rollout_migration": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -26906,7 +28569,7 @@
     },
     "bedrock_setup_wizard": {
       "first_seen": "rust-v0.151.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.151.0",
@@ -26920,7 +28583,7 @@
     },
     "browser_annotation_api": {
       "first_seen": "rust-v0.161.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.161.0",
@@ -26930,7 +28593,7 @@
     },
     "browser_use": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -26940,7 +28603,7 @@
     },
     "browser_use_external": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -26950,7 +28613,7 @@
     },
     "browser_use_full_cdp_access": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -26960,7 +28623,7 @@
     },
     "chronicle": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -26970,7 +28633,7 @@
     },
     "cli_daybreak": {
       "first_seen": "rust-v0.161.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.161.0",
@@ -26984,7 +28647,7 @@
     },
     "code_mode": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -26994,7 +28657,7 @@
     },
     "code_mode_buffered_exec": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -27004,7 +28667,7 @@
     },
     "code_mode_host": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -27014,7 +28677,7 @@
     },
     "code_mode_host_grpc": {
       "first_seen": "rust-v0.163.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.163.0",
@@ -27024,7 +28687,7 @@
     },
     "code_mode_host_output_truncation": {
       "first_seen": "rust-v0.167.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.167.0",
@@ -27034,7 +28697,7 @@
     },
     "code_mode_interrupt": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -27048,7 +28711,7 @@
     },
     "code_mode_only": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -27058,7 +28721,7 @@
     },
     "code_mode_only_strict_3p_tools": {
       "first_seen": "rust-v0.162.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.162.0",
@@ -27068,7 +28731,7 @@
     },
     "code_mode_prewarm": {
       "first_seen": "rust-v0.151.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.151.0",
@@ -27078,7 +28741,7 @@
     },
     "code_mode_tool_description_first": {
       "first_seen": "rust-v0.163.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.163.0",
@@ -27092,7 +28755,7 @@
     },
     "code_mode_tool_search": {
       "first_seen": "rust-v0.162.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.162.0",
@@ -27102,7 +28765,7 @@
     },
     "codex_apps_mcp_2026_07_28": {
       "first_seen": "rust-v0.155.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.155.0",
@@ -27112,7 +28775,7 @@
     },
     "codex_git_commit": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -27122,7 +28785,7 @@
     },
     "collaboration_modes": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -27132,7 +28795,7 @@
     },
     "compaction_image_budget": {
       "first_seen": "rust-v0.150.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.150.0",
@@ -27146,7 +28809,7 @@
     },
     "computer_use": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -27156,7 +28819,7 @@
     },
     "concurrent_reasoning_summaries": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -27166,7 +28829,7 @@
     },
     "content_item_kinds": {
       "first_seen": "rust-v0.150.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.150.0",
@@ -27180,7 +28843,7 @@
     },
     "context_management": {
       "first_seen": "rust-v0.153.1",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.153.1",
@@ -27190,7 +28853,7 @@
     },
     "credential_masking": {
       "first_seen": "rust-v0.163.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.163.0",
@@ -27200,7 +28863,7 @@
     },
     "critical_path_timing": {
       "first_seen": "rust-v0.166.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.166.0",
@@ -27210,7 +28873,7 @@
     },
     "current_time_reminder": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -27220,7 +28883,7 @@
     },
     "cwd_relative_turn_diffs": {
       "first_seen": "rust-v0.149.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.149.0",
@@ -27230,7 +28893,7 @@
     },
     "daemon_auto_start": {
       "first_seen": "rust-v0.156.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.156.0",
@@ -27244,7 +28907,7 @@
     },
     "default_mode_request_user_input": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -27254,7 +28917,7 @@
     },
     "defer_mailbox_preemption": {
       "first_seen": "rust-v0.158.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.158.0",
@@ -27264,7 +28927,7 @@
     },
     "deferred_executor": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -27274,7 +28937,7 @@
     },
     "deferred_tool_world_state": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -27288,7 +28951,7 @@
     },
     "elevated_windows_sandbox": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -27298,7 +28961,7 @@
     },
     "enable_fanout": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -27308,7 +28971,7 @@
     },
     "enable_mcp_apps": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -27318,7 +28981,7 @@
     },
     "enable_request_compression": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -27328,7 +28991,7 @@
     },
     "exec_permission_approvals": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -27338,7 +29001,7 @@
     },
     "executed_tool_call_metadata": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -27348,7 +29011,7 @@
     },
     "executor_capability_discovery": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -27358,7 +29021,7 @@
     },
     "executor_capability_discovery_v2": {
       "first_seen": "rust-v0.164.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.164.0",
@@ -27368,7 +29031,7 @@
     },
     "experimental_windows_sandbox": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -27378,7 +29041,7 @@
     },
     "external_agent_memory_import": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -27388,7 +29051,7 @@
     },
     "external_migration": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -27398,7 +29061,7 @@
     },
     "fast_mode": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -27408,7 +29071,7 @@
     },
     "gcp_setup_wizard": {
       "first_seen": "rust-v0.167.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.167.0",
@@ -27418,7 +29081,7 @@
     },
     "goals": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -27428,7 +29091,7 @@
     },
     "guardian_approval": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -27438,7 +29101,7 @@
     },
     "guardian_conversation_history_tools": {
       "first_seen": "rust-v0.160.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.160.0",
@@ -27448,7 +29111,7 @@
     },
     "guardian_enhanced_node_repl_transcripts": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -27458,7 +29121,7 @@
     },
     "guardian_ext": {
       "first_seen": "rust-v0.150.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.150.0",
@@ -27472,7 +29135,7 @@
     },
     "guardian_native_multi_agent_history": {
       "first_seen": "rust-v0.166.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.166.0",
@@ -27482,7 +29145,7 @@
     },
     "guardian_node_repl_transcript_images": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -27492,7 +29155,7 @@
     },
     "guardian_recorded_items": {
       "first_seen": "rust-v0.165.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.165.0",
@@ -27502,7 +29165,7 @@
     },
     "guardian_reuse_parent_compaction": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -27516,7 +29179,7 @@
     },
     "guardian_root_handoff_context": {
       "first_seen": "rust-v0.160.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.160.0",
@@ -27526,7 +29189,7 @@
     },
     "guardian_trust_orchestrator_connectors": {
       "first_seen": "rust-v0.163.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.163.0",
@@ -27536,7 +29199,7 @@
     },
     "guardianv2": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -27546,7 +29209,7 @@
     },
     "guardianv2.thread_context": {
       "first_seen": "rust-v0.154.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.154.0",
@@ -27564,7 +29227,7 @@
     },
     "guardianv2_decisions_comparison": {
       "first_seen": "rust-v0.162.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.162.0",
@@ -27574,7 +29237,7 @@
     },
     "guardianv3": {
       "first_seen": "rust-v0.165.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.165.0",
@@ -27584,7 +29247,7 @@
     },
     "hooks": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -27594,7 +29257,7 @@
     },
     "image_detail_original": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -27604,7 +29267,7 @@
     },
     "image_generation": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -27614,7 +29277,7 @@
     },
     "image_resize_notice": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -27624,7 +29287,7 @@
     },
     "in_app_browser": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -27634,7 +29297,7 @@
     },
     "in_app_chat": {
       "first_seen": "rust-v0.149.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.149.0",
@@ -27644,7 +29307,7 @@
     },
     "in_app_dictation": {
       "first_seen": "rust-v0.149.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.149.0",
@@ -27654,7 +29317,7 @@
     },
     "in_app_local_automation": {
       "first_seen": "rust-v0.150.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.150.0",
@@ -27664,7 +29327,7 @@
     },
     "in_app_updates": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -27674,7 +29337,7 @@
     },
     "in_app_voice": {
       "first_seen": "rust-v0.161.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.161.0",
@@ -27684,7 +29347,7 @@
     },
     "incremental_exec_tools": {
       "first_seen": "rust-v0.167.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.167.0",
@@ -27694,7 +29357,7 @@
     },
     "incremental_tools": {
       "first_seen": "rust-v0.162.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.162.0",
@@ -27708,17 +29371,31 @@
     },
     "incremental_tools_legacy": {
       "first_seen": "rust-v0.167.1",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.167.1",
           "stage": "under development"
+        },
+        {
+          "at": "rust-v0.167.2",
+          "stage": "stable"
+        }
+      ]
+    },
+    "incremental_tools_legacy_gcp": {
+      "first_seen": "rust-v0.167.2",
+      "last_seen": "rust-v0.167.2",
+      "stages": [
+        {
+          "at": "rust-v0.167.2",
+          "stage": "stable"
         }
       ]
     },
     "instant_interrupt": {
       "first_seen": "rust-v0.159.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.159.0",
@@ -27728,7 +29405,7 @@
     },
     "interrupt_on_cancel": {
       "first_seen": "rust-v0.167.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.167.0",
@@ -27738,7 +29415,7 @@
     },
     "item_ids": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -27748,7 +29425,7 @@
     },
     "js_repl": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -27758,7 +29435,7 @@
     },
     "js_repl_tools_only": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -27768,7 +29445,7 @@
     },
     "local_thread_store_compression": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -27778,7 +29455,7 @@
     },
     "local_thread_store_shared_compression": {
       "first_seen": "rust-v0.152.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.152.0",
@@ -27792,7 +29469,7 @@
     },
     "login_shell_package_path": {
       "first_seen": "rust-v0.161.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.161.0",
@@ -27802,7 +29479,7 @@
     },
     "mcp_2026_07_28": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -27812,7 +29489,7 @@
     },
     "mcp_connection_sharing": {
       "first_seen": "rust-v0.166.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.166.0",
@@ -27822,7 +29499,7 @@
     },
     "mcp_oauth_refresh_coordination": {
       "first_seen": "rust-v0.153.1",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.153.1",
@@ -27836,7 +29513,7 @@
     },
     "mcp_tool_list_changed": {
       "first_seen": "rust-v0.164.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.164.0",
@@ -27846,7 +29523,7 @@
     },
     "memories": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -27856,7 +29533,7 @@
     },
     "mentions_v2": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -27866,7 +29543,7 @@
     },
     "model_catalog_in_context": {
       "first_seen": "rust-v0.161.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.161.0",
@@ -27876,7 +29553,7 @@
     },
     "multi_agent": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -27886,7 +29563,7 @@
     },
     "multi_agent_mode": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -27896,7 +29573,7 @@
     },
     "multi_agent_v2": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -27906,7 +29583,7 @@
     },
     "multi_agent_v2_dynamic_tools": {
       "first_seen": "rust-v0.162.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.162.0",
@@ -27916,7 +29593,7 @@
     },
     "multi_env_copy_file": {
       "first_seen": "rust-v0.164.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.164.0",
@@ -27926,7 +29603,7 @@
     },
     "network_proxy": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -27936,7 +29613,7 @@
     },
     "non_prefixed_mcp_tool_names": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -27946,7 +29623,7 @@
     },
     "nonfatal_clock_read_errors": {
       "first_seen": "rust-v0.156.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.156.0",
@@ -27956,7 +29633,7 @@
     },
     "omit_app_server_notification_media": {
       "first_seen": "rust-v0.152.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.152.0",
@@ -27966,7 +29643,7 @@
     },
     "omit_skill_descriptions": {
       "first_seen": "rust-v0.166.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.166.0",
@@ -27976,7 +29653,7 @@
     },
     "output_token_replay": {
       "first_seen": "rust-v0.163.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.163.0",
@@ -27986,7 +29663,7 @@
     },
     "personality": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -28000,7 +29677,7 @@
     },
     "plugin_discovery_prefetch": {
       "first_seen": "rust-v0.166.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.166.0",
@@ -28010,7 +29687,7 @@
     },
     "plugin_hooks": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -28020,7 +29697,7 @@
     },
     "plugin_sharing": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -28030,7 +29707,7 @@
     },
     "plugins": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -28040,7 +29717,7 @@
     },
     "powershell_shell_version": {
       "first_seen": "rust-v0.152.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.152.0",
@@ -28050,7 +29727,7 @@
     },
     "prediction_preserve_parent_tools": {
       "first_seen": "rust-v0.165.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.165.0",
@@ -28060,7 +29737,7 @@
     },
     "prefer_mxc": {
       "first_seen": "rust-v0.157.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.157.0",
@@ -28070,7 +29747,7 @@
     },
     "prevent_idle_sleep": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -28080,7 +29757,7 @@
     },
     "psp": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -28090,7 +29767,7 @@
     },
     "realtime_conversation": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -28116,7 +29793,7 @@
     },
     "reasoning_effort_override": {
       "first_seen": "rust-v0.154.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.154.0",
@@ -28130,7 +29807,7 @@
     },
     "recommended_plugins": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -28140,7 +29817,7 @@
     },
     "remote_compaction_v2": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -28154,7 +29831,7 @@
     },
     "remote_control": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -28164,7 +29841,7 @@
     },
     "remote_models": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -28174,7 +29851,7 @@
     },
     "remote_plugin": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -28184,7 +29861,7 @@
     },
     "request_permissions_tool": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -28194,7 +29871,7 @@
     },
     "request_rule": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -28204,7 +29881,7 @@
     },
     "resize_all_images": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -28214,7 +29891,7 @@
     },
     "respect_system_proxy": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -28228,7 +29905,7 @@
     },
     "responses_websockets": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -28238,7 +29915,7 @@
     },
     "responses_websockets_v2": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -28248,7 +29925,7 @@
     },
     "retain_client_developer_messages": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -28258,7 +29935,7 @@
     },
     "retain_client_tool_outputs": {
       "first_seen": "rust-v0.163.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.163.0",
@@ -28268,7 +29945,7 @@
     },
     "rollout_budget": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -28278,7 +29955,7 @@
     },
     "runtime_agent_instances": {
       "first_seen": "rust-v0.164.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.164.0",
@@ -28288,7 +29965,7 @@
     },
     "runtime_metrics": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -28298,7 +29975,7 @@
     },
     "search_tool": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -28308,7 +29985,7 @@
     },
     "secret_auth_storage": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -28318,7 +29995,7 @@
     },
     "send_async_message": {
       "first_seen": "rust-v0.149.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.149.0",
@@ -28328,7 +30005,7 @@
     },
     "send_message_to_user_async": {
       "first_seen": "rust-v0.156.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.156.0",
@@ -28338,7 +30015,7 @@
     },
     "shell_snapshot": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -28348,7 +30025,7 @@
     },
     "shell_snapshot_v2": {
       "first_seen": "rust-v0.150.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.150.0",
@@ -28358,7 +30035,7 @@
     },
     "shell_tool": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -28368,7 +30045,7 @@
     },
     "shell_zsh_fork": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -28382,7 +30059,7 @@
     },
     "simplified_selection_hints": {
       "first_seen": "rust-v0.166.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.166.0",
@@ -28392,7 +30069,7 @@
     },
     "skill_catalog_deltas": {
       "first_seen": "rust-v0.166.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.166.0",
@@ -28402,7 +30079,7 @@
     },
     "skill_env_var_dependency_prompt": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -28412,7 +30089,7 @@
     },
     "skill_mcp_dependency_install": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -28422,7 +30099,7 @@
     },
     "skill_search": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -28432,7 +30109,7 @@
     },
     "skip_host_skill_discovery": {
       "first_seen": "rust-v0.151.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.151.0",
@@ -28442,7 +30119,7 @@
     },
     "sleep_tool": {
       "first_seen": "rust-v0.152.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.152.0",
@@ -28452,7 +30129,7 @@
     },
     "sqlite": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -28462,7 +30139,7 @@
     },
     "stable_environment_tools": {
       "first_seen": "rust-v0.162.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.162.0",
@@ -28476,7 +30153,7 @@
     },
     "standalone_web_search": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -28486,7 +30163,7 @@
     },
     "steer": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -28496,7 +30173,7 @@
     },
     "step_model_switching": {
       "first_seen": "rust-v0.151.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.151.0",
@@ -28506,7 +30183,7 @@
     },
     "subagent_default_context_limits": {
       "first_seen": "rust-v0.163.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.163.0",
@@ -28516,7 +30193,7 @@
     },
     "subagent_thread_environments": {
       "first_seen": "rust-v0.164.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.164.0",
@@ -28526,7 +30203,7 @@
     },
     "suppress_model_change_announcements": {
       "first_seen": "rust-v0.167.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.167.0",
@@ -28536,7 +30213,7 @@
     },
     "system_proxy_fallback": {
       "first_seen": "rust-v0.156.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.156.0",
@@ -28546,7 +30223,7 @@
     },
     "terminal_resize_reflow": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -28556,7 +30233,7 @@
     },
     "terminal_visualization_instructions": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -28566,7 +30243,7 @@
     },
     "token_budget": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -28576,7 +30253,7 @@
     },
     "tool_call_mcp_elicitation": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -28586,7 +30263,7 @@
     },
     "tool_search": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -28596,7 +30273,7 @@
     },
     "tool_search_always_defer_mcp_tools": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -28606,7 +30283,7 @@
     },
     "tool_suggest": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -28616,7 +30293,7 @@
     },
     "transcript_v2": {
       "first_seen": "rust-v0.150.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.150.0",
@@ -28634,7 +30311,7 @@
     },
     "tui_app_server": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -28644,7 +30321,7 @@
     },
     "tui_extensions_statusline": {
       "first_seen": "rust-v0.167.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.167.0",
@@ -28654,7 +30331,7 @@
     },
     "tui_multi_backend": {
       "first_seen": "rust-v0.165.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.165.0",
@@ -28664,7 +30341,7 @@
     },
     "ultrafast_mode": {
       "first_seen": "rust-v0.162.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.162.0",
@@ -28674,7 +30351,7 @@
     },
     "unavailable_dummy_tools": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -28684,7 +30361,7 @@
     },
     "unbounded_connection_retries": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -28694,7 +30371,7 @@
     },
     "undo": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -28704,7 +30381,7 @@
     },
     "unified_exec": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -28714,7 +30391,7 @@
     },
     "unified_exec_tty": {
       "first_seen": "rust-v0.154.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.154.0",
@@ -28724,7 +30401,7 @@
     },
     "unified_exec_zsh_fork": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -28738,7 +30415,7 @@
     },
     "unified_image_budget": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -28748,7 +30425,7 @@
     },
     "untrusted_as_tool_output": {
       "first_seen": "rust-v0.166.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.166.0",
@@ -28758,7 +30435,7 @@
     },
     "use_agent_identity": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -28768,7 +30445,7 @@
     },
     "use_legacy_landlock": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -28778,7 +30455,7 @@
     },
     "use_linux_sandbox_bwrap": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -28788,7 +30465,7 @@
     },
     "use_xaa": {
       "first_seen": "rust-v0.156.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.156.0",
@@ -28798,7 +30475,7 @@
     },
     "view_image": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -28808,7 +30485,7 @@
     },
     "wake_on_agent_messages": {
       "first_seen": "rust-v0.164.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.164.0",
@@ -28818,7 +30495,7 @@
     },
     "web_search_cached": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -28828,7 +30505,7 @@
     },
     "web_search_request": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -28838,7 +30515,7 @@
     },
     "windows_sandbox_service": {
       "first_seen": "rust-v0.154.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.154.0",
@@ -28848,7 +30525,7 @@
     },
     "workspace_dependencies": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -28858,7 +30535,7 @@
     },
     "workspace_owner_usage_nudge": {
       "first_seen": "rust-v0.148.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.148.0",
@@ -28868,7 +30545,7 @@
     },
     "worktrees": {
       "first_seen": "rust-v0.154.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.154.0",
@@ -28886,7 +30563,7 @@
     },
     "write_stdin_approval": {
       "first_seen": "rust-v0.151.0",
-      "last_seen": "rust-v0.167.1",
+      "last_seen": "rust-v0.167.2",
       "stages": [
         {
           "at": "rust-v0.151.0",
