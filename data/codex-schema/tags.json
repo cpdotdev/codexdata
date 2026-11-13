@@ -1,6 +1,6 @@
 {
   "schema": "codex-model-info.schema.json",
-  "latest": "rust-v0.167.2",
+  "latest": "rust-v0.169.0",
   "verified_tags": [
     "rust-v0.148.0",
     "rust-v0.149.0",
@@ -32,13 +32,16 @@
     "rust-v0.166.0",
     "rust-v0.167.0",
     "rust-v0.167.1",
-    "rust-v0.167.2"
+    "rust-v0.167.2",
+    "rust-v0.168.0",
+    "rust-v0.169.0"
   ],
   "source_files": [
     "codex-rs/protocol/src/openai_models.rs",
     "codex-rs/protocol/src/openai_models/access_programs.rs",
     "codex-rs/protocol/src/openai_models/incremental_tools.rs",
     "codex-rs/protocol/src/openai_models/memento_v2.rs",
+    "codex-rs/protocol/src/openai_models/plugins.rs",
     "codex-rs/protocol/src/openai_models/guardian.rs",
     "codex-rs/protocol/src/openai_models/guardian_v2.rs",
     "codex-rs/protocol/src/openai_models/reasoning_effort.rs",

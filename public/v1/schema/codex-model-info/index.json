@@ -1,7 +1,7 @@
 {
   "schema": "codex-model-info",
   "latest": {
-    "tag": "rust-v0.167.2",
+    "tag": "rust-v0.169.0",
     "url": "https://data.cp.dev/v1/schema/codex-model-info/latest.json"
   },
   "verified_tags": [
@@ -128,6 +128,14 @@
     {
       "tag": "rust-v0.167.2",
       "url": "https://data.cp.dev/v1/schema/codex-model-info/rust-v0.167.2.json"
+    },
+    {
+      "tag": "rust-v0.168.0",
+      "url": "https://data.cp.dev/v1/schema/codex-model-info/rust-v0.168.0.json"
+    },
+    {
+      "tag": "rust-v0.169.0",
+      "url": "https://data.cp.dev/v1/schema/codex-model-info/rust-v0.169.0.json"
     }
   ],
   "source_files": [
@@ -135,6 +143,7 @@
     "codex-rs/protocol/src/openai_models/access_programs.rs",
     "codex-rs/protocol/src/openai_models/incremental_tools.rs",
     "codex-rs/protocol/src/openai_models/memento_v2.rs",
+    "codex-rs/protocol/src/openai_models/plugins.rs",
     "codex-rs/protocol/src/openai_models/guardian.rs",
     "codex-rs/protocol/src/openai_models/guardian_v2.rs",
     "codex-rs/protocol/src/openai_models/reasoning_effort.rs",

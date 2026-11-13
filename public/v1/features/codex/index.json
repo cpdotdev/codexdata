@@ -1,7 +1,7 @@
 {
   "dataset": "codex-feature-flags",
   "latest": {
-    "tag": "rust-v0.167.2",
+    "tag": "rust-v0.169.0",
     "url": "https://data.cp.dev/v1/features/codex/latest.json"
   },
   "verified_tags": [
@@ -159,6 +159,16 @@
       "tag": "rust-v0.167.2",
       "snapshot_tag": "rust-v0.167.2",
       "url": "https://data.cp.dev/v1/features/codex/rust-v0.167.2.json"
+    },
+    {
+      "tag": "rust-v0.168.0",
+      "snapshot_tag": "rust-v0.168.0",
+      "url": "https://data.cp.dev/v1/features/codex/rust-v0.168.0.json"
+    },
+    {
+      "tag": "rust-v0.169.0",
+      "snapshot_tag": "rust-v0.169.0",
+      "url": "https://data.cp.dev/v1/features/codex/rust-v0.169.0.json"
     }
   ],
   "source_files": [
