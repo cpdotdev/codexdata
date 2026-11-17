@@ -1,0 +1,9 @@
+{
+  "key": "guardian_include_additional_context",
+  "i18n": {
+    "zh": {
+      "title": "Guardian 附加上下文",
+      "summary": "Guardian 审查历史包含独立的附加上下文工具输出。"
+    }
+  }
+}

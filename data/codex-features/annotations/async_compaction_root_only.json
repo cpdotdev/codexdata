@@ -1,0 +1,9 @@
+{
+  "key": "async_compaction_root_only",
+  "i18n": {
+    "zh": {
+      "title": "仅根会话后台压缩",
+      "summary": "后台压缩只在根会话进行。"
+    }
+  }
+}

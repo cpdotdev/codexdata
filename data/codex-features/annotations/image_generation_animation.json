@@ -1,0 +1,9 @@
+{
+  "key": "image_generation_animation",
+  "i18n": {
+    "zh": {
+      "title": "生图动画",
+      "summary": "生图工具可请求由后端合成的 GIF 动图。"
+    }
+  }
+}
