@@ -1,0 +1,9 @@
+{
+  "key": "gateway_setup_wizard",
+  "i18n": {
+    "zh": {
+      "title": "网关设置",
+      "summary": "在终端登录时，引导设置自定义网关。"
+    }
+  }
+}

@@ -6,10 +6,10 @@
   ],
   "counts": {
     "total": 215,
-    "annotated": 203,
+    "annotated": 215,
     "locales": {
       "en": 1,
-      "zh": 203
+      "zh": 215
     }
   },
   "flags": [
@@ -58,7 +58,14 @@
           }
         ]
       },
-      "annotation": null
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "代理消息板",
+            "summary": "通过 HTTP MCP 暴露会话树范围的内存消息板。"
+          }
+        }
+      }
     },
     {
       "key": "analytics_plan_history",
@@ -421,7 +428,14 @@
           }
         ]
       },
-      "annotation": null
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "仅根会话后台压缩",
+            "summary": "后台压缩只在根会话进行。"
+          }
+        }
+      }
     },
     {
       "key": "auth_elicitation",
@@ -707,7 +721,14 @@
           }
         ]
       },
-      "annotation": null
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "恢复会话账号校验",
+            "summary": "CLI 恢复带归属的本地会话时，仅限其创建者。"
+          }
+        }
+      }
     },
     {
       "key": "code_mode",
@@ -1124,7 +1145,14 @@
           }
         ]
       },
-      "annotation": null
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "命令会话状态",
+            "summary": "把保留的命令会话通过增量世界状态发布给模型。"
+          }
+        }
+      }
     },
     {
       "key": "compaction_image_budget",
@@ -1429,7 +1457,15 @@
           }
         ]
       },
-      "annotation": null
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "Daybreak 选择传递",
+            "summary": "为原生辅助代理及其回合记录已保存的 Daybreak 选择。",
+            "note": "Daybreak 是面向授权安全工作的访问计划，见 cli_daybreak。"
+          }
+        }
+      }
     },
     {
       "key": "default_mode_request_user_input",
@@ -1889,7 +1925,14 @@
           }
         ]
       },
-      "annotation": null
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "网关设置",
+            "summary": "在终端登录时，引导设置自定义网关。"
+          }
+        }
+      }
     },
     {
       "key": "gcp_setup_wizard",
@@ -2017,7 +2060,14 @@
           }
         ]
       },
-      "annotation": null
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "Guardian 拒绝复核",
+            "summary": "同步 Guardian 作出拒绝后，公布前先重新采样一次。"
+          }
+        }
+      }
     },
     {
       "key": "guardian_enhanced_node_repl_transcripts",
@@ -2095,7 +2145,14 @@
           }
         ]
       },
-      "annotation": null
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "Guardian 附加上下文",
+            "summary": "Guardian 审查历史包含独立的附加上下文工具输出。"
+          }
+        }
+      }
     },
     {
       "key": "guardian_native_multi_agent_history",
@@ -2428,7 +2485,14 @@
           }
         ]
       },
-      "annotation": null
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "托管搜索策略",
+            "summary": "宿主可按回合策略单独授权 MCP 搜索，不依赖原生搜索。"
+          }
+        }
+      }
     },
     {
       "key": "image_detail_original",
@@ -2504,7 +2568,14 @@
           }
         ]
       },
-      "annotation": null
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "生图动画",
+            "summary": "生图工具可请求由后端合成的 GIF 动图。"
+          }
+        }
+      }
     },
     {
       "key": "image_resize_notice",
@@ -3115,7 +3186,14 @@
           }
         ]
       },
-      "annotation": null
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "MCP 延迟启动",
+            "summary": "普通对话在工具目录已预热时，推迟启动可选的 stdio 服务器。"
+          }
+        }
+      }
     },
     {
       "key": "mcp_oauth_refresh_coordination",
@@ -5362,7 +5440,14 @@
           }
         ]
       },
-      "annotation": null
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "终端工作区",
+            "summary": "在自有终端界面为侧边对话启用工作区行为。"
+          }
+        }
+      }
     },
     {
       "key": "ultrafast_mode",

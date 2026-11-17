@@ -1,0 +1,9 @@
+{
+  "key": "hosted_search_policy",
+  "i18n": {
+    "zh": {
+      "title": "托管搜索策略",
+      "summary": "宿主可按回合策略单独授权 MCP 搜索，不依赖原生搜索。"
+    }
+  }
+}

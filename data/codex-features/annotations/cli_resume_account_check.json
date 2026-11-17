@@ -1,0 +1,9 @@
+{
+  "key": "cli_resume_account_check",
+  "i18n": {
+    "zh": {
+      "title": "恢复会话账号校验",
+      "summary": "CLI 恢复带归属的本地会话时，仅限其创建者。"
+    }
+  }
+}

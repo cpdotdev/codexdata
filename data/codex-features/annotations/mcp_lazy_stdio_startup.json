@@ -1,0 +1,9 @@
+{
+  "key": "mcp_lazy_stdio_startup",
+  "i18n": {
+    "zh": {
+      "title": "MCP 延迟启动",
+      "summary": "普通对话在工具目录已预热时，推迟启动可选的 stdio 服务器。"
+    }
+  }
+}

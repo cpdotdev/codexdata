@@ -1,0 +1,9 @@
+{
+  "key": "agent_message_board_mcp",
+  "i18n": {
+    "zh": {
+      "title": "代理消息板",
+      "summary": "通过 HTTP MCP 暴露会话树范围的内存消息板。"
+    }
+  }
+}

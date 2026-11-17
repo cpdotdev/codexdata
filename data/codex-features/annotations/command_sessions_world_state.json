@@ -1,0 +1,9 @@
+{
+  "key": "command_sessions_world_state",
+  "i18n": {
+    "zh": {
+      "title": "命令会话状态",
+      "summary": "把保留的命令会话通过增量世界状态发布给模型。"
+    }
+  }
+}

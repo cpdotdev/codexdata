@@ -1,0 +1,10 @@
+{
+  "key": "daybreak_program_propagation",
+  "i18n": {
+    "zh": {
+      "title": "Daybreak 选择传递",
+      "summary": "为原生辅助代理及其回合记录已保存的 Daybreak 选择。",
+      "note": "Daybreak 是面向授权安全工作的访问计划，见 cli_daybreak。"
+    }
+  }
+}

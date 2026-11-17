@@ -1,0 +1,9 @@
+{
+  "key": "guardian_denial_reconsideration",
+  "i18n": {
+    "zh": {
+      "title": "Guardian 拒绝复核",
+      "summary": "同步 Guardian 作出拒绝后，公布前先重新采样一次。"
+    }
+  }
+}
