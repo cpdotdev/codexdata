@@ -1,6 +1,6 @@
 {
   "schema": "codex-model-info.schema.json",
-  "latest": "rust-v0.169.1",
+  "latest": "rust-v0.170.0",
   "verified_tags": [
     "rust-v0.148.0",
     "rust-v0.149.0",
@@ -35,7 +35,8 @@
     "rust-v0.167.2",
     "rust-v0.168.0",
     "rust-v0.169.0",
-    "rust-v0.169.1"
+    "rust-v0.169.1",
+    "rust-v0.170.0"
   ],
   "source_files": [
     "codex-rs/protocol/src/openai_models.rs",
@@ -84,6 +85,7 @@
     "rust-v0.162.1": "rust-v0.162.0",
     "rust-v0.167.1": "rust-v0.167.0",
     "rust-v0.167.2": "rust-v0.167.0",
-    "rust-v0.169.1": "rust-v0.169.0"
+    "rust-v0.169.1": "rust-v0.169.0",
+    "rust-v0.170.0": "rust-v0.169.0"
   }
 }
