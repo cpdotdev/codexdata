@@ -1,0 +1,9 @@
+{
+  "key": "multi_environment_mcp",
+  "i18n": {
+    "zh": {
+      "title": "MCP 多环境区分",
+      "summary": "在不同执行环境中发现的同名 HTTP 服务器分开保留，不合并为一个。"
+    }
+  }
+}

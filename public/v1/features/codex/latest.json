@@ -6,10 +6,10 @@
   ],
   "counts": {
     "total": 216,
-    "annotated": 215,
+    "annotated": 216,
     "locales": {
       "en": 1,
-      "zh": 215
+      "zh": 216
     }
   },
   "flags": [
@@ -3495,7 +3495,14 @@
           }
         ]
       },
-      "annotation": null
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "MCP 多环境区分",
+            "summary": "在不同执行环境中发现的同名 HTTP 服务器分开保留，不合并为一个。"
+          }
+        }
+      }
     },
     {
       "key": "network_proxy",
