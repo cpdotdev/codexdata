@@ -32,12 +32,12 @@
     "build:ui": "node scripts/build-ui.mjs"
   },
   "devDependencies": {
-    "@cloudflare/vitest-pool-workers": "^0.22.0",
-    "@playwright/test": "1.63.0",
-    "prettier": "^3.9.9",
+    "@cloudflare/vitest-pool-workers": "^0.23.0",
+    "@playwright/test": "1.64.1",
+    "prettier": "^3.9.10",
     "typescript": "^5.9.3",
-    "vitest": "^4.1.11",
-    "wrangler": "^4.142.0"
+    "vitest": "^4.1.12",
+    "wrangler": "^4.155.0"
   },
   "dependencies": {
     "@cfworker/json-schema": "^4.1.1",
