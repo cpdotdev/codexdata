@@ -1,0 +1,9 @@
+{
+  "key": "file_backed_tool_audio",
+  "i18n": {
+    "zh": {
+      "title": "工具音频准备",
+      "summary": "允许当前主机的附件存储在持久化前准备新的工具音频。"
+    }
+  }
+}

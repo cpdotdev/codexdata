@@ -1,0 +1,9 @@
+{
+  "key": "mcp_shared_repl_cwd",
+  "i18n": {
+    "zh": {
+      "title": "共享 REPL 目录",
+      "summary": "为共享 REPL 服务器使用应用服务器的固定启动目录。"
+    }
+  }
+}

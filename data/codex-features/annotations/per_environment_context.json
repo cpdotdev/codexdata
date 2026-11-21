@@ -1,0 +1,9 @@
+{
+  "key": "per_environment_context",
+  "i18n": {
+    "zh": {
+      "title": "分环境上下文",
+      "summary": "分别描述每个所选环境的文件系统与权限。"
+    }
+  }
+}

@@ -6,10 +6,10 @@
   ],
   "counts": {
     "total": 224,
-    "annotated": 216,
+    "annotated": 224,
     "locales": {
       "en": 1,
-      "zh": 216
+      "zh": 224
     }
   },
   "flags": [
@@ -653,7 +653,14 @@
           }
         ]
       },
-      "annotation": null
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "目录应用说明",
+            "summary": "使用所选模型目录条目中的应用使用说明。"
+          }
+        }
+      }
     },
     {
       "key": "chronicle",
@@ -1945,7 +1952,14 @@
           }
         ]
       },
-      "annotation": null
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "工具音频准备",
+            "summary": "允许当前主机的附件存储在持久化前准备新的工具音频。"
+          }
+        }
+      }
     },
     {
       "key": "gateway_setup_wizard",
@@ -2240,7 +2254,14 @@
           }
         ]
       },
-      "annotation": null
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "Guardian 嵌套审批",
+            "summary": "在嵌套的 Guardian 审批中包含已验证的外层调用。"
+          }
+        }
+      }
     },
     {
       "key": "guardian_node_repl_transcript_images",
@@ -3304,7 +3325,14 @@
           }
         ]
       },
-      "annotation": null
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "共享 REPL 目录",
+            "summary": "为共享 REPL 服务器使用应用服务器的固定启动目录。"
+          }
+        }
+      }
     },
     {
       "key": "mcp_tool_list_changed",
@@ -3769,7 +3797,14 @@
           }
         ]
       },
-      "annotation": null
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "分环境上下文",
+            "summary": "分别描述每个所选环境的文件系统与权限。"
+          }
+        }
+      }
     },
     {
       "key": "personality",
@@ -4464,7 +4499,14 @@
           }
         ]
       },
-      "annotation": null
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "历史记录预热",
+            "summary": "冷恢复时，在首次生成前预热已持久化的线程历史。"
+          }
+        }
+      }
     },
     {
       "key": "retain_client_developer_messages",
@@ -4623,7 +4665,14 @@
           }
         ]
       },
-      "annotation": null
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "安全图像解码",
+            "summary": "使用经审查的图像净化器规范化提示词中的图像。"
+          }
+        }
+      }
     },
     {
       "key": "search_tool",
@@ -5562,10 +5611,12 @@
         ]
       },
       "annotation": {
+        "aka": "Custom status line",
         "i18n": {
           "zh": {
-            "title": "状态栏扩展渲染",
-            "summary": "通过终端界面扩展渲染器绘制已配置的状态栏。"
+            "title": "自定义状态栏",
+            "summary": "启用 MCP 状态栏提供方。",
+            "note": "重启终端界面后可通过 /statusline 使用。"
           }
         }
       }
@@ -6013,7 +6064,14 @@
           }
         ]
       },
-      "annotation": null
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "UTC 环境日期",
+            "summary": "在模型可见的环境上下文中使用 UTC 日期。"
+          }
+        }
+      }
     },
     {
       "key": "view_image",

@@ -1,0 +1,9 @@
+{
+  "key": "utc_environment_date",
+  "i18n": {
+    "zh": {
+      "title": "UTC 环境日期",
+      "summary": "在模型可见的环境上下文中使用 UTC 日期。"
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "key": "restored_history_prewarm",
+  "i18n": {
+    "zh": {
+      "title": "历史记录预热",
+      "summary": "冷恢复时，在首次生成前预热已持久化的线程历史。"
+    }
+  }
+}

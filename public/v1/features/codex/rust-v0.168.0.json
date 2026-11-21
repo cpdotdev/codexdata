@@ -5251,10 +5251,12 @@
         ]
       },
       "annotation": {
+        "aka": "Custom status line",
         "i18n": {
           "zh": {
-            "title": "状态栏扩展渲染",
-            "summary": "通过终端界面扩展渲染器绘制已配置的状态栏。"
+            "title": "自定义状态栏",
+            "summary": "启用 MCP 状态栏提供方。",
+            "note": "重启终端界面后可通过 /statusline 使用。"
           }
         }
       }
