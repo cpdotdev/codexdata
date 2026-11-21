@@ -1,15 +1,15 @@
 {
   "dataset": "codex-feature-flags",
-  "snapshot_tag": "rust-v0.170.0",
+  "snapshot_tag": "rust-v0.171.0",
   "applies_to": [
-    "rust-v0.170.0"
+    "rust-v0.171.0"
   ],
   "counts": {
-    "total": 216,
-    "annotated": 216,
+    "total": 224,
+    "annotated": 224,
     "locales": {
       "en": 1,
-      "zh": 216
+      "zh": 224
     }
   },
   "flags": [
@@ -23,7 +23,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.156.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.156.0",
@@ -50,7 +50,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.168.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.168.0",
@@ -81,7 +81,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.156.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.156.0",
@@ -109,7 +109,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.161.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.161.0",
@@ -137,7 +137,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.155.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.155.0",
@@ -169,7 +169,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.164.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.164.0",
@@ -196,7 +196,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -223,7 +223,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -255,7 +255,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -284,7 +284,7 @@
       ],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -311,7 +311,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.167.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.167.0",
@@ -338,7 +338,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -365,7 +365,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -392,7 +392,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.163.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.163.0",
@@ -420,7 +420,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.168.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.168.0",
@@ -447,7 +447,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -474,7 +474,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -501,7 +501,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.151.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.151.0",
@@ -532,7 +532,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.161.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.161.0",
@@ -560,7 +560,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -588,7 +588,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -616,7 +616,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -636,6 +636,33 @@
       }
     },
     {
+      "key": "catalog_apps_instructions",
+      "variant": "CatalogAppsInstructions",
+      "stage": "under development",
+      "default_enabled": false,
+      "doc": "Use Apps usage instructions from the selected model's catalog entry.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.171.0",
+        "last_seen": "rust-v0.171.0",
+        "stages": [
+          {
+            "at": "rust-v0.171.0",
+            "stage": "under development"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "目录应用说明",
+            "summary": "使用所选模型目录条目中的应用使用说明。"
+          }
+        }
+      }
+    },
+    {
       "key": "chronicle",
       "variant": "Chronicle",
       "stage": "under development",
@@ -647,7 +674,7 @@
       ],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -681,7 +708,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.161.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.161.0",
@@ -713,7 +740,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.168.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.168.0",
@@ -740,7 +767,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -768,7 +795,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -795,7 +822,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -822,7 +849,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.163.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.163.0",
@@ -853,7 +880,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.167.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.167.0",
@@ -884,7 +911,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -916,7 +943,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -943,7 +970,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.162.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.162.0",
@@ -970,7 +997,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.151.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.151.0",
@@ -997,7 +1024,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.163.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.163.0",
@@ -1029,7 +1056,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.162.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.162.0",
@@ -1056,7 +1083,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.155.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.155.0",
@@ -1083,7 +1110,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -1110,7 +1137,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -1137,7 +1164,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.168.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.168.0",
@@ -1164,7 +1191,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.150.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.150.0",
@@ -1195,7 +1222,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -1223,7 +1250,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -1250,7 +1277,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.150.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.150.0",
@@ -1281,7 +1308,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.153.1",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.153.1",
@@ -1308,7 +1335,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.163.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.163.0",
@@ -1336,7 +1363,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.166.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.166.0",
@@ -1363,7 +1390,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -1390,7 +1417,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.149.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.149.0",
@@ -1417,7 +1444,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.156.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.156.0",
@@ -1449,7 +1476,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.169.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.169.0",
@@ -1477,7 +1504,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -1504,7 +1531,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.158.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.158.0",
@@ -1531,7 +1558,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -1558,7 +1585,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -1589,7 +1616,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -1616,7 +1643,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -1643,7 +1670,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -1670,7 +1697,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -1699,7 +1726,7 @@
       ],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -1726,7 +1753,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -1753,7 +1780,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -1780,7 +1807,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.164.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.164.0",
@@ -1809,7 +1836,7 @@
       ],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -1836,7 +1863,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -1863,7 +1890,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -1890,7 +1917,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -1908,6 +1935,33 @@
       }
     },
     {
+      "key": "file_backed_tool_audio",
+      "variant": "FileBackedToolAudio",
+      "stage": "under development",
+      "default_enabled": false,
+      "doc": "Allow this host's attachment store to prepare fresh tool audio before persistence.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.171.0",
+        "last_seen": "rust-v0.171.0",
+        "stages": [
+          {
+            "at": "rust-v0.171.0",
+            "stage": "under development"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "工具音频准备",
+            "summary": "允许当前主机的附件存储在持久化前准备新的工具音频。"
+          }
+        }
+      }
+    },
+    {
       "key": "gateway_setup_wizard",
       "variant": "GatewaySetupWizard",
       "stage": "stable",
@@ -1917,7 +1971,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.169.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.169.0",
@@ -1944,7 +1998,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.167.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.167.0",
@@ -1971,7 +2025,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -1998,7 +2052,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -2025,7 +2079,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.160.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.160.0",
@@ -2052,7 +2106,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.168.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.168.0",
@@ -2079,7 +2133,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -2106,7 +2160,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.150.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.150.0",
@@ -2137,7 +2191,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.168.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.168.0",
@@ -2164,7 +2218,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.166.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.166.0",
@@ -2183,6 +2237,33 @@
       }
     },
     {
+      "key": "guardian_nested_approval_context",
+      "variant": "GuardianNestedApprovalContext",
+      "stage": "under development",
+      "default_enabled": false,
+      "doc": "Include the verified enclosing invocation in nested Guardian approvals.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.171.0",
+        "last_seen": "rust-v0.171.0",
+        "stages": [
+          {
+            "at": "rust-v0.171.0",
+            "stage": "under development"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "Guardian 嵌套审批",
+            "summary": "在嵌套的 Guardian 审批中包含已验证的外层调用。"
+          }
+        }
+      }
+    },
+    {
       "key": "guardian_node_repl_transcript_images",
       "variant": "GuardianNodeReplTranscriptImages",
       "stage": "under development",
@@ -2192,7 +2273,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -2219,7 +2300,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.165.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.165.0",
@@ -2246,7 +2327,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -2277,7 +2358,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.160.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.160.0",
@@ -2304,7 +2385,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.163.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.163.0",
@@ -2331,7 +2412,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -2358,7 +2439,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.154.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.154.0",
@@ -2394,7 +2475,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.162.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.162.0",
@@ -2421,7 +2502,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.165.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.165.0",
@@ -2450,7 +2531,7 @@
       ],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -2477,7 +2558,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.168.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.168.0",
@@ -2504,7 +2585,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -2533,7 +2614,7 @@
       ],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -2560,7 +2641,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.168.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.168.0",
@@ -2587,7 +2668,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -2614,7 +2695,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -2642,7 +2723,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.149.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.149.0",
@@ -2670,7 +2751,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.149.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.149.0",
@@ -2698,7 +2779,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.150.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.150.0",
@@ -2726,7 +2807,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -2754,7 +2835,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.161.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.161.0",
@@ -2782,7 +2863,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.167.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.167.0",
@@ -2809,7 +2890,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.162.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.162.0",
@@ -2840,7 +2921,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.167.1",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.167.1",
@@ -2871,7 +2952,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.167.2",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.167.2",
@@ -2898,7 +2979,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.159.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.159.0",
@@ -2925,7 +3006,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.167.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.167.0",
@@ -2952,7 +3033,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -2979,7 +3060,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -3006,7 +3087,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -3033,7 +3114,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -3061,7 +3142,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.152.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.152.0",
@@ -3096,7 +3177,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.161.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.161.0",
@@ -3124,7 +3205,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -3151,7 +3232,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.166.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.166.0",
@@ -3178,7 +3259,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.169.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.169.0",
@@ -3205,7 +3286,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.153.1",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.153.1",
@@ -3227,6 +3308,33 @@
       }
     },
     {
+      "key": "mcp_shared_repl_cwd",
+      "variant": "McpSharedReplCwd",
+      "stage": "under development",
+      "default_enabled": false,
+      "doc": "Use the app server's fixed launch directories for shared REPL servers.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.171.0",
+        "last_seen": "rust-v0.171.0",
+        "stages": [
+          {
+            "at": "rust-v0.171.0",
+            "stage": "under development"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "共享 REPL 目录",
+            "summary": "为共享 REPL 服务器使用应用服务器的固定启动目录。"
+          }
+        }
+      }
+    },
+    {
       "key": "mcp_tool_list_changed",
       "variant": "McpToolListChanged",
       "stage": "under development",
@@ -3236,7 +3344,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.164.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.164.0",
@@ -3265,7 +3373,7 @@
       ],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -3292,7 +3400,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -3319,7 +3427,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.161.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.161.0",
@@ -3348,7 +3456,7 @@
       ],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -3379,7 +3487,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -3406,7 +3514,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -3433,7 +3541,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.162.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.162.0",
@@ -3460,7 +3568,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.164.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.164.0",
@@ -3487,7 +3595,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.170.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.170.0",
@@ -3518,7 +3626,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -3545,7 +3653,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -3572,7 +3680,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.156.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.156.0",
@@ -3599,7 +3707,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.152.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.152.0",
@@ -3626,7 +3734,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.166.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.166.0",
@@ -3653,7 +3761,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.163.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.163.0",
@@ -3672,6 +3780,33 @@
       }
     },
     {
+      "key": "per_environment_context",
+      "variant": "PerEnvironmentContext",
+      "stage": "under development",
+      "default_enabled": false,
+      "doc": "Describe each selected environment's filesystem and permissions separately.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.171.0",
+        "last_seen": "rust-v0.171.0",
+        "stages": [
+          {
+            "at": "rust-v0.171.0",
+            "stage": "under development"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "分环境上下文",
+            "summary": "分别描述每个所选环境的文件系统与权限。"
+          }
+        }
+      }
+    },
+    {
       "key": "personality",
       "variant": "Personality",
       "stage": "removed",
@@ -3681,7 +3816,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -3713,7 +3848,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.166.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.166.0",
@@ -3745,7 +3880,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -3772,7 +3907,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -3799,7 +3934,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -3826,7 +3961,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.152.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.152.0",
@@ -3853,7 +3988,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.165.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.165.0",
@@ -3880,7 +4015,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.157.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.157.0",
@@ -3914,7 +4049,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -3941,7 +4076,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -3969,7 +4104,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -4012,7 +4147,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.154.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.154.0",
@@ -4043,7 +4178,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -4070,7 +4205,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -4102,7 +4237,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -4129,7 +4264,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -4156,7 +4291,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -4184,7 +4319,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -4211,7 +4346,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -4238,7 +4373,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -4269,7 +4404,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -4302,7 +4437,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -4329,7 +4464,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -4347,6 +4482,33 @@
       }
     },
     {
+      "key": "restored_history_prewarm",
+      "variant": "RestoredHistoryPrewarm",
+      "stage": "under development",
+      "default_enabled": false,
+      "doc": "Warm persisted thread history before the first generation on cold resume.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.171.0",
+        "last_seen": "rust-v0.171.0",
+        "stages": [
+          {
+            "at": "rust-v0.171.0",
+            "stage": "under development"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "历史记录预热",
+            "summary": "冷恢复时，在首次生成前预热已持久化的线程历史。"
+          }
+        }
+      }
+    },
+    {
       "key": "retain_client_developer_messages",
       "variant": "RetainClientDeveloperMessages",
       "stage": "under development",
@@ -4356,7 +4518,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -4383,7 +4545,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.163.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.163.0",
@@ -4414,7 +4576,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -4441,7 +4603,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.164.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.164.0",
@@ -4468,7 +4630,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -4486,6 +4648,33 @@
       }
     },
     {
+      "key": "safe_image_decoder",
+      "variant": "SafeImageDecoder",
+      "stage": "under development",
+      "default_enabled": false,
+      "doc": "Normalize prompt images with the reviewed image sanitizer.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.171.0",
+        "last_seen": "rust-v0.171.0",
+        "stages": [
+          {
+            "at": "rust-v0.171.0",
+            "stage": "under development"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "安全图像解码",
+            "summary": "使用经审查的图像净化器规范化提示词中的图像。"
+          }
+        }
+      }
+    },
+    {
       "key": "search_tool",
       "variant": "SearchTool",
       "stage": "removed",
@@ -4495,7 +4684,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -4523,7 +4712,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -4551,7 +4740,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.149.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.149.0",
@@ -4578,7 +4767,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.156.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.156.0",
@@ -4605,7 +4794,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -4632,7 +4821,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.150.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.150.0",
@@ -4659,7 +4848,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -4686,7 +4875,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -4717,7 +4906,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.166.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.166.0",
@@ -4744,7 +4933,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.166.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.166.0",
@@ -4771,7 +4960,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -4798,7 +4987,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -4825,7 +5014,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -4852,7 +5041,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.151.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.151.0",
@@ -4879,7 +5068,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.152.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.152.0",
@@ -4906,7 +5095,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -4933,7 +5122,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.162.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.162.0",
@@ -4964,7 +5153,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -4991,7 +5180,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -5018,7 +5207,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.151.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.151.0",
@@ -5045,7 +5234,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.163.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.163.0",
@@ -5072,7 +5261,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.164.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.164.0",
@@ -5099,7 +5288,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.167.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.167.0",
@@ -5126,7 +5315,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.156.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.156.0",
@@ -5153,7 +5342,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -5180,7 +5369,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -5207,7 +5396,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -5234,7 +5423,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -5261,7 +5450,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -5288,7 +5477,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -5315,7 +5504,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -5342,7 +5531,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.150.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.150.0",
@@ -5378,7 +5567,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -5398,26 +5587,36 @@
     {
       "key": "tui_extensions_statusline",
       "variant": "TuiExtensionsStatusLine",
-      "stage": "under development",
+      "stage": "experimental",
       "default_enabled": false,
       "doc": "Enable experimental MCP status line providers.",
-      "experimental": null,
+      "experimental": {
+        "name": "Custom status line",
+        "menu_description": "Restart the TUI, then use /statusline.",
+        "announcement": null
+      },
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.167.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.167.0",
             "stage": "under development"
+          },
+          {
+            "at": "rust-v0.171.0",
+            "stage": "experimental"
           }
         ]
       },
       "annotation": {
+        "aka": "Custom status line",
         "i18n": {
           "zh": {
-            "title": "状态栏扩展渲染",
-            "summary": "通过终端界面扩展渲染器绘制已配置的状态栏。"
+            "title": "自定义状态栏",
+            "summary": "启用 MCP 状态栏提供方。",
+            "note": "重启终端界面后可通过 /statusline 使用。"
           }
         }
       }
@@ -5432,7 +5631,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.165.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.165.0",
@@ -5452,18 +5651,22 @@
     {
       "key": "tui_workspace",
       "variant": "TuiWorkspace",
-      "stage": "under development",
-      "default_enabled": false,
+      "stage": "stable",
+      "default_enabled": true,
       "doc": "Enable workspace behavior for side conversations in the owned TUI.",
       "experimental": null,
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.168.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.168.0",
             "stage": "under development"
+          },
+          {
+            "at": "rust-v0.171.0",
+            "stage": "stable"
           }
         ]
       },
@@ -5486,7 +5689,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.162.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.162.0",
@@ -5514,7 +5717,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -5541,7 +5744,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -5568,7 +5771,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -5597,7 +5800,7 @@
       ],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -5624,7 +5827,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.154.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.154.0",
@@ -5651,7 +5854,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -5682,7 +5885,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -5713,7 +5916,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.166.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.166.0",
@@ -5744,7 +5947,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -5771,7 +5974,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -5798,7 +6001,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -5825,7 +6028,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.156.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.156.0",
@@ -5844,6 +6047,33 @@
       }
     },
     {
+      "key": "utc_environment_date",
+      "variant": "UtcEnvironmentDate",
+      "stage": "under development",
+      "default_enabled": false,
+      "doc": "Use UTC for the date in model-visible environment context.",
+      "experimental": null,
+      "legacy_aliases": [],
+      "history": {
+        "first_seen": "rust-v0.171.0",
+        "last_seen": "rust-v0.171.0",
+        "stages": [
+          {
+            "at": "rust-v0.171.0",
+            "stage": "under development"
+          }
+        ]
+      },
+      "annotation": {
+        "i18n": {
+          "zh": {
+            "title": "UTC 环境日期",
+            "summary": "在模型可见的环境上下文中使用 UTC 日期。"
+          }
+        }
+      }
+    },
+    {
       "key": "view_image",
       "variant": "ViewImage",
       "stage": "stable",
@@ -5853,7 +6083,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -5880,7 +6110,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.164.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.164.0",
@@ -5907,7 +6137,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -5936,7 +6166,7 @@
       ],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -5963,7 +6193,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.154.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.154.0",
@@ -5990,7 +6220,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -6017,7 +6247,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.148.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.148.0",
@@ -6044,7 +6274,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.154.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.154.0",
@@ -6079,7 +6309,7 @@
       "legacy_aliases": [],
       "history": {
         "first_seen": "rust-v0.151.0",
-        "last_seen": "rust-v0.170.0",
+        "last_seen": "rust-v0.171.0",
         "stages": [
           {
             "at": "rust-v0.151.0",

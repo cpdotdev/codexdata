@@ -1,0 +1,9 @@
+{
+  "key": "guardian_nested_approval_context",
+  "i18n": {
+    "zh": {
+      "title": "Guardian 嵌套审批",
+      "summary": "在嵌套的 Guardian 审批中包含已验证的外层调用。"
+    }
+  }
+}

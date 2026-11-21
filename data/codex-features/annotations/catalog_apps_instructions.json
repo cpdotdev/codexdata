@@ -1,0 +1,9 @@
+{
+  "key": "catalog_apps_instructions",
+  "i18n": {
+    "zh": {
+      "title": "目录应用说明",
+      "summary": "使用所选模型目录条目中的应用使用说明。"
+    }
+  }
+}
