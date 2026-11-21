@@ -418,7 +418,7 @@
             "object",
             "null"
           ],
-          "description": "0.167+: model-owned Apps wording, carried unchanged; the client does not use it yet.",
+          "description": "0.167+: model-owned Apps usage guidance, subject to existing Apps availability and authorization. 0.171+: missing/null uses the bundled guidance, empty clears it, whitespace-only or over 800 UTF-8 bytes falls back to the bundled text; other values preserve exact bytes.",
           "properties": {
             "usage_instructions": {
               "$ref": "#/$defs/NullableString"
@@ -1208,6 +1208,13 @@
             }
           ],
           "description": "0.151+; older clients ignore the key."
+        },
+        "multi_agent_tools_in_code_mode": {
+          "type": [
+            "boolean",
+            "null"
+          ],
+          "description": "0.171+; whether native multi-agent tools follow the model's tool mode instead of staying direct-only. Absent/null preserves the runtime's multi_agent_v2.non_code_mode_only setting. Older clients ignore the key."
         }
       },
       "allOf": [
