@@ -3,6 +3,13 @@ name: Deploy
 # Production deploys are an explicit, manual step after CI is green on main.
 on:
   workflow_dispatch:
+    inputs:
+      generate_kek:
+        description: >-
+          Generate REFRESH_TOKEN_KEK. Only for the first deploy, or after deleting the Worker secret
+          on purpose: tokens stored under the old KEK become unreadable, so re-seed afterwards.
+        type: boolean
+        default: false
 
 permissions:
   contents: read
@@ -68,14 +75,47 @@ jobs:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           ADMIN_TOKEN: ${{ secrets.CODEXDATA_ADMIN_TOKEN }}
+          GENERATE_KEK: ${{ inputs.generate_kek }}
         run: |
+          set -euo pipefail
           [ -n "$ADMIN_TOKEN" ] || { echo "CODEXDATA_ADMIN_TOKEN secret is not set"; exit 1; }
           # ADMIN_TOKEN always mirrors the GitHub secret so the workflows and the Worker agree.
           printf '%s' "$ADMIN_TOKEN" | pnpm exec wrangler secret put ADMIN_TOKEN
-          # The KEK encrypts the stored OAuth tokens; never overwrite an existing one (the stored
-          # ciphertext would become unreadable). Generated once, lives only on the Worker.
-          if pnpm exec wrangler secret list --format json | grep -q '"REFRESH_TOKEN_KEK"'; then
+
+          # The KEK encrypts the stored OAuth tokens. Overwriting it makes the stored ciphertext
+          # unreadable and stops every sync until a re-seed (2026-11-20, cpdotdev/codexdata#35).
+          # So this step fails closed: it never writes the KEK unless the run was started with
+          # generate_kek, and only when a trustworthy listing shows the KEK is absent.
+          # An assignment fails the step when the command fails (a pipe into grep would not).
+          secrets_json=$(pnpm exec wrangler secret list --format json)
+          kek_state=$(SECRETS_JSON="$secrets_json" node -e '
+            let names;
+            try {
+              const list = JSON.parse(process.env.SECRETS_JSON);
+              if (!Array.isArray(list)) throw new Error("not an array");
+              names = new Set(list.map((entry) => entry.name));
+            } catch (error) {
+              console.error("wrangler secret list returned unparseable output: " + error.message);
+              process.exit(1);
+            }
+            // ADMIN_TOKEN was uploaded just above, so a listing without it is incomplete or stale
+            // and cannot prove the KEK is absent.
+            if (!names.has("ADMIN_TOKEN")) {
+              console.error("wrangler secret list does not include ADMIN_TOKEN; refusing to trust it");
+              process.exit(1);
+            }
+            console.log(names.has("REFRESH_TOKEN_KEK") ? "present" : "absent");
+          ')
+          if [ "$kek_state" = "present" ]; then
+            if [ "$GENERATE_KEK" = "true" ]; then
+              echo "::error::generate_kek was requested but REFRESH_TOKEN_KEK already exists. Refusing to overwrite it. To rotate on purpose, delete the Worker secret first (docs/RUNBOOK.md#operations)."
+              exit 1
+            fi
             echo "REFRESH_TOKEN_KEK already set"
-          else
+          elif [ "$GENERATE_KEK" = "true" ]; then
             openssl rand -base64 32 | pnpm exec wrangler secret put REFRESH_TOKEN_KEK
+            echo "::warning::Generated a new REFRESH_TOKEN_KEK. Re-seed the dedicated account now (docs/RUNBOOK.md#bootstrap-once-per-worker)."
+          else
+            echo "::error::REFRESH_TOKEN_KEK is missing from the Worker. Syncs cannot decrypt the stored tokens. If this is the first deploy, or the secret was deleted on purpose, re-run Deploy with generate_kek and then re-seed."
+            exit 1
           fi
