@@ -73,6 +73,8 @@ Everything except the account login runs in GitHub Actions; no local Cloudflare 
 5. **Log the dedicated account in** on a trusted machine, into a throwaway Codex home, and hand
    the result to the `Seed dedicated account` workflow through a temporary secret:
    ```bash
+   # Codex refuses a CODEX_HOME that does not exist yet.
+   mkdir -m 700 /tmp/codexdata-bootstrap
    CODEX_HOME=/tmp/codexdata-bootstrap codex login
    gh secret set CODEXDATA_SEED_AUTH -R cpdotdev/codexdata < /tmp/codexdata-bootstrap/auth.json
    gh workflow run seed.yml -R cpdotdev/codexdata

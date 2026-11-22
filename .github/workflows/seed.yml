@@ -3,7 +3,9 @@ name: Seed dedicated account
 # One-off bootstrap: hands the dedicated ChatGPT account's `codex login` result to the Worker,
 # which stores the refresh token encrypted. Nothing else ever needs that account's credentials.
 #
-#   1. On a trusted machine, log the dedicated account in to a throwaway Codex home:
+#   1. On a trusted machine, log the dedicated account in to a throwaway Codex home (Codex
+#      refuses a CODEX_HOME that does not exist yet, so create it first):
+#        mkdir -m 700 /tmp/codexdata-bootstrap
 #        CODEX_HOME=/tmp/codexdata-bootstrap codex login
 #   2. Put the resulting file into a temporary repository secret:
 #        gh secret set CODEXDATA_SEED_AUTH -R <owner>/<repo> < /tmp/codexdata-bootstrap/auth.json
